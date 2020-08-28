@@ -1,28 +1,37 @@
 body{
     background-color: #f0f4f7;
     font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    min-width: 440px;
+}
+.clearfix::before,
+.clearfix::after{
+            content: '';
+            display: table;
+            clear: both;
 }
 
 .topbar-wrapper{
-    position: relative;
+    box-sizing: border-box;
     height: 90px;
     background-color: #fff;
+    padding: 24px 0;
+}
+.topbar{
+    height: 90px;
+    width: 300px;
+    margin: 0 auto;
 }
 .topbar a{
-    position: absolute;
-    height: 42px;
-    left: 800px;
-    top: 24px;
     text-decoration: none;
 }
-.topbar .logo{
+.topbar a .logo{
     float: left;
     width: 42px;
     height: 42px;
     background-size: 42px 42px;
     background-image: url(./favicon.ico);
 }
-.topbar .title{
+.topbar a .title{
     float: left;
     margin: 0 20px;
     color: rgb(65, 65, 65);
