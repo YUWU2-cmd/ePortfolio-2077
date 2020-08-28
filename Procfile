@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -jar ePortfolio-2077/target/*.jar
