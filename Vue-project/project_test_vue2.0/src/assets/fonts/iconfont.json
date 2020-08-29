@@ -1,0 +1,30 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11488230",
+      "name": "bussiness-man-fill",
+      "font_class": "bussiness-man-fill",
+      "unicode": "e779",
+      "unicode_decimal": 59257
+    },
+    {
+      "icon_id": "11488253",
+      "name": "email-fill",
+      "font_class": "email-fill",
+      "unicode": "e77e",
+      "unicode_decimal": 59262
+    },
+    {
+      "icon_id": "11488289",
+      "name": "password",
+      "font_class": "password",
+      "unicode": "e786",
+      "unicode_decimal": 59270
+    }
+  ]
+}
