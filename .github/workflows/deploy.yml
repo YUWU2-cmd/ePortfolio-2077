@@ -1,0 +1,26 @@
+
+name: CD
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-latest
+    name: start to deploy
+    steps:
+    - uses: actions/checkout@v2.3.2
+    - name: Login to Heroku Container registry
+      env: 
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:login 
+    - name: Build and push
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:push web 
+    - name: Release
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:release web
