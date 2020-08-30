@@ -1,3 +1,9 @@
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -34,37 +40,3 @@ build/
 
 ### Mac ###
 .DS_Store
-
-  
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# Eclipse #
-.settings
-.project
-.classpath
-.studio
-target
-
-# Apple # 
-.DS_Store
-
-# Intellij #
-.idea
-*.iml
-*.log
-
-# VSCode
-.vscode
-
-
-server/src/main/resources/public/
-server/target
-client/dist/
-client/node/
-client/node_modules/
-client/target
