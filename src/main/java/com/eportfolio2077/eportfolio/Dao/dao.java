@@ -1,4 +1,4 @@
-package com.eportfolio2077.eportfolio.Dao;
+package com.eportfolio2077.eportfolio.dao;
 
-public class dao {
+public class Dao {
 }

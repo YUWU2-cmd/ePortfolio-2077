@@ -1,4 +1,4 @@
-package com.eportfolio2077.eportfolio.Controller;
+package com.eportfolio2077.eportfolio.controller;
 
-public class controller {
+public class Controller {
 }

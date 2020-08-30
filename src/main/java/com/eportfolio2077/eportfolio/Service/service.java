@@ -1,4 +1,4 @@
-package com.eportfolio2077.eportfolio.Service;
+package com.eportfolio2077.eportfolio.service;
 
-public class service {
+public class Service {
 }
