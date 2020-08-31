@@ -38,30 +38,48 @@ body{
 .body-wrapper{
     position: relative;
     margin: 85px auto;
-    width: 440px;
-    height: 530px;
+    width: 512px;
+    height: 520px;
     background-color: #fff;
     box-shadow: 0 .25rem .125rem 0 rgba(0,0,0,0.025);
     border: 2px rgb(212, 212, 212, .5) solid;
     border-radius: .25rem;
 }
-.body-wrapper .title{
+.inner-body{
+    width: 444px;
+    height: 460px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+}
+.inner-body .title{
     font-size: 35px;
     font-weight: bold;
     color: rgb(65, 65, 65);
     height: 40px;
     line-height: 40px;
-    padding: 40px 170px;
+    margin: 0 25px;
 }
-.user-input{
-    width: 370px;
-    height: 380px;
-    margin: 0 auto;
-    background-color: #fff;
+.inner-body .subtitle{
+    height: 25px;
+    color: #1864ab;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 25px;
+    margin: 10px auto;
 }
-.username span,
-.password span{
-    display: block;
+.inner-body .description{
+    height: 60px;
+    color: #495057;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    margin: 10px auto;
+}
+.email{
+    margin: 20px 0;
+}
+.email span{
     font-size: 20px;
     font-weight: bold;
     height: 20px;
@@ -70,11 +88,10 @@ body{
     padding: 5px 0;
     color: #515a62;
 }
-.username-input input,
-.password-input input{
+.email-input input{
     box-sizing: border-box;
     height: 74px;
-    width: 370px;
+    width: 444px;
     margin-top: 15px;
     font-size: 17px;
     padding: 0 25px;
@@ -83,23 +100,9 @@ body{
     border-radius: .25rem;
     box-shadow: inset 0 .25rem .125rem 0 rgba(0,0,0,0.05);
 }
-.username-input input:focus,
-.password-input input:focus{
+.email-input input:focus{
     border-color: #4dabf7;
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.0125),0 0 8px rgba(34,139,230,0.5);
-}
-.password{
-    margin-top: 20px;
-}
-.forget a{
-    display: block;
-    text-decoration: none;
-    color: #228be6;
-    width: 185px;
-    height: 18px;
-    line-height: 18px;
-    margin: 15px 0;
-    font-size: 14px;
 }
 .btn button{
     width: 100%;
@@ -119,17 +122,10 @@ body{
     border-top-width: calc(.2rem + .0625rem);
     border-bottom-width: .0625rem;
 }
-
-.footer{
-    position: relative;
-    bottom: 40px;
-    width: 350px;
-    height: 24px;
-    margin: 0 auto;
-    font-size: 15px;
+.inner-body .note{
+    height: 60px;
     color: #495057;
-}
-.footer a{
-    color: #228be6;
-    text-decoration: none;
+    font-size: 12px;
+    text-align: center;
+    margin: 30px auto;
 }
