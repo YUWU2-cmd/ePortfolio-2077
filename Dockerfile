@@ -4,5 +4,6 @@ WORKDIR /ePortfolio-2077
 RUN mvn clean install
 FROM openjdk:11-jdk
 VOLUME /tmp
-COPY --from=0 "/ePortfolio-2077/target/*.jar" app.jar
+COPY --from=0 "/ePortfolio-2077/server/target/*.jar" app.jar
+ENV JAVA_OPTS=""
 CMD [ "sh", "-c", "java -Dserver.port=$PORT -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dfile.encoding=UTF-8 -XX:+UseContainerSupport -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
