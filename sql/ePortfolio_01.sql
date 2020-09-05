@@ -27,15 +27,18 @@ create table User
             UserRoleId int
             AUTO_INCREMENT PRIMARY KEY,
     UserId int,
-    RoleId int,
-    CONSTRAINT 'fk_user' FOREIGN KEY
-            (UserId) REFERENCES User
-            (UserId),
-    CONSTRAINT 'fk_role' FOREIGN KEY
-            (RoleId) REFERENCES Role
-            (RoleId)
+    RoleId int
 );
 
+alter table UserRole 
+add constraint fk_role
+foreign key(RoleId) 
+references Role(RoleId);
+
+alter table UserRole 
+add constraint fk_user 
+foreign key(UserId) 
+references User(UserId);
 
 
 
