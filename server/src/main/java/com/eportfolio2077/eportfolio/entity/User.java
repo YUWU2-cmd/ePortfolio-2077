@@ -1,16 +1,15 @@
 package com.eportfolio2077.eportfolio.entity;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Data
 @Entity(name = "user")
 public class User {
-    @javax.persistence.Id
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
