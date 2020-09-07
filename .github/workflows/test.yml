@@ -33,4 +33,11 @@ jobs:
           java-version: 11
 
       - name: testing units with Maven
-        run: mvn test
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          APP_NAME: eportfolio2077
+        run: |
+          export DB_URL=$(heroku config:get DATABASE_API_URL --app ${{ env.APP_NAME }})
+          export DB_USERNAME=$(heroku config:get DATABASE_API_USERNAME --app ${{ env.APP_NAME }})
+          export DB_PASSWORD=$(heroku config:get DATABASE_API_PASSWIRD --app ${{ env.APP_NAME }})
+          mvn -Dspring.datasource.url=$DB_URL -Dspring.datasource.username=$DB_USERNAME -Dspring.datasource.password=$DB_PASSWORD test
