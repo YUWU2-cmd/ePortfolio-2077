@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar server/target/*.jar
+web: java -Dserver.port=$PORT -Dspring.datasource.url=$DATABASE_API_URL -Dspring.datasource.username=$DATABASE_API_USERNAME -Dspring.datasource.password=$DATABASE_API_PASSWORD -jar server/target/*.jar
