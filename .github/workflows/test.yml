@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+ 
+  compile:
+    runs-on: ubuntu-latest
+    name: start compiling
+    steps:
+      - uses: actions/checkout@v2.3.2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1.4.2
+        with:
+          java-version: 11
+     
+      - name: compiling with Maven
+        run: mvn compile
+  
+  test:
+    runs-on: ubuntu-latest
+    name: start unit testing
+    needs: [compile]
+    steps:
+      - uses: actions/checkout@v2.3.2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1.4.2
+        with:
+          java-version: 11
+
+      - name: testing units with Maven
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          APP_NAME: eportfolio2077
+        run: |
+          export DB_URL=$(heroku config:get DATABASE_API_URL --app ${{ env.APP_NAME }})
+          export DB_USERNAME=$(heroku config:get DATABASE_API_USERNAME --app ${{ env.APP_NAME }})
+          export DB_PASSWORD=$(heroku config:get DATABASE_API_PASSWIRD --app ${{ env.APP_NAME }})
+          mvn -Dspring.datasource.url=$DB_URL -Dspring.datasource.username=$DB_USERNAME -Dspring.datasource.password=$DB_PASSWORD test
