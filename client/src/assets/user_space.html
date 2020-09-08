@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="icon" href="./favicon.ico">
     <link rel="stylesheet" href="./user_space.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_2024476_ougd1ij5ms.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2024476_881bi1f25yd.css">
 
     <script type="text/javascript">
         window.onload = function(){
@@ -15,10 +15,12 @@
             var avatar = "url('./logo.png')";
             var user_name = "Username";
             var _sign = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tincidunt.";
+
             var interested = document.getElementById("interested-stats");
             var views = document.getElementById("views-stats");
             var username = document.getElementById("user-name");
             var sign = document.getElementById("sign");
+            var aboutme = document.getElementById("aboutme-content");
 
             var user_avatar_list = document.getElementsByClassName("user-avatar");
             for(var i = 0; i < user_avatar_list.length; i++){
@@ -28,9 +30,10 @@
             interested.innerText = 30;
             views.innerText = 150;
 
+
             username.innerText = user_name;
             sign.innerText = _sign;
-
+            aboutme.innerText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum sodales quam vel ullamcorper. Donec tortor lacus, auctor ultrices odio sed, posuere posuere massa. Sed id eleifend nunc. Sed placerat luctus urna ut malesuada. Donec dui elit, auctor id venenatis eu, consequat eget ante. Morbi in diam justo. Nam ac semper dui, quis commodo mi. Phasellus eleifend lorem sit amet metus pretium, vel laoreet mauris lacinia. Quisque eleifend commodo imperdiet. Ut vestibulum semper nisl eget gravida. Nam cursus quis nulla id varius. Curabitur euismod iaculis diam non consectetur. Etiam quis elit mattis, egestas lorem nec, finibus mauris. Ut quis augue sem. Aenean viverra ligula ut ex consectetur semper. Fusce euismod orci maximus, tincidunt magna a, euismod ligula. ";
         }
     </script>
 
@@ -101,13 +104,55 @@
                     <i class="iconfont icon-home" style="font-size: 25px; color: rgb(0,0,0,.4);"></i>
                     Home Page
                 </a>
+                <a href="./more.html">
+                    <i class="iconfont icon-more" style="font-size: 25px; color: rgb(0,0,0,.4);"></i>
+                    More about me
+                </a>
             </div>
         </div>
         <div class="main-block">
+            <div class="aboutme">&nbsp;About Me
+                <i class="iconfont icon-about" style="font-weight: normal; font-size: 18px; color: #3899ec;"></i>
+            </div>
+            <div id="aboutme-content"></div>
+            <div class="myexpertise">&nbsp;My Expertise
+                <i class="iconfont icon-_gexingtechang" style="font-weight: normal; font-size: 22px; color:#3899ec;"></i>
+            </div>
+            <div id="myexpertise-content">
+                <div class="left-expertise">
+                    <div class="expertises">
+                        <i class="iconfont icon-zhuanye2" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                        <div id="expertise1">expertise1</div>
+                    </div>
+                    <div class="expertises">
+                        <i class="iconfont icon-zhuanyequanwei" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                        <div id="expertise1">expertise2</div>
+                    </div>
+                </div>
+                <div class="right-expertise">
+                    <div class="expertises">
+                        <i class="iconfont icon-zhuanyegaoxiao" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                        <div id="expertise1">expertise3</div>
+                    </div>
+                    <div class="expertises">
+                        <i class="iconfont icon-zhuanye1" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                        <div id="expertise1">expertise4</div>
+                    </div>
+                </div>
+                
+            </div>
         </div>
         <div class="side-block">
-            <div class="side-top"></div>
-            <div class="side-bottom"></div>
+            <div class="side-top">
+                <div id="img-wrapper">image here</div>
+            </div>
+            <div class="side-bottom">
+                <div class="contacts">
+                    &nbsp;Contacts
+                    <i class="iconfont icon-contacts" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                </div>
+                <div id="contacts-content"></div>
+            </div>
         </div>
     </div>
 
