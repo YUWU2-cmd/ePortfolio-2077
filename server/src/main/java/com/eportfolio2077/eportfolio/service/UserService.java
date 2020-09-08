@@ -15,6 +15,11 @@ public class UserService {
     @Autowired
     UserDao userDao;
 
+    public boolean registerCheck(RegisterDto registerDto) {
+        User user = userDao.findByEmail(registerDto.getEmail());
+        return user != null;
+    }
+
     public boolean loginCheck(LoginDto loginDto) {
         User user = userDao.findByEmailAndPassword(loginDto.getEmail(), loginDto.getPassword());
         return user != null;

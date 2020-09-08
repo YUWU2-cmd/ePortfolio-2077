@@ -25,9 +25,11 @@ public class UserController {
     //Stay in register page if register fails,otherwise redirect to login page
     @RequestMapping("/signup")
     public ResponseEntity<ResponseMessage> signup(@RequestBody RegisterDto registerDto) {
-        userService.register(registerDto);
-        //TODO handle register fail
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        boolean status = userService.registerCheck(registerDto);
+        if (status) {userService.register(registerDto);}
+        return status
+                ? ResponseEntity.status(HttpStatus.OK).body(null)
+                : ResponseEntity.status(HttpStatus.FORBIDDEN).body(ResponseMessage.registerFail());
     }
 
     //Login logic, check if the account exist and execute login
