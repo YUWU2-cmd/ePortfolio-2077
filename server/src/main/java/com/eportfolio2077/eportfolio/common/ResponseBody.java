@@ -7,7 +7,7 @@ public class ResponseBody {
     private static final String WRONG_USERNAME_PASSWORD = "Incorrect Username or Password.";
     private static final String UPLOAD_FAIL = "Could not upload file.";
     private static final String SUCCESS = "Success!";
-    private static final String DUPLICATE_EMAIL = "This email has already been registered";
+    private static final String DUPLICATE_EMAIL = "Email already existed";
     private static final String SERVER_ERROR = "There maybe a server error";
 
     private String message;

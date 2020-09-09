@@ -30,7 +30,7 @@ public class UserController {
             userService.register(registerDto);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
         }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(ResponseBody.dupEmail());
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ResponseBody.dupEmail());
         }
 
     }
