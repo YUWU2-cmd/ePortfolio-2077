@@ -15,15 +15,15 @@ public class UserService {
     @Autowired
     UserDao userDao;
 
-    public boolean loginCheck(LoginDto loginDto) {
-        User user = userDao.findByEmailAndPassword(loginDto.getEmail(), loginDto.getPassword());
-        return user != null;
+
+    public boolean loginCheck(LoginDto loginDto){
+        User user = userDao.findUserByEmailAndPassword(loginDto.getEmail(), loginDto.getPassword());
+        return user!=null;
     }
 
     @Transactional
-    public boolean register(RegisterDto registerDto){
-        User newUser = new User(registerDto.getEmail(), registerDto.getRole(), registerDto.getUsername(), registerDto.getPassword());
+    public void register(RegisterDto registerDto){
+        User newUser = new User(registerDto.getEmail(), registerDto.getUsername(), registerDto.getPassword());
         userDao.save(newUser);
-        return true;
     }
 }

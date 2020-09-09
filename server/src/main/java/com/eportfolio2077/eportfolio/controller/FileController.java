@@ -1,6 +1,6 @@
 package com.eportfolio2077.eportfolio.controller;
 
-import com.eportfolio2077.eportfolio.common.ResponseMessage;
+import com.eportfolio2077.eportfolio.common.ResponseBody;
 import com.eportfolio2077.eportfolio.entity.File;
 import com.eportfolio2077.eportfolio.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +17,12 @@ public class FileController {
     FileService fileService;
 
     @PostMapping("/upload")
-    public ResponseEntity<ResponseMessage> upload(@RequestBody MultipartFile file){
+    public ResponseEntity<ResponseBody> upload(@RequestBody MultipartFile file){
         try {
             fileService.uploadFile(file);
             return ResponseEntity.status(HttpStatus.OK).body(null);
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseMessage.uploadFail());
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.uploadFail());
         }
     }
 
