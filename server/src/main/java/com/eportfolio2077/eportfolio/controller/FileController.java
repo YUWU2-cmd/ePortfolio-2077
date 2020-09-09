@@ -17,17 +17,17 @@ public class FileController {
     FileService fileService;
 
     @PostMapping("/upload")
-    public ResponseEntity<ResponseBody> upload(@RequestBody MultipartFile file){
+    public ResponseEntity<ResponseBody> upload(@RequestBody MultipartFile file) {
         try {
             fileService.uploadFile(file);
             return ResponseEntity.status(HttpStatus.OK).body(null);
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.uploadFail());
         }
     }
 
     @GetMapping("/file/{id}")
-    public ResponseEntity<byte[]> getFile(@PathVariable String id){
+    public ResponseEntity<byte[]> getFile(@PathVariable String id) {
         File file = fileService.getFile(id);
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getName() + "\"")

@@ -23,6 +23,12 @@ public class ResponseBody {
 
     public static ResponseBody success(){ return new ResponseBody(SUCCESS); }
 
+    public static ResponseBody success(Object obj){
+        ResponseBody responseBody = new ResponseBody(SUCCESS);
+        responseBody.setObj(obj);
+        return  responseBody;
+    }
+
     public static ResponseBody dupEmail(){ return new ResponseBody(DUPLICATE_EMAIL); }
 
     public static ResponseBody serverError(){ return new ResponseBody(SERVER_ERROR); }

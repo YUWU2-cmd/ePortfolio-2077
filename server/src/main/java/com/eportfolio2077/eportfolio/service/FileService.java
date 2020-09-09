@@ -20,7 +20,7 @@ public class FileService {
         return fileDao.save(newFile);
     }
 
-    public File getFile(String id){
+    public File getFile(String id) {
         return fileDao.findById(id).get();
     }
 

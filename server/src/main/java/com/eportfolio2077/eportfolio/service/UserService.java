@@ -16,13 +16,13 @@ public class UserService {
     UserDao userDao;
 
 
-    public boolean loginCheck(LoginDto loginDto){
+    public User loginCheck(LoginDto loginDto) {
         User user = userDao.findUserByEmailAndPassword(loginDto.getEmail(), loginDto.getPassword());
-        return user!=null;
+        return user;
     }
 
     @Transactional
-    public void register(RegisterDto registerDto){
+    public void register(RegisterDto registerDto) {
         User newUser = new User(registerDto.getEmail(), registerDto.getUsername(), registerDto.getPassword());
         userDao.save(newUser);
     }
