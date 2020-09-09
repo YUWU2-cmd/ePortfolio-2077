@@ -57,5 +57,8 @@ foreign key(UserId) references User(UserId);
  
 alter table Image
  add unique unique_name_path (ImageName,ImagePath);
+ 
+ alter table User
+ add  column AboutMe varchar(1000);
 
 
