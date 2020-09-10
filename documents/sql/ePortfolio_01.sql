@@ -1,4 +1,4 @@
-create database eportfolio;
+create database ePortfolio;
 
 create table User
 (
