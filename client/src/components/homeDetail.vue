@@ -1,119 +1,93 @@
 <template>
-  <div class="home-container">
-    <!-- 头部区域 -->
-    <div class="topbar-wrapper">
-        <div class="topbar">
-            
-            <div class="topbar-main">
-                <div class="logo">
-                  <img src="../assets/logo1.png" alt=""/>
-                </div>
-                <div class="title">
-                    ePortfolio 2077
-                </div>
+    <div>
+                <div class="main-block">
+            <div class="aboutme">
+                &nbsp;About Me
+                <i class="iconfont icon-about" style="font-weight: normal; font-size: 18px; color: #3899ec;"></i>
             </div>
-
-            
-
-                <el-dropdown placement="bottom-start" class="topbar-side">
-                    <span class="el-dropdown-link">
-                      <div class="user-avatar">
-                        <img src="../assets/logo.png" alt=""/>
-                        <!-- display user avatar which can be uploaded -->
-                      </div>
-                    </span>
-                    <el-dropdown-menu  slot="dropdown" class="dropdown-menu">
-                      <el-dropdown-item><router-link to="/personalDetail">Personal details</router-link></el-dropdown-item>
-                      <el-dropdown-item><router-link to="/login">Logout</router-link></el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
+            <div id="aboutme-content">{{aboutme}}</div>
+            <div class="myexpertise">&nbsp;My Expertise
+                <i class="iconfont icon-_gexingtechang" style="font-weight: normal; font-size: 22px; color:#3899ec;"></i>
+            </div>
+            <div id="myexpertise-content">
+                <div class="left-expertise">
+                    <div class="expertises">
+                        <i class="iconfont icon-zhuanye2" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                        <div id="expertise1">{{expertise1}}</div>
+                    </div>
+                    <div class="expertises">
+                        <i class="iconfont icon-zhuanyequanwei" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                        <div id="expertise1">{{expertise2}}</div>
+                    </div>
+                </div>
+                <div class="right-expertise">
+                    <div class="expertises">
+                        <i class="iconfont icon-zhuanyegaoxiao" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                        <div id="expertise1">{{expertise3}}</div>
+                    </div>
+                    <div class="expertises">
+                        <i class="iconfont icon-zhuanye1" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                        <div id="expertise1">{{expertise4}}</div>
+                    </div>
+                </div>
                 
-           
-            
-        </div>
-    </div>
-     <div class="body-wrapper">
-        
-        <div class="user-banner">
-            <div class="info">
-                <a href="./change_avatar.html">
-                    <div class="user-avatar">
-                        <img src="../assets/logo.png" alt=""/>
-                    </div>
-                </a>
-                <div class="text-info">
-                    <div class="user-name">{{username}}</div>
-                    <div class="sign">
-                        {{sign}}
-                    </div>
-                </div>
-            </div>
-            <div class="setting">
-                <a>
-                    <i class="iconfont icon-setting" style="font-size:27px" @click="routerTo()"></i>
-                </a>
             </div>
         </div>
-        <el-menu :default-active="activeIndex"  class="user-tab" mode="horizontal" @select="handleSelect">
-          <div class="stats">
-                <div class="interested">
-                    <div class="text">Interested</div>
-                    <div class="numbers">10</div>
+        <div class="side-block">
+            <div class="side-top">
+              <div class="image">
+                 &nbsp;Images
+                 <i class="iconfont icon-picture" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+              </div>
+                <div id="img-wrapper">
+                  <div class="block">
+                      <el-carousel height="400px">
+                        <el-carousel-item v-for="item in 4" :key="item">
+                         <el-image
+                          style="width: 100%; height: 100%"
+                          src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+                          fit="cover"></el-image>
+                        </el-carousel-item>
+                      </el-carousel>
+                  </div>
+                  {{img_info}}
                 </div>
-                <div class="views">
-                    <div class="text">Views</div>
-                    <div class="numbers">30</div>
+              
+            </div>
+            <div class="side-bottom">
+                <div class="contacts">
+                    &nbsp;Contacts
+                    <i class="iconfont icon-contacts" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                </div>
+                <div id="contacts-content">
+                  <h5>Email:</h5>
+                    </br>
+                  <h5>Address:</h5>
+                   </br>
+                {{contacts}}
                 </div>
             </div>
-          <el-menu-item index="1" class="home"> 
-              <i class="iconfont icon-home" style="font-size: 25px; color: rgb(0,0,0,.4);"></i>
-              Home Page
-          </el-menu-item>
-          <el-menu-item index="2" class="moreAboutMe">
-              <i class="iconfont icon-more" style="font-size: 25px; color: rgb(0,0,0,.4);"></i>
-              More About me
-          </el-menu-item>
-          
-        </el-menu>
-        <router-view />
-
+        </div>
     </div>
-    
-   
-  </div>
 </template>
 
 <script>
 export default {
-  data() {
+    data() {
     return {
-
-            username:"default",
-            sign:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id arcu enim. Cras vel orci. ",
-  
+      username:"default",
+      sign:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id arcu enim. Cras vel orci. ",
+      aboutme:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum sodales quam vel ullamcorper. Donec tortor lacus, auctor ultrices odio sed, posuere posuere massa. Sed id eleifend nunc. Sed placerat luctus urna ut malesuada. Donec dui elit, auctor id venenatis eu, consequat eget ante. Morbi in diam justo. Nam ac semper dui, quis commodo mi. Phasellus eleifend lorem sit amet metus pretium, vel laoreet mauris lacinia. Quisque eleifend commodo imperdiet. Ut vestibulum semper nisl eget gravida. Nam cursus quis nulla id varius. Curabitur euismod iaculis diam non consectetur. Etiam quis elit mattis, egestas lorem nec, finibus mauris. Ut quis augue sem. Aenean viverra ligula ut ex consectetur semper. Fusce euismod orci maximus, tincidunt magna a, euismod ligula. ",
+      expertise1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum sodales quam vel ullamcorper. Donec tortor lacus, auctor ultrices odio sed, posuere posuere massa. Sed id eleifend nunc. Sed placerat luctus urna ut malesuada. Donec dui elit, auctor id venenatis eu, consequat eget ante. Morbi in diam justo. Nam ac semper dui, quis commodo mi. Phasellus eleifend lorem sit amet metus pretium, vel laoreet mauris lacinia. Quisque eleifend commodo imperdiet. Ut vestibulum semper nisl eget gravida. Nam cursus quis nulla id varius. Curabitur euismod iaculis diam non consectetur. Etiam quis elit mattis, egestas lorem nec, finibus mauris. Ut quis augue sem. Aenean viverra ligula ut ex consectetur semper. Fusce euismod orci maximus, tincidunt magna a, euismod ligula. ",
+      expertise2:"",
+      expertise3:"",
+      expertise4:"",
+      img_url:"",
+      img_info:"image description",
+      contacts:""
     }
-  },
- 
-  methods: {
-    routerTo(){
-        this.$router.push('/home/homeSetting')
-    },
-    handleSelect(key, keyPath) {
-        if(key == 1){
-          this.$router.push('/home/homeDetail')
-        }
-        if(key == 2){
-          this.$router.push('/home/moreAboutMe')
-        }
-        console.log(key);
-      },
-    logout() {
-      window.sessionStorage.clear()
-      this.$router.push('/login')
-    },
-    // 获取所有的菜单
-   
   }
+
 }
 </script>
 
@@ -468,5 +442,5 @@ export default {
   .el-carousel__item:nth-child(2n+1) {
      background-color: #d3dce6;
   }
- 
+
 </style>

@@ -23,7 +23,7 @@
                       </div>
                     </span>
                     <el-dropdown-menu  slot="dropdown" class="dropdown-menu">
-                      <el-dropdown-item><router-link to="/personalDetail">Personal details</router-link></el-dropdown-item>
+                      <el-dropdown-item><a href="./user-details.html">Personal details</a></el-dropdown-item>
                       <el-dropdown-item><router-link to="/login">Logout</router-link></el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
@@ -33,7 +33,6 @@
         </div>
     </div>
      <div class="body-wrapper">
-        
         <div class="user-banner">
             <div class="info">
                 <a href="./change_avatar.html">
@@ -42,20 +41,20 @@
                     </div>
                 </a>
                 <div class="text-info">
-                    <div class="user-name">{{username}}</div>
+                    <div class="user-name">admin</div>
                     <div class="sign">
-                        {{sign}}
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id arcu enim. Cras vel orci. 
                     </div>
                 </div>
             </div>
             <div class="setting">
-                <a>
-                    <i class="iconfont icon-setting" style="font-size:27px" @click="routerTo()"></i>
+                <a href="./setting.html">
+                    <i class="iconfont icon-setting" style="font-size:27px"></i>
                 </a>
             </div>
         </div>
-        <el-menu :default-active="activeIndex"  class="user-tab" mode="horizontal" @select="handleSelect">
-          <div class="stats">
+        <div class="user-tab">
+            <div class="stats">
                 <div class="interested">
                     <div class="text">Interested</div>
                     <div class="numbers">10</div>
@@ -65,18 +64,58 @@
                     <div class="numbers">30</div>
                 </div>
             </div>
-          <el-menu-item index="1" class="home"> 
-              <i class="iconfont icon-home" style="font-size: 25px; color: rgb(0,0,0,.4);"></i>
-              Home Page
-          </el-menu-item>
-          <el-menu-item index="2" class="moreAboutMe">
-              <i class="iconfont icon-more" style="font-size: 25px; color: rgb(0,0,0,.4);"></i>
-              More About me
-          </el-menu-item>
-          
-        </el-menu>
-        <router-view />
-
+            <div class="home">
+                <a href="#">
+                    <i class="iconfont icon-home" style="font-size: 25px; color: rgb(0,0,0,.4);"></i>
+                    Home Page
+                </a>
+            </div>
+        </div>
+        <div class="main-block">
+            <div class="aboutme">&nbsp;About Me
+                <i class="iconfont icon-about" style="font-weight: normal; font-size: 18px; color: #3899ec;"></i>
+            </div>
+            <div id="aboutme-content"></div>
+            <div class="myexpertise">&nbsp;My Expertise
+                <i class="iconfont icon-_gexingtechang" style="font-weight: normal; font-size: 22px; color:#3899ec;"></i>
+            </div>
+            <div id="myexpertise-content">
+                <div class="left-expertise">
+                    <div class="expertises">
+                        <i class="iconfont icon-zhuanye2" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                        <div id="expertise1">expertise1</div>
+                    </div>
+                    <div class="expertises">
+                        <i class="iconfont icon-zhuanyequanwei" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                        <div id="expertise1">expertise2</div>
+                    </div>
+                </div>
+                <div class="right-expertise">
+                    <div class="expertises">
+                        <i class="iconfont icon-zhuanyegaoxiao" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                        <div id="expertise1">expertise3</div>
+                    </div>
+                    <div class="expertises">
+                        <i class="iconfont icon-zhuanye1" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                        <div id="expertise1">expertise4</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="side-block">
+            <div class="side-top"></div>
+            <div class="side-bottom"></div><div class="side-top">
+                <div id="img-wrapper">image here</div>
+            </div>
+            <div class="side-bottom">
+                <div class="contacts">
+                    &nbsp;Contacts
+                    <i class="iconfont icon-contacts" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
+                </div>
+                <div id="contacts-content"></div>
+            </div>
+        </div>
     </div>
     
    
@@ -87,32 +126,25 @@
 export default {
   data() {
     return {
-
-            username:"default",
-            sign:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id arcu enim. Cras vel orci. ",
-  
+      // 左侧菜单数据
+      menulist: [],
     }
   },
- 
+  created() {
+    this.getMenuList()
+  },
   methods: {
-    routerTo(){
-        this.$router.push('/home/homeSetting')
-    },
-    handleSelect(key, keyPath) {
-        if(key == 1){
-          this.$router.push('/home/homeDetail')
-        }
-        if(key == 2){
-          this.$router.push('/home/moreAboutMe')
-        }
-        console.log(key);
-      },
     logout() {
       window.sessionStorage.clear()
       this.$router.push('/login')
     },
     // 获取所有的菜单
-   
+    async getMenuList() {
+      const { data: res } = await this.$http.get('menus')
+      if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
+      this.menulist = res.data
+      console.log(res)
+    },
   }
 }
 </script>
@@ -205,7 +237,7 @@ export default {
     background-color: #fff;
 }
 .home-container {
-  height: 1421px;
+  height: 100%;
   background-color: #f0f4f7;
   font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
@@ -292,7 +324,7 @@ export default {
     background-color: rgba(155, 155, 155, 0.3);
 }
 
- .views{
+.user-tab .views{
     float: right;
     margin: 15px 30px;
     font-size: 15px;
@@ -304,7 +336,7 @@ export default {
     margin-bottom: 4px;
 }
 
- .interested{
+.user-tab .interested{
     float: right;
     margin-right: 60px;
     margin-top: 15px;
@@ -317,29 +349,17 @@ export default {
     margin-bottom: 4px;
 }
 
-.user-tab .home{
+.user-tab .home a{
     display: block;
     text-decoration: none;
-    text-align:center;
     float: left;
     height: 70px;
-    width: 180px;
-    padding: 5px 20px;
+    padding: 15px 30px;
     font-weight: bold;
-    font-size: 15px;
     color: rgba(0, 0, 0, 0.6);
 }
-.user-tab .moreAboutMe{
-    display: block;
-    text-decoration: none;
-    text-align:center;
-    float: left;
-    height: 70px;
-    width: 210px;
-    padding: 5px 20px;
-    font-weight: bold;
-    font-size: 15px;
-    color: rgba(0, 0, 0, 0.6);
+.user-tab .home a:hover{
+    background-color: #fff;
 }
 
 .main-block{
@@ -363,7 +383,6 @@ export default {
     border-bottom: 2px solid rgba(0,0,0,.05);
 }
 .main-block #aboutme-content{
-    overflow: auto;
     padding: 1.5em 0;
     border-bottom: 2px solid rgba(0,0,0,.05);
     font-size: 15px;
@@ -399,7 +418,6 @@ export default {
     height: 450px;
 }
 #myexpertise-content .expertises{
-    overflow: auto;
     height: 50%;
     width: 100%;
     margin-top: 10px;
@@ -420,15 +438,7 @@ export default {
     width: 90%;
     margin: 15px auto;
 }
-.side-block .image{
-    font-size: 20px;
-    font-weight: bold;
-    width: 90%;
-    height: 50px;
-    line-height: 50px;
-    border-bottom: 2px solid rgba(0,0,0,.05);
-    margin: 0 auto;
-}
+
 .side-block .side-top{
     position: absolute;
     right: 20px;
@@ -447,26 +457,8 @@ export default {
 }
 .side-top #img-wrapper{
     width: 370px;
-    height: 450px;
+    height: 500px;
     margin: 20px auto;
 }
-
-
-
-.el-carousel__item h3 {
-    color: #475669;
-    font-size: 14px;
-    opacity: 0.75;
-    line-height: 150px;
-    margin: 0;
-  }
-
-  .el-carousel__item:nth-child(2n) {
-     background-color: #99a9bf;
-  }
-  
-  .el-carousel__item:nth-child(2n+1) {
-     background-color: #d3dce6;
-  }
  
 </style>

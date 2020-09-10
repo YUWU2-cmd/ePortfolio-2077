@@ -22,8 +22,8 @@
              <el-form ref="registerFormRef" :model="registerForm" :rules="registerFormRules" label-width="0px" class="register_form">
                 <!-- 用户名 -->
                 <span>Email Address</span> 
-                <el-form-item prop="email">
-                <el-input v-model="registerForm.email" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email-fill"></el-input>
+                <el-form-item prop="emailAdd">
+                <el-input v-model="registerForm.emailAdd" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email-fill"></el-input>
                 </el-form-item>
                 <span>Username</span> 
                 <el-form-item prop="username">
@@ -42,7 +42,7 @@
             </el-form>
         </div>
         <div class="footer">
-            <el-button type="text" @click="goLogin">go back login Page</el-button>
+            <router-link to="/login">go back login Page</router-link>
         </div>
         </div>
       </div>
@@ -55,7 +55,7 @@ export default {
       registerForm: {
         username: '',
         password: '',
-        email: ''
+        emailAdd: ''
       },
       // 这是表单的验证规则对象
       registerFormRules: {
@@ -69,7 +69,7 @@ export default {
           { required: true, message: 'Please enter password', trigger: 'blur' },
           { min: 6, max: 15, message: 'Password need 6 ~ 15 characters', trigger: 'blur' }
         ],
-        email: [
+        emailAdd: [
           { required: true, message: 'Please enter email address', trigger: 'blur' },
           { min: 6, max: 15, message: 'Please enter vaild email address', trigger: 'blur' }
         ]
@@ -77,21 +77,20 @@ export default {
     }
   },
   methods: {
-    goLogin () {
-      this.$router.replace('/login')
-    },
     // 这个是予验证，检查当前内容格式是否符合验证规则
     register () {
       this.$refs.registerFormRef.validate(async valid => {
         if (!valid) return
-        const { message: res } = await this.$http.post('signup', this.registerForm)
-        if (res != "Success!") return this.$message.error('sign up fail！')
-        this.$message.success('sign up success')
+        const { data: res } = await this.$http.post('signin', JSON.stringify(this.registerForm))
+        console.log(res)
+        if (res.meta.status !== 200) return this.$message.error('登录失败！')
+        this.$message.success('登录成功')
         // 1. 将登录成功之后的 token，保存到客户端的 sessionStorage 中
         //   1.1 项目中出了登录之外的其他API接口，必须在登录之后才能访问
         //   1.2 token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中
+        window.sessionStorage.setItem('token', res.data.token)
         // 2. 通过编程式导航跳转到后台主页，路由地址是 /home
-        this.$router.push('/login')
+        this.$router.push('/home')
       })
     }
   }
