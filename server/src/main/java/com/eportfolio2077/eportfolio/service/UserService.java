@@ -15,7 +15,6 @@ public class UserService {
     @Autowired
     UserDao userDao;
 
-
     public User loginCheck(LoginDto loginDto) {
         User user = userDao.findUserByEmailAndPassword(loginDto.getEmail(), loginDto.getPassword());
         return user;
