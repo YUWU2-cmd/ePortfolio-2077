@@ -41,6 +41,7 @@ public class AWSS3Service {
         uploadFileTos3bucket(fileName, file);
         file.delete();
         // update on db
+        //TODO redesign the whole part!!
         Image image = imageDao.getImageByUserId(userId);
         if(image==null){
             image = new Image("test", fileUrl, userId);
