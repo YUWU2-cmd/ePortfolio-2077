@@ -60,15 +60,14 @@
                  <i class="iconfont icon-picture" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
               </div>
                 <div id="img-wrapper">
-                  <el-upload
-                    action="http://localhost:8080/api/home/upload/img"
-                    :on-preview="handlePreview"
-                    :on-remove="handleRemove"
-                    :file-list="fileList"
-                    list-type="picture">
-                    <el-button size="small" type="primary">Upload</el-button>
-                    <div slot="tip" class="el-upload__tip">jpg/png only，500kb limit</div>
-                  </el-upload>
+                  <form @submit.prevent="upload" method="post" enctype="multipart/form-data">
+                    <input type="file" name="picture" v-on:change="onChange($event)">
+                    <button type="submit">上传图片</button>
+                    </form>
+
+                    <div>上传信息:
+                    <p v-text="result"></p>
+                    </div>
                   {{img_info}}
                 </div>
               
@@ -115,7 +114,8 @@ export default {
       img_info:"image description",
       email:"",
       address:"",
-     fileList: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}]
+       picture: {},
+        result: '',
     }
   },
     methods: {
@@ -124,8 +124,29 @@ export default {
       },
       handlePreview(file) {
         console.log(file);
-      }
+      },
+      onChange: function (event) {
+      this.picture = event.target.files[0]; // get input file object
+      console.log(this.picture);
+    },
+
+    upload: function () {
+      var that = this;
+      var formData = new FormData();
+      formData.append('picture', this.picture);
+      // specify Content-Type, with formData as well
+      this.$http.post('http://localhost:8080/api/home/upload/img', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      }).then(function (res) {
+        res.json().then(function (result) {
+          that.result = result.info;
+          console.log(that.result);
+        });
+      }, function (res) {
+        console.log(res.body);
+      });
     }
+  }
 }
 </script>
 
