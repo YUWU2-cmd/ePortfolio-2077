@@ -2,28 +2,29 @@ package com.eportfolio2077.eportfolio.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
-@Entity(name = "user")
+@Entity
 public class User {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId;
 
     private String email;
-    private String role;
     private String username;
     private String password;
+    private String bio;
+    private String aboutMe;
 
-    public User(String email, String role, String username, String password) {
+    public User() {};
+
+    public User(String email, String username, String password) {
         this.email = email;
-        this.role = role;
         this.username = username;
         this.password = password;
+        this.bio = null;
+        this.aboutMe = null;
     }
 
 }

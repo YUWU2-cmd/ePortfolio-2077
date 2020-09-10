@@ -1,5 +1,6 @@
 package com.eportfolio2077.eportfolio;
 
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -7,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class EportfolioApplicationTests {
 
     @Test
-    void contextLoads() {
+    void findall() {
     }
 
 }

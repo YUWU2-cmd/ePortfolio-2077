@@ -24,7 +24,9 @@ jobs:
         export DB_URL=$(heroku config:get DATABASE_API_URL --app ${{ env.APP_NAME }})
         export DB_USERNAME=$(heroku config:get DATABASE_API_USERNAME --app ${{ env.APP_NAME }})
         export DB_PASSWORD=$(heroku config:get DATABASE_API_PASSWORD --app ${{ env.APP_NAME }})
-        heroku container:push -a eportfolio2077 web --arg DATABASE_URL_ARG=$DB_URL,DATABASE_USERNAME_ARG=$DB_USERNAME,DATABASE_PASSWORD_ARG=$DB_PASSWORD
+        export AWS_ID=$(heroku config:get AWS_ACCESS_KEY_ID --app ${{ env.APP_NAME }})
+        export AWS_KEY=$(heroku config:get AWS_SECRET_ACCESS_KEY --app ${{ env.APP_NAME }})
+        heroku container:push -a eportfolio2077 web --arg DATABASE_URL_ARG=$DB_URL,DATABASE_USERNAME_ARG=$DB_USERNAME,DATABASE_PASSWORD_ARG=$DB_PASSWORD,AWS_ACCESS_KEY_ID_ARG=$AWS_ID,AWS_SECRET_ACCESS_KEY=$AWS_KEY
     - name: Release
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
