@@ -14,9 +14,6 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private String bio;
-    private String aboutMe;
-    private Image profilePicture;
 
     public User() {};
 
@@ -24,9 +21,6 @@ public class User {
         this.email = email;
         this.username = username;
         this.password = password;
-        this.bio = null;
-        this.aboutMe = null;
-        this.profilePicture = null;
     }
 
 }

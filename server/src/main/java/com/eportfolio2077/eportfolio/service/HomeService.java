@@ -14,7 +14,6 @@ public class HomeService {
     @Autowired
     ImageDao imageDao;
 
-
     public HomeDto fetchHomePage(Long userId){
         return new HomeDto(blogDao.findBlogByUserId(userId), imageDao.findImagesByUserId(userId));
     }
