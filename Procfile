@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar server/target/*.jar
+web: java -Dserver.port=$PORT -Dspring.datasource.url=$DATABASE_API_URL -Dspring.datasource.username=$DATABASE_API_USERNAME -Dspring.datasource.password=$DATABASE_API_PASSWORD -Daws.access_key_id=$AWS_ACCESS_KEY_ID -Daws.secret_access_key=$AWS_SECRET_ACCESS_KEY -jar server/target/*.jar

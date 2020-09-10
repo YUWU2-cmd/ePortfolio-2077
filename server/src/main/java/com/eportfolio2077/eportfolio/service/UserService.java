@@ -1,6 +1,5 @@
 package com.eportfolio2077.eportfolio.service;
 
-import com.eportfolio2077.eportfolio.common.Response;
 import com.eportfolio2077.eportfolio.dao.UserDao;
 import com.eportfolio2077.eportfolio.dto.LoginDto;
 import com.eportfolio2077.eportfolio.dto.RegisterDto;
@@ -12,20 +11,21 @@ import javax.transaction.Transactional;
 
 @Service
 public class UserService {
-    //@Autowired
+
+    @Autowired
     UserDao userDao;
 
-    public Response loginCheck(LoginDto loginDto) {
-        //TODO success response object
-        return userDao.findByUsernameAndPassword(loginDto.getUsername(), loginDto.getPassword()) == null ?
-                Response.success("data") : Response.error("incorrect username or password");
+
+    public User loginCheck(LoginDto loginDto) {
+        User user = userDao.findUserByEmailAndPassword(loginDto.getEmail(), loginDto.getPassword());
+        return user;
     }
 
     @Transactional
-    public Response register(RegisterDto registerDto){
-        User newUser = new User(registerDto.getEmail(), registerDto.getRole(), registerDto.getUsername(), registerDto.getPassword());
+    public User register(RegisterDto registerDto) {
+        User newUser = new User(registerDto.getEmail(), registerDto.getUsername(), registerDto.getPassword());
         userDao.save(newUser);
-        //TODO success response object
-        return Response.success("data");
+        return newUser;
     }
+
 }
