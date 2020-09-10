@@ -21,8 +21,8 @@ public class Image {
     public Image() {}
 
     public Image(Long userId) {
-        this.imageName = "";
-        this.imagePath = "";
+        this.imageName = null;
+        this.imagePath = null;
         this.userId = userId;
     }
 
