@@ -18,10 +18,17 @@ public class Image {
     String imagePath;
     Long userId;
 
-    public Image() {};
+    public Image() {}
 
-    public Image(String imageName, String imagePath) {
+    public Image(Long userId) {
+        this.imageName = "";
+        this.imagePath = "";
+        this.userId = userId;
+    }
+
+    public Image(String imageName, String imagePath, Long userId) {
         this.imageName = imageName;
         this.imagePath = imagePath;
+        this.userId = userId;
     }
 }

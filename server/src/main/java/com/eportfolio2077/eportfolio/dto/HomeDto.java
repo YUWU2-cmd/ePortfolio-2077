@@ -8,10 +8,12 @@ import java.util.List;
 
 @Data
 public class HomeDto {
+    private Long userId;
     private List<Image> imageList;
     private List<Blog> blogList;
 
-    public HomeDto(List<Blog> blogList, List<Image> imageList) {
+    public HomeDto(Long userId, List<Blog> blogList, List<Image> imageList) {
+        this.userId = userId;
         this.blogList = blogList;
         this.imageList = imageList;
     }

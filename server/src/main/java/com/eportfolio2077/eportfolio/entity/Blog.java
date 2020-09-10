@@ -22,10 +22,12 @@ public class Blog {
 
     public Blog() {};
 
-    public Blog(String title, String content, Date createdTime) {
-        this.title = title;
-        this.content = content;
-        this.createdTime = createdTime;
+
+    public Blog(Long userId) {
+        this.title="";
+        this.content="";
+        this.createdTime=new Date();
+        this.userId=userId;
     }
 
 }

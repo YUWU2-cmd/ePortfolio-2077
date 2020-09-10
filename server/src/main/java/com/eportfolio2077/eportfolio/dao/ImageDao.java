@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ImageDao extends JpaRepository<Image, Long> {
     List<Image> findImagesByUserId(Long userId);
+    Image getImageByUserId(Long userId);
 }
