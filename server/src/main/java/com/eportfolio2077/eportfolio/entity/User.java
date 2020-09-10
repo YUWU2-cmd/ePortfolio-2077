@@ -14,6 +14,8 @@ public class User {
     private String email;
     private String username;
     private String password;
+    private String bio;
+    private String aboutMe;
 
     public User() {};
 
@@ -21,6 +23,8 @@ public class User {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.bio = null;
+        this.aboutMe = null;
     }
 
 }

@@ -3,6 +3,7 @@ package com.eportfolio2077.eportfolio.service;
 
 import com.eportfolio2077.eportfolio.dao.BlogDao;
 import com.eportfolio2077.eportfolio.dao.ImageDao;
+import com.eportfolio2077.eportfolio.dao.UserDao;
 import com.eportfolio2077.eportfolio.dto.HomeDto;
 import com.eportfolio2077.eportfolio.entity.Blog;
 import com.eportfolio2077.eportfolio.entity.Image;
@@ -15,6 +16,8 @@ public class HomeService {
     BlogDao blogDao;
     @Autowired
     ImageDao imageDao;
+    @Autowired
+    UserDao userDao;
 
     public void createHomePage(Long userId){
         Blog blog = new Blog(userId);
@@ -24,7 +27,11 @@ public class HomeService {
     }
 
     public HomeDto fetchHomePage(Long userId){
-        return new HomeDto(userId, blogDao.findBlogByUserId(userId), imageDao.findImagesByUserId(userId));
+        return new HomeDto(userId,
+                userDao.findUserByUserId(userId).getBio(),
+                userDao.findUserByUserId(userId).getAboutMe(),
+                blogDao.findBlogByUserId(userId),
+                imageDao.findImagesByUserId(userId));
     }
 
 }
