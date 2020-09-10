@@ -33,7 +33,7 @@ public class AWSS3Service {
     private String endpointUrl;
 
     @Transactional
-    public String uploadFile(MultipartFile multipartFile, Long userId) throws AmazonServiceException, IOException {
+    public String uploadFile(MultipartFile multipartFile) throws AmazonServiceException, IOException {
         String fileUrl = "";
         File file = convertMultiPartFileToFile(multipartFile);
         String fileName = generateFileName(multipartFile);
@@ -42,9 +42,9 @@ public class AWSS3Service {
         file.delete();
         // update on db
         //TODO redesign the whole part!!
-        Image image = imageDao.getImageByUserId(userId);
+        Image image = null;
         if(image==null){
-            image = new Image("test", fileUrl, userId);
+            image = new Image("test", fileUrl);
         }else{
             image.setImagePath(fileUrl);
         }

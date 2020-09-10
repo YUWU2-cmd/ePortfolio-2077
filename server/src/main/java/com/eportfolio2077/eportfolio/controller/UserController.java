@@ -43,7 +43,7 @@ public class UserController {
             User user = userService.loginCheck(loginDto);
             //if login succeed, return home page directly
             return user!=null
-                    ? ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(homeService.fetchHomePage(user.getUserId())))
+                    ? ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(homeService.fetchHomePage(user)))
                     : ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.serverError());

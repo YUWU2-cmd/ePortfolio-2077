@@ -24,15 +24,11 @@ public class HomeController {
 
 
     @RequestMapping("/upload/img")
-    public ResponseEntity<ResponseBody> uploadImage(@RequestParam("file") MultipartFile image, @RequestParam("userId") Long userId){
+    public ResponseEntity<ResponseBody> uploadImage(@RequestParam("file") MultipartFile image){
         String imagePath;
         try {
-            imagePath = awss3Service.uploadFile(image,userId);
-        }catch(AmazonServiceException e){
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
-        }catch(IOException e){
-            System.out.println("IO error\n");
+            imagePath = awss3Service.uploadFile(image);
+        }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
         }
 
@@ -45,7 +41,7 @@ public class HomeController {
     }
 
 //    @RequestMapping("/update/blog")
-//    public ResponseEntity<ResponseBody> updateBlog(){
-//
+//    public ResponseEntity<ResponseBody> updateBlog(@RequestBody String blog){
+//        homeService.
 //    }
 }

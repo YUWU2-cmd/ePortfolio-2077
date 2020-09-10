@@ -31,4 +31,9 @@ public class Image {
         this.imagePath = imagePath;
         this.userId = userId;
     }
+
+    public Image(String imageName, String imagePath) {
+        this.imageName = imageName;
+        this.imagePath = imagePath;
+    }
 }
