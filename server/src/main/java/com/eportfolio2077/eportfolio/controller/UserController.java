@@ -1,17 +1,19 @@
 package com.eportfolio2077.eportfolio.controller;
 
 
-
 import com.eportfolio2077.eportfolio.common.ResponseBody;
 import com.eportfolio2077.eportfolio.dto.LoginDto;
 import com.eportfolio2077.eportfolio.dto.RegisterDto;
 import com.eportfolio2077.eportfolio.entity.User;
 import com.eportfolio2077.eportfolio.service.HomeService;
+import com.eportfolio2077.eportfolio.service.MailService;
 import com.eportfolio2077.eportfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 
 @RestController
@@ -22,7 +24,21 @@ public class UserController {
     private UserService userService;
     @Autowired
     private HomeService homeService;
+    @Autowired
+    private MailService mailService;
+  
 
+    @RequestMapping("/")
+    public ResponseEntity<ResponseBody> Verify(@RequestParam("email") String email) {
+        String subject = "Verification code";
+        String code = UUID.randomUUID().toString().substring(0,6);
+        try {
+            mailService.sendVerificationMail(email, subject, code);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(code));
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ResponseBody.wrongEmail());
+        }
+    }
 
     @RequestMapping("/signup")
     public ResponseEntity<ResponseBody> signup(@RequestBody RegisterDto registerDto) {
@@ -48,5 +64,6 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.serverError());
         }
     }
+
 
 }
