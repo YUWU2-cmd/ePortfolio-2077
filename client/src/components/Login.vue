@@ -80,7 +80,7 @@ export default {
     login () {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
-        const { data: res } = await this.$http.post('login', this.loginForm)
+        const { data: res } = await this.$http.post('user/login', this.loginForm)
         console.log(res)
         if (res.message != "Success!") return this.$message.error('login fail！')
         this.$message.success('login success!')

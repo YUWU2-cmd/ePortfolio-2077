@@ -84,7 +84,7 @@ export default {
     register () {
       this.$refs.registerFormRef.validate(async valid => {
         if (!valid) return
-        const { message: res } = await this.$http.post('signup', this.registerForm)
+        const { message: res } = await this.$http.post('user/signup', this.registerForm)
         if (res != "Success!") return this.$message.error('sign up fail！')
         this.$message.success('sign up success')
         // 1. 将登录成功之后的 token，保存到客户端的 sessionStorage 中
