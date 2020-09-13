@@ -28,13 +28,12 @@ public class UserController {
     private MailService mailService;
   
 
-    @RequestMapping("/")
-    public ResponseEntity<ResponseBody> Verify(@RequestParam("email") String email) {
-        String subject = "Verification code";
-        String code = UUID.randomUUID().toString().substring(0,6);
+    @RequestMapping("/verify")
+    public ResponseEntity<ResponseBody> verify(@RequestParam("email") String email) {
         try {
-            mailService.sendVerificationMail(email, subject, code);
-            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(code));
+            mailService.sendVerificationMail(email);
+            //TODO
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
         }catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ResponseBody.wrongEmail());
         }
