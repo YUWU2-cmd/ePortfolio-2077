@@ -20,7 +20,7 @@
             var site_list = document.getElementById("site-list");
             var site_name = "new";
             create.onclick = function(){
-                var new_site = "<div class='site'><i class='iconfont icon-21file'></i><span>"+site_name+"</span></div>"
+                var new_site = "<a href='./user_space.html'><div class='site'><i class='iconfont icon-21file'></i><span>"+site_name+"</span></div></a>"
                 site_list.innerHTML+= new_site;
                 return false;
             }
