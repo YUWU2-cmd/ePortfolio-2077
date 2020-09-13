@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My ePortfolios | ePortfolio 2077</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="icon" href="./favicon.ico">
+    <link rel="stylesheet" href="./dashboard.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2024476_20cp9qjb2w4.css">
+    <script>
+        window.onload = function(){
+            var avatar = "url('./logo.png')";
+            var user_avatar_list = document.getElementsByClassName("user-avatar");
+            for(var i = 0; i < user_avatar_list.length; i++){
+                user_avatar_list[i].style.backgroundImage = avatar;
+            }
+
+            var create = document.getElementById("create-new");
+            var site_list = document.getElementById("site-list");
+            var site_name = "new";
+            create.onclick = function(){
+                var new_site = "<div class='site'><i class='iconfont icon-21file'></i><span>"+site_name+"</span></div>"
+                site_list.innerHTML+= new_site;
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="topbar-wrapper">
+        <div class="topbar">
+            <a href="./index.html" class="topbar-main">
+                <div class="logo">
+                </div>
+                <div class="title">
+                    ePortfolio 2077
+                </div>
+            </a>
+            <div class="topbar-side">
+                <a href="./account.html">
+                    <div class="user-avatar">
+                        <!-- display user avatar which can be uploaded -->
+                    </div>
+                    <div class="block"></div>
+                </a>
+                <div class="dropdown-menu">
+                    <div class="detail">
+                        <a href="./user-details.html">Personal details</a>
+                    </div>
+                    <div class="logout">
+                        <a href="./login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="user-tab">
+        <div class="title-wrapper">
+            <div class="title">My ePortfolios</div>
+            <div class="subtitle">Select a site to edit, view and open its dashboard.</div>
+        </div>
+        <div class="create-wrapper">
+            <a id="create-new" class="button" href="./templates.html">+ Create new</a>
+        </div>
+    </div>
+    <div class="body-wrapper">
+        <div class="header">
+            <div>All ePortfolios</div>
+        </div>
+        <div class="sites" id="site-list">
+            <div class="site">
+                <i class="iconfont icon-21file"></i>
+                <span>name</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

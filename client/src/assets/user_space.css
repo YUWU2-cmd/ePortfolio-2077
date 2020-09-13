@@ -11,10 +11,11 @@ body{
     z-index: 99;
 }
 .topbar .topbar-main{
-    position: absolute;
+    position: fixed;
     height: 42px;
-    left: 800px;
+    width: 283px;
     top: 24px;
+    left: 42%;
     text-decoration: none;
 }
 .topbar .logo{
