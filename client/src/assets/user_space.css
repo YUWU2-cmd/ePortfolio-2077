@@ -11,7 +11,7 @@ body{
     z-index: 99;
 }
 .topbar .topbar-main{
-    position: fixed;
+    position: absolute;
     height: 42px;
     width: 283px;
     top: 24px;

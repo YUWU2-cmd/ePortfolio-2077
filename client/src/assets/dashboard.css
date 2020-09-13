@@ -170,6 +170,9 @@ body{
     flex-direction: row;
     align-items: center;
 }
+.sites a{
+    text-decoration: none;
+}
 .site{
     box-sizing: border-box;
     width: 250px;
