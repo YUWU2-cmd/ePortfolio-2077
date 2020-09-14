@@ -8,11 +8,13 @@ import com.eportfolio2077.eportfolio.entity.User;
 import com.eportfolio2077.eportfolio.service.HomeService;
 import com.eportfolio2077.eportfolio.service.MailService;
 import com.eportfolio2077.eportfolio.service.UserService;
+import com.eportfolio2077.eportfolio.utils.CookieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 
@@ -21,11 +23,14 @@ import java.util.UUID;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    UserService userService;
     @Autowired
-    private HomeService homeService;
+    HomeService homeService;
     @Autowired
-    private MailService mailService;
+    MailService mailService;
+    @Autowired
+    CookieUtil cookieUtil;
+
 
 
     @RequestMapping("/verify")
@@ -65,21 +70,34 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public ResponseEntity<ResponseBody> login(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<ResponseBody> login(@RequestBody LoginDto loginDto, HttpServletResponse response) {
         try {
             User user = userService.loginCheck(loginDto);
             //check if email is verified
             if (!user.isEnable()) {
                 return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.verifyRequired());
             }
-            //TODO return home?
-            return user != null
-                    ? ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(homeService.fetchHomePage(user)))
-                    : ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
+            if(user!=null){
+                //set cookies
+                cookieUtil.setCookie(user.getUserId(),response);
+                //TODO return home?
+                return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(homeService.fetchHomePage(user)));
+            }else{
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
+            }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.serverError());
         }
     }
 
+    @RequestMapping("/logged")
+    public ResponseEntity<ResponseBody> logged(@CookieValue(value = "userId", defaultValue = "none") Long userId){
+        User user = userService.getUser(userId);
+        if(user!=null){
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(homeService.fetchHomePage(user)));
+        }else{
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
+        }
+    }
 
 }
