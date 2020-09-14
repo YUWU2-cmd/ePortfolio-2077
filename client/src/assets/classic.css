@@ -399,8 +399,108 @@ body{
 }
 
 #projects-body{
-    display: none;
+    display: block;
+    background-color: #e6dace;
+    width: 100%;
+    height: 1900px;
 }
 #contact-body{
-    display: block;
+    display: none;
+}
+
+#projects-body .title-wrapper{
+    height: 400px;
+    width: 100%;
+    overflow: hidden;
+}
+#projects-body .title-wrapper .content-wrapper{
+    width: 180px;
+    height: 50px;
+    margin: 80px auto;
+}
+#projects-body .title-wrapper .content-wrapper .blue-dot{
+    float: left;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 80, 255, 1);
+    margin-top: 15px;
+}
+#projects-body .title-wrapper .content-wrapper .title{
+    float: left;
+    font-size: 35px;
+    font-weight: bold;
+    line-height: 1.33em;
+    margin-left: 8px;
+}
+#projects-body .title-wrapper .intro{
+    font-size: 17px;
+    line-height: 1.5em;
+    text-align: center;
+    width: 668px;
+    margin: 0 auto;
+    color: #000000bd;
+}
+#projects-body .project-wrapper{
+    width: 750px;
+    height: 1400px;
+    margin: 0 auto;
+}
+#projects-body .project-wrapper .project{
+    width: 100%;
+    height: 400px;
+    background-color: #fff;
+    box-shadow: -5px 5px 17px 0px rgba(138,131,124,0.23);
+    margin-bottom: 100px;
+}
+#proj3{
+    margin-bottom: 0;
+}
+#projects-body .project-wrapper .project .left-content{
+    float: left;
+    width: 428px;
+    height: 100%;
+    overflow: hidden;
+}
+#projects-body .project-wrapper .project .right-content{
+    float: left;
+    width: 322px;
+    height: 100%;
+    background-size: 322px 400px;
+    overflow: hidden;
+}
+#proj1 .right-content{
+    background-image: url(./p1.jpg);
+}
+#proj2 .right-content{
+    background-image: url(./p2.jpg);
+}
+#proj3 .right-content{
+    background-image: url(./p3.jpg);
+}
+
+#projects-body .project-wrapper .project .left-content .header{
+    width: 100%;
+    height: 50px;
+    margin-top: 60px;
+    border-left: 10px #0050ff solid;
+    box-sizing: border-box;
+    padding: 0 30px;
+}
+#projects-body .project-wrapper .project .left-content .header .proj-name{
+    font-size: 20px;
+    height: 30px;
+    font-weight: 800;
+    color: #0050ff;
+}
+#projects-body .project-wrapper .project .left-content .header .role{
+    height: 20px;
+    font-size: 17px;
+    color: #000000b9;
+}
+#projects-body .project-wrapper .project .left-content .content{
+    width: 366px;
+    font-size: 17px;
+    line-height: 1.5em;
+    color: #000000b9;
+    margin: 30px auto 0;
 }
