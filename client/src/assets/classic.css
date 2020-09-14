@@ -157,18 +157,19 @@ body{
     color: #0050FF;
 }
 
-.body-wrapper{
+#aboutme-body{
     position: relative;
     width: 100%;
     height: 800px;
     background-color: #fff;
+    display: none;
 }
-.body-wrapper .left-body{
+#aboutme-body .left-body{
     height: 100%;
     width: 39%;
     background-color: #e6dace;
 }
-.body-wrapper .content-wrapper{
+#aboutme-body .content-wrapper{
     position: absolute;
     width: 100%;
     height: 520px;
@@ -178,14 +179,14 @@ body{
     left: 0;
     border: 0px solid #fff;
 }
-.body-wrapper .banner{
+#aboutme-body .banner{
     float: left;
     width: 375px;
     height: 520px;
     background-color: #f4ece6;
     box-shadow: -11px 11px 17px 0px rgba(138,131,124,0.23);
 }
-.body-wrapper .bio{
+#aboutme-body .bio{
     float: left;
     margin-left: 35px;
     width: 369px;
@@ -271,4 +272,135 @@ body{
     text-align: center;
     letter-spacing: 0.25em;
     color: #000000b9;
+}
+
+#more-body{
+    background-color: #e6dace;
+    height: 3100px;
+    display: none;
+}
+
+#more-body .title-wrapper{
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+}
+#more-body .title-wrapper .content-wrapper{
+    width: 300px;
+    height: 50px;
+    margin: 100px auto;
+}
+#more-body .title-wrapper .content-wrapper .blue-dot{
+    float: left;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 80, 255, 1);
+    margin-top: 15px;
+}
+#more-body .title-wrapper .content-wrapper .title{
+    float: left;
+    font-size: 35px;
+    font-weight: bold;
+    line-height: 1.33em;
+    margin-left: 8px;
+}
+#more-body .experience-wrapper{
+    height: 900px;
+    width: 730px;
+    margin: 0 auto;
+} 
+#more-body .education-wrapper{
+    height: 900px;
+    width: 730px;
+    margin: 80px auto;
+}
+#more-body .expertise-wrapper{
+    height: 600px;
+    width: 730px;
+    margin: 150px auto;
+    box-shadow: -5px 5px 17px 0px rgba(138,131,124,0.23);
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 80px 40px;
+}
+
+#more-body .title{
+    height: 100px;
+    font-size: 25px;
+    font-weight: 800;
+}
+#more-body .exp1{
+    width: 100%;
+    height: 370px;
+    box-shadow: -5px 5px 17px 0px rgba(138,131,124,0.23);
+    background-color: #fff;
+    margin-bottom: 60px;
+}
+#more-body .exp2{
+    width: 100%;
+    height: 370px;
+    box-shadow: -5px 5px 17px 0px rgba(138,131,124,0.23);
+    background-color: #fff;
+}
+#more-body .left-content{
+    float: left;
+    width: 40%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 60px 50px;
+    font-size: 14px;
+    line-height: 2em;
+    color: #000000b2;
+}
+#more-body .left-content .duration{
+    color: #0050FF;
+    font-size: 20px;
+    font-weight: bold;
+}
+#more-body .left-content .job{
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+}
+
+#more-body .right-content{
+    float: left;
+    width: 60%;
+    height: 100%;
+    line-height: 1.5em;
+    font-size: 17px;
+    box-sizing: border-box;
+    padding: 40px 20px 0;
+    overflow: hidden;
+    color: #000000ca;
+}
+.expertise-wrapper .expertises1,
+.expertise-wrapper .expertises2{
+    width: 100%;
+    height: 17px;
+    margin-bottom: 40px;
+}
+.expertise-wrapper .blue-dot{
+    float: left;
+    width: 16px;
+    height: 16px;
+    background-color: #0051ffd0;
+}
+.expertise-wrapper .skill{
+    float: left;
+    font-size: 14px;
+    color: #000000d2;
+    margin-left: 15px;
+    margin-right: 80px;
+}
+#skills-title{
+    margin-top: 80px;
+}
+
+#projects-body{
+    display: none;
+}
+#contact-body{
+    display: block;
 }
