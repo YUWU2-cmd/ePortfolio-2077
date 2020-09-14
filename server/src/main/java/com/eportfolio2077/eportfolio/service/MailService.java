@@ -19,13 +19,16 @@ public class MailService {
         @Value("${spring.mail.username}")
         private String mailFrom;
 
-    public void sendVerificationMail(String mailto) throws UnsupportedEncodingException, MessagingException {
+
+    public void sendVerificationMail(String mailto, String code) throws UnsupportedEncodingException, MessagingException {
         String subject = "Verification Code";
         String name = "The ePortfolio2077 Team";
-        String code = UUID.randomUUID().toString().substring(0,6);
+
         String content = "<p>Please find the verification code below.</p>";
         content+="<h3>"+code+"</h3>";
         content+="<p>Thank you,<br>"+name+"</p>";
+
+        //TODO save code in User db
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper ms = new MimeMessageHelper(message);

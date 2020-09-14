@@ -27,4 +27,23 @@ public class UserService {
         return newUser;
     }
 
+    @Transactional
+    public void updateVerifyCode(String email, String code){
+        User user = userDao.getUserByEmail(email);
+        user.setVerifycode(code);
+        userDao.save(user);
+    }
+
+    @Transactional
+    public boolean checkVerifyCode(String email, String code){
+        return code.equals(userDao.getUserByEmail(email).getVerifycode());
+    }
+
+    @Transactional
+    public void enableUser(String email){
+        User user = userDao.getUserByEmail(email);
+        user.setEnable(true);
+        userDao.save(user);
+    }
+
 }

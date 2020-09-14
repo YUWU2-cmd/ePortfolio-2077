@@ -16,6 +16,8 @@ public class User {
     private String password;
     private String bio;
     private String aboutMe;
+    private boolean enable;
+    private String verifycode;
 
     public User() {};
 
@@ -25,6 +27,9 @@ public class User {
         this.password = password;
         this.bio = null;
         this.aboutMe = null;
+        this.enable=false;
+        this.verifycode=null;
     }
+
 
 }
