@@ -1,0 +1,274 @@
+body{
+    /* background-color: #f0f4f7; */
+    font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.selected{
+    color: #0050FF!important;
+}
+
+.topbar-wrapper{
+    position: relative;
+    height: 90px;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 .25rem .125rem 0 rgb(0,0,0,.025);
+    z-index: 99;
+}
+.topbar .topbar-main{
+    position: absolute;
+    height: 42px;
+    width: 283px;
+    top: 24px;
+    left: 42%;
+    text-decoration: none;
+}
+.topbar .logo{
+    float: left;
+    width: 42px;
+    height: 42px;
+    background-size: 42px 42px;
+    background-image: url(../favicon.ico);
+}
+.topbar .title{
+    float: left;
+    margin: 0 20px;
+    color: rgb(65, 65, 65);
+    line-height: 42px;
+    font-size: 28px;
+    font-weight: bold;
+    
+}
+.topbar .title:hover{
+    color: #3899ec;
+}
+.topbar .user-avatar{
+    position: absolute;
+    text-decoration: none;
+    background-size: 38px 38px;
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
+    left: 1800px;
+    top: 23px;
+}
+.topbar .block{
+    position: absolute;
+    height: 50px;
+    width: 38px;
+    left: 1800px;
+    top: 23px;
+
+}
+.topbar-side:hover  .dropdown-menu{
+    display: block;
+}
+.topbar .dropdown-menu{
+    display: none;
+    box-sizing: border-box;
+    width: 170px;
+    height: 140px;
+    position: absolute;
+    left: 1680px;
+    top: 75px;
+    border: 1px rgb(212, 212, 212, .6) solid;
+    box-shadow: 0 .25rem .125rem 0 rgb(0,0,0,0.02);
+    border-radius: .2em;
+    background-color: #fff;
+}
+.dropdown-menu .detail{
+    box-sizing: border-box;
+    width: 170px;
+    height: 49%;
+    padding: 10px 0;
+    border-bottom: 1px rgba(155, 155, 155, 0.15) solid;
+}
+.dropdown-menu .logout{
+    box-sizing: border-box;
+    width: 170px;
+    height: 51%;
+    padding: 10px 0;
+}
+.dropdown-menu a{
+    display: block;
+    height: 50px;
+    width: 169px;
+    text-decoration: none;
+    color: rgb(65, 65, 65);
+    text-align: center;
+    line-height: 50px;
+}
+.dropdown-menu a:hover{
+    background-color: rgb(0,0,0,.03);
+}
+
+.user-tab{
+    width: 100%;
+    height: 130px;
+}
+.user-tab .user-intro-wrapper,
+.user-tab .nav-wrapper{
+    float: left;
+    height: 100%;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 47.5px 3.5%;
+}
+.user-intro-wrapper .user-intro,
+.nav-wrapper .nav{
+    height: 35px;
+    width: 100%;
+    overflow: hidden;
+    background-color: #fff;
+}
+.user-intro .blue-dot{
+    float: left;
+    width: 16px;
+    height: 16px;
+    margin-top: 10px;
+    background-color: #0050ff;
+}
+.user-intro .title{
+    float: left;
+    height: 35px;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 35px;
+    margin-left: 10px;
+}
+.user-intro .subtitle{
+    float: left;
+    font-size: 17px;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.nav>a{
+    display: block;
+    text-decoration: none;
+    float: right;
+    font-size: 14px;
+    line-height: 35px;
+    margin-left: 20px;
+    color: black;
+}
+.nav>a:hover{
+    color: #0050FF;
+}
+
+.body-wrapper{
+    position: relative;
+    width: 100%;
+    height: 800px;
+    background-color: #fff;
+}
+.body-wrapper .left-body{
+    height: 100%;
+    width: 39%;
+    background-color: #e6dace;
+}
+.body-wrapper .content-wrapper{
+    position: absolute;
+    width: 100%;
+    height: 520px;
+    box-sizing: border-box;
+    padding-left:25%;
+    top: 10%;
+    left: 0;
+    border: 0px solid #fff;
+}
+.body-wrapper .banner{
+    float: left;
+    width: 375px;
+    height: 520px;
+    background-color: #f4ece6;
+    box-shadow: -11px 11px 17px 0px rgba(138,131,124,0.23);
+}
+.body-wrapper .bio{
+    float: left;
+    margin-left: 35px;
+    width: 369px;
+    height: 100%;
+
+    overflow: hidden;
+}
+.bio .title{
+    font-size: 100px;
+    font-weight: bold;
+    height: 150px;
+    line-height: 150px;
+}
+.bio .subtitle{
+    font-size: 25px;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 15px;
+}
+.bio .content{
+    font-size: 17px;
+    line-height: 1.5em;
+    color: #000000a6;
+}
+.banner .main{
+    height: 467px;
+    width: 100%;
+}
+.banner .footer{
+    box-sizing: border-box;
+    padding: 14px 110.5px;
+    height: 53px;
+    width: 100%;
+    background-color: #fff;
+}
+.footer .content{
+    width: 154px;
+    height: 25px;
+}
+.footer .content a{
+    text-decoration: none;
+    color: #000000;
+}
+
+.footer .content a i{
+    font-size: 25px;
+    margin-right: 12px;
+}
+.last-icon{
+    margin-right: 0!important;
+}
+
+.banner .main .profile{
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+.banner .main .profile .profile-img{
+    width: 205px;
+    height: 205px;
+    border-radius: 100%;
+    margin: 22.5px auto;
+    background-image: url(./profile-img.jpg);
+    background-size: 205px 205px;
+}
+.banner .main .title{
+    margin: 0 auto;
+    height: 100px;
+    font-size: 27px;
+    font-weight: bold;
+    line-height: 120px;
+    text-align: center;
+}
+.deco-line{
+    height: 30px;
+    width: 70px;
+    border-top: 2px solid rgba(0, 80, 255, 1);
+    margin: 0 auto;
+}
+.banner .main .subtitle{
+    font-size: 17px;
+    line-height: 1.2em;
+    text-align: center;
+    letter-spacing: 0.25em;
+    color: #000000b9;
+}

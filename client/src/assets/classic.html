@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic template | ePortfolio 2077</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="icon" href="./favicon.ico">
+    <link rel="stylesheet" href="./classic.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2024476_t5tq7g6z8xm.css">
+    <script>
+        window.onload = function(){
+            var avatar = "url('./logo.png')";
+            var user_avatar_list = document.getElementsByClassName("user-avatar");
+            for(var i = 0; i < user_avatar_list.length; i++){
+                user_avatar_list[i].style.backgroundImage = avatar;
+            }
+            
+            var nav_list = document.querySelectorAll(".nav>a");
+            for(var i=0; i<nav_list.length;i++){
+               nav_list[i].onclick = function(){
+                   for(var j=0;j<nav_list.length;j++){
+                       nav_list[j].classList.remove("selected");
+                   }
+                   this.classList.add("selected");
+               }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="topbar-wrapper">
+        <div class="topbar">
+            <a href="./index.html" class="topbar-main">
+                <div class="logo">
+                </div>
+                <div class="title">
+                    ePortfolio 2077
+                </div>
+            </a>
+            <div class="topbar-side">
+                <a href="./account.html">
+                    <div class="user-avatar">
+                        <!-- display user avatar which can be uploaded -->
+                    </div>
+                    <div class="block"></div>
+                </a>
+                <div class="dropdown-menu">
+                    <div class="detail">
+                        <a href="./user-details.html">Personal details</a>
+                    </div>
+                    <div class="logout">
+                        <a href="./login.html">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="user-tab">
+        <div class="user-intro-wrapper">
+            <div class="user-intro">
+                <div class="blue-dot"></div>
+                <div class="title">John Wick</div>
+                <div class="subtitle">/ PROFESSIONAL HITMAN</div>
+            </div>
+        </div>
+        <div class="nav-wrapper">
+            <div class="nav">
+                <a href="#"><div id="contact">CONTACT</div></a>
+                <a href="#"><div id="projects">PROJECTS</div></a>
+                <a href="#"><div id="more">MORE</div></a>
+                <a href="#" class="selected"><div id="aboutme">ABOUT ME</div></a>
+            </div>
+        </div>
+    </div>
+    <div class="body-wrapper">
+        <div class="left-body"></div>
+        <div class="content-wrapper">
+            <div class="banner">
+                <div class="main">
+                    <div class="profile">
+                        <div class="profile-img"></div>
+                    </div>
+                    <div class="title">John Wick</div>
+                    <div class="deco-line"></div>
+                    <div class="subtitle">PROFESSIONAL HITMAN</div> 
+                </div>
+                <div class="footer">
+                    <div class="content">
+                        <a href="https://www.facebook.com/"><i class="iconfont icon-facebook1"></i></a>
+                        <a href="https://twitter.com/"><i class="iconfont icon-twitter"></i></a>
+                        <a href="https://www.instagram.com"><i class="iconfont icon-instagram"></i></a>
+                        <a href="https://www.linkedin.com/"><i class="iconfont icon-linkedin last-icon"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="bio">
+                <div class="title">Hello</div>
+                <div class="subtitle">Here's who I am & what I do</div>
+                <p class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse maximus euismod vestibulum. Sed imperdiet ante eros, id commodo odio tristique vel. Duis magna lectus, eleifend in ante vel, vestibulum finibus diam. Fusce quis nisl bibendum, interdum sapien vitae, convallis turpis. Vivamus non lacinia turpis, vel sagittis dolor. Aliquam erat volutpat. Nulla ac rutrum neque. Nullam sem tellus, imperdiet id dui nec, facilisis pretium lectus. Donec nec turpis ut sapien condimentum ultricies. 
+                </p>
+            </div> 
+        </div>
+        
+    </div>
+</body>
+</html>
