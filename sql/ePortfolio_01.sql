@@ -60,5 +60,42 @@ alter table Image
  
  alter table User
  add  column AboutMe varchar(1000);
+ 
+create table Site(
+	SiteId int auto_increment primary key,
+    UserId int
+);
+
+alter table Site
+add constraint fk_site_user
+foreign key(UserId) references User(UserId);
+
+alter table Blog
+drop constraint fk_blog_user;
+
+alter table Blog
+drop column UserId;
+
+alter table Blog
+add column SiteId int;
+
+alter table Blog
+add constraint fk_blog_site
+foreign key(SiteId) references Site(SiteId);
+
+alter table Image
+drop constraint fk_image_user;
+
+alter table Image
+drop column UserId;
+
+alter table Image 
+add column SiteId int;
+
+alter table Image
+add constraint fk_image_site
+foreign key(SiteId) references Site(SiteId);
+
+
 
 
