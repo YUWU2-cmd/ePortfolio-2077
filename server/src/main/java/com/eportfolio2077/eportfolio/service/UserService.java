@@ -35,7 +35,7 @@ public class UserService {
     }
 
     @Transactional
-    public boolean checkVerifyCode(String email, String code){
+    public boolean checkVerifyCode(String email, String code)throws Exception{
         return code.equals(userDao.getUserByEmail(email).getVerifycode());
     }
 
@@ -46,8 +46,16 @@ public class UserService {
         userDao.save(user);
     }
 
+    @Transactional
+    public void changePassword(String email, String password)throws Exception{
+        User user = userDao.getUserByEmail(email);
+        user.setPassword(password);
+        userDao.save(user);
+    }
+
     public User getUser(Long id){
         return userDao.getUserByUserId(id);
     }
+
 
 }

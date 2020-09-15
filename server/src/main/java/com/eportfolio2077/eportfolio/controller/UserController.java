@@ -35,11 +35,15 @@ public class UserController {
 
     @RequestMapping("/verify")
     public ResponseEntity<ResponseBody> verify(@RequestParam("email") String email, @RequestParam("code") String code) {
-        if (userService.checkVerifyCode(email, code)){
-            userService.enableUser(email);
-            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
-        }else{
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.verifyFail());
+        try{
+            if (userService.checkVerifyCode(email, code)){
+                userService.enableUser(email);
+                return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
+            }else{
+                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.verifyFail());
+            }
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.wrongEmail());
         }
     }
 
@@ -52,7 +56,7 @@ public class UserController {
             mailService.sendVerificationMail(email, code);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ResponseBody.wrongEmail());
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.wrongEmail());
         }
     }
 
@@ -97,6 +101,16 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(homeService.fetchHomePage(user)));
         }else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
+        }
+    }
+
+    @RequestMapping("/change/password")
+    public ResponseEntity<ResponseBody> changePassword(@RequestParam("email") String email, String password){
+        try{
+            userService.changePassword(email, password);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 

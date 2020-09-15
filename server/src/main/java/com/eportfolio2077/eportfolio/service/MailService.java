@@ -28,7 +28,6 @@ public class MailService {
         content+="<h3>"+code+"</h3>";
         content+="<p>Thank you,<br>"+name+"</p>";
 
-        //TODO save code in User db
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper ms = new MimeMessageHelper(message);
