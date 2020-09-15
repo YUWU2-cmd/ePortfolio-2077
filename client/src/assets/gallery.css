@@ -1,0 +1,376 @@
+@import url(//db.onlinewebfonts.com/c/6fcade7abbedc0b15b45d46f0b8eca84?family=CoquetteW00-Light);
+@font-face {font-family: "CoquetteW00-Light"; src: url("//db.onlinewebfonts.com/t/6fcade7abbedc0b15b45d46f0b8eca84.eot"); src: url("//db.onlinewebfonts.com/t/6fcade7abbedc0b15b45d46f0b8eca84.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/6fcade7abbedc0b15b45d46f0b8eca84.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/6fcade7abbedc0b15b45d46f0b8eca84.woff") format("woff"), url("//db.onlinewebfonts.com/t/6fcade7abbedc0b15b45d46f0b8eca84.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/6fcade7abbedc0b15b45d46f0b8eca84.svg#CoquetteW00-Light") format("svg"); } 
+@import url(//db.onlinewebfonts.com/c/6d176e0d797b5cd24d4053797712922e?family=HelveticaNeueW01-UltLtExtIt);
+@font-face {font-family: "HelveticaNeueW01-UltLtExtIt"; src: url("//db.onlinewebfonts.com/t/6d176e0d797b5cd24d4053797712922e.eot"); src: url("//db.onlinewebfonts.com/t/6d176e0d797b5cd24d4053797712922e.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/6d176e0d797b5cd24d4053797712922e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/6d176e0d797b5cd24d4053797712922e.woff") format("woff"), url("//db.onlinewebfonts.com/t/6d176e0d797b5cd24d4053797712922e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/6d176e0d797b5cd24d4053797712922e.svg#HelveticaNeueW01-UltLtExtIt") format("svg"); } 
+
+body{
+    font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f9fafa;
+    color: #414141;
+
+}
+.selected{
+    color: #0051ffad!important;
+}
+.topbar-wrapper{
+    position: relative;
+    height: 90px;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 .25rem .125rem 0 rgb(0,0,0,.025);
+    z-index: 99;
+}
+.topbar .topbar-main{
+    position: absolute;
+    height: 42px;
+    width: 283px;
+    top: 24px;
+    left: 42%;
+    text-decoration: none;
+}
+.topbar .logo{
+    float: left;
+    width: 42px;
+    height: 42px;
+    background-size: 42px 42px;
+    background-image: url(../favicon.ico);
+}
+.topbar .title{
+    float: left;
+    margin: 0 20px;
+    color: rgb(65, 65, 65);
+    line-height: 42px;
+    font-size: 28px;
+    font-weight: bold;
+    
+}
+.topbar .title:hover{
+    color: #3899ec;
+}
+.topbar .user-avatar{
+    position: absolute;
+    text-decoration: none;
+    background-size: 38px 38px;
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
+    left: 1800px;
+    top: 23px;
+}
+.topbar .block{
+    position: absolute;
+    height: 50px;
+    width: 38px;
+    left: 1800px;
+    top: 23px;
+
+}
+.topbar-side:hover  .dropdown-menu{
+    display: block;
+}
+.topbar .dropdown-menu{
+    display: none;
+    box-sizing: border-box;
+    width: 170px;
+    height: 140px;
+    position: absolute;
+    left: 1680px;
+    top: 75px;
+    border: 1px rgb(212, 212, 212, .6) solid;
+    box-shadow: 0 .25rem .125rem 0 rgb(0,0,0,0.02);
+    border-radius: .2em;
+    background-color: #fff;
+}
+.dropdown-menu .detail{
+    box-sizing: border-box;
+    width: 170px;
+    height: 49%;
+    padding: 10px 0;
+    border-bottom: 1px rgba(155, 155, 155, 0.15) solid;
+}
+.dropdown-menu .logout{
+    box-sizing: border-box;
+    width: 170px;
+    height: 51%;
+    padding: 10px 0;
+}
+.dropdown-menu a{
+    display: block;
+    height: 50px;
+    width: 169px;
+    text-decoration: none;
+    color: rgb(65, 65, 65);
+    text-align: center;
+    line-height: 50px;
+}
+.dropdown-menu a:hover{
+    background-color: rgb(0,0,0,.03);
+}
+
+.user-tab{
+    width: 100%;
+    height: 180px;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 1px;
+    z-index: 9;
+}
+.user-tab .user-name{
+    height: 52px;
+    line-height: 1.2em;
+    font-family: CoquetteW00-Light, sans-serif;
+    font-size: 42px;
+    margin-top: 50px;
+}
+.user-tab .nav{
+    width: 250px;
+    height: 32px;
+    margin-left: 840px;
+    margin-top: 20px;
+    text-align: center;
+}
+.user-tab .nav a{
+    float: left;
+    text-decoration: none;
+    width: 62px;
+    height: 32px;
+    margin-right: 20px;
+    color: #414141;
+}
+.user-tab .nav a:hover{
+    color: #0051ffad;
+}
+
+#home-body{
+    position: relative;
+    display: block;
+}
+#about-body{
+    display: none;
+}
+#contact-body{
+    display: none;
+}
+
+#home-body .bio{
+    font-size: 25px;
+    text-align: center;
+    height: 33px;
+    line-height: 33px;
+    letter-spacing: 0.1em;
+    margin-top: 20px;
+}
+#home-body .content-wrapper{
+    width: 100%;
+    padding-top: 20px;
+    padding-left: 420px;
+    height: 3100px;
+}
+#home-body .content-wrapper .left-content{
+    float: left;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+#home-body .content-wrapper .right-content{
+    float: left;
+    width: 500px;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+#home-body .content-wrapper img{
+    width: 500px;
+    margin-bottom: 40px;
+}
+#home-body .content-wrapper .img-wrapper{
+    position: relative;
+}
+#home-body .content-wrapper .img-wrapper .img-title{
+    position: absolute;
+    font-size: 27px;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+#home-body .content-wrapper .img-wrapper img:hover{
+    opacity: 0.2;
+    transition: opacity .4s ease;
+}
+#home-body .content-wrapper .img-wrapper:hover .img-title{
+    display: block;
+    color: #414141;
+}
+.des-window{
+    position: fixed;
+    width: 100%;
+    height: 80%;
+    top: 10%;
+    background-color: #fff;
+    z-index: 99;
+    display: none;
+}
+.des-window a{
+    text-decoration: none;
+}
+.des-window .quit{
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    font-size: 30px;
+    right: 10px;
+    top: 10px;
+    color: #414141;
+}
+.des-window .img-container img{
+    height: 700px;
+    /* width: 500px; */
+    float: left;
+    background-color: pink;
+    margin-left: 200px;
+    overflow: hidden;
+}
+.des-window .description{
+    font-size: 20px;
+    float: left;
+    margin-left: 150px;
+    margin-top: 50px;
+    width: 400px;
+}
+#home-body .footer{
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    top: 100%;
+    text-align: center;
+}
+#home-body .footer .text{
+    height: 16px;
+    line-height: 16px;
+    margin-top: 40px;
+    font-size: 12px;
+}
+#home-body .footer .icons{
+    margin-top: 15px;
+    height: 18px;
+    line-height: 18px;
+}
+#home-body .footer .icons a{
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+}
+#home-body .footer .icons a i{
+    font-size: 18px;
+}
+
+#about-body{
+    width: 100%;
+    height: 800px;
+    text-align: center;
+}
+#about-body .profile-img{
+    display: block;
+    width: 500px;
+    margin: 50px auto;
+}
+#about-body .title{
+    font-size: 30px;
+    height: 40px;
+    line-height: 40px;
+}
+#about-body .content{
+    width: 470px;
+    font-size: 14px;
+    margin: 40px auto;
+}
+
+#contact-body{
+    height: 900px;
+    width: 100%;
+}
+#contact-body .icon-title{
+    width: 230px;
+    height: 140px;
+    line-height: 126px;
+    margin: 10px auto;
+    text-align: center;
+}
+#contact-body .icon-title i{
+    font-size: 125px;
+}
+#contact-body .title{
+    width: 460px;
+    height: 40px;
+    font-size: 30px;
+    line-height: 40px;
+    margin: 20px auto;
+    text-align: center;
+}
+#contact-body .info{
+    width: 460px;
+    height: 20px;
+    font-size: 15px;
+    margin: 20px auto;
+    text-align: center;
+}
+#contact-body .content-wrapper{
+    width: 480px;
+    height: 490px;
+    margin: 40px auto;
+    box-sizing: border-box;
+    /* background-color: pink; */
+}
+#contact-body .content-wrapper .label{
+    width: 100%;
+    height: 15px;
+    font-size: 15px;
+    line-height: 15px;
+    margin-bottom: 15px;
+}
+#contact-body .content-wrapper .text-input input{
+    width: 460px;
+    height: 38px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    box-sizing: border-box;
+    padding-left: 13px;
+    background-color: #f4f3f2;
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+#contact-body .content-wrapper .text-input input:hover,
+#contact-body .content-wrapper .text-input input:focus,
+#contact-body .content-wrapper .message-input textarea:hover,
+#contact-body .content-wrapper .message-input textarea:focus{
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(182, 182, 182, 0.507);
+}
+#contact-body .content-wrapper .message-input textarea{
+    width: 460px;
+    height: 130px;
+    box-sizing: border-box;
+    padding: 13px;
+    resize: none;
+    background-color: #f4f3f2;
+    border: 1px solid #f4f3f2;
+}
+
+#contact-body .content-wrapper .submit-btn button{
+    width: 460px;
+    height: 40px;
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: rgba(65, 65, 65, 1);
+    color: #fff;
+    border: solid transparent 0px;
+    font-size: 14px;
+}
+#contact-body .content-wrapper .submit-btn button:hover{
+    background-color: rgba(244, 243, 242, 1);
+    border-color: rgba(65, 65, 65, 1);
+    color: #414141;
+    transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+}
