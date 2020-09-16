@@ -2,10 +2,7 @@ package com.eportfolio2077.eportfolio.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -18,16 +15,14 @@ public class Blog {
     private String title;
     private String content;
     private Date createdTime;
-    private Long userId;
 
-    public Blog() {};
+    @ManyToOne
+    private Site site;
 
-
-    public Blog(Long userId) {
+    public Blog() {
         this.title="";
         this.content="";
         this.createdTime=new Date();
-        this.userId=userId;
-    }
+    };
 
 }

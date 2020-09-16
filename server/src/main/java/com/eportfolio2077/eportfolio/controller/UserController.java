@@ -5,8 +5,8 @@ import com.eportfolio2077.eportfolio.common.ResponseBody;
 import com.eportfolio2077.eportfolio.dto.LoginDto;
 import com.eportfolio2077.eportfolio.dto.RegisterDto;
 import com.eportfolio2077.eportfolio.entity.User;
-import com.eportfolio2077.eportfolio.service.HomeService;
 import com.eportfolio2077.eportfolio.service.MailService;
+import com.eportfolio2077.eportfolio.service.SiteService;
 import com.eportfolio2077.eportfolio.service.UserService;
 import com.eportfolio2077.eportfolio.utils.CookieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     UserService userService;
     @Autowired
-    HomeService homeService;
+    SiteService siteService;
     @Autowired
     MailService mailService;
     @Autowired
@@ -84,8 +84,8 @@ public class UserController {
             if(user!=null){
                 //set cookies
                 cookieUtil.setCookie(user.getUserId(),response);
-                //TODO return home?
-                return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(homeService.fetchHomePage(user)));
+                //TODO return what
+                return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
             }else{
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
             }
@@ -98,7 +98,7 @@ public class UserController {
     public ResponseEntity<ResponseBody> logged(@CookieValue(value = "userId", defaultValue = "none") Long userId){
         User user = userService.getUser(userId);
         if(user!=null){
-            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(homeService.fetchHomePage(user)));
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
         }else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
         }
