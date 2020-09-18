@@ -34,8 +34,8 @@ body{
     float: left;
     width: 42px;
     height: 42px;
-    background-size: 42px 42px;
-    background-image: url(../favicon.ico);
+    background-size: 43px 43px;
+    background-image: url(./l4.png);
 }
 .topbar .title{
     float: left;
