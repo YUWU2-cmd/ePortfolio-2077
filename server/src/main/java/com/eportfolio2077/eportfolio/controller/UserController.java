@@ -4,15 +4,15 @@ package com.eportfolio2077.eportfolio.controller;
 import com.eportfolio2077.eportfolio.common.ResponseBody;
 import com.eportfolio2077.eportfolio.dto.LoginDto;
 import com.eportfolio2077.eportfolio.dto.RegisterDto;
+import com.eportfolio2077.eportfolio.dto.UserDto;
 import com.eportfolio2077.eportfolio.entity.User;
-import com.eportfolio2077.eportfolio.service.MailService;
-import com.eportfolio2077.eportfolio.service.SiteService;
-import com.eportfolio2077.eportfolio.service.UserService;
+import com.eportfolio2077.eportfolio.service.*;
 import com.eportfolio2077.eportfolio.utils.CookieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
@@ -25,11 +25,13 @@ public class UserController {
     @Autowired
     UserService userService;
     @Autowired
-    SiteService siteService;
-    @Autowired
     MailService mailService;
     @Autowired
     CookieUtil cookieUtil;
+    @Autowired
+    AWSS3Service awss3Service;
+    @Autowired
+    DashBoardService dashBoardService;
 
 
 
@@ -64,8 +66,7 @@ public class UserController {
     public ResponseEntity<ResponseBody> signup(@RequestBody RegisterDto registerDto) {
         try {
             User newUser = userService.register(registerDto);
-            //TODO
-            //homeService.createHomePage(newUser.getUserId());
+            dashBoardService.createSite(newUser.getUserId());
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ResponseBody.dupEmail());
@@ -84,8 +85,7 @@ public class UserController {
             if(user!=null){
                 //set cookies
                 cookieUtil.setCookie(user.getUserId(),response);
-                //TODO return what
-                return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
+                return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(new UserDto(user)));
             }else{
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
             }
@@ -113,5 +113,18 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @RequestMapping("/change/profile")
+    public ResponseEntity<ResponseBody> changeProfile(@RequestParam("file") MultipartFile image, @CookieValue(value = "userId", defaultValue = "none") Long userId){
+        String imagePath;
+        try {
+            imagePath = awss3Service.uploadFile(image);
+            userService.changeProfile(userId, imagePath);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(imagePath));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
+        }
+    }
+
 
 }

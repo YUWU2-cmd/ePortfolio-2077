@@ -26,11 +26,10 @@ public class HomeController {
         String imagePath;
         try {
             imagePath = awss3Service.uploadFile(image);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(imagePath));
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
         }
-
-        return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(imagePath));
     }
 
     @DeleteMapping("/delete")

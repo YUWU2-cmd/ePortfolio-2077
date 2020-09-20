@@ -57,5 +57,12 @@ public class UserService {
         return userDao.getUserByUserId(id);
     }
 
+    @Transactional
+    public void changeProfile(Long userId, String profilePath){
+        User user = userDao.getUserByUserId(userId);
+        user.setProfilePicture(profilePath);
+        userDao.save(user);
+    }
+
 
 }
