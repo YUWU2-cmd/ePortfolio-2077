@@ -22,9 +22,8 @@ public class Image {
         this.imagePath = null;
     }
 
-
-    public Image(String imageName, String imagePath) {
-        this.imageName = imageName;
+    public Image(String imagePath) {
+        this.imageName = null;
         this.imagePath = imagePath;
     }
 }

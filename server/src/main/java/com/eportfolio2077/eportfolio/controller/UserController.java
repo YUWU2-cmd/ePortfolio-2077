@@ -66,7 +66,6 @@ public class UserController {
     public ResponseEntity<ResponseBody> signup(@RequestBody RegisterDto registerDto) {
         try {
             User newUser = userService.register(registerDto);
-            dashBoardService.createSite(newUser.getUserId());
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ResponseBody.dupEmail());
@@ -98,7 +97,7 @@ public class UserController {
     public ResponseEntity<ResponseBody> logged(@CookieValue(value = "userId", defaultValue = "none") Long userId){
         User user = userService.getUser(userId);
         if(user!=null){
-            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(new UserDto(user)));
         }else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
         }

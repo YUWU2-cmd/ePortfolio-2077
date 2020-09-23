@@ -1,7 +1,12 @@
 package com.eportfolio2077.eportfolio.service;
 
+import com.eportfolio2077.eportfolio.dao.BlogDao;
+import com.eportfolio2077.eportfolio.dao.ImageDao;
 import com.eportfolio2077.eportfolio.dao.SiteDao;
 import com.eportfolio2077.eportfolio.dao.UserDao;
+import com.eportfolio2077.eportfolio.dto.SiteDto;
+import com.eportfolio2077.eportfolio.entity.Blog;
+import com.eportfolio2077.eportfolio.entity.Image;
 import com.eportfolio2077.eportfolio.entity.Site;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,18 +19,26 @@ public class DashBoardService {
     SiteDao siteDao;
     @Autowired
     UserDao userDao;
+    @Autowired
+    ImageDao imageDao;
+    @Autowired
+    BlogDao blogDao;
 
-    public void createSite(Long userId) {
+    public Site createSite(Long userId) {
         Site site = new Site();
         site.setUser(userDao.getUserByUserId(userId));
         siteDao.save(site);
+        return site;
     }
 
     public List<Site> fetchAllSitePage(Long userId) {
         return siteDao.getAllByUser(userDao.getUserByUserId(userId));
     }
 
-    public Site fetchSitePage(Long siteId) {
-        return siteDao.getSiteBySiteId(siteId);
+    public SiteDto fetchSitePage(Long userId, Long siteId) {
+        Site site = siteDao.getSiteByUserAndSiteId(userId, siteId);
+        List<Image> images = imageDao.findImagesBySite(site);
+        List<Blog> blogs = blogDao.findBlogBySite(site);
+        return new SiteDto(images,blogs);
     }
 }

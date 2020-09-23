@@ -1,6 +1,7 @@
 package com.eportfolio2077.eportfolio.controller;
 
 import com.eportfolio2077.eportfolio.common.ResponseBody;
+import com.eportfolio2077.eportfolio.dto.BlogDto;
 import com.eportfolio2077.eportfolio.service.AWSS3Service;
 import com.eportfolio2077.eportfolio.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +17,27 @@ public class HomeController {
 
     @Autowired
     SiteService siteService;
-
     @Autowired
     AWSS3Service awss3Service;
 
 
     @RequestMapping("/upload/img")
-    public ResponseEntity<ResponseBody> uploadImage(@RequestParam("file") MultipartFile image){
+    public ResponseEntity<ResponseBody> uploadImage(@RequestParam("file") MultipartFile image, @RequestParam("siteId") Long siteId){
         String imagePath;
         try {
             imagePath = awss3Service.uploadFile(image);
+            siteService.updateImg(imagePath, siteId);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(imagePath));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
+        }
+    }
+
+    @RequestMapping("/update/blog")
+    public ResponseEntity<ResponseBody> updateBlog(@RequestBody BlogDto blogDto){
+        try{
+            siteService.updateBlog(blogDto);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
         }
@@ -36,9 +47,4 @@ public class HomeController {
     public String deleteFile(@RequestPart(value = "url") String fileUrl) {
         return awss3Service.deleteFileFromS3Bucket(fileUrl);
     }
-
-//    @RequestMapping("/update/blog")
-//    public ResponseEntity<ResponseBody> updateBlog(@RequestBody String blog){
-//        homeService.
-//    }
 }
