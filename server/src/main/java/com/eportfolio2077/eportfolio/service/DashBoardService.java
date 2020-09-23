@@ -8,6 +8,7 @@ import com.eportfolio2077.eportfolio.dto.SiteDto;
 import com.eportfolio2077.eportfolio.entity.Blog;
 import com.eportfolio2077.eportfolio.entity.Image;
 import com.eportfolio2077.eportfolio.entity.Site;
+import com.eportfolio2077.eportfolio.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +37,8 @@ public class DashBoardService {
     }
 
     public SiteDto fetchSitePage(Long userId, Long siteId) {
-        Site site = siteDao.getSiteByUserAndSiteId(userId, siteId);
+        User user = userDao.getUserByUserId(userId);
+        Site site = siteDao.getSiteByUserAndSiteId(user, siteId);
         List<Image> images = imageDao.findImagesBySite(site);
         List<Blog> blogs = blogDao.findBlogBySite(site);
         return new SiteDto(images,blogs);

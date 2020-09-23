@@ -1,7 +1,6 @@
 package com.eportfolio2077.eportfolio.controller;
 
 import com.eportfolio2077.eportfolio.common.ResponseBody;
-import com.eportfolio2077.eportfolio.dto.BlogDto;
 import com.eportfolio2077.eportfolio.service.AWSS3Service;
 import com.eportfolio2077.eportfolio.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +33,9 @@ public class HomeController {
     }
 
     @RequestMapping("/update/blog")
-    public ResponseEntity<ResponseBody> updateBlog(@RequestBody BlogDto blogDto){
+    public ResponseEntity<ResponseBody> updateBlog(@RequestParam("title") String title, @RequestParam("content") String content, @RequestParam("siteId") Long siteId){
         try{
-            siteService.updateBlog(blogDto);
+            siteService.updateBlog(title, content, siteId);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());

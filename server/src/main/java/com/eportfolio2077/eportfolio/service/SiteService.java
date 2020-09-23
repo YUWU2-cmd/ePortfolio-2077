@@ -5,7 +5,6 @@ import com.eportfolio2077.eportfolio.dao.BlogDao;
 import com.eportfolio2077.eportfolio.dao.ImageDao;
 import com.eportfolio2077.eportfolio.dao.SiteDao;
 import com.eportfolio2077.eportfolio.dao.UserDao;
-import com.eportfolio2077.eportfolio.dto.BlogDto;
 import com.eportfolio2077.eportfolio.entity.Blog;
 import com.eportfolio2077.eportfolio.entity.Image;
 import com.eportfolio2077.eportfolio.entity.Site;
@@ -25,9 +24,9 @@ public class SiteService {
     UserDao userDao;
 
 
-    public void updateBlog(BlogDto blogDto){
-        Blog blog = new Blog(blogDto);
-        Site site = siteDao.getSiteBySiteId(blogDto.getSiteID());
+    public void updateBlog(String title, String content, Long siteId){
+        Blog blog = new Blog(title, content);
+        Site site = siteDao.getSiteBySiteId(siteId);
         blog.setSite(site);
         blogDao.save(blog);
     }

@@ -15,6 +15,7 @@ public class Image {
     private String imagePath;
 
     @ManyToOne
+    @JoinColumn(name = "SiteId")
     private Site site;
 
     public Image() {

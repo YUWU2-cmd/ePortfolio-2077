@@ -12,6 +12,7 @@ public class Site {
     private Long siteId;
 
     @ManyToOne
+    @JoinColumn(name = "UserId")
     private User user;
 
     public Site(){}

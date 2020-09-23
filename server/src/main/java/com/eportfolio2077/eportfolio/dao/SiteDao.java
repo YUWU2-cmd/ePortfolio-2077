@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface SiteDao extends JpaRepository<Site, Long> {
     List<Site> getAllByUser(User user);
-    Site getSiteByUserAndSiteId(Long userId, Long siteId);
+    Site getSiteByUserAndSiteId(User user, Long siteId);
     Site getSiteBySiteId(Long siteId);
 }

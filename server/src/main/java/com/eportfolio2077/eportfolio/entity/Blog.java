@@ -1,6 +1,5 @@
 package com.eportfolio2077.eportfolio.entity;
 
-import com.eportfolio2077.eportfolio.dto.BlogDto;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,6 +17,7 @@ public class Blog {
     private Date createdTime;
 
     @ManyToOne
+    @JoinColumn(name = "SiteId")
     private Site site;
 
     public Blog() {
@@ -26,9 +26,9 @@ public class Blog {
         this.createdTime=new Date();
     };
 
-    public Blog(BlogDto blogDto) {
-        this.title= blogDto.getTitle();
-        this.content= blogDto.getContent();
+    public Blog(String title, String content) {
+        this.title= title;
+        this.content= content;
         this.createdTime=new Date();
     };
 
