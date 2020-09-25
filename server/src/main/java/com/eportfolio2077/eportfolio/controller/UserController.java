@@ -93,12 +93,22 @@ public class UserController {
         }
     }
 
+    @RequestMapping("/logout")
+    public ResponseEntity<ResponseBody> logout(HttpServletResponse response) {
+        cookieUtil.deleteCookie(response);
+        return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
+    }
+
     @RequestMapping("/logged")
-    public ResponseEntity<ResponseBody> logged(@CookieValue(value = "userId", defaultValue = "none") Long userId){
-        User user = userService.getUser(userId);
-        if(user!=null){
-            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(new UserDto(user)));
-        }else{
+    public ResponseEntity<ResponseBody> logged(@CookieValue(value = "userId") Long userId){
+        try{
+            User user = userService.getUser(userId);
+            if(user!=null){
+                return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(new UserDto(user)));
+            }else{
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
+            }
+        }catch(Exception e){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
         }
     }
@@ -114,7 +124,7 @@ public class UserController {
     }
 
     @RequestMapping("/change/profile")
-    public ResponseEntity<ResponseBody> changeProfile(@RequestParam("file") MultipartFile image, @CookieValue(value = "userId", defaultValue = "none") Long userId){
+    public ResponseEntity<ResponseBody> changeProfile(@RequestParam("file") MultipartFile image, @CookieValue(value = "userId") Long userId){
         String imagePath;
         try {
             imagePath = awss3Service.uploadFile(image);

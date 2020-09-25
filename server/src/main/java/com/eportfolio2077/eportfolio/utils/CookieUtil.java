@@ -9,14 +9,23 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 public class CookieUtil {
 
-    public void setCookie(Long userId, HttpServletResponse response){
+    public void setCookie(Long userId, HttpServletResponse response) {
 
         Cookie cookie = new Cookie("userId", userId.toString());
         //expires in one day
-        cookie.setMaxAge(24*60*60);
+        cookie.setMaxAge(24 * 60 * 60);
         cookie.setHttpOnly(true);
         cookie.setPath("/");
         response.addCookie(cookie);
 
+    }
+
+    public void deleteCookie(HttpServletResponse response) {
+
+        Cookie cookie = new Cookie("userId", null);
+        cookie.setMaxAge(0);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        response.addCookie(cookie);
     }
 }
