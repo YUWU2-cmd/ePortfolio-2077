@@ -12,4 +12,5 @@ public interface SiteDao extends JpaRepository<Site, Long> {
     List<Site> getAllByUser(User user);
     Site getSiteByUserAndSiteId(User user, Long siteId);
     Site getSiteBySiteId(Long siteId);
+    void deleteByUserAndSiteId(User user, Long siteId);
 }

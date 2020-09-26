@@ -43,4 +43,13 @@ public class DashBoardService {
         List<Blog> blogs = blogDao.findBlogBySite(site);
         return new SiteDto(images,blogs);
     }
+
+    public void deleteSite(Long userId, Long siteId){
+        User user = userDao.getUserByUserId(userId);
+        Site site = siteDao.getSiteByUserAndSiteId(user, siteId);
+        imageDao.deleteAllBySite(site);
+        blogDao.deleteAllBySite(site);
+        siteDao.deleteByUserAndSiteId(user, siteId);
+
+    }
 }

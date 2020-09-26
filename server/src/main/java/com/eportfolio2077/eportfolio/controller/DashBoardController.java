@@ -39,4 +39,10 @@ public class DashBoardController {
         return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(site));
     }
 
+    @RequestMapping("/delete")
+    public ResponseEntity<ResponseBody> delete(@CookieValue(value = "userId", defaultValue = "none") Long userId, @RequestParam("siteId") Long siteId){
+        dashBoardService.deleteSite(userId, siteId);
+        return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
+    }
+
 }
