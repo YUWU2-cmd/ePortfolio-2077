@@ -96,6 +96,10 @@ alter table Image
 add constraint fk_image_site
 foreign key(SiteId) references Site(SiteId);
 
+alter table Role 
+add constraint ak_RoleName
+unique(Name);
+
 
 
 
