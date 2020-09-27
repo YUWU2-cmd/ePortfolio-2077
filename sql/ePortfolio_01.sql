@@ -100,6 +100,15 @@ alter table Role
 add constraint ak_RoleName
 unique(Name);
 
+alter table User
+add constraint ak_Email
+unique(Email);
+
+alter table User add column Enable bool;
+alter table User add column VerifyCode varchar(10);
+alter table User add column ProfilePicture varchar(500);
+
+
 
 
 
