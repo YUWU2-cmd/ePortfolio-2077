@@ -29,18 +29,6 @@ alter table UserRole
 add constraint fk_user 
 foreign key(UserId)  references User(UserId);
 
-create table Blog(
-	BlogId int auto_increment primary key,
-    Title varchar(200) not null,
-    Content text,
-    CreatedTime datetime,
-    UserId int    
-);
-
-alter table Blog 
-add constraint fk_blog_user
-foreign key(UserId) references User(UserId);
-
 alter table User
 add column bio varchar(500);
 
@@ -70,19 +58,6 @@ alter table Site
 add constraint fk_site_user
 foreign key(UserId) references User(UserId);
 
-alter table Blog
-drop constraint fk_blog_user;
-
-alter table Blog
-drop column UserId;
-
-alter table Blog
-add column SiteId int;
-
-alter table Blog
-add constraint fk_blog_site
-foreign key(SiteId) references Site(SiteId);
-
 alter table Image
 drop constraint fk_image_user;
 
@@ -108,7 +83,89 @@ alter table User add column Enable bool;
 alter table User add column VerifyCode varchar(10);
 alter table User add column ProfilePicture varchar(500);
 
+create table Skill(
+	SkillId int auto_increment primary key,
+    SkillName varchar(200) unique
+);
+
+create table UserSkill(
+	UserSkillId int auto_increment primary key,
+    SkillType varchar(200) unique,
+    UserId int,
+    SkillId int
+);
+
+alter table UserSkill
+add constraint fk_userskill_user
+foreign key(UserId) references User(UserId);
+
+alter table UserSkill
+add constraint fk_userskill_skill
+foreign key(SkillId) references Skill(SkillId);
+
+create table Education(
+	EducationId int auto_increment primary key,
+    StartTime datetime,
+    EndTime datetime,
+    SchoolName varchar(250),
+    Degree varchar(200),
+    Major varchar(100),
+    Minor varchar(100),
+    SchoolLocation varchar(500),
+    `Description` varchar(1000),
+    UserId int
+);
+
+alter table Education
+add constraint fk_education_user
+foreign key(UserId) references User(UserId);
+
+create table Experience(
+	ExperienceId int auto_increment primary key,
+    StartTime datetime,
+    EndTime datetime,
+    Position varchar(200),
+    CompanyName varchar(250),
+    CompanyLocation varchar(500),
+    `Description` varchar(1000),
+    UserId int
+);
+
+alter table Experience
+add constraint fk_experience_user
+foreign key(UserId) references User(UserId);
 
 
+create table ProjectSeries(
+	ProjectSeriesId int auto_increment primary key,
+	SeriesName varchar(200),
+    Summary varchar(1000),
+    SiteId int
+);
 
+alter table ProjectSeries
+add constraint fk_projectseries_site
+foreign key(SiteId) references Site(SiteId);
 
+create table Project(
+	ProjectId int auto_increment primary key,
+	ProjectName varchar(200),
+    `Description` varchar(1000),
+    Position varchar(200),
+    ProjectSeriesId int
+);
+
+alter table Project
+add constraint fk_project_projectseries
+foreign key(ProjectSeriesId) references ProjectSeries(ProjectSeriesId);
+
+create table ProjectImage(
+	ProjectImageId int auto_increment primary key,
+	ImageName varchar(200) unique,
+    ImagePath varchar(1000),
+    ProjectId int
+);
+
+alter table ProjectImage
+add constraint fk_projectImage_project
+foreign key(ProjectId) references Project(ProjectId);
