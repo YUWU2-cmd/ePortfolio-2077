@@ -19,7 +19,6 @@ import Qs from 'qs'
 axios.defaults.baseURL = '/api'
 axios.defaults.withCredentials = true
 
-
 Vue.prototype.$http = axios
 Vue.prototype.$qs = Qs
 
