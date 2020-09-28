@@ -23,7 +23,7 @@
                 <!-- 用户名 -->
                 <span>Email Address</span> 
                 <el-form-item prop="email">
-                <el-input v-model="loginForm.email" placeholder="Fill in your email" prefix-icon="iconfont icon-bussiness-man-fill"></el-input>
+                <el-input v-model="loginForm.email" placeholder="Fill in your email" prefix-icon="iconfont icon-email1"></el-input>
                 </el-form-item>
                 <!-- 密码 -->
                 <span>Password</span> 
@@ -59,7 +59,7 @@ export default {
         // 验证用户名是否合法，trigger是触发方法，blur是表示键入标离开就触发
         email: [
           { required: true, message: 'Please enter email', trigger: 'blur' },
-          { min: 3, max: 20, message: 'email need 3 ~ 20 characters', trigger: 'blur' }
+          { min: 3, max: 40, message: 'email need 3 ~ 40 characters', trigger: 'blur' }
         ],
         // 验证密码是否合法
         password: [
@@ -76,19 +76,34 @@ export default {
     goFind () {
       this.$router.push('/forget')
     },
+    getCookie(c_name)
+      {
+      if (document.cookie.length>0) 
+        {
+        c_start=document.cookie.indexOf(c_name + "=")
+        if (c_start!=-1)
+          { 
+          c_start=c_start + c_name.length+1 
+          c_end=document.cookie.indexOf(";",c_start)
+          if (c_end==-1) c_end=document.cookie.length
+          return unescape(document.cookie.substring(c_start,c_end))
+          } 
+        }
+      return ""
+      },
     // 这个是予验证，检查当前内容格式是否符合验证规则
     login () {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
-        const { data: res } = await this.$http.post('login', this.loginForm)
-        console.log(res)
-        if (res.message != "Success!") return this.$message.error('login fail！')
+        const { status: res } = await this.$http.post('/user/login', this.loginForm)
+        if (res != 200) return this.$message.error('login fail！')
         this.$message.success('login success!')
+         const { status: re } = await this.$http.get('/user/logged')
         // 1. 将登录成功之后的 token，保存到客户端的 sessionStorage 中
         //   1.1 项目中出了登录之外的其他API接口，必须在登录之后才能访问
         //   1.2 token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中
         // 2. 通过编程式导航跳转到后台主页，路由地址是 /home
-        this.$router.push('/home')
+        this.$router.push('/dashboard')
       })
     }
   }

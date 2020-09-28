@@ -13,9 +13,8 @@ body{
 .topbar .topbar-main{
     position: absolute;
     height: 42px;
-    width: 283px;
+    left: 800px;
     top: 24px;
-    left: 42%;
     text-decoration: none;
 }
 .topbar .logo{
