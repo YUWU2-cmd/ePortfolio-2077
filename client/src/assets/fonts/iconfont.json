@@ -6,6 +6,90 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "6684369",
+      "name": "纸飞机",
+      "font_class": "zhifeiji",
+      "unicode": "e681",
+      "unicode_decimal": 59009
+    },
+    {
+      "icon_id": "16888572",
+      "name": "纸飞机",
+      "font_class": "zhifeiji1",
+      "unicode": "ec25",
+      "unicode_decimal": 60453
+    },
+    {
+      "icon_id": "1262039",
+      "name": "pinterest",
+      "font_class": "pinterest",
+      "unicode": "e6e1",
+      "unicode_decimal": 59105
+    },
+    {
+      "icon_id": "49683",
+      "name": "邮件",
+      "font_class": "22",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "691177",
+      "name": "邮件",
+      "font_class": "youjian",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "5650479",
+      "name": "电话",
+      "font_class": "icon-test",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "16584514",
+      "name": "电  话",
+      "font_class": "dianhua",
+      "unicode": "e76a",
+      "unicode_decimal": 59242
+    },
+    {
+      "icon_id": "702366",
+      "name": "facebook",
+      "font_class": "facebook1",
+      "unicode": "e801",
+      "unicode_decimal": 59393
+    },
+    {
+      "icon_id": "1898839",
+      "name": "instagram",
+      "font_class": "instagram",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    },
+    {
+      "icon_id": "11982216",
+      "name": "twitter",
+      "font_class": "twitter",
+      "unicode": "e9b2",
+      "unicode_decimal": 59826
+    },
+    {
+      "icon_id": "14343706",
+      "name": "linkedin",
+      "font_class": "linkedin",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "9976629",
+      "name": "文件",
+      "font_class": "21file",
+      "unicode": "e6a6",
+      "unicode_decimal": 59046
+    },
+    {
       "icon_id": "11488230",
       "name": "bussiness-man-fill",
       "font_class": "bussiness-man-fill",
