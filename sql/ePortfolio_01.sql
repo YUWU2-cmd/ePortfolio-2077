@@ -103,6 +103,7 @@ alter table UserSkill
 add constraint fk_userskill_skill
 foreign key(SkillId) references Skill(SkillId);
 
+
 create table Education(
 	EducationId int auto_increment primary key,
     StartTime datetime,
@@ -113,12 +114,12 @@ create table Education(
     Minor varchar(100),
     SchoolLocation varchar(500),
     `Description` varchar(1000),
-    UserId int
+    SiteId int
 );
 
 alter table Education
 add constraint fk_education_user
-foreign key(UserId) references User(UserId);
+foreign key(SiteId) references Site(SiteId);
 
 create table Experience(
 	ExperienceId int auto_increment primary key,
@@ -128,12 +129,12 @@ create table Experience(
     CompanyName varchar(250),
     CompanyLocation varchar(500),
     `Description` varchar(1000),
-    UserId int
+    SiteId int
 );
 
 alter table Experience
 add constraint fk_experience_user
-foreign key(UserId) references User(UserId);
+foreign key(SiteId) references Site(SiteId);
 
 
 create table ProjectSeries(
