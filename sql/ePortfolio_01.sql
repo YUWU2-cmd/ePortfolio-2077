@@ -29,9 +29,6 @@ alter table UserRole
 add constraint fk_user 
 foreign key(UserId)  references User(UserId);
 
-alter table User
-add column bio varchar(500);
-
 create table Image(
 	ImageId int auto_increment primary key,
     ImageName varchar(200),
@@ -45,9 +42,7 @@ foreign key(UserId) references User(UserId);
  
 alter table Image
  add unique unique_name_path (ImageName,ImagePath);
- 
- alter table User
- add  column AboutMe varchar(1000);
+
  
 create table Site(
 	SiteId int auto_increment primary key,
@@ -57,6 +52,10 @@ create table Site(
 alter table Site
 add constraint fk_site_user
 foreign key(UserId) references User(UserId);
+
+alter table Site 
+add column Bio varchar(1000), 
+add column AboutMe varchar(1000);
 
 alter table Image
 drop constraint fk_image_user;
@@ -91,23 +90,22 @@ create table Skill(
 create table UserSkill(
 	UserSkillId int auto_increment primary key,
     SkillType varchar(200) unique,
-    UserId int,
+    SiteId int,
     SkillId int
 );
 
 alter table UserSkill
-add constraint fk_userskill_user
-foreign key(UserId) references User(UserId);
+add constraint fk_userskill_site
+foreign key(SiteId) references Site(SiteId);
 
 alter table UserSkill
 add constraint fk_userskill_skill
 foreign key(SkillId) references Skill(SkillId);
 
-
 create table Education(
 	EducationId int auto_increment primary key,
-    StartTime datetime,
-    EndTime datetime,
+    StartTime date,
+    EndTime date,
     SchoolName varchar(250),
     Degree varchar(200),
     Major varchar(100),
