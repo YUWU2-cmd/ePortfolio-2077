@@ -1,8 +1,0 @@
-/* 全局样式表， 让整个容器的显示面积变大 */
-html,
-body,
-#app {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}

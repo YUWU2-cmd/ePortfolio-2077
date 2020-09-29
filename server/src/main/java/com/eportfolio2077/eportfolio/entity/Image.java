@@ -2,29 +2,38 @@ package com.eportfolio2077.eportfolio.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Data
 @Entity
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imageId;
+    Long imageId;
 
-    private String imageName;
-    private String imagePath;
+    String imageName;
+    String imagePath;
+    Long userId;
 
-    @ManyToOne
-    @JoinColumn(name = "SiteId")
-    private Site site;
+    public Image() {}
 
-    public Image() {
+    public Image(Long userId) {
         this.imageName = null;
         this.imagePath = null;
+        this.userId = userId;
     }
 
-    public Image(String imagePath) {
-        this.imageName = null;
+    public Image(String imageName, String imagePath, Long userId) {
+        this.imageName = imageName;
+        this.imagePath = imagePath;
+        this.userId = userId;
+    }
+
+    public Image(String imageName, String imagePath) {
+        this.imageName = imageName;
         this.imagePath = imagePath;
     }
 }

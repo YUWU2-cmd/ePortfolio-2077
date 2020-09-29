@@ -27,41 +27,4 @@ public class UserService {
         return newUser;
     }
 
-    @Transactional
-    public void updateVerifyCode(String email, String code){
-        User user = userDao.getUserByEmail(email);
-        user.setVerifycode(code);
-        userDao.save(user);
-    }
-
-    @Transactional
-    public boolean checkVerifyCode(String email, String code)throws Exception{
-        return code.equals(userDao.getUserByEmail(email).getVerifycode());
-    }
-
-    @Transactional
-    public void enableUser(String email){
-        User user = userDao.getUserByEmail(email);
-        user.setEnable(true);
-        userDao.save(user);
-    }
-
-    @Transactional
-    public void changePassword(String email, String password)throws Exception{
-        User user = userDao.getUserByEmail(email);
-        user.setPassword(password);
-        userDao.save(user);
-    }
-
-    public User getUser(Long id){
-        return userDao.getUserByUserId(id);
-    }
-
-    @Transactional
-    public void changeProfile(Long userId, String profilePath){
-        User user = userDao.getUserByUserId(userId);
-        user.setProfilePicture(profilePath);
-        userDao.save(user);
-    }
-
 }
