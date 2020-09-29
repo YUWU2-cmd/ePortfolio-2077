@@ -205,7 +205,7 @@
         <div class="right-content">
             <div class="email">John@studen.unimelb.edu.au</div>
             <div class="phone">0123-456-789</div>
-            <a @click="jumpTo('#topbar')" class="btn">
+            <a @click="backtop()" class="btn">
                 <div>Back to Top</div>
             </a>
         </div>
@@ -218,9 +218,43 @@
 export default {
     methods: {
         jumpTo(selector){
-            this.$el.querySelector(selector).scrollIntoView(true)
-        }
-    },
+            // this.$el.querySelector(selector).scrollIntoView(true)
+             let anchor = this.$el.querySelector(selector);
+             //document.documentElement.scrollTop = anchor.offsetTop;
+             let total = anchor.offsetTop;
+
+             // 平滑滚动，时长500ms，每10ms一跳，共50跳
+             // 获取当前滚动条与窗体顶部的距离
+             let distance = document.documentElement.scrollTop || document.body.scrollTop
+             // 计算每一小段的距离
+             let step = total/50;
+             (function smoothDown () {
+                 if (distance < total) {
+                     distance += step
+                 　　// 移动一小段
+                     document.body.scrollTop = distance
+                     document.documentElement.scrollTop = distance
+                 　　// 设定每一次跳动的时间间隔为10ms
+                     setTimeout(smoothDown, 10)
+                 } else {
+                 　　// 限制滚动停止时的距离
+                     document.body.scrollTop = total
+                     document.documentElement.scrollTop = total
+                 }
+             })()
+        },
+         backtop(){
+          var timer = setInterval(function(){
+            let osTop = document.documentElement.scrollTop || document.body.scrollTop;
+            let ispeed = Math.floor(-osTop / 5); 
+            document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed;
+            this.isTop = true;
+            if(osTop === 0){
+              clearInterval(timer);
+            }
+          },30)
+      }
+    }
 }
 </script>
 
@@ -392,6 +426,7 @@ export default {
 }
 .title-wrapper h1{
     font: normal normal bold 88px/1.4em playfairdisplay-bold,'playfair display',serif;
+    margin: 0;
 }
 .title-wrapper .subtitle{
     font: italic normal normal 23px/1.4em 'playfair display',serif;
@@ -472,6 +507,7 @@ export default {
     width: 60%;
     height: 100%;
     margin: 0 auto;
+    margin-left: 26%;
     overflow: hidden;
 }
 #intro-page .content-wrapper .title{
@@ -492,6 +528,7 @@ export default {
     margin-top: 50px;
     line-height: 2em;
     overflow-y: scroll;
+    scrollbar-width: none;
 }
 #intro-page .content-wrapper .content::-webkit-scrollbar{
     display: none;
@@ -506,14 +543,17 @@ export default {
     width: 50%;
     height: 100%;
     float: left;
+    box-sizing: border-box;
+    padding-left: 26%;
 }
 #experience-page .left-content .content-wrapper{
-    width: 40%;
+    width: 50%;
     height: 100%;
-    float: right;
+    float: left;
     box-sizing: border-box;
     padding-top: 100px;
     overflow-y: scroll;
+    scrollbar-width: none;
 }
 #experience-page .right-content{
     width: 50%;
@@ -527,10 +567,12 @@ export default {
     box-sizing: border-box;
     padding-top: 100px;
     overflow-y: scroll;
+    scrollbar-width: none;
 }
 #experience-page .right-content .content-wrapper::-webkit-scrollbar,
 #experience-page .left-content .content-wrapper::-webkit-scrollbar{
     display: none;
+    
 }
 #experience-page .title{
     font: italic normal normal 34px/1.4em 'playfair display',serif;
@@ -574,6 +616,7 @@ export default {
     box-sizing: border-box;
     padding-left: 26%;
     overflow-y: scroll;
+    scrollbar-width: none;
 }
 #skills-page .content-wrapper::-webkit-scrollbar{
     display: none;
@@ -648,12 +691,12 @@ export default {
 }
 #awards-page .left-content{
     float: left;
-    width: 50%;
+    width: 52%;
     height: 100%;
 }
 #awards-page .right-content{
     float: left;
-    width: 50%;
+    width: 48%;
     height: 100%;
 }
 #awards-page .title{
@@ -675,6 +718,7 @@ export default {
     box-sizing: border-box;
     padding-top: 100px;
     overflow-y: scroll;
+    scrollbar-width: none;
 }
 #awards-page .right-content .content-wrapper{
     width: 50%;
@@ -684,6 +728,7 @@ export default {
     padding-top: 100px;
     margin-left: 18%;
     overflow-y: scroll;
+    scrollbar-width: none;
 }
 #awards-page .right-content .content-wrapper::-webkit-scrollbar,
 #awards-page .left-content .content-wrapper::-webkit-scrollbar{
@@ -703,14 +748,18 @@ export default {
 }
 #contact-page .left-content{
     display: inline-block;
-    width: 50%;
+    width: 40%;
     height: 100%;
     overflow: hidden;
+    box-sizing: border-box;
+    padding-right: 3%;
 }
 #contact-page .right-content{
     display: inline-block;
-    width: 40%;
+    width: 50%;
     height: 100%;
+    box-sizing: border-box;
+    padding-left: 5%;
 }
 #contact-page .left-content .title{
     font: italic normal normal 200%/1.4em 'playfair display',serif;
@@ -763,6 +812,7 @@ export default {
     background-color: rgba(85, 105, 220, 1);
     border-color: rgba(0, 0, 0, 1);
     transition: background-color 0.4s ease 0s;
+    cursor: pointer;
 }
 #contact-page .right-content .btn div{
     color: #fff;
@@ -774,5 +824,6 @@ export default {
     background-color: rgba(85, 105, 220, 0.5);
 }
 
+@font-face {font-family: "FuturaLTW01-LightOblique"; src: url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.eot"); src: url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.woff") format("woff"), url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.svg#FuturaLTW01-LightOblique") format("svg"); } 
 
 </style>

@@ -3,8 +3,7 @@
       <div class="all">
         <div class="topbar-wrapper">
             <div class="topbar">
-                     <img class="logo" src="../assets/logo1.png">
-                    </img>
+                    <img class="logo" src="../assets/logo1.png">
                     <div class="title">
                         ePortfolio 2077
                     </div>

@@ -43,7 +43,6 @@ const router = new VueRouter({
       { path: '/gallery/galleryContact',  component: galleryContact}
     ]},
     { path: '/register', component: register },
-    { path: '/homeSetting', component: homeSetting },
     { path: '/forget', component: forget },
     { path: '/verify', component: verify },
     { path: '/personalDetail', component: personalDetail }
