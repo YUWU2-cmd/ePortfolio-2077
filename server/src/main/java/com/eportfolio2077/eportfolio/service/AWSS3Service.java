@@ -8,6 +8,7 @@ import java.util.Date;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.eportfolio2077.eportfolio.dao.ImageDao;
+import com.eportfolio2077.eportfolio.entity.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,16 @@ public class AWSS3Service {
         fileUrl = endpointUrl + "/" + fileName;
         uploadFileTos3bucket(fileName, file);
         file.delete();
+        // update on db
+        //TODO redesign the whole part!!
+        Image image = null;
+        if(image==null){
+            image = new Image("test", fileUrl);
+        }else{
+            image.setImagePath(fileUrl);
+        }
+        imageDao.save(image);
+
         return fileUrl;
     }
 
