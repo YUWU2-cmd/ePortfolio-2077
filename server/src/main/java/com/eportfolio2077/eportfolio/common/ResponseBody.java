@@ -10,6 +10,8 @@ public class ResponseBody {
     private static final String DUPLICATE_EMAIL = "Email already registered";
     private static final String SERVER_ERROR = "There maybe a server error";
     private static final String EMAIL_NOT_EXISTED = "Email does not existed";
+    private static final String VERIFICATION_FAIL = "Verification code is incorrect";
+    private static final String VERIFICATION_REQUIRED = "Verification required";
 
     private String message;
     private Object obj;
@@ -34,6 +36,10 @@ public class ResponseBody {
 
     public static ResponseBody wrongEmail(){ return new ResponseBody(EMAIL_NOT_EXISTED);}
 
+    public static ResponseBody verifyFail(){ return new ResponseBody(VERIFICATION_FAIL);}
+
     public static ResponseBody serverError(){ return new ResponseBody(SERVER_ERROR); }
+
+    public static ResponseBody verifyRequired(){ return new ResponseBody(VERIFICATION_REQUIRED); }
 
 }
