@@ -1,20 +1,20 @@
 <template>
-    <div class="gallery-container">
-        <div class="topbar-wrapper">
-            <div class="topbar">
+    <div class="classic-container">
+         <div class="topbar-wrapper">
+        <div class="topbar">
             
-                <div class="topbar-main">
-                    <div class="title">
-                        ePortfolio 2077
-                    </div>
+            <div class="topbar-main">
+                <div class="title">
+                    ePortfolio 2077
                 </div>
+            </div>
 
             
 
                 <el-dropdown placement="bottom-start" class="topbar-side">
                     <span class="el-dropdown-link">
                       <div class="user-avatar">
-                        <img src="../assets/logo.png" alt=""/>
+                        <img src="../../assets/logo.png" alt=""/>
                         <!-- display user avatar which can be uploaded -->
                       </div>
                     </span>
@@ -28,17 +28,27 @@
                 
             </div>
         </div>
-            <div class="user-tab" id="user-tab">
-                <div class="user-name">Jean Jullien</div>
-                <div class="nav-wrapper">
-                    <div class="nav">
-                        <router-link to="/gallery/galleryHome" class="nava"><div id="contact">Home</div></router-link>
-                        <router-link to="/gallery/galleryAbout" class="nava"><div id="projects">About</div></router-link>
-                        <router-link to="/gallery/galleryContact" class="nava"><div id="more">Contact</div></router-link>
-                    </div>
+
+        <div class="user-tab">
+            <div class="user-intro-wrapper">
+                <div class="user-intro">
+                    <div class="blue-dot"></div>
+                    <div class="title">John Wick</div>
+                    <div class="subtitle">/ PROFESSIONAL HITMAN</div>
                 </div>
             </div>
-         <router-view />
+            <div class="nav-wrapper">
+                <div class="nav">
+                    <router-link to="/classic/contact" class="nava"><div id="contact">CONTACT</div></router-link>
+                    <router-link to="/classic/projects" class="nava"><div id="projects">PROJECTS</div></router-link>
+                    <router-link to="/classic/more" class="nava"><div id="more">MORE</div></router-link>
+                    <router-link to="/classic/aboutMe" class="nava"><div id="aboutme">ABOUT ME</div></router-link>
+                </div>
+            </div>
+        </div>
+
+        <router-view />
+
     </div>
 </template>
 
@@ -47,17 +57,69 @@ export default {}
 </script>
 
 <style lang="less" scoped>
-.gallery-container{
-    font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    background-color: #f9fafa;
-    color: #414141;
 
+.classic-container {
+  height: 100%;
+  font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
-.selected{
-    color: #0051ffad!important;
+.user-tab{
+    width: 100%;
+    height: 130px;
 }
+.user-tab .user-intro-wrapper,
+.user-tab .nav-wrapper{
+    float: left;
+    height: 100%;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 47.5px 3.5%;
+}
+.user-intro-wrapper .user-intro,
+.nav-wrapper .nav{
+    height: 35px;
+    width: 100%;
+    background-color: #fff;
+}
+.user-intro .blue-dot{
+    float: left;
+    width: 16px;
+    height: 16px;
+    margin-top: 10px;
+    background-color: #0050ff;
+}
+.user-intro .title{
+    float: left;
+    height: 35px;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 35px;
+    margin-left: 10px;
+}
+.user-intro .subtitle{
+    float: left;
+    font-size: 17px;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.nav .nava{
+    display: block;
+    text-decoration: none;
+    float: right;
+    font-size: 14px;
+    line-height: 35px;
+    margin-left: 20px;
+    color: black;
+}
+.nav .nava:hover{
+    color: #0050FF;
+}
+.nav .router-link-active{
+    color: #0050FF;
+}
+
 .el-dropdown-link {
     cursor: pointer;
     color: #409EFF;
@@ -119,7 +181,7 @@ export default {}
 
 .topbar-side{
    position: absolute;
-   left: 95%;
+    left: 95%;
     transform: translate(-50%,0);
     top:28px;
 }
@@ -143,41 +205,5 @@ export default {}
     line-height: 50px;
 }
 
-.user-tab{
-    width: 100%;
-    height: 180px;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 1px;
-    z-index: 9;
-}
-.user-tab .user-name{
-    height: 52px;
-    line-height: 1.2em;
-    font-family: CoquetteW00-Light, sans-serif;
-    font-size: 42px;
-    margin-top: 50px;
-}
-.user-tab .nav{
-    width: 246px;
-    height: 32px;
-    margin-left: 50%;
-    transform: translate(-46%,0);
-    margin-top: 20px;
-}
-.user-tab .nav .nava{
-    float: left;
-    text-decoration: none;
-    width: 62px;
-    height: 32px;
-    margin-right: 20px;
-    color: #414141;
-}
-.user-tab .nav .nava:hover{
-    color: #0051ffad;
-}
-.user-tab .nav .router-link-active{
-    color: #0051ffad;
-}
 
 </style>

@@ -19,7 +19,7 @@
 
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus quam ut tristique pretium. Quisque sed arcu enim. Pellentesque quis ornare risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla quis egestas ligula. Cras congue fringilla dolor, in molestie lorem placerat nec. </p>
                 </div>
-                <div class="right-content"> <img src="../assets/p1.jpg" alt=""/></div>
+                <div class="right-content"> <img src="../../assets/p1.jpg" alt=""/></div>
             </div>
             <div class="project" id="proj2">
                 <div class="left-content">
@@ -31,7 +31,7 @@
 
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus quam ut tristique pretium. Quisque sed arcu enim. Pellentesque quis ornare risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla quis egestas ligula. Cras congue fringilla dolor, in molestie lorem placerat nec. </p>
                 </div>
-                <div class="right-content"> <img src="../assets/p2.jpg" alt=""/></div>
+                <div class="right-content"> <img src="../../assets/p2.jpg" alt=""/></div>
             </div>
             <div class="project" id="proj3">
                 <div class="left-content">
@@ -43,7 +43,7 @@
 
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus quam ut tristique pretium. Quisque sed arcu enim. Pellentesque quis ornare risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla quis egestas ligula. Cras congue fringilla dolor, in molestie lorem placerat nec. </p>
                 </div>
-                <div class="right-content"> <img src="../assets/p3.jpg" alt=""/></div>
+                <div class="right-content"> <img src="../../assets/p3.jpg" alt=""/></div>
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@
                 <el-dropdown placement="bottom-start" class="topbar-side">
                     <span class="el-dropdown-link">
                       <div class="user-avatar">
-                        <img src="../assets/logo.png" alt=""/>
+                        <img src="../../assets/logo.png" alt=""/>
                         <!-- display user avatar which can be uploaded -->
                       </div>
                     </span>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="right-content">
-            <div class="profile-img"><img src="../assets/profile-img.jpg"></div>
+            <div class="profile-img"><img src="../../assets/profile-img.jpg"></div>
             <div class="name">John Wick.</div>
             <div class="subtitle">BS in International Business & Marketing. Boston, Massachusetts</div>
             <div class="email">john@student.unimelb.edu.au</div>
@@ -371,7 +371,7 @@ export default {
     height: 100%;
     z-index: 1;
     opacity: 0.5;
-    background-image: url(../assets/bg2.jpg);
+    background-image: url(../../assets/bg2.jpg);
     background-size: cover;
 }
 #aboutme-page .left-content .title-wrapper{

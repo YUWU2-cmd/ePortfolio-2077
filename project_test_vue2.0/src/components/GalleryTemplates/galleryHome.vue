@@ -5,31 +5,31 @@
             <div class="left-content">
                 <a href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../assets/g1.jpeg" id="img1">
+                        <img src="../../assets/g1.jpeg" id="img1">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
                 <a href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../assets/g3.jpg" id="img3">
+                        <img src="../../assets/g3.jpg" id="img3">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
                 <a href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../assets/g5.jpg" id="img5">
+                        <img src="../../assets/g5.jpg" id="img5">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
                 <a href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../assets/g7.jpg" id="img7">
+                        <img src="../../assets/g7.jpg" id="img7">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
                 <a href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../assets/g9.jpg" id="img9">
+                        <img src="../../assets/g9.jpg" id="img9">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
@@ -38,31 +38,31 @@
             <div class="right-content">
                 <a href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../assets/g2.jpg" id="img2">
+                        <img src="../../assets/g2.jpg" id="img2">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
                 <a href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../assets/g4.jpg" id="img4">
+                        <img src="../../assets/g4.jpg" id="img4">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
                 <a href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../assets/g6.jpg" id="img6">
+                        <img src="../../assets/g6.jpg" id="img6">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
                 <a href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../assets/g8.jpg" id="img8">
+                        <img src="../../assets/g8.jpg" id="img8">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
                 <a href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../assets/g10.jpg" id="img10">
+                        <img src="../../assets/g10.jpg" id="img10">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>

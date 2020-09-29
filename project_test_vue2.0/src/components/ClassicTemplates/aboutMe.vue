@@ -6,7 +6,7 @@
                 <div class="banner">
                     <div class="main">
                         <div class="profile">
-                            <img src="../assets/profile-img.jpg" alt=""/>
+                            <img src="../../assets/profile-img.jpg" alt=""/>
                         </div>
                         <div class="title">John Wick</div>
                         <div class="deco-line"></div>
