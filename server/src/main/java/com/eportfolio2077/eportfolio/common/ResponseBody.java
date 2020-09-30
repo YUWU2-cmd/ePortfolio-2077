@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ResponseBody {
     private static final String WRONG_USERNAME_PASSWORD = "Incorrect Username or Password.";
-    private static final String UPLOAD_FAIL = "Could not upload file.";
+    private static final String UPLOAD_FAIL = "Update fail.";
     private static final String SUCCESS = "Success!";
     private static final String DUPLICATE_EMAIL = "Email already registered";
     private static final String SERVER_ERROR = "There maybe a server error";

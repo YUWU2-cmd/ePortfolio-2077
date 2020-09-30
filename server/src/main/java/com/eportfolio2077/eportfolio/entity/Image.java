@@ -13,10 +13,7 @@ public class Image {
 
     private String imageName;
     private String imagePath;
-
-    @ManyToOne
-    @JoinColumn(name = "SiteId")
-    private Site site;
+    private Long siteId;
 
     public Image() {
         this.imageName = null;

@@ -1,11 +1,8 @@
 package com.eportfolio2077.eportfolio.service;
 
-import com.eportfolio2077.eportfolio.dao.BlogDao;
 import com.eportfolio2077.eportfolio.dao.ImageDao;
 import com.eportfolio2077.eportfolio.dao.SiteDao;
 import com.eportfolio2077.eportfolio.dao.UserDao;
-import com.eportfolio2077.eportfolio.dto.SiteDto;
-import com.eportfolio2077.eportfolio.entity.Blog;
 import com.eportfolio2077.eportfolio.entity.Image;
 import com.eportfolio2077.eportfolio.entity.Site;
 import com.eportfolio2077.eportfolio.entity.User;
@@ -22,12 +19,12 @@ public class DashBoardService {
     UserDao userDao;
     @Autowired
     ImageDao imageDao;
-    @Autowired
-    BlogDao blogDao;
 
-    public Site createSite(Long userId) {
+    public Site createSite(Long userId, String template) {
         Site site = new Site();
         site.setUser(userDao.getUserByUserId(userId));
+        site.getUser().setPassword(null);
+        site.setTemplate(template);
         siteDao.save(site);
         return site;
     }
@@ -36,19 +33,17 @@ public class DashBoardService {
         return siteDao.getAllByUser(userDao.getUserByUserId(userId));
     }
 
-    public SiteDto fetchSitePage(Long userId, Long siteId) {
+    public Site fetchSitePage(Long userId, Long siteId) {
         User user = userDao.getUserByUserId(userId);
         Site site = siteDao.getSiteByUserAndSiteId(user, siteId);
-        List<Image> images = imageDao.findImagesBySite(site);
-        List<Blog> blogs = blogDao.findBlogBySite(site);
-        return new SiteDto(images,blogs);
+        return site;
     }
 
     public void deleteSite(Long userId, Long siteId){
+        //TODO
         User user = userDao.getUserByUserId(userId);
         Site site = siteDao.getSiteByUserAndSiteId(user, siteId);
-        imageDao.deleteAllBySite(site);
-        blogDao.deleteAllBySite(site);
+        imageDao.deleteAllBySiteId(site.getSiteId());
         siteDao.deleteByUserAndSiteId(user, siteId);
 
     }

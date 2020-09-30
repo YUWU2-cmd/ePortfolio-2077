@@ -1,7 +1,6 @@
 package com.eportfolio2077.eportfolio.controller;
 
 import com.eportfolio2077.eportfolio.common.ResponseBody;
-import com.eportfolio2077.eportfolio.dto.SiteDto;
 import com.eportfolio2077.eportfolio.entity.Site;
 import com.eportfolio2077.eportfolio.service.DashBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,8 @@ public class DashBoardController {
     DashBoardService dashBoardService;
 
     @RequestMapping("/create")
-    public ResponseEntity<ResponseBody> createSite(@CookieValue(value = "userId", defaultValue = "none") Long userId){
-        Site site = dashBoardService.createSite(userId);
+    public ResponseEntity<ResponseBody> createSite(@CookieValue(value = "userId", defaultValue = "none") Long userId, @RequestParam("template")String template){
+        Site site = dashBoardService.createSite(userId, template);
         return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(site));
     }
 
@@ -35,7 +34,7 @@ public class DashBoardController {
 
     @RequestMapping("/fetch")
     public ResponseEntity<ResponseBody> fetch(@CookieValue(value = "userId", defaultValue = "none") Long userId, @RequestParam("siteId") Long siteId){
-        SiteDto site = dashBoardService.fetchSitePage(userId, siteId);
+        Site site = dashBoardService.fetchSitePage(userId,siteId);
         return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(site));
     }
 
