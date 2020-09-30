@@ -23,7 +23,6 @@ public class DashBoardService {
     public Site createSite(Long userId, String template) {
         Site site = new Site();
         site.setUser(userDao.getUserByUserId(userId));
-        site.getUser().setPassword(null);
         site.setTemplate(template);
         siteDao.save(site);
         return site;

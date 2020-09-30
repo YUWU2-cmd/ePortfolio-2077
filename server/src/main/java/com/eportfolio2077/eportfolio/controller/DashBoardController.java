@@ -23,6 +23,7 @@ public class DashBoardController {
     @RequestMapping("/create")
     public ResponseEntity<ResponseBody> createSite(@CookieValue(value = "userId", defaultValue = "none") Long userId, @RequestParam("template")String template){
         Site site = dashBoardService.createSite(userId, template);
+        site.getUser().setPassword(null);
         return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(site));
     }
 
@@ -35,6 +36,7 @@ public class DashBoardController {
     @RequestMapping("/fetch")
     public ResponseEntity<ResponseBody> fetch(@CookieValue(value = "userId", defaultValue = "none") Long userId, @RequestParam("siteId") Long siteId){
         Site site = dashBoardService.fetchSitePage(userId,siteId);
+        site.getUser().setPassword(null);
         return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(site));
     }
 
