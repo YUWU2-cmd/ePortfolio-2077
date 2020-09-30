@@ -14,17 +14,20 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private String bio;
-    private String aboutMe;
+    private String profilePicture;
+    private boolean enable;
+    private String verifycode;
 
-    public User() {};
+    public User() {}
 
     public User(String email, String username, String password) {
         this.email = email;
         this.username = username;
         this.password = password;
-        this.bio = null;
-        this.aboutMe = null;
+        this.profilePicture = null;
+        this.enable = false;
+        this.verifycode = null;
     }
+
 
 }

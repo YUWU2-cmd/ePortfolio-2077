@@ -1,0 +1,799 @@
+<template>
+    <div class="business-container">
+        <div class="topbar-wrapper" id="topbar">
+            <div class="topbar">
+            
+                <div class="topbar-main">
+                    <div class="title">
+                        ePortfolio 2077
+                    </div>
+                </div>
+
+                <el-dropdown placement="bottom-start" class="topbar-side">
+                    <span class="el-dropdown-link">
+                      <div class="user-avatar">
+                        <img :src="profilePic" alt=""/>
+                        <!-- display user avatar which can be uploaded -->
+                      </div>
+                    </span>
+                    <el-dropdown-menu  slot="dropdown" class="dropdown-menu">
+                      <el-dropdown-item><router-link to="/personalDetail">Personal details</router-link></el-dropdown-item>
+                      <el-dropdown-item><router-link to="/dashboard">go dashboard</router-link></el-dropdown-item>
+                      <el-dropdown-item><router-link to="/login">Logout</router-link></el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+                
+            </div>
+        </div>
+        <div class="user-tab">
+        <div class="nav">
+            <a @click="jumpTo('#intro-page')"><div id="about">About</div></a>
+            <a @click="jumpTo('#experience-page')"><div id="experience">Education&Experience</div></a>
+            <a @click="jumpTo('#skills-page')"><div id="skills">Skills&Languages</div></a>
+            <a @click="jumpTo('#awards-page')"><div id="awards">Awards&Interests</div></a>
+        </div>
+    </div>
+    <div id="aboutme-page">
+        <div class="left-content">
+            <div class="title-wrapper">
+                <div class="hello">HELLO, I'M</div>
+                <h1 class="name">{{username}}.</h1>
+                <div class="subtitle">International Buisiness & Marketing Student</div>
+            </div>
+        </div>
+        <div class="right-content">
+            <div class="profile-img"><img :src="profilePic"></div>
+            <div class="name">{{username}}.</div>
+            <div class="subtitle">BS in International Business & Marketing. Boston, Massachusetts</div>
+            <div class="email">john@student.unimelb.edu.au</div>
+            <div class="phone">0123-456-789</div>
+            <div class="socialmedia">
+                <a href="https://www.facebook.com/" target="_blank"><i class="iconfont icon-facebook1"></i></a>
+                <a href="https://twitter.com/" target="_blank"><i class="iconfont icon-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="iconfont icon-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
+            </div>
+        </div>
+    </div>
+    <div id="intro-page">
+        <div class="content-wrapper">
+            <div class="title">About</div>
+            <div class="subtitle">MY BACKGROUND</div>
+            <p class="content">With a passion for business, social media, and all things marketing, I have both the skill set and professional background necessary to dive deep into the marketing world. As an upbeat, self-motivated team player with excellent communication, I envision an exciting future in the industry. Browse my site to see all that I have to offer.</p>
+        </div>
+    </div>
+    <div id="experience-page">
+        <div class="left-content">
+            <div class="content-wrapper">
+                <div class="title">Education</div>
+                <div class="subtitle">WHAT I'VE LEARNED</div>
+                <div class="exp">
+                    <div class="duration">2017 - 2019</div>
+                    <p class="school">University of Melbourne</p>
+                    <p class="degree">Master of Commerce</p>
+                </div>
+                <div class="exp">
+                    <div class="duration">2014 - 2017</div>
+                    <p class="school">University of Melbourne</p>
+                    <p class="degree">Bachelor of Commerce</p>
+                </div>
+                <div class="exp">
+                    <div class="duration">2010 - 2014</div>
+                    <p class="school">Camberwell High School</p>
+                    <p class="degree"></p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="right-content">
+            <div class="content-wrapper">
+                <div class="title">Experience</div>
+                <div class="subtitle">WHERE I'VE WORKED</div>
+                <div class="exp">
+                    <div class="duration">Sep. 2017 – Present</div>
+                    <p class="company">Json Inc., Campus Brand Ambassador</p>
+                </div>
+                <div class="exp">
+                    <div class="duration">May 2016 – August 2016</div>
+                    <p class="company">Sterling Productions, Marketing Intern</p>
+                </div>
+                <div class="exp">
+                    <div class="duration">Sep. 2015 – May 2016</div>
+                    <p class="company">Riverview University Foundation, Sales Consultant</p>
+                </div> 
+            </div>
+            
+        </div>
+    </div>
+    <div id="skills-page">
+        <div class="content-wrapper">
+            <div class="title">Skills & Languages</div>
+            <div class="subtitle">WHAT I BRING TO THE TABLE</div>
+            <div class="content">
+                <div class="text">Data Analysis</div>
+                <div class="level">
+                <div class="sublevel3"></div>
+            </div>
+            </div>
+            <div class="content">
+                <div class="text">Content Writing & Editing</div>
+                <div class="level">
+                    <div class="sublevel2"></div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text">HTML & CSS</div>
+                <div class="level">
+                    <div class="sublevel4"></div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text">CMS & CRM</div>
+                <div class="level">
+                    <div class="sublevel5"></div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text">Email Marketing</div>
+                <div class="level">
+                    <div class="sublevel1"></div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text">Social Media Management</div>
+                <div class="level">
+                    <div class="sublevel4"></div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text">Image & Design Tools</div>
+                <div class="level">
+                    <div class="sublevel2"></div>
+                </div>
+            </div>
+            <div class="dividing-line"></div>
+            <div class="content">
+                <div class="text">English</div>
+                <div class="level">
+                    <div class="sublevel1"></div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text">Japanese</div>
+                <div class="level">
+                    <div class="sublevel3"></div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="text">Chinese</div>
+                <div class="level">
+                    <div class="sublevel2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="awards-page">
+        <div class="left-content">
+            <div class="content-wrapper">
+               <div class="title">Awards</div>
+                <div class="subtitle">WHERE I SHINE</div>
+                <p class="content">Student Honors Society</p>
+                <p class="content">Omega Professional Fraternity</p>
+                <p class="content">Riverside Campus Impact Award</p> 
+            </div>
+            
+        </div>
+        <div class="right-content">
+            <div class="content-wrapper">
+                <div class="title">Interests</div>
+                <div class="subtitle">OUT OF OFFICE</div>
+                <p class="content">Photography</p>
+                <p class="content">Travel</p>
+                <p class="content">Work out</p> 
+            </div>
+        </div>
+    </div>
+    <div id="contact-page">
+        <div class="left-content">
+            <div class="title">I'd love to hear from you.</div>
+            <div class="socialmedia">
+                <a href="https://www.facebook.com/" target="_blank"><i class="iconfont icon-facebook1"></i></a>
+                <a href="https://twitter.com/" target="_blank"><i class="iconfont icon-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="iconfont icon-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
+            </div>
+        </div>
+        <div class="right-content">
+            <div class="email">John@studen.unimelb.edu.au</div>
+            <div class="phone">0123-456-789</div>
+            <a @click="jumpTo('#topbar')" class="btn">
+                <div>Back to Top</div>
+            </a>
+        </div>
+    </div>
+
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return{
+            username: '',
+            profilePic: '',
+            bio: '',
+            aboutMe: ''
+        }
+        
+    },
+    created() {
+        this.getUserData()
+    },
+     methods:{
+         jumpTo(selector){
+            this.$el.querySelector(selector).scrollIntoView(true)
+        },
+        async getUserData() {
+            const { data: res } = await this.$http.get('/user/logged')
+            if (res.message != "Success!") return this.$message.error('get logged fail！')
+            this.profilePic = res.obj.profilePic
+            this.username = res.obj.username
+            this.bio = res.obj.bio
+            this.aboutMe = res.obj.aboutMe
+        }
+     }
+}
+</script>
+
+<style lang="less" scoped>
+.business-container{
+    font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f9fafa;
+    color: #414141;
+
+}
+.selected{
+    color: #0051ffad!important;
+}
+.el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+
+  }
+.topbar-wrapper{
+    position: relative;
+    height: 90px;
+    background-color: #fff;
+    box-shadow: 0 .25rem .125rem 0 rgba(0,0,0,.025);
+    z-index: 99;
+}
+
+.topbar .topbar-main{
+    position: absolute;
+    height: 60px;
+    left: 50%;
+    top: 13px;
+    text-decoration: none;
+    transform: translate(-50%,0);
+     
+}
+
+.topbar .title{
+    float: left;
+    top: 10px;
+    margin: 10px 20px;
+    color: rgb(65, 65, 65);
+    line-height: 42px;
+    font-size: 28px;
+    font-weight: bold;
+    
+}
+.topbar .title:hover{
+    color: #3899ec;
+}
+.topbar .user-avatar{
+    text-decoration: none;
+    background-size: 38px 38px;
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
+
+    border: 2px solid rgba(0,0,0,.1);
+     img {
+      width: 100%;
+      height: 100%;
+       border-radius: 50%;
+    }
+}
+.topbar .block{
+    position: absolute;
+    height: 50px;
+    width: 38px;
+    left: 95%;
+    top: 23px;
+
+}
+
+.topbar-side{
+   position: absolute;
+   left: 95%;
+    transform: translate(-50%,0);
+    top:28px;
+}
+.topbar-side .dropdown-menu{
+    display: none;
+    box-sizing: border-box;
+    width: 170px;
+    height: 140px;
+    border: 1px rgba(212, 212, 212, .6) solid;
+    border-radius: .2em;
+    background-color: #fff;
+}
+
+.dropdown-menu a{
+    display: block;
+    height: 50px;
+    width: 169px;
+    text-decoration: none;
+    color: rgb(65, 65, 65);
+    text-align: center;
+    line-height: 50px;
+}
+
+.user-tab{
+    width: 100%;
+    height: 72px;
+    background-color: #5569dc;
+    box-sizing: border-box;
+    padding: 1px;
+}
+.user-tab .nav{
+    width: 980px;
+    height: 20px;
+    margin: 25px auto;
+}
+.nav a{
+    float: left;
+    text-decoration: none;
+    color: #fff;
+    margin-right: 30px;
+    line-height: 20px;
+    font: italic normal normal 18px 'playfair display',serif;
+    transition: opacity 0.4s ease 0s;
+    cursor: pointer;
+}
+.nav a:hover{
+    opacity: 0.5;
+}
+
+#aboutme-page{
+    width: 100%;
+    height: 650px;
+    background-color: #5569dc;
+}
+#aboutme-page .left-content{
+    float: left;
+    position: relative;
+    width: 75%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 1px;
+    overflow: hidden;
+}
+#aboutme-page .left-content::before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.5;
+    background-image: url(../assets/bg2.jpg);
+    background-size: cover;
+}
+#aboutme-page .left-content .title-wrapper{
+    position: relative;
+    z-index: 2;
+    width: 710px;
+    height: 100%;
+    margin: 0 auto;
+    color: #fff;
+    margin-top: 350px;
+}
+.title-wrapper .hello{
+    width: 100%;
+    height: 31px;
+    font: normal normal normal 26px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    letter-spacing: 0.35em;
+    margin-left: 10px;
+}
+.title-wrapper h1{
+    font: normal normal bold 88px/1.4em playfairdisplay-bold,'playfair display',serif;
+}
+.title-wrapper .subtitle{
+    font: italic normal normal 23px/1.4em 'playfair display',serif;
+
+}
+
+#aboutme-page .right-content{
+    position: relative;
+    float: left;
+    width: 25%;
+    height: 100%;
+    color: #fff;
+}
+#aboutme-page .right-content .profile-img img{
+    display: block;
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+    margin: 20px auto;
+}
+#aboutme-page .right-content .name{
+    font: normal normal bold 32px/1.4em playfairdisplay-bold,'playfair display',serif;
+    height: 43px;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+#aboutme-page .right-content .subtitle{
+    font: normal normal normal 17px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    width: 50%;
+    text-align: center;
+    line-height: 1.6em;
+
+    margin: 50px auto;
+    margin-bottom: 0px;
+}
+#aboutme-page .right-content .email{
+    font: normal normal normal 16px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    height: 21px;
+    width: 100%;
+    text-align: center;
+    line-height: 1.6em;
+    margin-top: 90px;
+}
+#aboutme-page .right-content .phone{
+    font: normal normal normal 16px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    height: 21px;
+    text-align: center;
+    line-height: 1.6em;
+    margin-top: 10px;
+}
+#aboutme-page .right-content .socialmedia{
+    width: 144px;
+    height: 24px;
+    margin: 40px auto;
+}
+#aboutme-page .right-content .socialmedia a i{
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 24px;
+    margin-right: 10px;
+}
+#aboutme-page .right-content .socialmedia a .last-icon{
+    margin-right: 0;
+}
+
+#intro-page{
+    width: 100%;
+    height: 483px;
+    background-color: #eef0fb;
+}
+#intro-page .content-wrapper{
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+#intro-page .content-wrapper .title{
+    color: #5569DC;
+    font: italic normal normal 34px/1.4em 'playfair display',serif;
+    margin-top: 80px;
+}
+#intro-page .content-wrapper .subtitle{
+    color: #5569DC;
+    font: normal normal normal 17px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    letter-spacing: 0.15em;
+    margin-top: 10px;
+}
+#intro-page .content-wrapper .content{
+    font: normal normal normal 21px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    width: 85%;
+    height: 50%;
+    margin-top: 50px;
+    line-height: 2em;
+    overflow-y: scroll;
+}
+#intro-page .content-wrapper .content::-webkit-scrollbar{
+    display: none;
+}
+
+#experience-page{
+    width: 100%;
+    height: 690px;
+
+}
+#experience-page .left-content{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+#experience-page .left-content .content-wrapper{
+    width: 40%;
+    height: 100%;
+    float: right;
+    box-sizing: border-box;
+    padding-top: 100px;
+    overflow-y: scroll;
+}
+#experience-page .right-content{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+#experience-page .right-content .content-wrapper{
+    width: 40%;
+    height: 100%;
+    float: left;
+    box-sizing: border-box;
+    padding-top: 100px;
+    overflow-y: scroll;
+}
+#experience-page .right-content .content-wrapper::-webkit-scrollbar,
+#experience-page .left-content .content-wrapper::-webkit-scrollbar{
+    display: none;
+}
+#experience-page .title{
+    font: italic normal normal 34px/1.4em 'playfair display',serif;
+    color: #5569DC;
+}
+#experience-page .subtitle{
+    font: normal normal normal 16px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    color: #5569DC;
+    line-height: 1em;
+    letter-spacing: 0.15em;
+    margin-top: 15px;
+    margin-bottom: 60px;
+}
+#experience-page .exp .duration{
+    font: normal normal bold 17px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    color: #1C2349;
+    margin-bottom: 15px;
+}
+#experience-page .exp .school{
+    font: normal normal normal 17px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    color: #1C2349;
+    margin-bottom: 5px;
+}
+#experience-page .exp .degree{
+    font: normal normal normal 17px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    color: #1C2349;
+    margin-bottom: 40px;
+}
+#experience-page .exp .company{
+    font: normal normal normal 17px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    color: #1C2349;
+    margin-bottom: 63.8px;
+}
+
+#skills-page{
+    width: 100%;
+    height: 674px;
+}
+#skills-page .content-wrapper{
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: 26%;
+    overflow-y: scroll;
+}
+#skills-page .content-wrapper::-webkit-scrollbar{
+    display: none;
+}
+#skills-page .content-wrapper .sub-wrapper{
+    float: right;
+}
+
+#skills-page .title{
+    font: italic normal normal 34px/1.4em 'playfair display',serif;
+    color: #5569DC;
+}
+#skills-page .subtitle{
+    font: normal normal normal 16px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    color: #5569DC;
+    line-height: 1em;
+    letter-spacing: 0.15em;
+    margin-top: 15px;
+    margin-bottom: 60px;
+}
+#skills-page .content{
+    margin-bottom: 20px;
+}
+#skills-page .content .text{
+    display: inline-block;
+    width: 310px;
+    height: 21px;
+    font: normal normal bold 16px/1.4em FuturaLTW01-LightOblique,sans-serif;
+}
+#skills-page .content .level{
+    display: inline-block;
+    width: 50%;
+    height: 3px;
+    background-color: rgba(202, 212, 232, 1);
+
+}
+#skills-page .content .sublevel1{
+    width: 100%;
+    height: 3px;
+    background-color:rgba(85, 105, 220, 1);
+}
+#skills-page .content .sublevel2{
+    width: 90%;
+    height: 3px;
+    background-color:rgba(85, 105, 220, 1);
+}
+#skills-page .content .sublevel3{
+    width: 75%;
+    height: 3px;
+    background-color:rgba(85, 105, 220, 1);
+}
+#skills-page .content .sublevel4{
+    width: 65%;
+    height: 3px;
+    background-color:rgba(85, 105, 220, 1);
+}
+#skills-page .content .sublevel5{
+    width: 50%;
+    height: 3px;
+    background-color:rgba(85, 105, 220, 1);
+}
+#skills-page .dividing-line{
+    width: 30px;
+    height: 5px;
+    border-top: 1px solid rgba(202, 212, 232, 1);
+    margin: 40px 0;
+}
+
+#awards-page{
+    width: 100%;
+    height: 447px;
+}
+#awards-page .left-content{
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+#awards-page .right-content{
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+#awards-page .title{
+    font: italic normal normal 34px/1.4em 'playfair display',serif;
+    color: #5569DC;
+}
+#awards-page .subtitle{
+    font: normal normal normal 16px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    color: #5569DC;
+    line-height: 1em;
+    letter-spacing: 0.15em;
+    margin-top: 15px;
+    margin-bottom: 60px;
+}
+#awards-page .left-content .content-wrapper{
+    width: 50%;
+    height: 100%;
+    float: right;
+    box-sizing: border-box;
+    padding-top: 100px;
+    overflow-y: scroll;
+}
+#awards-page .right-content .content-wrapper{
+    width: 50%;
+    height: 100%;
+    float: left;
+    box-sizing: border-box;
+    padding-top: 100px;
+    margin-left: 18%;
+    overflow-y: scroll;
+}
+#awards-page .right-content .content-wrapper::-webkit-scrollbar,
+#awards-page .left-content .content-wrapper::-webkit-scrollbar{
+    display: none;
+}
+#awards-page .content{
+    line-height: 1.8em;
+    color: #1C2349;
+    font: normal normal normal 17px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    margin: 10px 0;
+}
+
+#contact-page{
+    width: 100%;
+    min-height: 351px;
+    background-color:#eef0fc;
+}
+#contact-page .left-content{
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+#contact-page .right-content{
+    display: inline-block;
+    width: 40%;
+    height: 100%;
+}
+#contact-page .left-content .title{
+    font: italic normal normal 200%/1.4em 'playfair display',serif;
+    height: 86px;
+    width: 234px;
+    margin-left: 70%;
+    margin-top: 70px;
+    color: #1C2349;
+    
+}
+#contact-page .left-content .socialmedia{
+    width: 234px;
+    height: 24px;
+    margin-left: 69%;
+    margin-top: 70px;
+}
+#contact-page .left-content .socialmedia a i{
+    display: inline-block;
+    text-decoration: none;
+    color: #1C2349;
+    width: 24px;
+    height: 24px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 24px;
+    margin-right: 10px;
+}
+#contact-page .right-content .email{
+    line-height: 1.8em;
+    color: #1C2349;
+    font: normal normal normal 100%/1.4em FuturaLTW01-LightOblique,sans-serif;
+    margin-left: 35%;
+    margin-top: 80px;
+}
+#contact-page .right-content .phone{
+    line-height: 1.8em;
+    color: #1C2349;
+    font: normal normal normal 17px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    margin-left: 35%;
+    margin-top: 10px;
+    
+}
+#contact-page .right-content .btn{
+    text-decoration: none;
+    display: block;
+    width: 160px;
+    height: 52px;
+    margin-left: 35%;
+    margin-top: 80px;
+    background-color: rgba(85, 105, 220, 1);
+    border-color: rgba(0, 0, 0, 1);
+    transition: background-color 0.4s ease 0s;
+}
+#contact-page .right-content .btn div{
+    color: #fff;
+    font: normal normal normal 17px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    text-align: center;
+    line-height: 52px;
+}
+#contact-page .right-content .btn:hover{
+    background-color: rgba(85, 105, 220, 0.5);
+}
+
+
+</style>

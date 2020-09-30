@@ -13,17 +13,15 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './plugins/element.js'
 
 import axios from 'axios'
+import Qs from 'qs'
+
 // 配置请求的跟路径
 axios.defaults.baseURL = '/api'
-// 设置请求拦截器，给请求加上token
-axios.interceptors.request.use(config => {
-  // console.log(config)
-  config.headers.Authorization = window.sessionStorage.getItem('token')
-  // 在最后必须 return config
-  return config
-})
+axios.defaults.withCredentials = true
+
 
 Vue.prototype.$http = axios
+Vue.prototype.$qs = Qs
 
 Vue.use(ElementUI)
 
