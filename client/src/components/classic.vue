@@ -20,6 +20,7 @@
                     </span>
                     <el-dropdown-menu  slot="dropdown" class="dropdown-menu">
                       <el-dropdown-item><router-link to="/personalDetail">Personal details</router-link></el-dropdown-item>
+                      <el-dropdown-item><router-link to="/dashboard">go dashboard</router-link></el-dropdown-item>
                       <el-dropdown-item><router-link to="/login">Logout</router-link></el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>

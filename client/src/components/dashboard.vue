@@ -14,7 +14,7 @@
                 <el-dropdown placement="bottom-start" class="topbar-side">
                     <span class="el-dropdown-link">
                       <div class="user-avatar">
-                        <img src="../assets/logo.png" alt=""/>
+                        <img :src="profilePic" alt=""/>
                         <!-- display user avatar which can be uploaded -->
                       </div>
                     </span>
@@ -30,7 +30,7 @@
     </div>
     <div class="user-tab">
         <div class="title-wrapper">
-            <div class="title">My ePortfolios</div>
+            <div class="title">{{username}}'s ePortfolios</div>
             <div class="subtitle">Select a site to edit, view and open its dashboard.</div>
         </div>
         <el-dropdown class="create-wrapper" placement="bottom" @command="handleCommand">
@@ -82,8 +82,15 @@ export default {
       num_portfolios : 1,
       num_classic : 0,
       num_gallery : 0,
-      num_business : 0
+      num_business : 0,
+       username: '',
+        profilePic: '',
+        bio: '',
+        aboutMe: ''
     }
+  },
+  created() {
+        this.getUserData()
   },
   methods: {
       goTemp(template){
@@ -107,9 +114,18 @@ export default {
         if (command=="c"){
             this.num_business += 1
         }
-      }
+      },
+       async getUserData() {
+            const { data: res } = await this.$http.get('/user/logged')
+            if (res.message != "Success!") return this.$message.error('get logged fail！')
+            this.profilePic = res.obj.profilePic
+            this.username = res.obj.username
+            this.bio = res.obj.bio
+            this.aboutMe = res.obj.aboutMe
+        }
 
     }
+    
   }
 
 </script>
