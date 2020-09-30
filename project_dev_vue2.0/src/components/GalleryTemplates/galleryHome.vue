@@ -88,21 +88,23 @@ export default {}
 </script>
 
 <style lang="less" scoped>
+body{
+    min-width: 1050px;
+}
 #home-body .body-wrapper{
    width: 100%;
    height: 3130px;
 }
 
 #home-body .content-wrapper{
-    width: 70%;
+    width: 1050px;
     padding-top: 20px;
-    margin-left: 15%;
     height: 3130px;
+    margin: 0 auto;
 }
 #home-body .content-wrapper .left-content{
     float: left;
     width: 500px;
-    margin-left: 50px;
     display: flex;
     flex-direction: column;
 }
