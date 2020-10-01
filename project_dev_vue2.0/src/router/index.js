@@ -17,7 +17,7 @@ import galleryHome from '../components/GalleryTemplates/galleryHome.vue'
 import galleryAbout from '../components/GalleryTemplates/galleryAbout.vue'
 import galleryContact from '../components/GalleryTemplates/galleryContact.vue'
 import business from '../components/BusinessTemplates/business.vue'
-
+import businessSetting from '../components/BusinessTemplates/businessSetting.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +28,7 @@ const router = new VueRouter({
     { path: '/login', component: Login },
     { path: '/dashboard', component: dashboard },
     { path: '/business', component: business },
+    { path: '/businessSetting', component: businessSetting},
     { path: '/classic', component: classic, children: [
       { path: '/classic', redirect: '/classic/aboutMe' },
       { path: '/classic/aboutMe',  component: aboutMe},

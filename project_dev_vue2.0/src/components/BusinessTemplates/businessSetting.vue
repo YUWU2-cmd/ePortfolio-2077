@@ -36,16 +36,16 @@
         <div class="left-content">
             <div class="title-wrapper">
                 <div class="hello">HELLO, I'M</div>
-                <h1 class="name">John Wick.</h1>
-                <div class="subtitle">International Buisiness & Marketing Student</div>
+                <h1 class="name"><input v-model="username" placeholder="Your name here" class="title-name-input"></h1>
+                <div class="subtitle"><input v-model="occupation" placeholder="Occupation here" class="occupation-input"></div>
             </div>
         </div>
         <div class="right-content">
             <div class="profile-img"><img src="../../assets/profile-img.jpg"></div>
-            <div class="name">John Wick.</div>
-            <div class="subtitle">BS in International Business & Marketing. Boston, Massachusetts</div>
-            <div class="email">john@student.unimelb.edu.au</div>
-            <div class="phone">0123-456-789</div>
+            <div class="name"><input v-model="username" placeholder="Your name here" class="name-input"></div>
+            <div class="subtitle"><el-input type="textarea" placeholder="Your degree here" v-model="degree" autosize="" class="degree-input"></el-input></div>
+            <div class="email"><input v-model="email" placeholder="Your email here" class="contact-input"></div>
+            <div class="phone"><input v-model="phone" placeholder="Your phone here" class="contact-input"></div>
             <div class="socialmedia">
                 <a href="https://www.facebook.com/" target="_blank"><i class="iconfont icon-facebook1"></i></a>
                 <a href="https://twitter.com/" target="_blank"><i class="iconfont icon-twitter"></i></a>
@@ -58,7 +58,7 @@
         <div class="content-wrapper">
             <div class="title">About</div>
             <div class="subtitle">MY BACKGROUND</div>
-            <p class="content">With a passion for business, social media, and all things marketing, I have both the skill set and professional background necessary to dive deep into the marketing world. As an upbeat, self-motivated team player with excellent communication, I envision an exciting future in the industry. Browse my site to see all that I have to offer.</p>
+            <p class="content"><el-input type="textarea" placeholder="Your bio here" v-model="bio" autosize="" class="bio-input"></el-input></p>
         </div>
     </div>
     <div id="experience-page">
@@ -67,19 +67,19 @@
                 <div class="title">Education</div>
                 <div class="subtitle">WHAT I'VE LEARNED</div>
                 <div class="exp">
-                    <div class="duration">2017 - 2019</div>
-                    <p class="school">University of Melbourne</p>
-                    <p class="degree">Master of Commerce</p>
+                    <div class="duration"><el-input v-model="education1.duration" placeholder="duration"></el-input></div>
+                    <p class="school"><el-input v-model="education1.school" placeholder="school" autosize=""></el-input></p>
+                    <p class="degree"><el-input v-model="education1.degree" placeholder="degree" autosize=""></el-input></p>
                 </div>
                 <div class="exp">
-                    <div class="duration">2014 - 2017</div>
-                    <p class="school">University of Melbourne</p>
-                    <p class="degree">Bachelor of Commerce</p>
+                    <div class="duration"><el-input v-model="education2.duration" placeholder="duration"></el-input></div>
+                    <p class="school"><el-input v-model="education2.school" placeholder="school" autosize=""></el-input></p>
+                    <p class="degree"><el-input v-model="education2.degree" placeholder="degree" autosize=""></el-input></p>
                 </div>
                 <div class="exp">
-                    <div class="duration">2010 - 2014</div>
-                    <p class="school">Camberwell High School</p>
-                    <p class="degree"></p>
+                    <div class="duration"><el-input v-model="education3.duration" placeholder="duration"></el-input></div>
+                    <p class="school"><el-input v-model="education3.school" placeholder="school" autosize=""></el-input></p>
+                    <p class="degree"><el-input v-model="education3.degree" placeholder="degree" autosize=""></el-input></p>
                 </div>
             </div>
             
@@ -89,16 +89,16 @@
                 <div class="title">Experience</div>
                 <div class="subtitle">WHERE I'VE WORKED</div>
                 <div class="exp">
-                    <div class="duration">Sep. 2017 – Present</div>
-                    <p class="company">Json Inc., Campus Brand Ambassador</p>
+                    <div class="duration"><el-input v-model="exp1.duration" placeholder="duration"></el-input></div>
+                    <p class="company"><el-input v-model="exp1.company" placeholder="company"></el-input></p>
                 </div>
                 <div class="exp">
-                    <div class="duration">May 2016 – August 2016</div>
-                    <p class="company">Sterling Productions, Marketing Intern</p>
+                    <div class="duration"><el-input v-model="exp2.duration" placeholder="duration"></el-input></div>
+                    <p class="company"><el-input v-model="exp2.company" placeholder="company"></el-input></p>
                 </div>
                 <div class="exp">
-                    <div class="duration">Sep. 2015 – May 2016</div>
-                    <p class="company">Riverview University Foundation, Sales Consultant</p>
+                    <div class="duration"><el-input v-model="exp3.duration" placeholder="duration"></el-input></div>
+                    <p class="company"><el-input v-model="exp3.company" placeholder="company"></el-input></p>
                 </div> 
             </div>
             
@@ -109,64 +109,64 @@
             <div class="title">Skills & Languages</div>
             <div class="subtitle">WHAT I BRING TO THE TABLE</div>
             <div class="content">
-                <div class="text">Data Analysis</div>
+                <div class="text"><el-input v-model="skills[0].skill" placeholder="skill"></el-input></div>
                 <div class="level">
-                <div class="sublevel3"></div>
+                <div :class='"sublevel"+skills[0].level'></div><el-input v-model="skills[0].level" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
             </div>
             </div>
             <div class="content">
-                <div class="text">Content Writing & Editing</div>
+                <div class="text"><el-input v-model="skills[1].skill" placeholder="skill"></el-input></div>
                 <div class="level">
-                    <div class="sublevel2"></div>
+                    <div :class='"sublevel"+skills[1].level'></div><el-input v-model="skills[1].level" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
                 </div>
             </div>
             <div class="content">
-                <div class="text">HTML & CSS</div>
+                <div class="text"><el-input v-model="skills[2].skill" placeholder="skill"></el-input></div>
                 <div class="level">
-                    <div class="sublevel4"></div>
+                    <div :class='"sublevel"+skills[2].level'></div><el-input v-model="skills[2].level" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
                 </div>
             </div>
             <div class="content">
-                <div class="text">CMS & CRM</div>
+                <div class="text"><el-input v-model="skills[3].skill" placeholder="skill"></el-input></div>
                 <div class="level">
-                    <div class="sublevel5"></div>
+                    <div :class='"sublevel"+skills[3].level'></div><el-input v-model="skills[3].level" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
                 </div>
             </div>
             <div class="content">
-                <div class="text">Email Marketing</div>
+                <div class="text"><el-input v-model="skills[4].skill" placeholder="skill"></el-input></div>
                 <div class="level">
-                    <div class="sublevel1"></div>
+                    <div :class='"sublevel"+skills[4].level'></div><el-input v-model="skills[4].level" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
                 </div>
             </div>
             <div class="content">
-                <div class="text">Social Media Management</div>
+                <div class="text"><el-input v-model="skills[5].skill" placeholder="skill"></el-input></div>
                 <div class="level">
-                    <div class="sublevel4"></div>
+                    <div :class='"sublevel"+skills[5].level'></div><el-input v-model="skills[5].level" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
                 </div>
             </div>
             <div class="content">
-                <div class="text">Image & Design Tools</div>
+                <div class="text"><el-input v-model="skills[6].skill" placeholder="skill"></el-input></div>
                 <div class="level">
-                    <div class="sublevel2"></div>
+                    <div :class='"sublevel"+skills[6].level'></div><el-input v-model="skills[6].level" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
                 </div>
             </div>
             <div class="dividing-line"></div>
             <div class="content">
-                <div class="text">English</div>
+                <div class="text"><el-input v-model="languages[0].language" placeholder="language"></el-input></div>
                 <div class="level">
-                    <div class="sublevel1"></div>
+                    <div :class='"sublevel"+languages[0].level'></div><el-input v-model="languages[0].level" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
                 </div>
             </div>
             <div class="content">
-                <div class="text">Japanese</div>
+                <div class="text"><el-input v-model="languages[1].language" placeholder="language"></el-input></div>
                 <div class="level">
-                    <div class="sublevel3"></div>
+                    <div :class='"sublevel"+languages[1].level'></div><el-input v-model="languages[1].level" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
                 </div>
             </div>
             <div class="content">
-                <div class="text">Chinese</div>
+                <div class="text"><el-input v-model="languages[2].language" placeholder="language"></el-input></div>
                 <div class="level">
-                    <div class="sublevel2"></div>
+                    <div :class='"sublevel"+languages[2].level'></div><el-input v-model="languages[2].level" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
                 </div>
             </div>
         </div>
@@ -176,9 +176,9 @@
             <div class="content-wrapper">
                <div class="title">Awards</div>
                 <div class="subtitle">WHERE I SHINE</div>
-                <p class="content">Student Honors Society</p>
-                <p class="content">Omega Professional Fraternity</p>
-                <p class="content">Riverside Campus Impact Award</p> 
+                <p class="content"><el-input v-model="awards[0]" placeholder="award"></el-input></p>
+                <p class="content"><el-input v-model="awards[1]" placeholder="award"></el-input></p>
+                <p class="content"><el-input v-model="awards[2]" placeholder="award"></el-input></p> 
             </div>
             
         </div>
@@ -186,9 +186,9 @@
             <div class="content-wrapper">
                 <div class="title">Interests</div>
                 <div class="subtitle">OUT OF OFFICE</div>
-                <p class="content">Photography</p>
-                <p class="content">Travel</p>
-                <p class="content">Work out</p> 
+                <p class="content"><el-input v-model="interests[0]" placeholder="interest"></el-input></p>
+                <p class="content"><el-input v-model="interests[1]" placeholder="interest"></el-input></p>
+                <p class="content"><el-input v-model="interests[2]" placeholder="interest"></el-input></p> 
             </div>
         </div>
     </div>
@@ -203,8 +203,8 @@
             </div>
         </div>
         <div class="right-content">
-            <div class="email">John@studen.unimelb.edu.au</div>
-            <div class="phone">0123-456-789</div>
+            <div class="email"><input v-model="email" placeholder="Your email here" class="footer-contact-input"></div>
+            <div class="phone"><input v-model="phone" placeholder="Your phone here" class="footer-contact-input"></div>
             <a @click="backtop()" class="btn">
                 <div>Back to Top</div>
             </a>
@@ -216,6 +216,49 @@
 
 <script>
 export default {
+    data() {
+        return {
+            username: 'John Wick.',
+            occupation: 'International Buisiness & Marketing Student',
+            degree: 'BS in International Business & Marketing. Boston, Massachusetts',
+            email: 'John@studen.unimelb.edu.au',
+            phone: '0123-456-789',
+            bio: 'With a passion for business, social media, and all things marketing, I have both the skill set and professional background necessary to dive deep into the marketing world. As an upbeat, self-motivated team player with excellent communication, I envision an exciting future in the industry. Browse my site to see all that I have to offer.',
+            education1:{
+                duration: '2017 - 2019',
+                school: 'University of Melbourne',
+                degree: 'Master of Commerce'
+            },
+            education2:{
+                duration: '2014 - 2017',
+                school: 'University of Melbourne',
+                degree: 'Bachelor of Commerce'
+            },
+            education3:{
+                duration: '2010 - 2014',
+                school: 'Camberwell High School',
+                degree: ''
+            },
+            exp1:{
+                duration: 'Sep. 2017 – Present',
+                company: 'Json Inc., Campus Brand Ambassador'
+            },
+            exp2:{
+                duration: 'May 2016 – August 2016',
+                company: 'Sterling Productions, Marketing Intern'
+            },
+            exp3:{
+                duration: 'Sep. 2015 – May 2016',
+                company: 'Riverview University Foundation, Sales Consultant'
+            },
+            skills:[{skill:'Data Analysis', level: '3'}, {skill:'Content Writing & Editing', level: '2'}, {skill:'HTML & CSS', level: '4'}, 
+            {skill:'CMS & CRM', level: '5'}, {skill:'Email Marketing', level: '1'}, {skill:'Social Media Management', level: '4'}, {skill:'Image & Design Tools', level: '2'}],
+            languages: [{language:'English', level: '1'}, {language:'Japanese', level:'3'}, {language:'Chinese', level: '2'}],
+            awards:['Student Honors Society', 'Omega Professional Fraternity', 'Riverside Campus Impact Award'],
+            interests:['Photography', 'Travel', 'Work out']
+
+        }
+    },
     methods: {
         jumpTo(selector){
             // this.$el.querySelector(selector).scrollIntoView(true)
@@ -428,9 +471,24 @@ export default {
     font: normal normal bold 88px/1.4em playfairdisplay-bold,'playfair display',serif;
     margin: 0;
 }
+.title-wrapper .title-name-input{
+    font: normal normal bold 88px/1.4em playfairdisplay-bold,'playfair display',serif;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #eceefada;
+    border-radius: 4px;
+    color: #fff;
+}
 .title-wrapper .subtitle{
     font: italic normal normal 23px/1.4em 'playfair display',serif;
-
+}
+.title-wrapper .occupation-input{
+    font: italic normal normal 23px/1.4em 'playfair display',serif;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #eceefada;
+    border-radius: 4px;
+    color: #fff;
+    width: 100%;
 }
 
 #aboutme-page .right-content{
@@ -454,14 +512,26 @@ export default {
     text-align: center;
     margin-top: 30px;
 }
+#aboutme-page .right-content .name-input{
+    font: normal normal bold 32px/1.4em playfairdisplay-bold,'playfair display',serif;
+    height: 43px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #c4cae9;
+    border-radius: 4px;
+    color: #fff;
+}
 #aboutme-page .right-content .subtitle{
     font: normal normal normal 17px/1.4em FuturaLTW01-LightOblique,sans-serif;
     width: 50%;
     text-align: center;
     line-height: 1.6em;
-
     margin: 50px auto;
     margin-bottom: 0px;
+}
+#aboutme-page .right-content .degree-input{
+    font: normal normal normal 17px/1.4em FuturaLTW01-LightOblique,sans-serif;
 }
 #aboutme-page .right-content .email{
     font: normal normal normal 16px/1.4em FuturaLTW01-LightOblique,sans-serif;
@@ -477,6 +547,17 @@ export default {
     text-align: center;
     line-height: 1.6em;
     margin-top: 10px;
+}
+#aboutme-page .right-content .contact-input{
+    font: normal normal normal 16px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    height: 21px;
+    width: 100%;
+    text-align: center;
+    line-height: 1.6em;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #c4cae9;
+    border-radius: 4px;
+    color: #fff;
 }
 #aboutme-page .right-content .socialmedia{
     width: 144px;
@@ -529,6 +610,9 @@ export default {
     line-height: 2em;
     overflow-y: scroll;
     scrollbar-width: none;
+}
+#intro-page .content-wrapper .bio-input{
+    font: normal normal normal 21px/1.4em FuturaLTW01-LightOblique,sans-serif;
 }
 #intro-page .content-wrapper .content::-webkit-scrollbar{
     display: none;
@@ -729,6 +813,7 @@ export default {
     margin-left: 18%;
     overflow-y: scroll;
     scrollbar-width: none;
+
 }
 #awards-page .right-content .content-wrapper::-webkit-scrollbar,
 #awards-page .left-content .content-wrapper::-webkit-scrollbar{
@@ -801,6 +886,15 @@ export default {
     margin-left: 35%;
     margin-top: 10px;
     
+}
+#contact-page .right-content .footer-contact-input{
+    line-height: 1.8em;
+    color: #1C2349;
+    font: normal normal normal 17px/1.4em FuturaLTW01-LightOblique,sans-serif;
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid #8ea0ff;
+    border-radius: 4px;
+    width:100%;
 }
 #contact-page .right-content .btn{
     text-decoration: none;

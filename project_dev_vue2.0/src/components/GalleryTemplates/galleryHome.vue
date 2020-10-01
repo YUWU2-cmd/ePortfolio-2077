@@ -5,7 +5,7 @@
             <div class="left-content">
                 <a href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../../assets/g1.jpeg" id="img1">
+                        <img src="../../assets/g1.jpg" id="img1">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
@@ -79,12 +79,15 @@
             </div>
             
         </div>
+        </div>
     </div>
-    </div>
+        
 </template>
 
 <script>
-export default {}
+    export default {
+    }
+    
 </script>
 
 <style lang="less" scoped>
