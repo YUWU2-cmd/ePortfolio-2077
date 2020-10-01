@@ -2,7 +2,7 @@
     <div class="business-container">
         <div class="topbar-wrapper" id="topbar">
             <div class="topbar">
-            
+                <el-button type="primary" class="edit-btn" @click.prevent=''>Edit</el-button>
                 <div class="topbar-main">
                     <div class="title">
                         ePortfolio 2077
@@ -302,6 +302,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.edit-btn{
+    position: relative;
+    top:25px;
+    left: 50px;
+}
 .business-container{
     font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 16px;
