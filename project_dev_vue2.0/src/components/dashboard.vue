@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard-container">
-         <div class="topbar-wrapper">
+        <div class="topbar-wrapper">
         <div class="topbar">
             
             <div class="topbar-main">
