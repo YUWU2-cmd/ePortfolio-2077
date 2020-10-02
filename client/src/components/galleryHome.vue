@@ -2,6 +2,7 @@
     <div id="home-body">
        <div class="body-wrapper">
         <div class="content-wrapper">
+            <i class="iconfont icon-setting" style="margin-left:98%; margin-bottom:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="left-content">
                 <a href="javascript:;" class="description">
                     <div class="img-wrapper">
@@ -84,25 +85,31 @@
 </template>
 
 <script>
-export default {}
+export default {
+      methods:{
+         goSetting(){
+            this.$router.push('/gallery/galleryHomeSetting')
+        }
+      }
+}
 </script>
 
 <style lang="less" scoped>
 #home-body .body-wrapper{
-    position: relative;
+   width: 100%;
+   height: 3130px;
 }
-
-
 
 #home-body .content-wrapper{
     width: 70%;
     padding-top: 20px;
     margin-left: 15%;
-    height: 3100px;
+    height: 3130px;
 }
 #home-body .content-wrapper .left-content{
     float: left;
     width: 500px;
+    margin-left: 50px;
     display: flex;
     flex-direction: column;
 }
@@ -173,19 +180,20 @@ export default {}
     width: 400px;
 }
 #home-body .footer{
-    position: absolute;
-    width: 100%;
+    width: 70%;
     height: 150px;
-    top: 100%;
+    top: 120%;
     text-align: center;
 }
 #home-body .footer .text{
+        margin-right: 20%;
     height: 16px;
     line-height: 16px;
     margin-top: 40px;
     font-size: 12px;
 }
 #home-body .footer .icons{
+        margin-right: 20%;
     margin-top: 15px;
     height: 18px;
     line-height: 18px;

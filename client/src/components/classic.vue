@@ -35,7 +35,7 @@
                 <div class="user-intro">
                     <div class="blue-dot"></div>
                     <div class="title">{{username}}</div>
-                    <div class="subtitle">/ PROFESSIONAL HITMAN</div>
+                    <div class="subtitle">/</div>
                 </div>
             </div>
             <div class="nav-wrapper">
@@ -59,8 +59,7 @@ export default {
         return{
             username: '',
             profilePic: '',
-            bio: '',
-            aboutMe: ''
+
         }
         
     },
@@ -69,12 +68,10 @@ export default {
     },
      methods:{
         async getUserData() {
-            const { data: res } = await this.$http.get('/user/logged')
+            const { data: res } = await this.$http.get('/api/user/logged')
             if (res.message != "Success!") return this.$message.error('get logged fail！')
             this.profilePic = res.obj.profilePic
             this.username = res.obj.username
-            this.bio = res.obj.bio
-            this.aboutMe = res.obj.aboutMe
         }
      }
 }

@@ -22,6 +22,15 @@
                 <p></p>
             </el-collapse-item>
         </el-collapse>
+
+        <form @submit.prevent="upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="picture" v-on:change="onChange($event)">
+        <button type="submit">上传图片</button>
+        </form>
+
+        <div>上传信息:
+        <p v-text="result"></p>
+        </div>
     </div>
 </template>
 
@@ -30,12 +39,34 @@ export default {
     data(){
         return{
             activeName: "1",
-            collapse_item1:"",
-            collapse_item2:"",
-            collapse_item3:"",
-            collapse_item4:""
+            picture: {},
+            result: '',
         };
+    },
+    methods: {
+    onChange: function (event) {
+      this.picture = event.target.files[0]; // get input file object
+      console.log(this.picture);
+    },
+
+    upload: function () {
+      var that = this;
+      var formData = new FormData();
+      formData.append('picture', this.picture);
+      // specify Content-Type, with formData as well
+      this.$http.post('https://jsonplaceholder.typicode.com/posts/', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      }).then(function (res) {
+        res.json().then(function (result) {
+          that.result = result.info;
+          console.log(that.result);
+        });
+      }, function (res) {
+        console.log(res.body);
+      });
     }
+  }
+
 }
 </script>
 

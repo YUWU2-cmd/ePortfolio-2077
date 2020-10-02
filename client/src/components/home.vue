@@ -32,49 +32,26 @@
             
         </div>
     </div>
+     
      <div class="body-wrapper">
-        
-        <div class="user-banner">
-            <div class="info">
-                <a href="./change_avatar.html">
-                    <div class="user-avatar">
-                        <img src="../assets/logo.png" alt=""/>
-                    </div>
-                </a>
-                <div class="text-info">
-                    <div class="user-name">{{username}}</div>
-                    <div class="sign">
-                        {{sign}}
-                    </div>
-                </div>
-            </div>
-            <div class="setting">
-                <a>
-                    <i class="iconfont icon-setting" style="font-size:27px" @click="routerTo()"></i>
-                </a>
+        <div class="user-tab">
+        <div class="user-intro-wrapper">
+            <div class="user-intro">
+                <div class="blue-dot"></div>
+                <div class="title">John Wick</div>
+                <div class="subtitle">/ PROFESSIONAL HITMAN</div>
             </div>
         </div>
-        <el-menu :default-active="activeIndex"  class="user-tab" mode="horizontal" @select="handleSelect">
-          <div class="stats">
-                <div class="interested">
-                    <div class="text">Interested</div>
-                    <div class="numbers">10</div>
-                </div>
-                <div class="views">
-                    <div class="text">Views</div>
-                    <div class="numbers">30</div>
-                </div>
+        <div class="nav-wrapper">
+            <div class="nav">
+                <a href="javascript:;"><div id="contact">CONTACT</div></a>
+                <a href="javascript:;"><div id="projects">PROJECTS</div></a>
+                <a href="javascript:;"><div id="more">MORE</div></a>
+                <a href="javascript:;" class="selected"><div id="aboutme">ABOUT ME</div></a>
             </div>
-          <el-menu-item index="1" class="home"> 
-              <i class="iconfont icon-home" style="font-size: 25px; color: rgb(0,0,0,.4);"></i>
-              Home Page
-          </el-menu-item>
-          <el-menu-item index="2" class="moreAboutMe">
-              <i class="iconfont icon-more" style="font-size: 25px; color: rgb(0,0,0,.4);"></i>
-              More About me
-          </el-menu-item>
-          
-        </el-menu>
+        </div>
+    </div>
+       
         <router-view />
 
     </div>
@@ -93,7 +70,9 @@ export default {
   
     }
   },
- 
+  created() {
+    
+  },
   methods: {
     routerTo(){
         this.$router.push('/home/homeSetting')
@@ -112,12 +91,75 @@ export default {
       this.$router.push('/login')
     },
     // 获取所有的菜单
-   
+    async getMenuList() {
+      const { data: res } = await this.$http.get('menus')
+      if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
+      this.menulist = res.data
+      console.log(res)
+    },
   }
 }
 </script>
 
 <style lang="less" scoped>
+
+.user-tab{
+    width: 100%;
+    height: 130px;
+}
+.user-tab .user-intro-wrapper,
+.user-tab .nav-wrapper{
+    float: left;
+    height: 100%;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 47.5px 3.5%;
+}
+.user-intro-wrapper .user-intro,
+.nav-wrapper .nav{
+    height: 35px;
+    width: 100%;
+    overflow: hidden;
+    background-color: #fff;
+}
+.user-intro .blue-dot{
+    float: left;
+    width: 16px;
+    height: 16px;
+    margin-top: 10px;
+    background-color: #0050ff;
+}
+.user-intro .title{
+    float: left;
+    height: 35px;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 35px;
+    margin-left: 10px;
+}
+.user-intro .subtitle{
+    float: left;
+    font-size: 17px;
+    height: 20px;
+    line-height: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.nav>a{
+    display: block;
+    text-decoration: none;
+    float: right;
+    font-size: 14px;
+    line-height: 35px;
+    margin-left: 20px;
+    color: black;
+}
+.nav>a:hover{
+    color: #0050FF;
+}
+
+
 .el-dropdown-link {
     cursor: pointer;
     color: #409EFF;
@@ -206,7 +248,6 @@ export default {
 }
 .home-container {
   height: 1421px;
-  background-color: #f0f4f7;
   font-family: fa5-proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
@@ -225,7 +266,6 @@ export default {
     margin: 0 auto;
     width: 1280px;
     height: 1270px;
-    background-color: #fff;
     box-shadow: 0 .25rem .125rem 0 rgba(0,0,0,0.025);
     border: 2px rgba(212, 212, 212, .5) solid;
     border-top: none;

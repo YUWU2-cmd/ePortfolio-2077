@@ -22,8 +22,8 @@
              <el-form ref="registerFormRef" :model="registerForm" :rules="registerFormRules" label-width="0px" class="register_form">
                 <!-- 用户名 -->
                 <span>Email Address</span> 
-                <el-form-item prop="emailAdd.email">
-                <el-input v-model="registerForm.emailAdd.email" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email1"></el-input>
+                <el-form-item prop="email">
+                <el-input v-model="registerForm.email" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email1"></el-input>
                 </el-form-item>
                 <span>Username</span> 
                 <el-form-item prop="username">
@@ -55,7 +55,7 @@ export default {
       registerForm: {
         username: '',
         password: '',
-         emailAdd: {email : ''}
+        email : ''
       },
       // 这是表单的验证规则对象
       registerFormRules: {
@@ -69,7 +69,7 @@ export default {
           { required: true, message: 'Please enter password', trigger: 'blur' },
           { min: 6, max: 15, message: 'Password need 6 ~ 15 characters', trigger: 'blur' }
         ],
-        'emailAdd.email': [
+        email: [
           { required: true, message: 'Please enter email address', trigger: 'blur' },
           { min: 6, max: 40, message: 'Please enter vaild email address', trigger: 'blur' }
         ]
@@ -84,11 +84,12 @@ export default {
     register () {
       this.$refs.registerFormRef.validate(async valid => {
         if (!valid) return
-       // const { status: res } = await this.$http.post('/user/signup', this.registerForm)
-       // if (res != 200) return this.$message.error('sign up fail！')
-       // this.$message.success('sign up success')
-        var data = this.$qs.stringify(this.registerForm.emailAdd)
-        const { status: re } = await this.$http.post('/user/send', data, {headers:{'Content-Type':'application/x-www-form-urlencoded' }})
+        const { status: res } = await this.$http.post('/api/user/signup', this.registerForm)
+        if (res != 200) return this.$message.error('sign up fail！')
+        this.$message.success('sign up success')
+        var temp = {email: this.registerForm.email}
+        var data = this.$qs.stringify(temp)
+        const { status: re } = await this.$http.post('/api/user/send', data, {headers:{'Content-Type':'application/x-www-form-urlencoded' }})
         if (re != 200) return this.$message.error('send code fail！')
         this.$router.push('/verify')
         // 1. 将登录成功之后的 token，保存到客户端的 sessionStorage 中

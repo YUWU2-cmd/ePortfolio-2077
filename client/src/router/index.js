@@ -20,6 +20,12 @@ import galleryHome from '../components/galleryHome.vue'
 import galleryAbout from '../components/galleryAbout.vue'
 import galleryContact from '../components/galleryContact.vue'
 import business from '../components/business.vue'
+import aboutMeSetting from '../components/aboutMeSetting'
+import moreSetting from '../components/moreSetting'
+import projectSetting from '../components/projectSetting'
+import galleryHomeSetting from '../components/galleryHomeSetting'
+import galleryAboutSetting from '../components/galleryAboutSetting'
+import businessSetting from '../components/businessSetting'
 
 Vue.use(VueRouter)
 
@@ -30,9 +36,13 @@ const router = new VueRouter({
     { path: '/login', component: Login },
     { path: '/dashboard', component: dashboard },
     { path: '/business', component: business },
+    { path: '/businessSetting', component: businessSetting },
     { path: '/classic', component: classic, children: [
       { path: '/classic', redirect: '/classic/aboutMe' },
       { path: '/classic/aboutMe',  component: aboutMe},
+      { path: '/classic/aboutMeSetting',  component: aboutMeSetting},
+      { path: '/classic/moreSetting',  component: moreSetting},
+      { path: '/classic/projectSetting',  component: projectSetting},
       { path: '/classic/more',  component: more},
       { path: '/classic/projects',  component: projects},
       { path: '/classic/contact',  component: contact}
@@ -40,7 +50,9 @@ const router = new VueRouter({
     { path: '/gallery', component: gallery, children: [
       { path: '/gallery', redirect: '/gallery/galleryHome' },
       { path: '/gallery/galleryHome',  component: galleryHome},
+      { path: '/gallery/galleryHomeSetting',  component: galleryHomeSetting},
       { path: '/gallery/galleryAbout',  component: galleryAbout},
+      { path: '/gallery/galleryAboutSetting',  component: galleryAboutSetting},
       { path: '/gallery/galleryContact',  component: galleryContact}
     ]},
     { path: '/home', component: home, children: [

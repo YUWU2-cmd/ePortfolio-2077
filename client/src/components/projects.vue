@@ -2,48 +2,49 @@
     <div id="projects-body">
     <div class="body-wrapper">
         <div class="title-wrapper">
+            <i class="iconfont icon-setting" style="margin-left:98%; margin-top:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="content-wrapper">
                 <div class="blue-dot"></div>
                 <div class="title">Projects</div>
             </div>
-            <p class="intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus quam ut tristique pretium. Quisque sed arcu enim. Pellentesque quis ornare risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla quis egestas ligula. Cras congue fringilla dolor, in molestie lorem placerat nec. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut luctus pellentesque ultrices. </p>
+            <p class="intro">{{projectForm.summary}}</p>
         </div>
         <div class="project-wrapper">
             <div class="project" id="proj1">
                 <div class="left-content">
                     <div class="header">
-                        <div class="proj-name">Project name 01</div>
-                        <div class="role">Role Title</div> 
+                        <div class="proj-name">{{projectForm.projects[0].projectName}}</div>
+                        <div class="role">{{projectForm.projects[0].position}}</div> 
                     </div>
                     <p class="content">
 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus quam ut tristique pretium. Quisque sed arcu enim. Pellentesque quis ornare risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla quis egestas ligula. Cras congue fringilla dolor, in molestie lorem placerat nec. </p>
+                        {{projectForm.projects[0].description}} </p>
                 </div>
-                <div class="right-content"> <img src="../assets/p1.jpg" alt=""/></div>
+                <div class="right-content"> <img :src="picList[0]" alt=""/></div>
             </div>
             <div class="project" id="proj2">
                 <div class="left-content">
                     <div class="header">
-                        <div class="proj-name">Project name 02</div>
-                        <div class="role">Role Title</div> 
+                        <div class="proj-name">{{projectForm.projects[1].projectName}}</div>
+                        <div class="role">{{projectForm.projects[1].position}}</div> 
                     </div>
                     <p class="content">
 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus quam ut tristique pretium. Quisque sed arcu enim. Pellentesque quis ornare risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla quis egestas ligula. Cras congue fringilla dolor, in molestie lorem placerat nec. </p>
+                    {{projectForm.projects[1].description}}</p>
                 </div>
-                <div class="right-content"> <img src="../assets/p2.jpg" alt=""/></div>
+                <div class="right-content"> <img :src="picList[1]" alt=""/></div>
             </div>
             <div class="project" id="proj3">
                 <div class="left-content">
                     <div class="header">
-                        <div class="proj-name">Project name 03</div>
-                        <div class="role">Role Title</div> 
+                        <div class="proj-name">{{projectForm.projects[0].projectName}}</div>
+                        <div class="role">{{projectForm.projects[0].position}}</div> 
                     </div>
                     <p class="content">
 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam luctus quam ut tristique pretium. Quisque sed arcu enim. Pellentesque quis ornare risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla quis egestas ligula. Cras congue fringilla dolor, in molestie lorem placerat nec. </p>
+                        {{projectForm.projects[0].description}}</p>
                 </div>
-                <div class="right-content"> <img src="../assets/p3.jpg" alt=""/></div>
+                <div class="right-content"> <img :src="picList[2]" alt=""/></div>
             </div>
         </div>
     </div>
@@ -51,7 +52,63 @@
 </template>
 
 <script>
-export default {}
+export default {
+     data(){
+        return {
+            projectForm: {
+                seriesName: 'ver2',
+                summary:'1',
+                projects:[
+                    {
+                        projectName: '',
+                        description: 'go all2',
+                        position: 'assasin2',
+                        image: null
+                    },
+                    {
+                        projectName: '',
+                        description: 'now all2',
+                        position: 'assasin32',
+                        image: null
+                    }
+                ],
+                siteId:''
+            },
+            picList: ["","",""]
+        }
+    },
+    created() {
+            this.getProjectData()
+            this.getImageData()
+    },
+     methods:{
+         goSetting(){
+            this.$router.push('/classic/projectSetting')
+        },
+        async getProjectData() {
+            this.projectForm.siteId = window.localStorage.getItem("nowSiteId")
+            var extem = {siteId: this.projectForm.siteId}
+            var data1 = this.$qs.stringify(extem)
+            
+            const { data: re } = await this.$http.post('/api/home/get/classic/project',data1, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (re.message != "Success!") return this.$message.error('get about fail！')
+            this.projectForm = re.obj
+        },
+        async getImageData() {
+            this.projectForm.siteId = window.localStorage.getItem("nowSiteId")
+            var tem = {siteId: this.projectForm.siteId}
+            var data2 = this.$qs.stringify(tem)
+            const { data: r } = await this.$http.post('/api/home/get/img',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (r.message != "Success!") return this.$message.error('get about fail！')
+            if(r.obj.length >= 3){
+                this.picList[0] = r.obj[0].imagePath
+                this.picList[1] = r.obj[1].imagePath
+                this.picList[2] = r.obj[2].imagePath
+            }
+            console.log(this.picList)
+        }
+    }
+}
 </script>
 
 <style lang="less" scoped>

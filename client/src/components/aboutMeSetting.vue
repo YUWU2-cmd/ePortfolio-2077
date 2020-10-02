@@ -1,7 +1,7 @@
 <template>
         <div class="body-wrapper" id="aboutme-body">
-            <div class="left-body"><i class="iconfont icon-setting" style="margin-left:240%; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i></div>
-            
+
+            <div class="left-body"></div>
             <div class="content-wrapper">
                 <div class="banner">
                     <div class="main">
@@ -10,7 +10,7 @@
                         </div>
                         <div class="title">{{username}}</div>
                         <div class="deco-line"></div>
-                        <div class="subtitle">{{aboutMeForm.bio}}</div> 
+                        <div class="subtitle"><el-input placeholder="Please write something about yourself" v-model="aboutMeForm.bio"></el-input></div> 
                     </div>
                     <div class="footer">
                         <div class="content">
@@ -24,11 +24,17 @@
                 <div class="bio">
                     <div class="title">Hello</div>
                     <div class="subtitle">Here's who I am & what I do</div>
-                    <p class="content">
-                        {{aboutMeForm.aboutme}}
-                    </p>
+                    <el-input
+                    type="textarea"
+                    :autosize="{ minRows: 4, maxRows: 7}"
+                    placeholder="Please write something about yourself"
+                    v-model="aboutMeForm.aboutme">
+                    </el-input>
+                     <el-button type="primary" style="margin-left: 70%; margin-top: 50%" plain @click="handleClick">upload</el-button>
                 </div> 
+                
             </div>
+           
         </div>
 </template>
 
@@ -50,14 +56,14 @@ export default {
             this.getUserData()
     },
     methods:{
-        handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
-         goSetting(){
-            this.$router.push('/classic/aboutMeSetting')
+        handleClick(){
+            this.upload()
+        },
+        async upload(){
+            var data0 = this.$qs.stringify(this.aboutMeForm)
+            console.log(data0)
+            const { data: res } = await this.$http.post('/api/home/update/classic/aboutme',data0, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (res.message != "Success!") return this.$message.error('upload fail！')
         },
         async getUserData() {
             const { data: re } = await this.$http.get('/api/user/logged')
@@ -77,7 +83,6 @@ export default {
         }
     }
 }
-
 </script>
 
 <style lang="less" scoped>
@@ -197,6 +202,7 @@ export default {
     text-align: center;
     letter-spacing: 0.25em;
     color: #000000b9;
+    padding: 0px 15px;
 }
 
 </style>

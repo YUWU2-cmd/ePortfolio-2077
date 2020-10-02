@@ -51,22 +51,10 @@
         </div>
         <div class="sites" id="site-list">
             
-            <a v-for="item in num_classic" >
-                <div class="site" @click="goTemp('classic')">
+            <a v-for="item in portfolioList" >
+                <div class="site" @click="goTemp(item.template,item.siteId)">
                         <i class="iconfont icon-21file"></i>
-                        <span>classic</span>
-                </div>
-            </a>
-            <a v-for="item in num_gallery" >
-                <div class="site" @click="goTemp('gallery')">
-                    <i class="iconfont icon-21file"></i>
-                    <span>gallery</span>
-                </div>
-            </a>
-            <a v-for="item in num_business" >
-                <div class="site" @click="goTemp('business')">
-                    <i class="iconfont icon-21file"></i>
-                    <span>business</span>
+                        <span>{{item.template}} {{item.siteId}}</span>
                 </div>
             </a>
         </div>
@@ -78,54 +66,61 @@
 export default {
 
     data () {
-    return {
-      num_portfolios : 1,
-      num_classic : 0,
-      num_gallery : 0,
-      num_business : 0,
-       username: '',
+        return {
+        portfolioList : [],
         profilePic: '',
-        bio: '',
-        aboutMe: ''
-    }
-  },
-  created() {
-        this.getUserData()
-  },
-  methods: {
-      goTemp(template){
-          if (template=="classic"){
-              this.$router.push('/classic')
-          }
-           if (template=="gallery"){
-              this.$router.push('/gallery')
-          }
-           if (template=="business"){
-              this.$router.push('/business')
-          }
-      },
-      handleCommand(command) {
-        if (command=="a"){
-           this.num_classic += 1
+        username: ''
         }
-        if (command=="b"){
-            this.num_gallery += 1
-        }
-        if (command=="c"){
-            this.num_business += 1
-        }
-      },
-       async getUserData() {
-            const { data: res } = await this.$http.get('/user/logged')
-            if (res.message != "Success!") return this.$message.error('get logged fail！')
-            this.profilePic = res.obj.profilePic
-            this.username = res.obj.username
-            this.bio = res.obj.bio
-            this.aboutMe = res.obj.aboutMe
+    },
+    created() {
+            this.loadIform()
+            this.getUserData()
+    },
+    methods: {
+        goTemp(template,id){
+            window.localStorage["nowSiteId"]=id
+            if (template=="classic"){
+                this.$router.push('/classic')
+            }
+            if (template=="gallery"){
+                this.$router.push('/gallery')
+            }
+            if (template=="business"){
+                this.$router.push('/business')
+            }
+        },
+        handleCommand(command) {
+            if (command=="a"){
+            this.create("classic")
+            }
+            if (command=="b"){
+                this.create("gallery")
+            }
+            if (command=="c"){
+                this.create("business")
+            }
+        },
+        async create(temType){
+            var tem = {template: temType}
+            var data = this.$qs.stringify(tem)
+            const { data: res } = await this.$http.post('/api/dashboard/create',data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (res.message != "Success!") return this.$message.error('get create fail！')
+            this.loadIform()
+            
+        },
+        async loadIform(){
+            const { data: re } = await this.$http.get('/api/dashboard/load')
+            if (re.message != "Success!") return this.$message.error('get load fail！')
+            this.portfolioList = re.obj
+        },
+         async getUserData() {
+            const { data: r } = await this.$http.get('/api/user/logged')
+            if (r.message != "Success!") return this.$message.error('get logged fail！')
+            this.profilePic = r.obj.profilePic
+            this.username = r.obj.username
         }
 
     }
-    
   }
 
 </script>

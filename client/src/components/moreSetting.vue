@@ -2,7 +2,6 @@
     <div id="more-body">
    <div class="body-wrapper">
         <div class="title-wrapper">
-            <i class="iconfont icon-setting" style="margin-left:98%; margin-top:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="content-wrapper">
                 <div class="blue-dot"></div>
                 <div class="title">More About Me</div>
@@ -12,80 +11,105 @@
             <div class="title">Experience</div>
             <div class="exp1">
                 <div class="left-content">
-                    <div class="duration">{{experienceForm.experiences[0].startTime}}</div>
-                    <div class="job">{{experienceForm.experiences[0].position}}</div>
-                    <div class="company">{{experienceForm.experiences[0].companyName}}</div>
-                    <div class="location">{{experienceForm.experiences[0].companyLocation}}</div>
+                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].startTime"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].position"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].companyName"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].companyLocation"></el-input>
                 </div>
                 <div class="right-content">
                     
-                    {{experienceForm.experiences[0].description}}</div>
+                   <el-input
+                    type="textarea"
+                    :autosize="{ minRows: 9, maxRows: 13}"
+                    placeholder="Please write something about yourself"
+                    v-model="experienceForm.experiences[0].description">
+                    </el-input>
+                </div>
             </div>
             <div class="exp2">
                 <div class="left-content">
-                    <div class="duration">{{experienceForm.experiences[1].startTime}}</div>
-                    <div class="job">{{experienceForm.experiences[1].position}}</div>
-                    <div class="company">{{experienceForm.experiences[1].companyName}}</div>
-                    <div class="location">{{experienceForm.experiences[1].companyLocation}}</div>
+                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].startTime"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].position"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].companyName"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].companyLocation"></el-input>
                 </div>
                 <div class="right-content">
-                   {{experienceForm.experiences[1].description}} 
+                    <el-input
+                    type="textarea"
+                    :autosize="{ minRows: 9, maxRows: 13}"
+                    placeholder="Please write something about yourself"
+                    v-model="experienceForm.experiences[1].description">
+                    </el-input>
                 </div>
             </div>
+            <el-button type="primary" style="margin-left: 43%; margin-top: 10px" plain @click="upload('ex')">upload</el-button>
         </div>
         <div class="education-wrapper">
             <div class="title">Education</div>
             <div class="exp1">
                 <div class="left-content">
-                    <div class="duration">{{educationForm.educations[0].startTime}}</div>
-                    <div class="job">{{educationForm.educations[0].schoolName}}</div>
-                    <div class="company">{{educationForm.educations[0].degree}}</div>
-                    <div class="location">{{educationForm.educations[0].schoolLocation}}</div>
+                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].startTime"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].schoolName"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].degree"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].schoolLocation"></el-input>
                 </div>
                 <div class="right-content">
                     
-                    {{educationForm.educations[0].description}}</div>
+                   <el-input
+                    type="textarea"
+                    :autosize="{ minRows: 9, maxRows: 13}"
+                    placeholder="Please write something about yourself"
+                    v-model="educationForm.educations[0].description">
+                    </el-input>
+                </div>
             </div>
             <div class="exp2">
                 <div class="left-content">
-                    <div class="duration">{{educationForm.educations[1].startTime}}</div>
-                    <div class="job">{{educationForm.educations[1].schoolName}}</div>
-                    <div class="company">{{educationForm.educations[1].degree}}</div>
-                    <div class="location">{{educationForm.educations[1].schoolLocation}}</div>
+                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].startTime"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].schoolName"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].degree"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].schoolLocation"></el-input>
                 </div>
                 <div class="right-content">
-                    {{educationForm.educations[1].description}}
+                   <el-input
+                    type="textarea"
+                    :autosize="{ minRows: 9, maxRows: 13}"
+                    placeholder="Please write something about yourself"
+                    v-model="educationForm.educations[1].description">
+                    </el-input>
                 </div>
             </div>
+            <el-button type="primary" style="margin-left: 43%; margin-top: 10px" plain @click="upload('ed')">upload</el-button>
         </div>
         <div class="expertise-wrapper">
             <div class="title">Professional Skillset</div>
             <div class="expertises1">
                 <div class="blue-dot"></div>
-                <div class="skill">{{skillForm.proList[0]}}</div>
+                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.proList[0]"></el-input></div>
                 <div class="blue-dot"></div>
-                <div class="skill">{{skillForm.proList[1]}}</div>
+                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.proList[1]"></el-input></div>
             </div>
             <div class="expertises2">
                 <div class="blue-dot"></div>
-                <div class="skill">{{skillForm.proList[2]}}</div>
+                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.proList[2]"></el-input></div>
                 <div class="blue-dot"></div>
-                <div class="skill">{{skillForm.proList[3]}}</div>
+                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.proList[3]"></el-input></div>
             </div>
 
             <div class="title" id="skills-title">Additional Skills</div>
             <div class="expertises1">
                 <div class="blue-dot"></div>
-                <div class="skill">{{skillForm.addList[0]}}</div>
+                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.addList[0]"></el-input></div>
                 <div class="blue-dot"></div>
-                <div class="skill">{{skillForm.addList[1]}}</div>
+                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.addList[1]"></el-input></div>
             </div>
             <div class="expertises2">
                 <div class="blue-dot"></div>
-                <div class="skill">{{skillForm.addList[2]}}</div>
+                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.addList[2]"></el-input></div>
                 <div class="blue-dot"></div>
-                <div class="skill">{{skillForm.addList[3]}}</div>
+                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.addList[3]"></el-input></div>
             </div>
+            <el-button type="primary" style="margin-left: 43%; margin-top: 60px" plain @click="upload('sk')">upload</el-button>
         </div>
     </div>
     </div>
@@ -93,7 +117,7 @@
 
 <script>
 export default {
-     data(){
+    data(){
         return {
             experienceForm: {
                 experiences:[
@@ -154,8 +178,29 @@ export default {
             this.getSkillData()
     },
      methods:{
-         goSetting(){
-            this.$router.push('/classic/moreSetting')
+         upload(sth){
+             if(sth =='ex'){
+                 this.uploadex()
+             }if(sth == 'ed'){
+                 this.uploaded()
+             }if(sth == 'sk'){
+                 this.uploadsk()
+             }
+         },
+        async uploadex(){
+            this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")
+            const { data: a } = await this.$http.post('/api/home/update/classic/experience',this.experienceForm)
+            if (a.message != "Success!") return this.$message.error('upload fail！')
+        },
+        async uploaded(){
+            this.educationForm.siteId = window.localStorage.getItem("nowSiteId")
+            const { data: b } = await this.$http.post('/api/home/update/classic/education',this.educationForm)
+            if (b.message != "Success!") return this.$message.error('upload fail！')
+        },
+        async uploadsk(){
+            this.skillForm.siteId = window.localStorage.getItem("nowSiteId")
+            const { data: c } = await this.$http.post('/api/home/update/classic/skill',this.skillForm)
+            if (c.message != "Success!") return this.$message.error('upload fail！')
         },
         async getExperienceData() {
             this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")
@@ -167,7 +212,6 @@ export default {
             if(aa.obj.experiences.length != 0){
                 this.experienceForm = aa.obj
             }
-            
         },
         async getEducationData() {
             this.educationForm.siteId = window.localStorage.getItem("nowSiteId")
@@ -176,7 +220,6 @@ export default {
             
             const { data: bb } = await this.$http.post('/api/home/get/classic/education',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (bb.message != "Success!") return this.$message.error('get about fail！')
-            
             if (bb.obj.educations.length != 0){
                 this.educationForm = bb.obj
             }
@@ -198,7 +241,6 @@ export default {
                 this.skillForm.proList=tempArray1
                 this.skillForm.addList=tempArray2
             }
-            
         },
     }
 }

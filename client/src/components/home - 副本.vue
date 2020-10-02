@@ -1,132 +1,126 @@
 <template>
-    <div>
-                <div class="main-block">
-            <div class="aboutme">
-                &nbsp;About Me
-                <i class="iconfont icon-about" style="font-weight: normal; font-size: 18px; color: #3899ec;"></i>
-            </div>
-            <div id="aboutme-content">
-                <el-input
-                    type="textarea"
-                    :autosize="{ minRows: 4, maxRows: 7}"
-                    placeholder="Please write something about yourself"
-                    v-model="aboutme">
-                </el-input>
-                <div class="uploadBt">
-                    <el-button type="info" size="small" plain >Upload</el-button>
+  <div class="home-container">
+    <!-- 头部区域 -->
+    <div class="topbar-wrapper">
+        <div class="topbar">
+            
+            <div class="topbar-main">
+                <div class="logo">
+                  <img src="../assets/logo1.png" alt=""/>
+                </div>
+                <div class="title">
+                    ePortfolio 2077
                 </div>
             </div>
-            <div class="myexpertise">&nbsp;My Expertise
-                <i class="iconfont icon-_gexingtechang" style="font-weight: normal; font-size: 22px; color:#3899ec;"></i>
-            </div>
-            <div id="myexpertise-content">
-                <div class="left-expertise">
-                    <div class="expertises">
-                        <i class="iconfont icon-zhuanye2" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
-                        <div id="expertise1">
-                            <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 8}" placeholder="Please enter your expertise" v-model="expertise1"></el-input>
-                        </div>
-                    </div>
-                    <div class="expertises">
-                        <i class="iconfont icon-zhuanyequanwei" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
-                        <div id="expertise2">
-                            <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 8}" placeholder="Please enter your expertise" v-model="expertise2"></el-input>
-                        </div>
-                    </div>
-                </div>
-                <div class="right-expertise">
-                    <div class="expertises">
-                        <i class="iconfont icon-zhuanyegaoxiao" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
-                        <div id="expertise3">
-                            <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 8}" placeholder="Please enter your expertise" v-model="expertise3"></el-input>
-                        </div>
-                    </div>
-                    <div class="expertises">
-                        <i class="iconfont icon-zhuanye1" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
-                        <div id="expertise4">
-                            <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 8}" placeholder="Please enter your expertise" v-model="expertise4"></el-input>
-                        </div>
-                    </div>
-                </div>
-                <div class="uploadBt">
-                    <el-button type="info" size="small" plain >Upload</el-button>
-                </div>
-            </div>
-        </div>
-        <div class="side-block">
-            <div class="side-top">
-              <div class="image">
-                 &nbsp;Images
-                 <i class="iconfont icon-picture" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
-              </div>
-                <div id="img-wrapper">
-                  <el-upload
-                    action="https://jsonplaceholder.typicode.com/posts/"
-                    :on-preview="handlePreview"
-                    :on-remove="handleRemove"
-                    list-type="picture">
-                    <el-button size="small" type="primary">Upload</el-button>
-                    <div slot="tip" class="el-upload__tip">jpg/png only，500kb limit</div>
-                  </el-upload>
-                  {{img_info}}
-                </div>
-              
-            </div>
-            <div class="side-bottom">
-                <div class="contacts">
-                    &nbsp;Contacts
-                    <i class="iconfont icon-contacts" style="font-weight: normal; font-size: 20px; color:#3899ec;"></i>
-                </div>
-                <div id="contacts-content">
-                  <h5>Email:</h5>
-                    <el-input
-                        placeholder="please enter email"
-                        v-model="email"
-                        clearable>
-                    </el-input>
-                    </br>
-                  <h5>Address:</h5>
-                  <el-input
-                        placeholder="please enter address"
-                        v-model="address"
-                        clearable>
-                    </el-input>
-                   </br>
-                   <div class="uploadBt">
-                    <el-button type="info" size="small" plain >Upload</el-button>
-                </div>
-                </div>
-            </div>
+
+            
+
+                <el-dropdown placement="bottom-start" class="topbar-side">
+                    <span class="el-dropdown-link">
+                      <div class="user-avatar">
+                        <img src="../assets/logo.png" alt=""/>
+                        <!-- display user avatar which can be uploaded -->
+                      </div>
+                    </span>
+                    <el-dropdown-menu  slot="dropdown" class="dropdown-menu">
+                      <el-dropdown-item><router-link to="/personalDetail">Personal details</router-link></el-dropdown-item>
+                      <el-dropdown-item><router-link to="/login">Logout</router-link></el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+                
+           
+            
         </div>
     </div>
+     <div class="body-wrapper">
+        
+        <div class="user-banner">
+            <div class="info">
+                <a href="./change_avatar.html">
+                    <div class="user-avatar">
+                        <img src="../assets/logo.png" alt=""/>
+                    </div>
+                </a>
+                <div class="text-info">
+                    <div class="user-name">{{username}}</div>
+                    <div class="sign">
+                        {{sign}}
+                    </div>
+                </div>
+            </div>
+            <div class="setting">
+                <a>
+                    <i class="iconfont icon-setting" style="font-size:27px" @click="routerTo()"></i>
+                </a>
+            </div>
+        </div>
+        <el-menu :default-active="activeIndex"  class="user-tab" mode="horizontal" @select="handleSelect">
+          <div class="stats">
+                <div class="interested">
+                    <div class="text">Interested</div>
+                    <div class="numbers">10</div>
+                </div>
+                <div class="views">
+                    <div class="text">Views</div>
+                    <div class="numbers">30</div>
+                </div>
+            </div>
+          <el-menu-item index="1" class="home"> 
+              <i class="iconfont icon-home" style="font-size: 25px; color: rgb(0,0,0,.4);"></i>
+              Home Page
+          </el-menu-item>
+          <el-menu-item index="2" class="moreAboutMe">
+              <i class="iconfont icon-more" style="font-size: 25px; color: rgb(0,0,0,.4);"></i>
+              More About me
+          </el-menu-item>
+          
+        </el-menu>
+        <router-view />
+
+    </div>
+    
+   
+  </div>
 </template>
 
 <script>
 export default {
-    data() {
+  data() {
     return {
-      test:{
-          a:1
-      },
-      aboutme:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum sodales quam vel ullamcorper. Donec tortor lacus, auctor ultrices odio sed, posuere posuere massa. Sed id eleifend nunc. Sed placerat luctus urna ut malesuada. Donec dui elit, auctor id venenatis eu, consequat eget ante. Morbi in diam justo. Nam ac semper dui, quis commodo mi. Phasellus eleifend lorem sit amet metus pretium, vel laoreet mauris lacinia. Quisque eleifend commodo imperdiet. Ut vestibulum semper nisl eget gravida. Nam cursus quis nulla id varius. Curabitur euismod iaculis diam non consectetur. Etiam quis elit mattis, egestas lorem nec, finibus mauris. Ut quis augue sem. Aenean viverra ligula ut ex consectetur semper. Fusce euismod orci maximus, tincidunt magna a, euismod ligula. ",
-      expertise1:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum sodales quam vel ullamcorper. Donec tortor lacus, auctor ultrices odio sed, posuere posuere massa. Sed id eleifend nunc. Sed placerat luctus urna ut malesuada. Donec dui elit, auctor id venenatis eu, consequat eget ante. Morbi in diam justo. Nam ac semper dui, quis commodo mi. Phasellus eleifend lorem sit amet metus pretium, vel laoreet mauris lacinia. Quisque eleifend commodo imperdiet. Ut vestibulum semper nisl eget gravida. Nam cursus quis nulla id varius. Curabitur euismod iaculis diam non consectetur. Etiam quis elit mattis, egestas lorem nec, finibus mauris. Ut quis augue sem. Aenean viverra ligula ut ex consectetur semper. Fusce euismod orci maximus, tincidunt magna a, euismod ligula. ",
-      expertise2:"sssssssss",
-      expertise3:"",
-      expertise4:"",
-      img_url:"",
-      img_info:"image description",
-      email:"",
-      address:"",
+
+            username:"default",
+            sign:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id arcu enim. Cras vel orci. ",
+  
     }
   },
-    methods: {
-     handleRemove(file, fileList) {
-        console.log(file, fileList);
+  created() {
+    
+  },
+  methods: {
+    routerTo(){
+        this.$router.push('/home/homeSetting')
+    },
+    handleSelect(key, keyPath) {
+        if(key == 1){
+          this.$router.push('/home/homeDetail')
+        }
+        if(key == 2){
+          this.$router.push('/home/moreAboutMe')
+        }
+        console.log(key);
       },
-      handlePreview(file) {
-        console.log(file);
-      }
-    }
+    logout() {
+      window.sessionStorage.clear()
+      this.$router.push('/login')
+    },
+    // 获取所有的菜单
+    async getMenuList() {
+      const { data: res } = await this.$http.get('menus')
+      if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
+      this.menulist = res.data
+      console.log(res)
+    },
+  }
 }
 </script>
 
@@ -363,7 +357,7 @@ export default {
     left: 20px;
     top: 290px;
     width: 65%;
-    height: 930px;
+    height: 900px;
     box-shadow: 0 .25rem .125rem 0 rgba(0,0,0,0.025);
     border: 2px rgba(212, 212, 212, .5) solid;
     padding: 10px 20px;
@@ -394,7 +388,6 @@ export default {
 #myexpertise-content{
     font-size: 16px;
     line-height: 1.5;
-    height: 530px;
 }
 #myexpertise-content .left-expertise{
     display: flex;
@@ -482,17 +475,5 @@ export default {
   .el-carousel__item:nth-child(2n+1) {
      background-color: #d3dce6;
   }
-
-  .uploadBt{
-      margin-top: 11px;
-      margin-left: 90%;
-  }
-#myexpertise-content .uploadBt{
-      margin-top: 59%;
-      margin-left: 90%;
-  }
-  #contacts-content .uploadBt{
-      margin-top: 11px;
-      margin-left: 76%;
-  }
+ 
 </style>

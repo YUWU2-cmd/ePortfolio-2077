@@ -95,10 +95,10 @@ export default {
     login () {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
-        const { status: res } = await this.$http.post('/user/login', this.loginForm)
+        const { status: res } = await this.$http.post('/api/user/login', this.loginForm)
         if (res != 200) return this.$message.error('login fail！')
         this.$message.success('login success!')
-         const { status: re } = await this.$http.get('/user/logged')
+         const { status: re } = await this.$http.get('/api/user/logged')
         // 1. 将登录成功之后的 token，保存到客户端的 sessionStorage 中
         //   1.1 项目中出了登录之外的其他API接口，必须在登录之后才能访问
         //   1.2 token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中
@@ -172,7 +172,7 @@ export default {
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background-color: #eee;
+      background-color: rgb(255, 255, 255);
     }
   }
 }

@@ -45,12 +45,11 @@
 
 <script>
 export default {
-    data() {
+     data() {
         return{
             username: '',
             profilePic: '',
-            bio: '',
-            aboutMe: ''
+
         }
         
     },
@@ -59,12 +58,10 @@ export default {
     },
      methods:{
         async getUserData() {
-            const { data: res } = await this.$http.get('/user/logged')
+            const { data: res } = await this.$http.get('/api/user/logged')
             if (res.message != "Success!") return this.$message.error('get logged fail！')
             this.profilePic = res.obj.profilePic
             this.username = res.obj.username
-            this.bio = res.obj.bio
-            this.aboutMe = res.obj.aboutMe
         }
      }
 }

@@ -12,13 +12,12 @@
                 <el-dropdown placement="bottom-start" class="topbar-side">
                     <span class="el-dropdown-link">
                       <div class="user-avatar">
-                        <img :src="profilePic" alt=""/>
+                        <img src="../assets/logo.png" alt=""/>
                         <!-- display user avatar which can be uploaded -->
                       </div>
                     </span>
                     <el-dropdown-menu  slot="dropdown" class="dropdown-menu">
                       <el-dropdown-item><router-link to="/personalDetail">Personal details</router-link></el-dropdown-item>
-                      <el-dropdown-item><router-link to="/dashboard">go dashboard</router-link></el-dropdown-item>
                       <el-dropdown-item><router-link to="/login">Logout</router-link></el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
@@ -37,13 +36,13 @@
         <div class="left-content">
             <div class="title-wrapper">
                 <div class="hello">HELLO, I'M</div>
-                <h1 class="name">{{username}}.</h1>
+                <h1 class="name">John Wick.</h1>
                 <div class="subtitle">International Buisiness & Marketing Student</div>
             </div>
         </div>
         <div class="right-content">
-            <div class="profile-img"><img :src="profilePic"></div>
-            <div class="name">{{username}}.</div>
+            <div class="profile-img"><img src="../assets/profile-img.jpg"></div>
+            <div class="name">John Wick.</div>
             <div class="subtitle">BS in International Business & Marketing. Boston, Massachusetts</div>
             <div class="email">john@student.unimelb.edu.au</div>
             <div class="phone">0123-456-789</div>
@@ -217,31 +216,11 @@
 
 <script>
 export default {
-    data() {
-        return{
-            username: '',
-            profilePic: '',
-            bio: '',
-            aboutMe: ''
-        }
-        
-    },
-    created() {
-        this.getUserData()
-    },
-     methods:{
-         jumpTo(selector){
+    methods: {
+        jumpTo(selector){
             this.$el.querySelector(selector).scrollIntoView(true)
-        },
-        async getUserData() {
-            const { data: res } = await this.$http.get('/user/logged')
-            if (res.message != "Success!") return this.$message.error('get logged fail！')
-            this.profilePic = res.obj.profilePic
-            this.username = res.obj.username
-            this.bio = res.obj.bio
-            this.aboutMe = res.obj.aboutMe
         }
-     }
+    },
 }
 </script>
 

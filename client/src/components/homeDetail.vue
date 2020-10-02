@@ -45,7 +45,7 @@
                         <el-carousel-item v-for="item in 4" :key="item">
                          <el-image
                           style="width: 100%; height: 100%"
-                          src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+                          src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1599755058430&di=805ac15e3245b702c1ccfb379c3d6278&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fphotoblog%2F1903%2F20%2Fc4%2F138384369_1553079021743.jpg"
                           fit="cover"></el-image>
                         </el-carousel-item>
                       </el-carousel>
