@@ -15,7 +15,7 @@ import './plugins/element.js'
 import axios from 'axios'
 import Qs from 'qs'
 // 配置请求的跟路径
-//axios.defaults.baseURL = 'https://eportfolio2077.herokuapp.com/api'
+axios.defaults.baseURL = '/'
 // 设置请求拦截器，给请求加上token
 axios.interceptors.request.use(config => {
   // console.log(config)
