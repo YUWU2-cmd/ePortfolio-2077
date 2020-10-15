@@ -168,3 +168,6 @@ create table ProjectImage(
 alter table ProjectImage
 add constraint fk_projectImage_project
 foreign key(ProjectId) references Project(ProjectId);
+
+alter table Site 
+add column SiteName varchar(1000);
