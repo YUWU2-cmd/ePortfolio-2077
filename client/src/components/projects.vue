@@ -20,7 +20,7 @@
 
                         {{projectForm.projects[0].description}} </p>
                 </div>
-                <div class="right-content"> <img :src="picList[0]" alt=""/></div>
+                <div class="right-content"> <img :src="projectForm.projects[0].image" alt=""/></div>
             </div>
             <div class="project" id="proj2">
                 <div class="left-content">
@@ -32,19 +32,19 @@
 
                     {{projectForm.projects[1].description}}</p>
                 </div>
-                <div class="right-content"> <img :src="picList[1]" alt=""/></div>
+                <div class="right-content"> <img :src="projectForm.projects[1].image " alt=""/></div>
             </div>
             <div class="project" id="proj3">
                 <div class="left-content">
                     <div class="header">
-                        <div class="proj-name">{{projectForm.projects[0].projectName}}</div>
-                        <div class="role">{{projectForm.projects[0].position}}</div> 
+                        <div class="proj-name">{{projectForm.projects[2].projectName}}</div>
+                        <div class="role">{{projectForm.projects[2].position}}</div> 
                     </div>
                     <p class="content">
 
-                        {{projectForm.projects[0].description}}</p>
+                        {{projectForm.projects[2].description}}</p>
                 </div>
-                <div class="right-content"> <img :src="picList[2]" alt=""/></div>
+                <div class="right-content"> <img :src="projectForm.projects[2].image" alt=""/></div>
             </div>
         </div>
     </div>
@@ -70,16 +70,21 @@ export default {
                         description: 'now all2',
                         position: 'assasin32',
                         image: null
+                    },
+                    {
+                        projectName: 'kkk',
+                        description: 'now all3',
+                        position: '333333333',
+                        image: null
                     }
+                    
                 ],
                 siteId:''
             },
-            picList: ["","",""]
         }
     },
     created() {
             this.getProjectData()
-            this.getImageData()
     },
      methods:{
          goSetting(){
@@ -93,19 +98,6 @@ export default {
             const { data: re } = await this.$http.post('/api/home/get/classic/project',data1, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (re.message != "Success!") return this.$message.error('get about fail！')
             this.projectForm = re.obj
-        },
-        async getImageData() {
-            this.projectForm.siteId = window.localStorage.getItem("nowSiteId")
-            var tem = {siteId: this.projectForm.siteId}
-            var data2 = this.$qs.stringify(tem)
-            const { data: r } = await this.$http.post('/api/home/get/img',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
-            if (r.message != "Success!") return this.$message.error('get about fail！')
-            if(r.obj.length >= 3){
-                this.picList[0] = r.obj[0].imagePath
-                this.picList[1] = r.obj[1].imagePath
-                this.picList[2] = r.obj[2].imagePath
-            }
-            console.log(this.picList)
         }
     }
 }

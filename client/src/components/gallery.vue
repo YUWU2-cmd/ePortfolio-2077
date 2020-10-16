@@ -4,7 +4,7 @@
             <div class="topbar">
             
                 <div class="topbar-main">
-                    <div class="title">
+                    <div class="title" style="cursor: pointer" @click="goDashboard">
                         ePortfolio 2077
                     </div>
                 </div>
@@ -62,6 +62,9 @@ export default {
             if (res.message != "Success!") return this.$message.error('get logged fail！')
             this.profilePic = res.obj.profilePic
             this.username = res.obj.username
+        },
+        goDashboard() {
+            this.$router.push('/dashboard')
         }
      }
 }

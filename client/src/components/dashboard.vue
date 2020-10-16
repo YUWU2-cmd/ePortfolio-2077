@@ -4,7 +4,7 @@
         <div class="topbar">
             
             <div class="topbar-main">
-                <div class="title">
+                <div class="title" style="cursor: pointer">
                     ePortfolio 2077
                 </div>
             </div>

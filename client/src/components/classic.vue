@@ -4,7 +4,7 @@
         <div class="topbar">
             
             <div class="topbar-main">
-                <div class="title">
+                <div class="title" style="cursor: pointer" @click="goDashboard">
                     ePortfolio 2077
                 </div>
             </div>
@@ -35,7 +35,6 @@
                 <div class="user-intro">
                     <div class="blue-dot"></div>
                     <div class="title">{{username}}</div>
-                    <div class="subtitle">/</div>
                 </div>
             </div>
             <div class="nav-wrapper">
@@ -72,6 +71,9 @@ export default {
             if (res.message != "Success!") return this.$message.error('get logged fail！')
             this.profilePic = res.obj.profilePic
             this.username = res.obj.username
+        },
+        goDashboard() {
+            this.$router.push('/dashboard')
         }
      }
 }
@@ -115,14 +117,6 @@ export default {
     font-size: 25px;
     line-height: 35px;
     margin-left: 10px;
-}
-.user-intro .subtitle{
-    float: left;
-    font-size: 17px;
-    height: 20px;
-    line-height: 20px;
-    margin-left: 10px;
-    margin-top: 10px;
 }
 
 .nav .nava{

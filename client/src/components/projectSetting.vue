@@ -36,6 +36,7 @@
                     <el-upload
                         style="margin-top: 35px; padding-right: 10%"
                         action="/api/home/upload/img"
+                        :on-success="handleSuccess1"
                         :on-preview="handlePreview"
                         :on-remove="handleRemove"
                         :data="{siteId: projectForm.siteId}"
@@ -57,7 +58,7 @@
                         type="textarea"
                         :autosize="{ minRows: 6, maxRows: 8}"
                         placeholder="Please write something about yourself"
-                        v-model="projectForm.projects[1].projectName">
+                        v-model="projectForm.projects[1].description">
                         </el-input>
                     </p>
                 </div>
@@ -65,6 +66,7 @@
                         <el-upload
                             style="margin-top: 35px; padding-right: 10%"
                             action="/api/home/upload/img"
+                            :on-success="handleSuccess2"
                             :on-preview="handlePreview"
                             :on-remove="handleRemove"
                             :data="{siteId: projectForm.siteId}"
@@ -77,8 +79,8 @@
             <div class="project" id="proj3">
                 <div class="left-content">
                     <div class="header">
-                        <el-input placeholder="Please write something about yourself" v-model="projectForm.projects[0].projectName"></el-input>
-                        <el-input placeholder="Please write something about yourself" v-model="projectForm.projects[0].position"></el-input>
+                        <el-input placeholder="Please write something about yourself" v-model="projectForm.projects[2].projectName"></el-input>
+                        <el-input placeholder="Please write something about yourself" v-model="projectForm.projects[2].position"></el-input>
                     </div>
                     <p class="content">
 
@@ -86,7 +88,7 @@
                         type="textarea"
                         :autosize="{ minRows: 6, maxRows: 8}"
                         placeholder="Please write something about yourself"
-                        v-model="projectForm.projects[0].description">
+                        v-model="projectForm.projects[2].description">
                         </el-input>
                     </p>
                 </div>
@@ -94,6 +96,7 @@
                     <el-upload
                         style="margin-top: 35px; padding-right: 10%"
                         action="/api/home/upload/img"
+                        :on-success="handleSuccess3"
                         :on-preview="handlePreview"
                         :on-remove="handleRemove"
                         :data="{siteId: projectForm.siteId}"
@@ -129,6 +132,12 @@ export default {
                         description: 'now all2',
                         position: 'assasin32',
                         image: null
+                    },
+                    {
+                        projectName: 'kkk',
+                        description: 'now all3',
+                        position: '333333333',
+                        image: null
                     }
                 ],
                 siteId:''
@@ -145,10 +154,20 @@ export default {
         handlePreview(file) {
             console.log(file);
         },
+        handleSuccess1(response, file, fileList) {
+            this.projectForm.projects[0].image = response.obj;
+        },
+        handleSuccess2(response, file, fileList) {
+            this.projectForm.projects[1].image = response.obj;
+        },
+        handleSuccess3(response, file, fileList) {
+            this.projectForm.projects[2].image = response.obj;
+        },
         async upload(){
             this.projectForm.siteId = window.localStorage.getItem("nowSiteId")
             const { data: res } = await this.$http.post('/api/home/update/classic/project',this.projectForm)
             if (res.message != "Success!") return this.$message.error('upload fail！')
+            this.$message.success('upload success！')
         },
         async getProjectData() {
             this.projectForm.siteId = window.localStorage.getItem("nowSiteId")

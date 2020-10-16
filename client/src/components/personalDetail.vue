@@ -49,6 +49,8 @@
                     style="margin-top: 15px;height: 180px"
                         action="/api/user/change/profile"
                         list-type="picture-card"
+                        :on-success="handleSuccess"
+                        :show-file-list="false"
                         :on-preview="handlePictureCardPreview"
                         :on-remove="handleRemove">
                         <i class="el-icon-plus"></i>
@@ -131,6 +133,9 @@ export default {
       handlePreview(file) {
         console.log(file);
       },
+      handleSuccess(response, file, fileList) {
+            this.$message.success('upload profile image success！')
+        },
       async getUserData() {
             const { data: res } = await this.$http.get('/api/user/logged')
             if (res.message != "Success!") return this.$message.error('get logged fail！')
