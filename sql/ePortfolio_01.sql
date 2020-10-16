@@ -171,3 +171,21 @@ foreign key(ProjectId) references Project(ProjectId);
 
 alter table Site 
 add column SiteName varchar(1000);
+
+alter table Education
+drop column StartTime;
+
+alter table Education
+drop column EndTime;
+
+alter table Education 
+add column Duration varchar(100);
+
+alter table Experience
+drop column StartTime;
+
+alter table Experience
+drop column EndTime;
+
+alter table Experience
+add column Duration varchar(100);
