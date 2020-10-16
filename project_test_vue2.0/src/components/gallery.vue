@@ -15,7 +15,6 @@
                     <span class="el-dropdown-link">
                       <div class="user-avatar">
                         <img :src="profilePic" alt=""/>
-                        <!-- display user avatar which can be uploaded -->
                       </div>
                     </span>
                     <el-dropdown-menu  slot="dropdown" class="dropdown-menu">

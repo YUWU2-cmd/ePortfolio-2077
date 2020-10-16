@@ -97,7 +97,6 @@ export default {
 <style lang="less" scoped>
 #home-body .body-wrapper{
    width: 100%;
-   height: 3130px;
 }
 
 #home-body .content-wrapper{
@@ -186,7 +185,7 @@ export default {
     text-align: center;
 }
 #home-body .footer .text{
-        margin-right: 20%;
+    margin-right: 20%;
     height: 16px;
     line-height: 16px;
     margin-top: 40px;

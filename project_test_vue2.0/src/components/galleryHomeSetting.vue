@@ -12,6 +12,7 @@
                     <el-button style="margin-left: 50px" size="small" type="primary">Upload</el-button>
                     <div slot="tip" class="el-upload__tip">jpg/png only，500kb limit</div>
                   </el-upload>
+            <el-button type="primary" style="margin-left: 80%;" plain @click="edit">Edit</el-button>
         </div>
         <div class="footer">
             <div class="text">© All illustrations credit to Jean Jullien</div>
@@ -32,10 +33,12 @@ export default {
     methods: {
         handleRemove(file, fileList) {
         console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      }
+        },
+        handlePreview(file) {
+            console.log(file);
+        },
+        edit(){
+        }
     }
 }
 </script>
@@ -43,7 +46,7 @@ export default {
 <style lang="less" scoped>
 #home-body .body-wrapper{
    width: 100%;
-   height: 3130px;
+   height: 3230px;
 }
 
 #home-body .content-wrapper{
