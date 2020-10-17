@@ -91,6 +91,33 @@ public class SiteService {
     }
 
     @Transactional
+    public void updateSkillBusiness(UserSkillWrapperBusiness userSkillWrapperBusiness){
+        Long siteId = userSkillWrapperBusiness.getSiteId();
+        userSkillDao.deleteAllBySiteId(siteId);
+        for(int i = 0; i < userSkillWrapperBusiness.getSkillList().size(); i++){
+            String s = userSkillWrapperBusiness.getSkillList().get(i);
+            Integer score = userSkillWrapperBusiness.getSkillScore().get(i);
+            UserSkill us = new UserSkill();
+            us.setSkillType("Skill");
+            us.setSkillName(s);
+            us.setScore(score);
+            us.setSiteId(siteId);
+            userSkillDao.save(us);
+        }
+
+        for(int i = 0; i < userSkillWrapperBusiness.getLanguageList().size(); i++){
+            String s = userSkillWrapperBusiness.getLanguageList().get(i);
+            Integer score = userSkillWrapperBusiness.getLanguageScore().get(i);
+            UserSkill us = new UserSkill();
+            us.setSkillType("Additional");
+            us.setSkillName(s);
+            us.setScore(score);
+            us.setSiteId(siteId);
+            userSkillDao.save(us);
+        }
+    }
+
+    @Transactional
     public void updateProject(ProjectWrapper projectWrapper){
         Long siteId = projectWrapper.getSiteId();
         ProjectSeries projectSeries = projectSeriesDao.getBySiteId(siteId);
@@ -130,6 +157,13 @@ public class SiteService {
         userSkillDto.setProList(userSkillDao.getAllBySiteIdAndSkillType(siteId, "Professional"));
         userSkillDto.setAddList(userSkillDao.getAllBySiteIdAndSkillType(siteId, "Additional"));
         return userSkillDto;
+    }
+
+    public UserSkillDtoBusiness getSkillBusiness(Long siteId){
+        UserSkillDtoBusiness userSkillDtoBusiness = new UserSkillDtoBusiness();
+        userSkillDto.setSkillList(userSkillDao.getAllBySiteIdAndSkillType(siteId, "Skill"));
+        userSkillDto.setLanguageList(userSkillDao.getAllBySiteIdAndSkillType(siteId, "Language"));
+        return userSkillDtoBusiness;
     }
 
     public ProjectWrapper getProject(Long siteId){
