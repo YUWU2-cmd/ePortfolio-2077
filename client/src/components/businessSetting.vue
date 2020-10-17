@@ -13,12 +13,13 @@
                 <el-dropdown placement="bottom-start" class="topbar-side">
                     <span class="el-dropdown-link">
                       <div class="user-avatar">
-                        <img src="../assets/logo.png" alt=""/>
+                        <img :src="profilePic" alt=""/>
                         <!-- display user avatar which can be uploaded -->
                       </div>
                     </span>
                     <el-dropdown-menu  slot="dropdown" class="dropdown-menu">
                       <el-dropdown-item><router-link to="/personalDetail">Personal details</router-link></el-dropdown-item>
+                      <el-dropdown-item><router-link to="/dashboard">go dashboard</router-link></el-dropdown-item>
                       <el-dropdown-item><router-link to="/login">Logout</router-link></el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
@@ -42,7 +43,7 @@
             </div>
         </div>
         <div class="right-content">
-            <div class="profile-img"><img src="../assets/profile-img.jpg"></div>
+            <div class="profile-img"><img :src="profilePic"></div>
             <div class="name"><input v-model="username" placeholder="Your name here" class="name-input"></div>
             <div class="subtitle"><el-input type="textarea" placeholder="Your degree here" v-model="degree" autosize="" class="degree-input"></el-input></div>
             <div class="email"><input v-model="email" placeholder="Your email here" class="contact-input"></div>
@@ -219,12 +220,15 @@
 export default {
     data() {
         return {
-            username: 'John Wick.',
+            username: '',
+            profilePic: '',
+            bio: '',
+            aboutMe: '',
+            
             occupation: 'International Buisiness & Marketing Student',
             degree: 'BS in International Business & Marketing. Boston, Massachusetts',
             email: 'John@studen.unimelb.edu.au',
             phone: '0123-456-789',
-            bio: 'With a passion for business, social media, and all things marketing, I have both the skill set and professional background necessary to dive deep into the marketing world. As an upbeat, self-motivated team player with excellent communication, I envision an exciting future in the industry. Browse my site to see all that I have to offer.',
             education1:{
                 duration: '2017 - 2019',
                 school: 'University of Melbourne',
@@ -259,6 +263,9 @@ export default {
             interests:['Photography', 'Travel', 'Work out']
 
         }
+    },
+    created() {
+        this.getUserData()
     },
     methods: {
         back(){
@@ -300,7 +307,13 @@ export default {
               clearInterval(timer);
             }
           },30)
-      }
+      },
+      async getUserData() {
+            const { data: res } = await this.$http.get('/api/user/logged')
+            if (res.message != "Success!") return this.$message.error('get logged fail！')
+            this.profilePic = res.obj.profilePic
+            this.username = res.obj.username
+        },
     }
 }
 </script>

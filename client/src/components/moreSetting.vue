@@ -191,16 +191,19 @@ export default {
             this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")
             const { data: a } = await this.$http.post('/api/home/update/classic/experience',this.experienceForm)
             if (a.message != "Success!") return this.$message.error('upload fail！')
+            this.$message.success('upload success！')
         },
         async uploaded(){
             this.educationForm.siteId = window.localStorage.getItem("nowSiteId")
             const { data: b } = await this.$http.post('/api/home/update/classic/education',this.educationForm)
             if (b.message != "Success!") return this.$message.error('upload fail！')
+            this.$message.success('upload success！')
         },
         async uploadsk(){
             this.skillForm.siteId = window.localStorage.getItem("nowSiteId")
             const { data: c } = await this.$http.post('/api/home/update/classic/skill',this.skillForm)
             if (c.message != "Success!") return this.$message.error('upload fail！')
+            this.$message.success('upload success！')
         },
         async getExperienceData() {
             this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")

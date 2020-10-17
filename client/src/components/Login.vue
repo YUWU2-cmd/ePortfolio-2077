@@ -30,14 +30,15 @@
                 <el-form-item prop="password">
                 <el-input v-model="loginForm.password" placeholder="Fill in your password" prefix-icon="iconfont icon-password" type="password"></el-input>
                 </el-form-item>
-                <div class="forget">
+                
+            </el-form>
+            <div class="forget">
                         <el-button type="text" @click="goFind">Forget your password?</el-button>
                 </div>
                 <!-- 按钮区域 -->
                 <div class="btn">
                     <button @click="login" type="submit">Login</button>
                 </div>
-            </el-form>
         </div>
           <div class="footer">
             <span>Don't have an account? <el-button type="text" @click="goRegister">Create one here!</el-button></span>
@@ -76,21 +77,7 @@ export default {
     goFind () {
       this.$router.push('/forget')
     },
-    getCookie(c_name)
-      {
-      if (document.cookie.length>0) 
-        {
-        c_start=document.cookie.indexOf(c_name + "=")
-        if (c_start!=-1)
-          { 
-          c_start=c_start + c_name.length+1 
-          c_end=document.cookie.indexOf(";",c_start)
-          if (c_end==-1) c_end=document.cookie.length
-          return unescape(document.cookie.substring(c_start,c_end))
-          } 
-        }
-      return ""
-      },
+    
     // 这个是予验证，检查当前内容格式是否符合验证规则
     login () {
       this.$refs.loginFormRef.validate(async valid => {
@@ -99,10 +86,7 @@ export default {
         if (res != 200) return this.$message.error('login fail！')
         this.$message.success('login success!')
          const { status: re } = await this.$http.get('/api/user/logged')
-        // 1. 将登录成功之后的 token，保存到客户端的 sessionStorage 中
-        //   1.1 项目中出了登录之外的其他API接口，必须在登录之后才能访问
-        //   1.2 token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中
-        // 2. 通过编程式导航跳转到后台主页，路由地址是 /home
+        
         this.$router.push('/dashboard')
       })
     }
@@ -198,10 +182,9 @@ export default {
     top:1;
 }
 .login_form {
-  position: absolute;
-  bottom: 10%;
   width: 100%;
   padding: 0 20px;
+  margin-top: 37%;
   box-sizing: border-box;
 }
 /deep/ .el-input__inner{
@@ -214,8 +197,12 @@ export default {
     width: 185px;
     height: 18px;
     line-height: 18px;
+    padding: 0 20px;
     margin: 20px 0;
     font-size: 14px;
+}
+.btn{
+  margin: 0 3%;
 }
 .btn button{
     width: 100%;

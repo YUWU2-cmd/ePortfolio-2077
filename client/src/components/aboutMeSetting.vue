@@ -64,6 +64,7 @@ export default {
             console.log(data0)
             const { data: res } = await this.$http.post('/api/home/update/classic/aboutme',data0, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (res.message != "Success!") return this.$message.error('upload fail！')
+            this.$message.success('upload success！')
         },
         async getUserData() {
             const { data: re } = await this.$http.get('/api/user/logged')

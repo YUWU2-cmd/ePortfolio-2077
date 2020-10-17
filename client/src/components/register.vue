@@ -34,12 +34,11 @@
                 <el-form-item prop="password">
                 <el-input v-model="registerForm.password" placeholder="Fill in your password" prefix-icon="iconfont icon-password" type="password"></el-input>
                 </el-form-item>
-                 
-                <!-- 按钮区域 -->
+            </el-form>
+            <!-- 按钮区域 -->
                 <div class="btn">
                     <button @click="register" type="submit">Register</button>
                 </div>
-            </el-form>
         </div>
         <div class="footer">
             <el-button type="text" @click="goLogin">go back login Page</el-button>
@@ -191,15 +190,17 @@ export default {
     top:1;
 }
 .register_form {
-  position: absolute;
-  bottom: 5%;
   width: 100%;
   height: 1;
   padding: 0 20px;
+  margin-top: 35%; 
   box-sizing: border-box;
 }
 /deep/ .el-input__inner{
   height: 50px;
+}
+.btn{
+  margin: 0 3%;
 }
 .btn button{
     width: 100%;
