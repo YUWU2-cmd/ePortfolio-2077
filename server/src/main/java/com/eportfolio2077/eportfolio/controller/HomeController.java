@@ -95,7 +95,7 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(ew));
         }catch(Exception e){
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.serverError());
         }
     }
 
@@ -106,7 +106,7 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(usd));
         }catch(Exception e){
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.serverError());
         }
     }
 
@@ -117,7 +117,7 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(ew));
         }catch(Exception e){
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.serverError());
         }
     }
 
@@ -128,7 +128,7 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(pw));
         }catch(Exception e){
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.serverError());
         }
     }
 
@@ -139,12 +139,30 @@ public class HomeController {
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(imageList));
         }catch(Exception e){
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.serverError());
         }
     }
 
-    @DeleteMapping("/delete")
-    public String deleteFile(@RequestPart(value = "url") String fileUrl) {
-        return awss3Service.deleteFileFromS3Bucket(fileUrl);
+    @RequestMapping("/get/gallery/aboutpic")
+    public ResponseEntity<ResponseBody> getAboutMePic(@RequestParam("siteId") Long siteId){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(siteService.getAboutMePic(siteId)));
+        }catch(Exception e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.serverError());
+        }
+    }
+
+    @RequestMapping("/update/gallery/aboutpic")
+    public ResponseEntity<ResponseBody> updateAboutMePic(@RequestParam("file") MultipartFile image, @RequestParam("siteId") Long siteId){
+        String imagePath;
+        try {
+            imagePath = awss3Service.uploadFile(image);
+            siteService.updateAboutMePic(imagePath, siteId);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(imagePath));
+        }catch(Exception e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
+        }
     }
 }

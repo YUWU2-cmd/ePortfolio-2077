@@ -9,6 +9,7 @@ import com.eportfolio2077.eportfolio.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -38,12 +39,17 @@ public class DashBoardService {
         return site;
     }
 
+    @Transactional
     public void deleteSite(Long userId, Long siteId){
-        //TODO
         User user = userDao.getUserByUserId(userId);
         Site site = siteDao.getSiteByUserAndSiteId(user, siteId);
-        imageDao.deleteAllBySiteId(site.getSiteId());
         siteDao.deleteByUserAndSiteId(user, siteId);
 
+    }
+
+    @Transactional
+    public void renameSite(String name, Long siteId){
+        Site site = siteDao.getSiteBySiteId(siteId);
+        site.setSiteName(name);
     }
 }

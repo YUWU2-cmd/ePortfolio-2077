@@ -46,4 +46,10 @@ public class DashBoardController {
         return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
     }
 
+    @RequestMapping("/rename")
+    public ResponseEntity<ResponseBody> rename(@CookieValue(value = "userId", defaultValue = "none") Long userId, @RequestParam("siteId") Long siteId, @RequestParam("name") String name){
+        dashBoardService.renameSite(name, siteId);
+        return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
+    }
+
 }

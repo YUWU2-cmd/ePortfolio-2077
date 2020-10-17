@@ -36,6 +36,12 @@ public class SiteService {
         imageDao.save(image);
     }
 
+    public void updateAboutMePic(String imagePath, Long siteId){
+        Site site = siteDao.getSiteBySiteId(siteId);
+        site.setAboutMePic(imagePath);
+        siteDao.save(site);
+    }
+
     public void updateAboutMe(String bio, String aboutMe, Long siteId){
         Site site = siteDao.getSiteBySiteId(siteId);
         site.setAboutMe(aboutMe);
@@ -140,4 +146,7 @@ public class SiteService {
         return imageDao.getAllBySiteId(siteId);
     }
 
+    public String getAboutMePic(Long siteId) {
+        return siteDao.getSiteBySiteId(siteId).getAboutMePic();
+    }
 }

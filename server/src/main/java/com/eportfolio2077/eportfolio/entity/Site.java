@@ -12,7 +12,9 @@ public class Site {
     private Long siteId;
     private String template;
     private String aboutMe;
+    private String aboutMePic;
     private String bio;
+    private String siteName;
 
     @ManyToOne
     @JoinColumn(name = "UserId")

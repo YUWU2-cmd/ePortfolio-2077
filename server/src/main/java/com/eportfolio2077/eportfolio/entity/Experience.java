@@ -12,12 +12,7 @@ public class Experience {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long experienceId;
 
-    @Temporal(TemporalType.DATE)
-    private Date startTime;
-
-    @Temporal(TemporalType.DATE)
-    private Date EndTime;
-
+    private String duration;
     private String position;
     private String companyName;
     private String companyLocation;
