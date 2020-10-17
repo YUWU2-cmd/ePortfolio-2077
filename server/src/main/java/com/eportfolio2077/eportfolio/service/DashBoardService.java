@@ -20,6 +20,8 @@ public class DashBoardService {
     UserDao userDao;
     @Autowired
     ImageDao imageDao;
+    @Autowired
+    SiteService siteService;
 
     public Site createSite(Long userId, String template) {
         Site site = new Site();
@@ -42,9 +44,8 @@ public class DashBoardService {
     @Transactional
     public void deleteSite(Long userId, Long siteId){
         User user = userDao.getUserByUserId(userId);
-        Site site = siteDao.getSiteByUserAndSiteId(user, siteId);
+        siteService.deleteRelated(siteId);
         siteDao.deleteByUserAndSiteId(user, siteId);
-
     }
 
     @Transactional

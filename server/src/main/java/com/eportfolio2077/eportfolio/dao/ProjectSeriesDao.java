@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProjectSeriesDao extends JpaRepository<ProjectSeries, Long> {
     ProjectSeries getBySiteId(Long siteId);
+    void deleteAllBySiteId(Long siteId);
 }

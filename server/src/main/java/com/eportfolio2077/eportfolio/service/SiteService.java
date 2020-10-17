@@ -149,4 +149,15 @@ public class SiteService {
     public String getAboutMePic(Long siteId) {
         return siteDao.getSiteBySiteId(siteId).getAboutMePic();
     }
+
+    @Transactional
+    public void deleteRelated(Long siteId){
+        imageDao.deleteAllBySiteId(siteId);
+        userSkillDao.deleteAllBySiteId(siteId);
+        experienceDao.deleteAllBySiteId(siteId);
+        educationDao.deleteAllBySiteId(siteId);
+        ProjectSeries ps = projectSeriesDao.getBySiteId(siteId);
+        projectDao.deleteAllByProjectSeriesId(ps.getProjectSeriesId());
+        projectSeriesDao.deleteAllBySiteId(siteId);
+    }
 }

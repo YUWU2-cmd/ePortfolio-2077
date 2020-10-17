@@ -12,12 +12,7 @@ public class Education {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long educationId;
 
-    @Temporal(TemporalType.DATE)
-    private Date startTime;
-
-    @Temporal(TemporalType.DATE)
-    private Date EndTime;
-
+    private String duration;
     private String schoolName;
     private String degree;
     private String major;
