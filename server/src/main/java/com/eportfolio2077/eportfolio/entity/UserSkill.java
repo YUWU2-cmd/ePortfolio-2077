@@ -13,6 +13,7 @@ public class UserSkill {
 
     private String skillName;
     private String skillType;
+    private int score;
     private Long siteId;
 
 }
