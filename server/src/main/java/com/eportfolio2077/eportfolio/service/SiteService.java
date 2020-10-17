@@ -96,7 +96,7 @@ public class SiteService {
         userSkillDao.deleteAllBySiteId(siteId);
         for(int i = 0; i < userSkillWrapperBusiness.getSkillList().size(); i++){
             String s = userSkillWrapperBusiness.getSkillList().get(i);
-            Integer score = userSkillWrapperBusiness.getSkillScore().get(i);
+            int score = userSkillWrapperBusiness.getSkillScore().get(i).intValue();
             UserSkill us = new UserSkill();
             us.setSkillType("Skill");
             us.setSkillName(s);
@@ -107,7 +107,7 @@ public class SiteService {
 
         for(int i = 0; i < userSkillWrapperBusiness.getLanguageList().size(); i++){
             String s = userSkillWrapperBusiness.getLanguageList().get(i);
-            Integer score = userSkillWrapperBusiness.getLanguageScore().get(i);
+            int score = userSkillWrapperBusiness.getLanguageScore().get(i).intValue();
             UserSkill us = new UserSkill();
             us.setSkillType("Additional");
             us.setSkillName(s);
