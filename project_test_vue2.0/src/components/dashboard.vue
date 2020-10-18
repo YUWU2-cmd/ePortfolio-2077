@@ -51,44 +51,20 @@
         </div>
         <div class="sites" id="site-list">
             
-                <a :key='item.id' v-for="item in user_sites" >
-                    <div class="site" @click.prevent="goTemp(item.template, item.id)">
-                        <i class="iconfont icon-21file"></i>
-                        <span @click.stop="">
-                            <span v-if='item.flag' @click='handle_focus(item)'>{{item.name}} {{item.id+1}}</span>
-                            <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
+            <a v-for="(item,index) in portfolioList" >
+                <div class="site" @click="goTemp(item.template,item.siteId)">
+                    
+                       <i class="iconfont icon-21file" style=" margin: 5px 0px; cursor: pointer;bottom: 55px; left: 20%" @click.stop="handleRenameButton(index)"></i>
+                       <span @click.stop="">
+                            <el-input v-if="inputFlagList[index]" v-model="name" class="site-name"  @blur.stop="handle_blur(index,item.siteId)"></el-input>
                         </span>
-                    </div>
-                </a>
-
-                <!-- <a :key='item.id' v-for="item in classic_sites" >
-                    <div class="site" @click.prevent="goTemp('classic')">
-                        <i class="iconfont icon-21file"></i>
-                        <span @click.stop="">
-                            <span v-if='item.flag' @click='handle_focus(item)'>{{item.name}} {{item.id+2}}</span>
-                            <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
-                        </span>
-                    </div>
-                </a>
-                <a :key='item.id' v-for="item in gallery_sites" >
-                    <div class="site" @click="goTemp('gallery')">
-                        <i class="iconfont icon-21file"></i>
-                        <span @click.stop="">
-                            <span v-if='item.flag' @click='handle_focus(item)' >{{item.name}} {{item.id+2}}</span>
-                            <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
-                        </span>
-                    </div>
-                </a>
-                <a :key='item.id' v-for="item in business_sites" >
-                    <div class="site" @click="goTemp('business')">
-                        <i class="iconfont icon-21file"></i>
-                        <span @click.stop="">
-                            <span v-if='item.flag' @click='handle_focus(item)' >{{item.name}} {{item.id+2}}</span>
-                            <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
-                        </span>
-                    </div>
-                </a> -->
-
+                        <span v-if="!inputFlagList[index] && item.siteName!=null">{{item.siteName}}</span>
+                        <span v-if="!inputFlagList[index] && item.siteName==null">{{item.template}} {{item.siteId}}</span>
+                        <i class="el-icon-close" style="color: gray; font-size: 20px; margin: 5px 0px; cursor: pointer; float: right;" @click.stop="handleDelete(item.siteId)"></i>
+                </div>
+                 
+                
+            </a>
         </div>
     </div>
 </div>
@@ -99,18 +75,16 @@ export default {
 
     data () {
         return {
-            profilePic: '',
-            username: '',
-            num_sites : -1,
-            // classic_sites:[],
-            // gallery_sites:[],
-            // business_sites:[],
-            user_sites:[]
+        name : '',
+        portfolioList : [],
+        inputFlagList : [],
+        profilePic: '',
+        username: ''
         }
     },
     created() {
-        this.loadIform()
-        this.getUserData()
+            this.loadIform()
+            this.getUserData()
     },
     methods: {
         goTemp(template,id){
@@ -126,29 +100,51 @@ export default {
             }
         },
         handleCommand(command) {
-            this.num_sites += 1;
             if (command=="a"){
-                this.user_sites.push({name:"Classic", id:this.num_sites, flag:true, template: "classic"});
+            this.create("classic")
             }
             if (command=="b"){
-                this.user_sites.push({name:"Gallery", id:this.num_sites, flag:true, template: "gallery"});
+                this.create("gallery")
             }
             if (command=="c"){
-                this.user_sites.push({name:"Business", id:this.num_sites, flag:true, template: "business"});
+                this.create("business")
             }
+        },
+        handleRenameButton(i){
+            var statu = !this.inputFlagList[i]
+            //vue的vshow vif无法实时监听list的变化，所以有以下代码手动让它们监听到list
+            this.$set(this.inputFlagList,i,statu);
+            console.log(this.inputFlagList)
+
+
             
         },
-        handle_focus(item){
-          item.flag = false;
+        handle_blur(index,id){
+            this.handleRenameButton(index)
+            this.rename(id)
         },
-        handle_blur(item){
-          item.flag = true;
+        async rename(id){
+            var temp2 = {siteId: id, name: this.name}
+            var data2 = this.$qs.stringify(temp2)
+            const { data: r } = await this.$http.post('/api/dashboard/rename',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (r.message != "Success!") return this.$message.error('rename fail！')
+            this.$message.success('rename success！')
+            this.loadIform()
+        },
+        async handleDelete(id){
+            var temp1 = {siteId: id}
+            var data1 = this.$qs.stringify(temp1)
+            const { data: re } = await this.$http.post('/api/dashboard/delete',data1, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (re.message != "Success!") return this.$message.error('delete fail！')
+            this.$message.success('delete success！')
+            this.loadIform()
         },
         async create(temType){
-            var tem = {template: temType}
-            var data = this.$qs.stringify(tem)
+            var temp = {template: temType}
+            var data = this.$qs.stringify(temp)
             const { data: res } = await this.$http.post('/api/dashboard/create',data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
-            if (res.message != "Success!") return this.$message.error('get create fail！')
+            if (res.message != "Success!") return this.$message.error('create fail！')
+            this.$message.success('create success！')
             this.loadIform()
             
         },
@@ -156,6 +152,13 @@ export default {
             const { data: re } = await this.$http.get('/api/dashboard/load')
             if (re.message != "Success!") return this.$message.error('get load fail！')
             this.portfolioList = re.obj
+            if(this.inputFlagList.length != this.portfolioList.length){
+                this.inputFlagList.length = []
+                for(var i=0; i<re.obj.length; i++){
+                    this.inputFlagList.push(false)
+                }
+            }
+            
         },
          async getUserData() {
             const { data: r } = await this.$http.get('/api/user/logged')
@@ -173,6 +176,7 @@ export default {
 .site-name{
     width: 155px;
 }
+
 .dashboard-container{
     height: 800px;
     background-color: #f0f4f7;
@@ -369,7 +373,7 @@ export default {
     margin-right: 25px;
     cursor: pointer;
 }
-.site i{
+.sites i{
     font-size: 35px;
     margin-right: 20px;
     color: #4EB7F5;
@@ -380,5 +384,6 @@ export default {
 }
 .site:hover{
     box-shadow: 0 4px 25px 0 rgba(0,0,0,.16);
+    cursor: default;
 }
 </style>
