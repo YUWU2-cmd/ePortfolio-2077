@@ -164,6 +164,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.site-name{
+    width: 155px;
+}
 .dashboard-container{
     height: 800px;
     background-color: #f0f4f7;
