@@ -209,7 +209,9 @@ public class SiteService {
         experienceDao.deleteAllBySiteId(siteId);
         educationDao.deleteAllBySiteId(siteId);
         ProjectSeries ps = projectSeriesDao.getBySiteId(siteId);
-        projectDao.deleteAllByProjectSeriesId(ps.getProjectSeriesId());
+        if(ps!=null){
+            projectDao.deleteAllByProjectSeriesId(ps.getProjectSeriesId());
+        }
         projectSeriesDao.deleteAllBySiteId(siteId);
     }
 }
