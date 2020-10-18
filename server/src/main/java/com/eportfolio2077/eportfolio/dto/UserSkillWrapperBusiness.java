@@ -10,5 +10,7 @@ public class UserSkillWrapperBusiness {
     private List<Integer> skillScore;
     private List<String> languageList;
     private List<Integer> languageScore;
+    private List<String> awardList;
+    private List<String> interestList;
     private Long siteId;
 }

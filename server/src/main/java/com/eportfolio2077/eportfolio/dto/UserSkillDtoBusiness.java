@@ -9,5 +9,7 @@ import java.util.List;
 public class UserSkillDtoBusiness {
     private List<UserSkill> skillList;
     private List<UserSkill> languageList;
+    private List<UserSkill> awardList;
+    private List<UserSkill> interestList;
 
 }

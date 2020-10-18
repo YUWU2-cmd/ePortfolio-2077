@@ -166,5 +166,26 @@ public class HomeController {
         }
     }
 
+    @RequestMapping("/get/business/skill")
+    public ResponseEntity<ResponseBody> getSkillBusiness(@RequestParam("siteId") Long siteId){
+        try{
+            UserSkillDtoBusiness usdb = siteService.getSkillBusiness(siteId);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(usdb));
+        }catch(Exception e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.serverError());
+        }
+    }
+
+    @RequestMapping("/update/business/skill")
+    public ResponseEntity<ResponseBody> updateSkillBusiness(@RequestBody UserSkillWrapperBusiness userSkillWrapperBusiness){
+        try{
+            siteService.updateSkillBusiness(userSkillWrapperBusiness);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
+        }
+    }
+
 
 }

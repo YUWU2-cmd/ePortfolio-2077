@@ -115,6 +115,22 @@ public class SiteService {
             us.setSiteId(siteId);
             userSkillDao.save(us);
         }
+
+        for(String s:userSkillWrapperBusiness.getAwardList()){
+            UserSkill us = new UserSkill();
+            us.setSkillType("Award");
+            us.setSkillName(s);
+            us.setSiteId(siteId);
+            userSkillDao.save(us);
+        }
+
+        for(String s:userSkillWrapperBusiness.getInterestList()){
+            UserSkill us = new UserSkill();
+            us.setSkillType("Interest");
+            us.setSkillName(s);
+            us.setSiteId(siteId);
+            userSkillDao.save(us);
+        }
     }
 
     @Transactional
@@ -161,8 +177,10 @@ public class SiteService {
 
     public UserSkillDtoBusiness getSkillBusiness(Long siteId){
         UserSkillDtoBusiness userSkillDtoBusiness = new UserSkillDtoBusiness();
-        userSkillDto.setSkillList(userSkillDao.getAllBySiteIdAndSkillType(siteId, "Skill"));
-        userSkillDto.setLanguageList(userSkillDao.getAllBySiteIdAndSkillType(siteId, "Language"));
+        userSkillDtoBusiness.setSkillList(userSkillDao.getAllBySiteIdAndSkillType(siteId, "Skill"));
+        userSkillDtoBusiness.setLanguageList(userSkillDao.getAllBySiteIdAndSkillType(siteId, "Language"));
+        userSkillDtoBusiness.setAwardList(userSkillDao.getAllBySiteIdAndSkillType(siteId, "Award"));
+        userSkillDtoBusiness.setInterestList(userSkillDao.getAllBySiteIdAndSkillType(siteId, "Interest"));
         return userSkillDtoBusiness;
     }
 
