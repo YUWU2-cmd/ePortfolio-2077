@@ -51,12 +51,40 @@
         </div>
         <div class="sites" id="site-list">
             
-            <a v-for="item in portfolioList" >
+            <!-- <a v-for="item in portfolioList" >
                 <div class="site" @click="goTemp(item.template,item.siteId)">
                         <i class="iconfont icon-21file"></i>
                         <span>{{item.template}} {{item.siteId}}</span>
-                </div>
-            </a>
+                </div> -->
+
+                <a :key='item.id' v-for="item in classic_sites" >
+                    <div class="site" @click.prevent="goTemp('classic')">
+                        <i class="iconfont icon-21file"></i>
+                        <span @click.stop="">
+                            <span v-if='item.flag' @click='handle_focus(item)'>{{item.name}}</span>
+                            <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
+                        </span>
+                    </div>
+                </a>
+                <a :key='item.id' v-for="item in gallery_sites" >
+                    <div class="site" @click="goTemp('gallery')">
+                        <i class="iconfont icon-21file"></i>
+                        <span @click.stop="">
+                            <span v-if='item.flag' @click='handle_focus(item)' >{{item.name}}</span>
+                            <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
+                        </span>
+                    </div>
+                </a>
+                <a :key='item.id' v-for="item in business_sites" >
+                    <div class="site" @click="goTemp('business')">
+                        <i class="iconfont icon-21file"></i>
+                        <span @click.stop="">
+                            <span v-if='item.flag' @click='handle_focus(item)' >{{item.name}}</span>
+                            <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
+                        </span>
+                    </div>
+                </a>
+
         </div>
     </div>
 </div>
@@ -67,14 +95,17 @@ export default {
 
     data () {
         return {
-        portfolioList : [],
-        profilePic: '',
-        username: ''
+            profilePic: '',
+            username: '',
+            num_sites : -1,
+            classic_sites:[],
+            gallery_sites:[],
+            business_sites:[]
         }
     },
     created() {
-            this.loadIform()
-            this.getUserData()
+        this.loadIform()
+        this.getUserData()
     },
     methods: {
         goTemp(template,id){
@@ -91,14 +122,21 @@ export default {
         },
         handleCommand(command) {
             if (command=="a"){
-            this.create("classic")
+                this.classic_sites.push({name:"Classic", id:this.num_sites, flag:true});
             }
             if (command=="b"){
-                this.create("gallery")
+                this.gallery_sites.push({name:"Gallery", id:this.num_sites, flag:true});
             }
             if (command=="c"){
-                this.create("business")
+                this.business_sites.push({name:"Business", id:this.num_sites, flag:true});
             }
+            this.num_sites += 1;
+        },
+        handle_focus(item){
+          item.flag = false;
+        },
+        handle_blur(item){
+          item.flag = true;
         },
         async create(temType){
             var tem = {template: temType}
