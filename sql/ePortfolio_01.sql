@@ -192,3 +192,12 @@ add column Duration varchar(100);
 
 alter table User
 add column PhoneNumber int;
+
+alter table User
+add column Businiess varchar(500);
+
+alter table User 
+drop column Businiess;
+
+alter table User
+add column Business varchar(500);
