@@ -51,13 +51,17 @@
         </div>
         <div class="sites" id="site-list">
             
-            <!-- <a v-for="item in portfolioList" >
-                <div class="site" @click="goTemp(item.template,item.siteId)">
+                <a :key='item.id' v-for="item in user_sites" >
+                    <div class="site" @click.prevent="goTemp(item.template, item.id)">
                         <i class="iconfont icon-21file"></i>
-                        <span>{{item.template}} {{item.siteId}}</span>
-                </div> -->
+                        <span @click.stop="">
+                            <span v-if='item.flag' @click='handle_focus(item)'>{{item.name}} {{item.id+2}}</span>
+                            <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
+                        </span>
+                    </div>
+                </a>
 
-                <a :key='item.id' v-for="item in classic_sites" >
+                <!-- <a :key='item.id' v-for="item in classic_sites" >
                     <div class="site" @click.prevent="goTemp('classic')">
                         <i class="iconfont icon-21file"></i>
                         <span @click.stop="">
@@ -83,7 +87,7 @@
                             <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
                         </span>
                     </div>
-                </a>
+                </a> -->
 
         </div>
     </div>
@@ -98,9 +102,10 @@ export default {
             profilePic: '',
             username: '',
             num_sites : -1,
-            classic_sites:[],
-            gallery_sites:[],
-            business_sites:[]
+            // classic_sites:[],
+            // gallery_sites:[],
+            // business_sites:[],
+            user_sites:[]
         }
     },
     created() {
@@ -122,13 +127,13 @@ export default {
         },
         handleCommand(command) {
             if (command=="a"){
-                this.classic_sites.push({name:"Classic", id:this.num_sites, flag:true});
+                this.user_sites.push({name:"Classic", id:this.num_sites, flag:true, template: "classic"});
             }
             if (command=="b"){
-                this.gallery_sites.push({name:"Gallery", id:this.num_sites, flag:true});
+                this.user_sites.push({name:"Gallery", id:this.num_sites, flag:true, template: "gallery"});
             }
             if (command=="c"){
-                this.business_sites.push({name:"Business", id:this.num_sites, flag:true});
+                this.user_sites.push({name:"Business", id:this.num_sites, flag:true, template: "business"});
             }
             this.num_sites += 1;
         },
