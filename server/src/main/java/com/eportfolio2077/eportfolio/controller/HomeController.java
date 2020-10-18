@@ -187,5 +187,25 @@ public class HomeController {
         }
     }
 
+    @RequestMapping("/get/business/education")
+    public ResponseEntity<ResponseBody> getEducationBusiness(@RequestParam("siteId") Long siteId){
+        try{
+            EducationWrapperBusiness ew = siteService.getEducationBusiness(siteId);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(ew));
+        }catch(Exception e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.serverError());
+        }
+    }
+
+    @RequestMapping("/update/business/education")
+    public ResponseEntity<ResponseBody> updateEducationBusiness(@RequestBody EducationWrapperBusiness educationWrapper){
+        try{
+            siteService.updateEducationBusiness(educationWrapper);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
+        }
+    }
 
 }

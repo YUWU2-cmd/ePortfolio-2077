@@ -70,6 +70,14 @@ public class SiteService {
     }
 
     @Transactional
+    public void updateEducationBusiness(EducationWrapperBusiness educationWrapperBusiness){
+        Long siteId = educationWrapperBusiness.getSiteId();
+            educationWrapperBusiness.getEducation().setSiteId(siteId);
+            educationWrapperBusiness.getEducation().setBusiness("True");
+            educationDao.save(e);
+    }
+
+    @Transactional
     public void updateSkill(UserSkillWrapper userSkillWrapper){
         Long siteId = userSkillWrapper.getSiteId();
         userSkillDao.deleteAllBySiteId(siteId);
@@ -164,6 +172,13 @@ public class SiteService {
     public EducationWrapper getEducation(Long siteId){
         EducationWrapper ew = new EducationWrapper();
         ew.setEducations(educationDao.getAllBySiteId(siteId));
+        ew.setSiteId(siteId);
+        return ew;
+    }
+
+    public EducationWrapperBusiness getEducationBusiness(Long siteId){
+        EducationWrapperBusiness ew = new EducationWrapperBusiness();
+        ew.setEducation(educationDao.getEducationBySiteIdAndBusiness(siteId, "true"));
         ew.setSiteId(siteId);
         return ew;
     }
