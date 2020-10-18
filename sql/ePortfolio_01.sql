@@ -189,3 +189,6 @@ drop column EndTime;
 
 alter table Experience
 add column Duration varchar(100);
+
+alter table User
+add column PhoneNumber int;
