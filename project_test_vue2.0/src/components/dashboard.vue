@@ -55,7 +55,7 @@
                     <div class="site" @click.prevent="goTemp(item.template, item.id)">
                         <i class="iconfont icon-21file"></i>
                         <span @click.stop="">
-                            <span v-if='item.flag' @click='handle_focus(item)'>{{item.name}} {{item.id+2}}</span>
+                            <span v-if='item.flag' @click='handle_focus(item)'>{{item.name}} {{item.id+1}}</span>
                             <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
                         </span>
                     </div>
@@ -126,6 +126,7 @@ export default {
             }
         },
         handleCommand(command) {
+            this.num_sites += 1;
             if (command=="a"){
                 this.user_sites.push({name:"Classic", id:this.num_sites, flag:true, template: "classic"});
             }
@@ -135,7 +136,7 @@ export default {
             if (command=="c"){
                 this.user_sites.push({name:"Business", id:this.num_sites, flag:true, template: "business"});
             }
-            this.num_sites += 1;
+            
         },
         handle_focus(item){
           item.flag = false;
