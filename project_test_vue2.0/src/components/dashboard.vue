@@ -61,7 +61,7 @@
                     <div class="site" @click.prevent="goTemp('classic')">
                         <i class="iconfont icon-21file"></i>
                         <span @click.stop="">
-                            <span v-if='item.flag' @click='handle_focus(item)'>{{item.name}}</span>
+                            <span v-if='item.flag' @click='handle_focus(item)'>{{item.name}} {{item.id+2}}</span>
                             <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
                         </span>
                     </div>
@@ -70,7 +70,7 @@
                     <div class="site" @click="goTemp('gallery')">
                         <i class="iconfont icon-21file"></i>
                         <span @click.stop="">
-                            <span v-if='item.flag' @click='handle_focus(item)' >{{item.name}}</span>
+                            <span v-if='item.flag' @click='handle_focus(item)' >{{item.name}} {{item.id+2}}</span>
                             <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
                         </span>
                     </div>
@@ -79,7 +79,7 @@
                     <div class="site" @click="goTemp('business')">
                         <i class="iconfont icon-21file"></i>
                         <span @click.stop="">
-                            <span v-if='item.flag' @click='handle_focus(item)' >{{item.name}}</span>
+                            <span v-if='item.flag' @click='handle_focus(item)' >{{item.name}} {{item.id+2}}</span>
                             <el-input v-else v-model="item.name" class="site-name" @blur.prevent="handle_blur(item)"></el-input>
                         </span>
                     </div>
