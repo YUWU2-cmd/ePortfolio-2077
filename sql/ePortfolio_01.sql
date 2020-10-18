@@ -201,3 +201,6 @@ drop column Businiess;
 
 alter table User
 add column Business varchar(500);
+
+alter table Skill
+add column SkillLevel int;
