@@ -2,7 +2,7 @@
     <div class="business-container">
         <div class="topbar-wrapper" id="topbar">
             <div class="topbar">
-                <el-button type="primary" class="edit-btn" @click.prevent=''>Edit</el-button>
+                <el-button type="primary" class="edit-btn" @click.prevent='upload'>Upload</el-button>
                 <el-button type="primary" class="edit-btn" @click='back'>Back</el-button>
                 <div class="topbar-main">
                     <div class="title">
@@ -269,6 +269,12 @@ export default {
     methods: {
         back(){
             this.$router.push('/business')
+        },
+        async upload(){
+            // this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")
+            // const { data: a } = await this.$http.post('/api/home/update/business/experience',this.experienceForm)
+            // if (a.message != "Success!") return this.$message.error('upload fail！')
+            // this.$message.success('upload success！')
         },
         jumpTo(selector){
             // this.$el.querySelector(selector).scrollIntoView(true)
