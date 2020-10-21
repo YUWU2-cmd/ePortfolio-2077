@@ -74,7 +74,7 @@ public class SiteService {
         Long siteId = educationWrapperBusiness.getSiteId();
             educationWrapperBusiness.getEducation().setSiteId(siteId);
             educationWrapperBusiness.getEducation().setBusiness("True");
-            educationDao.save(e);
+            educationDao.save(educationWrapperBusiness.getEducation());
     }
 
     @Transactional
