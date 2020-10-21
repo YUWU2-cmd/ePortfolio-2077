@@ -72,18 +72,21 @@ export default {
 </script>
 
 <style lang="less" scoped>
-body{
+body,html{
     min-width: 1050px;
 }
 #home-body .body-wrapper{
-   width: 100%;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: table;
 }
 
 #home-body .content-wrapper{
     width: 1050px;
     padding-top: 20px;
     margin: 0 auto;
-    height: 3130px;
+    height: 100%;
 }
 #home-body .content-wrapper .left-content{
     float: left;
@@ -160,18 +163,16 @@ body{
 #home-body .footer{
     width: 70%;
     height: 150px;
-    top: 120%;
     text-align: center;
+    display: table-row;
 }
 #home-body .footer .text{
-    margin-right: 20%;
     height: 16px;
     line-height: 16px;
     margin-top: 40px;
     font-size: 12px;
 }
 #home-body .footer .icons{
-        margin-right: 20%;
     margin-top: 15px;
     height: 18px;
     line-height: 18px;
