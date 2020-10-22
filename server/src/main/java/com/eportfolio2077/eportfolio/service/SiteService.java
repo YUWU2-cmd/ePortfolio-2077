@@ -174,7 +174,7 @@ public class SiteService {
 
     public EducationWrapper getEducation(Long siteId){
         EducationWrapper ew = new EducationWrapper();
-        ew.setEducations(educationDao.getAllBySiteId(siteId));
+        ew.setEducations(educationDao.getAllBySiteIdAndBusiness(siteId, "False"));
         ew.setSiteId(siteId);
         return ew;
     }
