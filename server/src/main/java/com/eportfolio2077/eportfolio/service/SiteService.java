@@ -75,6 +75,7 @@ public class SiteService {
         Long siteId = educationWrapperBusiness.getSiteId();
         educationDao.deleteEducationBySiteIdAndBusiness(siteId, "True");
         Education e = educationWrapperBusiness.getEducation();
+        educationDao.deleteAllBySiteId(siteId);
         e.setSiteId(siteId);
         e.setBusiness("True");
         educationDao.save(e);
