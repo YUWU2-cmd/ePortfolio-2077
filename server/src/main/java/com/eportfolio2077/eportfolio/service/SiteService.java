@@ -72,9 +72,10 @@ public class SiteService {
     @Transactional
     public void updateEducationBusiness(EducationWrapperBusiness educationWrapperBusiness){
         Long siteId = educationWrapperBusiness.getSiteId();
-            educationWrapperBusiness.getEducation().setSiteId(siteId);
-            educationWrapperBusiness.getEducation().setBusiness("True");
-            educationDao.save(educationWrapperBusiness.getEducation());
+        Education e = educationWrapperBusiness.getEducation();
+        e.setSiteId(siteId);
+        e.setBusiness("True");
+        educationDao.save(e);
     }
 
     @Transactional
