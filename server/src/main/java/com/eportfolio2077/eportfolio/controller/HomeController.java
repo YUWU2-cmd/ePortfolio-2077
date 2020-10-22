@@ -187,7 +187,7 @@ public class HomeController {
         }
     }
 
-    @RequestMapping("/get/business/education")
+    @RequestMapping("/get/business/aboutedu")
     public ResponseEntity<ResponseBody> getEducationBusiness(@RequestParam("siteId") Long siteId){
         try{
             EducationWrapperBusiness ew = siteService.getEducationBusiness(siteId);
@@ -198,7 +198,7 @@ public class HomeController {
         }
     }
 
-    @RequestMapping("/update/business/education")
+    @RequestMapping("/update/business/aboutedu")
     public ResponseEntity<ResponseBody> updateEducationBusiness(@RequestBody EducationWrapperBusiness educationWrapper){
         try{
             siteService.updateEducationBusiness(educationWrapper);

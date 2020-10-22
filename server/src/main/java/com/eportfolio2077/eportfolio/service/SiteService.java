@@ -62,9 +62,10 @@ public class SiteService {
     @Transactional
     public void updateEducation(EducationWrapper educationWrapper){
         Long siteId = educationWrapper.getSiteId();
-        educationDao.deleteAllBySiteId(siteId);
+        educationDao.deleteAllBySiteIdAndBusiness(siteId, "False");
         for(Education e:educationWrapper.getEducations()){
             e.setSiteId(siteId);
+            e.setBusiness("False");
             educationDao.save(e);
         }
     }
@@ -72,6 +73,7 @@ public class SiteService {
     @Transactional
     public void updateEducationBusiness(EducationWrapperBusiness educationWrapperBusiness){
         Long siteId = educationWrapperBusiness.getSiteId();
+        educationDao.deleteEducationBySiteIdAndBusiness(siteId, "True");
         Education e = educationWrapperBusiness.getEducation();
         e.setSiteId(siteId);
         e.setBusiness("True");

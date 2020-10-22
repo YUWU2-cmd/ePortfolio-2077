@@ -10,5 +10,6 @@ import java.util.List;
 public interface EducationDao extends JpaRepository<Education, Long> {
     Education getEducationBySiteIdAndBusiness(Long siteId, String business);
     List<Education> getAllBySiteId(Long siteId);
-    void deleteAllBySiteId(Long siteId);
+    void deleteAllBySiteIdAndBusiness(Long siteId, String business);
+    void deleteEducationBySiteIdAndBusiness(Long siteId, String business);
 }
