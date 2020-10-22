@@ -118,7 +118,7 @@ public class SiteService {
             String s = userSkillWrapperBusiness.getLanguageList().get(i);
             int score = userSkillWrapperBusiness.getLanguageScore().get(i).intValue();
             UserSkill us = new UserSkill();
-            us.setSkillType("Additional");
+            us.setSkillType("Language");
             us.setSkillName(s);
             us.setScore(score);
             us.setSiteId(siteId);
@@ -179,7 +179,7 @@ public class SiteService {
 
     public EducationWrapperBusiness getEducationBusiness(Long siteId){
         EducationWrapperBusiness ew = new EducationWrapperBusiness();
-        ew.setEducation(educationDao.getEducationBySiteIdAndBusiness(siteId, "true"));
+        ew.setEducation(educationDao.getEducationBySiteIdAndBusiness(siteId, "True"));
         ew.setSiteId(siteId);
         return ew;
     }
