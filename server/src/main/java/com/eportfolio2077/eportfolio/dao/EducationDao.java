@@ -12,4 +12,5 @@ public interface EducationDao extends JpaRepository<Education, Long> {
     List<Education> getAllBySiteId(Long siteId);
     void deleteAllBySiteIdAndBusiness(Long siteId, String business);
     void deleteEducationBySiteIdAndBusiness(Long siteId, String business);
+    void deleteAllBySiteId(Long siteId);
 }
