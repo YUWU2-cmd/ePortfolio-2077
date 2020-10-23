@@ -4,66 +4,20 @@
         <div class="content-wrapper">
             <i class="iconfont icon-setting" style="margin-left:98%; margin-bottom:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="left-content">
-                <a href="javascript:;" class="description">
+                
+                <a v-for="item in imageList1"  href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../assets/g1.jpeg" id="img1">
+                        <img :src="item.imagePath" id="img3">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
-                <a href="javascript:;" class="description">
-                    <div class="img-wrapper">
-                        <img src="../assets/g3.jpg" id="img3">
-                        <div class="img-title">I'm an image title.</div>
-                    </div>
-                </a>
-                <a href="javascript:;" class="description">
-                    <div class="img-wrapper">
-                        <img src="../assets/g5.jpg" id="img5">
-                        <div class="img-title">I'm an image title.</div>
-                    </div>
-                </a>
-                <a href="javascript:;" class="description">
-                    <div class="img-wrapper">
-                        <img src="../assets/g7.jpg" id="img7">
-                        <div class="img-title">I'm an image title.</div>
-                    </div>
-                </a>
-                <a href="javascript:;" class="description">
-                    <div class="img-wrapper">
-                        <img src="../assets/g9.jpg" id="img9">
-                        <div class="img-title">I'm an image title.</div>
-                    </div>
-                </a>
+                
             </div>
 
             <div class="right-content">
-                <a href="javascript:;" class="description">
+                <a v-for="item in imageList2" href="javascript:;" class="description">
                     <div class="img-wrapper">
-                        <img src="../assets/g2.jpg" id="img2">
-                        <div class="img-title">I'm an image title.</div>
-                    </div>
-                </a>
-                <a href="javascript:;" class="description">
-                    <div class="img-wrapper">
-                        <img src="../assets/g4.jpg" id="img4">
-                        <div class="img-title">I'm an image title.</div>
-                    </div>
-                </a>
-                <a href="javascript:;" class="description">
-                    <div class="img-wrapper">
-                        <img src="../assets/g6.jpg" id="img6">
-                        <div class="img-title">I'm an image title.</div>
-                    </div>
-                </a>
-                <a href="javascript:;" class="description">
-                    <div class="img-wrapper">
-                        <img src="../assets/g8.jpg" id="img8">
-                        <div class="img-title">I'm an image title.</div>
-                    </div>
-                </a>
-                <a href="javascript:;" class="description">
-                    <div class="img-wrapper">
-                        <img src="../assets/g10.jpg" id="img10">
+                        <img :src="item.imagePath" id="img2">
                         <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
@@ -86,30 +40,54 @@
 
 <script>
 export default {
+    data(){
+        return {
+            imageList1 : [],
+            imageList2 : [],
+            id: {siteId : ''}
+        }
+    },
+    created() {
+            this.loadImage()
+    },
       methods:{
          goSetting(){
             this.$router.push('/gallery/galleryHomeSetting')
-        }
+        },
+        async loadImage(){
+            this.id.siteId = window.localStorage.getItem("nowSiteId")
+            var sendData = this.$qs.stringify(this.id)
+            const { data: res } = await this.$http.post('/api/home/get/img', sendData, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (res.message != "Success!") return this.$message.error('get load fail！')
+            for(var i=0;i<res.obj.length;i= i+2){
+                this.imageList1.push(res.obj[i])
+            }
+            for(var j=1;j<res.obj.length;j= j+2){
+                this.imageList2.push(res.obj[j])
+            }
+            console.log(this.imageList1)
+        },
       }
 }
 </script>
 
 <style lang="less" scoped>
+body{
+    min-width: 1050px;
+}
 #home-body .body-wrapper{
    width: 100%;
-   height: 3130px;
 }
 
 #home-body .content-wrapper{
-    width: 70%;
+    width: 1050px;
     padding-top: 20px;
-    margin-left: 15%;
+    margin: 0 auto;
     height: 3130px;
 }
 #home-body .content-wrapper .left-content{
     float: left;
     width: 500px;
-    margin-left: 50px;
     display: flex;
     flex-direction: column;
 }
@@ -186,7 +164,7 @@ export default {
     text-align: center;
 }
 #home-body .footer .text{
-        margin-right: 20%;
+    margin-right: 20%;
     height: 16px;
     line-height: 16px;
     margin-top: 40px;

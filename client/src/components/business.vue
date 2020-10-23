@@ -39,14 +39,14 @@
             <div class="title-wrapper">
                 <div class="hello">HELLO, I'M</div>
                 <h1 class="name">{{username}}.</h1>
-                <div class="subtitle">International Buisiness & Marketing Student</div>
+                <div class="subtitle">{{aboutedForm.education.degree}} Student</div>
             </div>
         </div>
         <div class="right-content">
             <i class="iconfont icon-setting" style="margin-left:90%; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="profile-img"><img :src="profilePic"></div>
             <div class="name">{{username}}.</div>
-            <div class="subtitle">BS in International Business & Marketing. Boston, Massachusetts</div>
+            <div class="subtitle">{{aboutedForm.education.degree}}. {{aboutedForm.education.schoolName}}</div>
             <div class="email">john@student.unimelb.edu.au</div>
             <div class="phone">0123-456-789</div>
             <div class="socialmedia">
@@ -61,7 +61,7 @@
         <div class="content-wrapper">
             <div class="title">About</div>
             <div class="subtitle">MY BACKGROUND</div>
-            <p class="content">With a passion for business, social media, and all things marketing, I have both the skill set and professional background necessary to dive deep into the marketing world. As an upbeat, self-motivated team player with excellent communication, I envision an exciting future in the industry. Browse my site to see all that I have to offer.</p>
+            <p class="content">{{aboutedForm.education.description}}</p>
         </div>
     </div>
     <div id="experience-page">
@@ -69,21 +69,12 @@
             <div class="content-wrapper">
                 <div class="title">Education</div>
                 <div class="subtitle">WHAT I'VE LEARNED</div>
-                <div class="exp">
-                    <div class="duration">2017 - 2019</div>
-                    <p class="school">University of Melbourne</p>
-                    <p class="degree">Master of Commerce</p>
+                <div v-for="item in educationForm.educations" class="exp">
+                    <div class="duration">{{item.duration}}</div>
+                    <p class="school">{{item.schoolName}}</p>
+                    <p class="degree">{{item.degree}}</p>
                 </div>
-                <div class="exp">
-                    <div class="duration">2014 - 2017</div>
-                    <p class="school">University of Melbourne</p>
-                    <p class="degree">Bachelor of Commerce</p>
-                </div>
-                <div class="exp">
-                    <div class="duration">2010 - 2014</div>
-                    <p class="school">Camberwell High School</p>
-                    <p class="degree"></p>
-                </div>
+                
             </div>
             
         </div>
@@ -91,18 +82,11 @@
             <div class="content-wrapper">
                 <div class="title">Experience</div>
                 <div class="subtitle">WHERE I'VE WORKED</div>
-                <div class="exp">
-                    <div class="duration">Sep. 2017 – Present</div>
-                    <p class="company">Json Inc., Campus Brand Ambassador</p>
+                <div v-for="item in experienceForm.experiences" class="exp">
+                    <div class="duration">{{item.duration}}</div>
+                    <p class="company">{{item.companyName}}</p>
                 </div>
-                <div class="exp">
-                    <div class="duration">May 2016 – August 2016</div>
-                    <p class="company">Sterling Productions, Marketing Intern</p>
-                </div>
-                <div class="exp">
-                    <div class="duration">Sep. 2015 – May 2016</div>
-                    <p class="company">Riverview University Foundation, Sales Consultant</p>
-                </div> 
+                
             </div>
             
         </div>
@@ -111,67 +95,22 @@
         <div class="content-wrapper">
             <div class="title">Skills & Languages</div>
             <div class="subtitle">WHAT I BRING TO THE TABLE</div>
-            <div class="content">
-                <div class="text">Data Analysis</div>
+            <div v-for="(item,index) in skillForm.skillList" class="content">
+                <div class="text">{{item}}</div>
                 <div class="level">
-                <div class="sublevel3"></div>
+                <div :class='"sublevel"+skillForm.skillScore[index]'></div>
             </div>
             </div>
-            <div class="content">
-                <div class="text">Content Writing & Editing</div>
-                <div class="level">
-                    <div class="sublevel2"></div>
-                </div>
-            </div>
-            <div class="content">
-                <div class="text">HTML & CSS</div>
-                <div class="level">
-                    <div class="sublevel4"></div>
-                </div>
-            </div>
-            <div class="content">
-                <div class="text">CMS & CRM</div>
-                <div class="level">
-                    <div class="sublevel5"></div>
-                </div>
-            </div>
-            <div class="content">
-                <div class="text">Email Marketing</div>
-                <div class="level">
-                    <div class="sublevel1"></div>
-                </div>
-            </div>
-            <div class="content">
-                <div class="text">Social Media Management</div>
-                <div class="level">
-                    <div class="sublevel4"></div>
-                </div>
-            </div>
-            <div class="content">
-                <div class="text">Image & Design Tools</div>
-                <div class="level">
-                    <div class="sublevel2"></div>
-                </div>
-            </div>
+            
             <div class="dividing-line"></div>
-            <div class="content">
-                <div class="text">English</div>
+
+            <div v-for="(item,index) in skillForm.languageList" class="content">
+                <div class="text">{{item}}</div>
                 <div class="level">
-                    <div class="sublevel1"></div>
+                    <div :class='"sublevel"+skillForm.languageScore[index]'></div>
                 </div>
             </div>
-            <div class="content">
-                <div class="text">Japanese</div>
-                <div class="level">
-                    <div class="sublevel3"></div>
-                </div>
-            </div>
-            <div class="content">
-                <div class="text">Chinese</div>
-                <div class="level">
-                    <div class="sublevel2"></div>
-                </div>
-            </div>
+            
         </div>
     </div>
     <div id="awards-page">
@@ -179,9 +118,7 @@
             <div class="content-wrapper">
                <div class="title">Awards</div>
                 <div class="subtitle">WHERE I SHINE</div>
-                <p class="content">Student Honors Society</p>
-                <p class="content">Omega Professional Fraternity</p>
-                <p class="content">Riverside Campus Impact Award</p> 
+                <p v-for="item in skillForm.awardList" class="content">{{item}}</p>
             </div>
             
         </div>
@@ -189,9 +126,7 @@
             <div class="content-wrapper">
                 <div class="title">Interests</div>
                 <div class="subtitle">OUT OF OFFICE</div>
-                <p class="content">Photography</p>
-                <p class="content">Travel</p>
-                <p class="content">Work out</p> 
+                 <p v-for="item in skillForm.interestList" class="content">{{item}}</p>
             </div>
         </div>
     </div>
@@ -224,12 +159,88 @@ export default {
             username: '',
             profilePic: '',
             bio: '',
-            aboutMe: ''
+            aboutMe: '',
+            aboutedForm: {
+                education:{schoolName: "111mel",
+                            business: "True",
+                            degree: "111International Buisiness & Marketing Student",
+                            schoolLocation: "Boston, Massachusetts",
+                            description: "1111"
+                },
+	            siteId: ''
+            },
+            experienceForm: {
+                experiences:[
+                    {
+                        duration:'1999-2000',
+                        position:'1',
+                        companyName:'3',
+                        companyLocation:'4',
+                        description:''
+                    },
+                    {
+                        duration:'1999-2000',
+                        position:'2',
+                        companyName:'www',
+                        companyLocation:'g',
+                        description:'wdw'
+                    },
+                    {
+                        duration:'1999-2000',
+                        position:'2',
+                        companyName:'www',
+                        companyLocation:'g',
+                        description:'wdw'
+                    }
+                ],
+                siteId:''
+                 
+            },
+           educationForm: {
+               educations:[
+                    {
+                        duration:'1999-2000',
+                        schoolName:'ds',
+                        degree:'3',
+                        schoolLocation:'4',
+                        description:''
+                    },
+                    {
+                        duration:'1999-2010',
+                        schoolName:'ddd',
+                        degree:'35',
+                        schoolLocation:'ffff',
+                        description:'qqq'
+                    },
+                    {
+                        duration:'1993-2000',
+                        schoolName:'uni',
+                        degree:'35',
+                        schoolLocation:'ffff',
+                        description:'qqq'
+                    }
+               ],
+               siteId:''
+           },
+           skillForm : {
+               skillList:["eat", "sleep","a","b","c","d","e"],
+                skillScore:[1, 2, 3,1,2,3,3],
+                languageList:["chinese", "English", "Japanese"],
+                languageScore:[3, 4, 5],
+                awardList:["nobel price","xxx price","ccc price"],
+                interestList:["gaming", "reading", "sleeping"],
+                siteId: '',
+           },
+           
         }
         
     },
     created() {
         this.getUserData()
+        this.getAboutData()
+        this.getExperienceData()
+        this.getEducationData()
+        this.getSkillData()
     },
     methods: {
         goSetting(){
@@ -278,9 +289,100 @@ export default {
             this.profilePic = res.obj.profilePic
             this.username = res.obj.username
         },
+         async getExperienceData() {
+            this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")
+            var extem = {siteId: this.experienceForm.siteId}
+            var data1 = this.$qs.stringify(extem)
+            
+            const { data: aa } = await this.$http.post('/api/home/get/classic/experience',data1, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (aa.message != "Success!") return this.$message.error('get about fail！')
+            if(aa.obj.experiences.length != 0){
+                this.experienceForm = aa.obj
+            }
+        },
+        async getEducationData() {
+            this.educationForm.siteId = window.localStorage.getItem("nowSiteId")
+            var edtem = {siteId: this.educationForm.siteId}
+            var data2 = this.$qs.stringify(edtem)
+            
+            const { data: bb } = await this.$http.post('/api/home/get/classic/education',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (bb.message != "Success!") return this.$message.error('get about fail！')
+            if (bb.obj.educations.length != 0){
+                this.educationForm = bb.obj
+            }
+        },
+      async getAboutData() {
+            this.aboutedForm.siteId = window.localStorage.getItem("nowSiteId")
+            var tem = {siteId: this.aboutedForm.siteId}
+            var data3 = this.$qs.stringify(tem)
+            const { data: r } = await this.$http.post('/api/home/get/business/aboutedu',data3, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (r.message != "Success!") return this.$message.error('get about fail！')
+            if(r.obj.education != null){
+                this.aboutedForm.education.schoolName = r.obj.education.schoolName
+                this.aboutedForm.education.degree = r.obj.education.degree
+                this.aboutedForm.education.description = r.obj.education.description
+            }
+            
+        },
+        async getSkillData() {
+            this.skillForm.siteId = window.localStorage.getItem("nowSiteId")
+            var skilltem = {siteId: this.skillForm.siteId}
+            var data4 = this.$qs.stringify(skilltem)
+            const { data: cc } = await this.$http.post('/api/home/get/business/skill',data4, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (cc.message != "Success!") return this.$message.error('get skill fail！')
+            var tempArray1 = []
+            var tempArray2 = []
+            if(cc.obj.skillList.length != 0){
+                for(var i = 0; i<cc.obj.skillList.length; i++){
+                    tempArray1.push(cc.obj.skillList[i].skillName)
+                    tempArray2.push(cc.obj.skillList[i].score)
+                }
+                this.skillForm.skillList = tempArray1
+                this.skillForm.skillScore = tempArray2
+            }
+            tempArray1 = []
+            tempArray2 = []
+            if(cc.obj.languageList.length != 0){
+                for(var j = 0; j<cc.obj.languageList.length; j++){
+                    tempArray1.push(cc.obj.languageList[j].skillName)
+                    tempArray2.push(cc.obj.languageList[j].score)
+                }
+                this.skillForm.languageList = tempArray1
+                this.skillForm.languageScore = tempArray2
+            }
+            tempArray1 = []
+            tempArray2 = []
+            if(cc.obj.awardList.length != 0){
+                for(var k = 0; k<cc.obj.awardList.length; k++){
+                    tempArray1.push(cc.obj.awardList[k].skillName)
+                }
+                this.skillForm.awardList = tempArray1
+            }
+            tempArray1 = []
+            if(cc.obj.interestList.length != 0){
+                for(var n = 0; n<cc.obj.interestList.length; n++){
+                    tempArray1.push(cc.obj.interestList[n].skillName)
+                }
+                this.skillForm.interestList = tempArray1
+            }
+            tempArray1 = []
+        },
+
+        async setSkillData() {
+            const { data: c } = await this.$http.post('/api/home/update/business/skill',this.skillForm)
+            if (c.message != "Success!") return this.$message.error('update about fail！')
+            this.$message.success('upload skill success！')
+        },
+      async getUserData() {
+            const { data: res } = await this.$http.get('/api/user/logged')
+            if (res.message != "Success!") return this.$message.error('get logged fail！')
+            this.profilePic = res.obj.profilePic
+            this.username = res.obj.username
+        },
         goDashboard() {
             this.$router.push('/dashboard')
-        }
+        },
+
     }
 }
 </script>

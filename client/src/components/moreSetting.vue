@@ -11,7 +11,7 @@
             <div class="title">Experience</div>
             <div class="exp1">
                 <div class="left-content">
-                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].startTime"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].duration"></el-input>
                     <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].position"></el-input>
                     <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].companyName"></el-input>
                     <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].companyLocation"></el-input>
@@ -28,7 +28,7 @@
             </div>
             <div class="exp2">
                 <div class="left-content">
-                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].startTime"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].duration"></el-input>
                     <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].position"></el-input>
                     <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].companyName"></el-input>
                     <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].companyLocation"></el-input>
@@ -48,7 +48,7 @@
             <div class="title">Education</div>
             <div class="exp1">
                 <div class="left-content">
-                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].startTime"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].duration"></el-input>
                     <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].schoolName"></el-input>
                     <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].degree"></el-input>
                     <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].schoolLocation"></el-input>
@@ -65,7 +65,7 @@
             </div>
             <div class="exp2">
                 <div class="left-content">
-                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].startTime"></el-input>
+                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].duration"></el-input>
                     <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].schoolName"></el-input>
                     <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].degree"></el-input>
                     <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].schoolLocation"></el-input>
@@ -122,16 +122,14 @@ export default {
             experienceForm: {
                 experiences:[
                     {
-                        startTime:'1999',
-                        endTime:'2',
+                        duration:'1999-2000',
                         position:'1',
                         companyName:'3',
                         companyLocation:'4',
                         description:''
                     },
                     {
-                        startTime:'2000',
-                        endTime:'2',
+                        duration:'1999-2000',
                         position:'2',
                         companyName:'www',
                         companyLocation:'g',
@@ -144,16 +142,14 @@ export default {
            educationForm: {
                educations:[
                     {
-                        startTime:'2020',
-                        endTime:'2',
+                        duration:'1999-2000',
                         schoolName:'ds',
                         degree:'3',
                         schoolLocation:'4',
                         description:''
                     },
                     {
-                        startTime:'2021',
-                        endTime:'2',
+                        duration:'1999-2000',
                         schoolName:'ddd',
                         degree:'35',
                         schoolLocation:'ffff',

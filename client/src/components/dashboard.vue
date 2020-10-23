@@ -51,11 +51,19 @@
         </div>
         <div class="sites" id="site-list">
             
-            <a v-for="item in portfolioList" >
+            <a v-for="(item,index) in portfolioList" >
                 <div class="site" @click="goTemp(item.template,item.siteId)">
-                        <i class="iconfont icon-21file"></i>
-                        <span>{{item.template}} {{item.siteId}}</span>
+                    
+                       <i class="iconfont icon-21file" style=" margin: 5px 0px; cursor: pointer;bottom: 55px; left: 20%" @click.stop="handleRenameButton(index)"></i>
+                       <span @click.stop="">
+                            <el-input v-if="inputFlagList[index]" v-model="name" class="site-name"  @blur.stop="handle_blur(index,item.siteId)"></el-input>
+                        </span>
+                        <span v-if="!inputFlagList[index] && item.siteName!=null">{{item.siteName}}</span>
+                        <span v-if="!inputFlagList[index] && item.siteName==null">{{item.template}} {{item.siteId}}</span>
+                        <i class="el-icon-close" style="color: gray; font-size: 20px; margin: 5px 0px; cursor: pointer; float: right;" @click.stop="handleDelete(item.siteId)"></i>
                 </div>
+                 
+                
             </a>
         </div>
     </div>
@@ -67,7 +75,9 @@ export default {
 
     data () {
         return {
+        name : '',
         portfolioList : [],
+        inputFlagList : [],
         profilePic: '',
         username: ''
         }
@@ -100,11 +110,41 @@ export default {
                 this.create("business")
             }
         },
+        handleRenameButton(i){
+            var statu = !this.inputFlagList[i]
+            //vue的vshow vif无法实时监听list的变化，所以有以下代码手动让它们监听到list
+            this.$set(this.inputFlagList,i,statu);
+            console.log(this.inputFlagList)
+
+
+            
+        },
+        handle_blur(index,id){
+            this.handleRenameButton(index)
+            this.rename(id)
+        },
+        async rename(id){
+            var temp2 = {siteId: id, name: this.name}
+            var data2 = this.$qs.stringify(temp2)
+            const { data: r } = await this.$http.post('/api/dashboard/rename',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (r.message != "Success!") return this.$message.error('rename fail！')
+            this.$message.success('rename success！')
+            this.loadIform()
+        },
+        async handleDelete(id){
+            var temp1 = {siteId: id}
+            var data1 = this.$qs.stringify(temp1)
+            const { data: re } = await this.$http.post('/api/dashboard/delete',data1, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (re.message != "Success!") return this.$message.error('delete fail！')
+            this.$message.success('delete success！')
+            this.loadIform()
+        },
         async create(temType){
-            var tem = {template: temType}
-            var data = this.$qs.stringify(tem)
+            var temp = {template: temType}
+            var data = this.$qs.stringify(temp)
             const { data: res } = await this.$http.post('/api/dashboard/create',data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
-            if (res.message != "Success!") return this.$message.error('get create fail！')
+            if (res.message != "Success!") return this.$message.error('create fail！')
+            this.$message.success('create success！')
             this.loadIform()
             
         },
@@ -112,6 +152,13 @@ export default {
             const { data: re } = await this.$http.get('/api/dashboard/load')
             if (re.message != "Success!") return this.$message.error('get load fail！')
             this.portfolioList = re.obj
+            if(this.inputFlagList.length != this.portfolioList.length){
+                this.inputFlagList.length = []
+                for(var i=0; i<re.obj.length; i++){
+                    this.inputFlagList.push(false)
+                }
+            }
+            
         },
          async getUserData() {
             const { data: r } = await this.$http.get('/api/user/logged')
@@ -126,6 +173,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.site-name{
+    width: 155px;
+}
+
 .dashboard-container{
     height: 800px;
     background-color: #f0f4f7;
@@ -322,7 +373,7 @@ export default {
     margin-right: 25px;
     cursor: pointer;
 }
-.site i{
+.sites i{
     font-size: 35px;
     margin-right: 20px;
     color: #4EB7F5;
@@ -333,5 +384,6 @@ export default {
 }
 .site:hover{
     box-shadow: 0 4px 25px 0 rgba(0,0,0,.16);
+    cursor: default;
 }
 </style>

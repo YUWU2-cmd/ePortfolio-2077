@@ -7,7 +7,7 @@
                     action="/api/home/upload/img"
                     :on-preview="handlePreview"
                     :on-remove="handleRemove"
-                    :data="{siteId: 13}"
+                    :data="{siteId: nowSiteId}"
                     list-type="picture">
                     <el-button style="margin-left: 50px" size="small" type="primary">Upload</el-button>
                     <div slot="tip" class="el-upload__tip">jpg/png only，500kb limit</div>
@@ -29,12 +29,23 @@
 
 <script>
 export default {
+    data(){
+        return {
+            nowSiteId: ''
+        }
+    },
+    created() {
+            this.getSiteId()
+    },
     methods: {
         handleRemove(file, fileList) {
         console.log(file, fileList);
       },
       handlePreview(file) {
         console.log(file);
+      },
+      getSiteId(){
+          this.nowSiteId = window.localStorage.getItem("nowSiteId")
       }
     }
 }

@@ -2,25 +2,24 @@
     <div id="about-body">
         <div class="body-wrapper">
             <el-upload
-                action="/api/home/upload/img"
-                list-type="picture-card"
-                :on-preview="handlePictureCardPreview"
-                :on-remove="handleRemove"
-                :data="{siteId: 13}">
-                <i class="el-icon-plus"></i>
+                class="avatar-uploader"
+                action="/api/home/update/gallery/aboutpic"
+                :on-success="handleAvatarSuccess"
+                :before-upload="beforeAvatarUpload"
+                :data="{siteId: aboutMeForm.siteId}">
+                <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
-            <el-dialog :visible.sync="dialogVisible">
-                <img width="100%" :src="dialogImageUrl" alt="">
-            </el-dialog>
             <div class="title">About me</div>
             <p class="content">
                     <el-input
                     type="textarea"
                     :autosize="{ minRows: 4, maxRows: 7}"
                     placeholder="Please write something about yourself"
-                    v-model="aboutme">
+                    v-model="aboutMeForm.aboutme">
                     </el-input>
             </p>
+             <el-button type="primary"  plain @click="handleUpload">upload</el-button>
         </div>
     </div>
 </template>
@@ -29,10 +28,15 @@
 export default {
     data() {
         return{
-            aboutme: '1',
-            dialogImageUrl: '',
-            dialogVisible: false
+            aboutMeForm: {
+                bio:'',
+                aboutme:'',
+                siteId:''
+            },
         }
+    },
+     created() {
+            this.getAboutData()
     },
     methods: {
       handleRemove(file, fileList) {
@@ -41,7 +45,25 @@ export default {
       handlePictureCardPreview(file) {
         this.dialogImageUrl = file.url;
         this.dialogVisible = false;
-      }
+      },
+      handleUpload(){
+          this.upload()
+      },
+      async getAboutData() {
+            this.aboutMeForm.siteId = window.localStorage.getItem("nowSiteId")
+            var tem = {siteId: this.aboutMeForm.siteId}
+            var data1 = this.$qs.stringify(tem)
+            const { data: r } = await this.$http.post('/api/dashboard/fetch',data1, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (r.message != "Success!") return this.$message.error('get about fail！')
+            this.aboutMeForm.aboutme = r.obj.aboutMe
+            this.aboutMeForm.bio = r.obj.bio
+        },
+        async upload(){
+            var data0 = this.$qs.stringify(this.aboutMeForm)
+            const { data: res } = await this.$http.post('/api/home/update/classic/aboutme',data0, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (res.message != "Success!") return this.$message.error('upload fail！')
+            this.$message.success('upload success！')
+        },
     }
 }
 </script>
@@ -66,6 +88,29 @@ export default {
     width: 470px;
     font-size: 14px;
     margin: 40px auto;
-}
+} 
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
 
 </style>

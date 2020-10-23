@@ -28,6 +28,7 @@
                         {{aboutMeForm.aboutme}}
                     </p>
                 </div> 
+                
             </div>
         </div>
 </template>

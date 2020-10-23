@@ -2,16 +2,48 @@
     <div id="about-body">
         <div class="body-wrapper">
             <i class="iconfont icon-setting" style="margin-left:98%; margin-bottom:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
-            <img src="../assets/profile-img2.jpg" class="profile-img">
+            <img :src="imgPath" class="profile-img">
             <div class="title">About me</div>
-            <p class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec rutrum neque, sit amet consectetur nisi. Cras vel arcu dui. Vestibulum purus sem, facilisis at volutpat sit amet, viverra vitae tortor. Sed scelerisque dui sed cursus facilisis. Vestibulum et sodales est. Sed hendrerit non felis at auctor. Nunc maximus posuere lorem, non molestie neque lobortis in. Cras sem ante, gravida quis fermentum nec, consequat at augue. </p>
+            <p class="content">{{aboutMeForm.aboutme}}</p>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return{
+            aboutMeForm: {
+                bio:'',
+                aboutme:'',
+                siteId:''
+            },
+            imgPath : ''
+        }
+    },
+     created() {
+            this.getAboutData()
+            this.getAboutImg()
+    },
     methods: {
+        async getAboutData() {
+            this.aboutMeForm.siteId = window.localStorage.getItem("nowSiteId")
+            var tem = {siteId: this.aboutMeForm.siteId}
+            var data1 = this.$qs.stringify(tem)
+            const { data: r } = await this.$http.post('/api/dashboard/fetch',data1, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (r.message != "Success!") return this.$message.error('get about fail！')
+            this.aboutMeForm.aboutme = r.obj.aboutMe
+            this.aboutMeForm.bio = r.obj.bio
+        },
+        async getAboutImg() {
+            this.aboutMeForm.siteId = window.localStorage.getItem("nowSiteId")
+            var temp = {siteId: this.aboutMeForm.siteId}
+            var data2 = this.$qs.stringify(temp)
+            const { data: re } = await this.$http.post('/api/home/get/gallery/aboutpic',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (re.message != "Success!") return this.$message.error('get aboutImg fail！')
+            this.imgPath = re.obj
+            
+        },
         goSetting(){
             this.$router.push('/gallery/galleryAboutSetting')
         }
