@@ -12,7 +12,7 @@
             <div class="title">Experience</div>
             <div class="exp1">
                 <div class="left-content">
-                    <div class="duration">{{experienceForm.experiences[0].startTime}}</div>
+                    <div class="duration">{{experienceForm.experiences[0].duration}}</div>
                     <div class="job">{{experienceForm.experiences[0].position}}</div>
                     <div class="company">{{experienceForm.experiences[0].companyName}}</div>
                     <div class="location">{{experienceForm.experiences[0].companyLocation}}</div>
@@ -23,7 +23,7 @@
             </div>
             <div class="exp2">
                 <div class="left-content">
-                    <div class="duration">{{experienceForm.experiences[1].startTime}}</div>
+                    <div class="duration">{{experienceForm.experiences[1].duration}}</div>
                     <div class="job">{{experienceForm.experiences[1].position}}</div>
                     <div class="company">{{experienceForm.experiences[1].companyName}}</div>
                     <div class="location">{{experienceForm.experiences[1].companyLocation}}</div>
@@ -37,7 +37,7 @@
             <div class="title">Education</div>
             <div class="exp1">
                 <div class="left-content">
-                    <div class="duration">{{educationForm.educations[0].startTime}}</div>
+                    <div class="duration">{{educationForm.educations[0].duration}}</div>
                     <div class="job">{{educationForm.educations[0].schoolName}}</div>
                     <div class="company">{{educationForm.educations[0].degree}}</div>
                     <div class="location">{{educationForm.educations[0].schoolLocation}}</div>
@@ -48,7 +48,7 @@
             </div>
             <div class="exp2">
                 <div class="left-content">
-                    <div class="duration">{{educationForm.educations[1].startTime}}</div>
+                    <div class="duration">{{educationForm.educations[1].duration}}</div>
                     <div class="job">{{educationForm.educations[1].schoolName}}</div>
                     <div class="company">{{educationForm.educations[1].degree}}</div>
                     <div class="location">{{educationForm.educations[1].schoolLocation}}</div>
@@ -98,16 +98,14 @@ export default {
             experienceForm: {
                 experiences:[
                     {
-                        startTime:'1999',
-                        endTime:'2',
+                        duration:'1999-2000',
                         position:'1',
                         companyName:'3',
                         companyLocation:'4',
                         description:''
                     },
                     {
-                        startTime:'2000',
-                        endTime:'2',
+                        duration:'1999-2000',
                         position:'2',
                         companyName:'www',
                         companyLocation:'g',
@@ -120,16 +118,14 @@ export default {
            educationForm: {
                educations:[
                     {
-                        startTime:'2020',
-                        endTime:'2',
+                        duration:'1999-2000',
                         schoolName:'ds',
                         degree:'3',
                         schoolLocation:'4',
                         description:''
                     },
                     {
-                        startTime:'2021',
-                        endTime:'2',
+                        duration:'1999-2000',
                         schoolName:'ddd',
                         degree:'35',
                         schoolLocation:'ffff',

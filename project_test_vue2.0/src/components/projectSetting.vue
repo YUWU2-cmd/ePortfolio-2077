@@ -122,21 +122,21 @@ export default {
                 summary:'1',
                 projects:[
                     {
-                        projectName: 'Project name 01',
-                        description: 'Lorem ipsum dolor sit amet',
-                        position: 'Role Title',
+                        projectName: '',
+                        description: 'go all2',
+                        position: 'assasin2',
                         image: null
                     },
                     {
-                        projectName: 'Project name 02',
-                        description: 'Lorem ipsum dolor sit amet',
-                        position: 'Role Title',
+                        projectName: '',
+                        description: 'now all2',
+                        position: 'assasin32',
                         image: null
                     },
                     {
-                        projectName: 'Project name 03',
-                        description: 'Lorem ipsum dolor sit amet',
-                        position: 'Role Title',
+                        projectName: 'kkk',
+                        description: 'now all3',
+                        position: '333333333',
                         image: null
                     }
                 ],
