@@ -34,8 +34,8 @@ public class DashBoardController {
     }
 
     @RequestMapping("/fetch")
-    public ResponseEntity<ResponseBody> fetch(@CookieValue(value = "userId", defaultValue = "none") Long userId, @RequestParam("siteId") Long siteId){
-        Site site = dashBoardService.fetchSitePage(userId,siteId);
+    public ResponseEntity<ResponseBody> fetch(@RequestParam("siteId") Long siteId){
+        Site site = dashBoardService.fetchSitePage(siteId);
         site.getUser().setPassword(null);
         return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(site));
     }

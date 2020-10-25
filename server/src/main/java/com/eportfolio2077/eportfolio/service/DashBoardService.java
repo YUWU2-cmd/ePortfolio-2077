@@ -35,9 +35,8 @@ public class DashBoardService {
         return siteDao.getAllByUser(userDao.getUserByUserId(userId));
     }
 
-    public Site fetchSitePage(Long userId, Long siteId) {
-        User user = userDao.getUserByUserId(userId);
-        Site site = siteDao.getSiteByUserAndSiteId(user, siteId);
+    public Site fetchSitePage(Long siteId) {
+        Site site = siteDao.getSiteBySiteId(siteId);
         return site;
     }
 
