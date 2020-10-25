@@ -204,3 +204,15 @@ add column Business varchar(500);
 
 alter table Skill
 add column SkillLevel int;
+
+alter table User
+add column LinkdeinLink varchar(1000);
+
+alter table User
+add column FacebookLink varchar(1000);
+
+alter table User
+add column TwitterLink varchar(1000);
+
+alter table User
+add column InstagramLink varchar(1000);
