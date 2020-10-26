@@ -83,6 +83,7 @@ export default {
     width: 470px;
     font-size: 14px;
     margin: 40px auto;
+    text-align: left;
 }
 
 </style>

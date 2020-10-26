@@ -11,34 +11,38 @@
             <div class="title">Experience</div>
             <div class="exp1">
                 <div class="left-content">
-                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].duration"></el-input>
-                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].position"></el-input>
-                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].companyName"></el-input>
-                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[0].companyLocation"></el-input>
+                    <el-input maxlength="20" placeholder="duration ex:1999-2010" v-model="experienceForm.experiences[0].duration"></el-input>
+                    <el-input maxlength="20" placeholder="position in company" v-model="experienceForm.experiences[0].position"></el-input>
+                    <el-input maxlength="30" placeholder="companyName" v-model="experienceForm.experiences[0].companyName"></el-input>
+                    <el-input maxlength="30" placeholder="companyLocation" v-model="experienceForm.experiences[0].companyLocation"></el-input>
                 </div>
                 <div class="right-content">
                     
                    <el-input
                     type="textarea"
+                    maxlength="300"
                     :autosize="{ minRows: 9, maxRows: 13}"
-                    placeholder="Please write something about yourself"
-                    v-model="experienceForm.experiences[0].description">
+                    placeholder="Please write something about your experience"
+                    v-model="experienceForm.experiences[0].description"
+                    show-word-limit>
                     </el-input>
                 </div>
             </div>
             <div class="exp2">
                 <div class="left-content">
-                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].duration"></el-input>
-                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].position"></el-input>
-                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].companyName"></el-input>
-                    <el-input placeholder="Please write something about yourself" v-model="experienceForm.experiences[1].companyLocation"></el-input>
+                    <el-input maxlength="20" placeholder="duration ex:1999-2010" v-model="experienceForm.experiences[1].duration"></el-input>
+                    <el-input maxlength="20" placeholder="position in company" v-model="experienceForm.experiences[1].position"></el-input>
+                    <el-input maxlength="30" placeholder="companyName" v-model="experienceForm.experiences[1].companyName"></el-input>
+                    <el-input maxlength="30" placeholder="companyLocation" v-model="experienceForm.experiences[1].companyLocation"></el-input>
                 </div>
                 <div class="right-content">
                     <el-input
                     type="textarea"
+                    maxlength="300"
                     :autosize="{ minRows: 9, maxRows: 13}"
-                    placeholder="Please write something about yourself"
-                    v-model="experienceForm.experiences[1].description">
+                    placeholder="Please write something about your experience"
+                    v-model="experienceForm.experiences[1].description"
+                    show-word-limit>
                     </el-input>
                 </div>
             </div>
@@ -48,34 +52,38 @@
             <div class="title">Education</div>
             <div class="exp1">
                 <div class="left-content">
-                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].duration"></el-input>
-                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].schoolName"></el-input>
-                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].degree"></el-input>
-                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[0].schoolLocation"></el-input>
+                    <el-input maxlength="20" placeholder="duration ex:1999-2010" v-model="educationForm.educations[0].duration"></el-input>
+                    <el-input maxlength="20" placeholder="schoolName" v-model="educationForm.educations[0].schoolName"></el-input>
+                    <el-input maxlength="30" placeholder="degree" v-model="educationForm.educations[0].degree"></el-input>
+                    <el-input maxlength="30" placeholder="schoolLocation" v-model="educationForm.educations[0].schoolLocation"></el-input>
                 </div>
                 <div class="right-content">
                     
                    <el-input
                     type="textarea"
+                    maxlength="300"
                     :autosize="{ minRows: 9, maxRows: 13}"
-                    placeholder="Please write something about yourself"
-                    v-model="educationForm.educations[0].description">
+                    placeholder="Please write something about your education"
+                    v-model="educationForm.educations[0].description"
+                    show-word-limit>
                     </el-input>
                 </div>
             </div>
             <div class="exp2">
                 <div class="left-content">
-                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].duration"></el-input>
-                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].schoolName"></el-input>
-                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].degree"></el-input>
-                    <el-input placeholder="Please write something about yourself" v-model="educationForm.educations[1].schoolLocation"></el-input>
+                    <el-input maxlength="20" placeholder="duration ex:1999-2010" v-model="educationForm.educations[1].duration"></el-input>
+                    <el-input maxlength="20" placeholder="schoolName" v-model="educationForm.educations[1].schoolName"></el-input>
+                    <el-input maxlength="30" placeholder="degree" v-model="educationForm.educations[1].degree"></el-input>
+                    <el-input maxlength="30" placeholder="schoolLocation" v-model="educationForm.educations[1].schoolLocation"></el-input>
                 </div>
                 <div class="right-content">
                    <el-input
                     type="textarea"
+                    maxlength="300"
                     :autosize="{ minRows: 9, maxRows: 13}"
-                    placeholder="Please write something about yourself"
-                    v-model="educationForm.educations[1].description">
+                    placeholder="Please write something about your education"
+                    v-model="educationForm.educations[1].description"
+                    show-word-limit>
                     </el-input>
                 </div>
             </div>
@@ -85,29 +93,29 @@
             <div class="title">Professional Skillset</div>
             <div class="expertises1">
                 <div class="blue-dot"></div>
-                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.proList[0]"></el-input></div>
+                <div class="skill"><el-input maxlength="25" placeholder="your professional skill" v-model="skillForm.proList[0]"></el-input></div>
                 <div class="blue-dot"></div>
-                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.proList[1]"></el-input></div>
+                <div class="skill"><el-input maxlength="25" placeholder="your professional skill" v-model="skillForm.proList[1]"></el-input></div>
             </div>
             <div class="expertises2">
                 <div class="blue-dot"></div>
-                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.proList[2]"></el-input></div>
+                <div class="skill"><el-input maxlength="25" placeholder="your professional skill" v-model="skillForm.proList[2]"></el-input></div>
                 <div class="blue-dot"></div>
-                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.proList[3]"></el-input></div>
+                <div class="skill"><el-input maxlength="25" placeholder="your professional skill" v-model="skillForm.proList[3]"></el-input></div>
             </div>
 
             <div class="title" id="skills-title">Additional Skills</div>
             <div class="expertises1">
                 <div class="blue-dot"></div>
-                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.addList[0]"></el-input></div>
+                <div class="skill"><el-input maxlength="25" placeholder="your additional skill" v-model="skillForm.addList[0]"></el-input></div>
                 <div class="blue-dot"></div>
-                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.addList[1]"></el-input></div>
+                <div class="skill"><el-input maxlength="25" placeholder="your additional skill" v-model="skillForm.addList[1]"></el-input></div>
             </div>
             <div class="expertises2">
                 <div class="blue-dot"></div>
-                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.addList[2]"></el-input></div>
+                <div class="skill"><el-input maxlength="25" placeholder="your additional skill" v-model="skillForm.addList[2]"></el-input></div>
                 <div class="blue-dot"></div>
-                <div class="skill"><el-input placeholder="Please write something about yourself" v-model="skillForm.addList[3]"></el-input></div>
+                <div class="skill"><el-input maxlength="25" placeholder="your additional skill" v-model="skillForm.addList[3]"></el-input></div>
             </div>
             <el-button type="primary" style="margin-left: 43%; margin-top: 60px" plain @click="upload('sk')">upload</el-button>
         </div>
@@ -122,18 +130,18 @@ export default {
             experienceForm: {
                 experiences:[
                     {
-                        duration:'1999-2000',
-                        position:'1',
-                        companyName:'3',
-                        companyLocation:'4',
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
                         description:''
                     },
                     {
-                        duration:'1999-2000',
-                        position:'2',
-                        companyName:'www',
-                        companyLocation:'g',
-                        description:'wdw'
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
+                        description:''
                     }
                 ],
                 siteId:''
@@ -142,25 +150,25 @@ export default {
            educationForm: {
                educations:[
                     {
-                        duration:'1999-2000',
-                        schoolName:'ds',
-                        degree:'3',
-                        schoolLocation:'4',
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
                         description:''
                     },
                     {
-                        duration:'1999-2000',
-                        schoolName:'ddd',
-                        degree:'35',
-                        schoolLocation:'ffff',
-                        description:'qqq'
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
+                        description:''
                     }
                ],
                siteId:''
            },
             skillForm:{
-                proList:["a","b","c","d"],
-                addList:['1','2','3','4'],
+                proList:["","","",""],
+                addList:['','','',''],
                 siteId:''
             }
             

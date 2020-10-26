@@ -9,9 +9,11 @@
             <p class="intro">
                     <el-input
                     type="textarea"
+                    maxlength="350"
                     :autosize="{ minRows: 5, maxRows: 5}"
-                    placeholder="Please write something about yourself"
-                    v-model="projectForm.summary">
+                    placeholder="Please write something about your projects"
+                    v-model="projectForm.summary"
+                    show-word-limit>
                     </el-input>
             </p>
         </div>
@@ -19,16 +21,18 @@
             <div class="project" id="proj1">
                 <div class="left-content">
                     <div class="header">
-                        <el-input placeholder="Please write something about yourself" v-model="projectForm.projects[0].projectName"></el-input>
-                        <el-input placeholder="Please write something about yourself" v-model="projectForm.projects[0].position"></el-input>
+                        <el-input maxlength="30" placeholder="your project name" v-model="projectForm.projects[0].projectName"></el-input>
+                        <el-input maxlength="30" placeholder="your position in project" v-model="projectForm.projects[0].position"></el-input>
                     </div>
                     <p class="content">
 
                         <el-input
                         type="textarea"
+                        maxlength="300"
                         :autosize="{ minRows: 6, maxRows: 8}"
-                        placeholder="Please write something about yourself"
-                        v-model="projectForm.projects[0].description">
+                        placeholder="Please write description about your project"
+                        v-model="projectForm.projects[0].description"
+                        show-word-limit>
                         </el-input>
                     </p>
                 </div>
@@ -49,16 +53,18 @@
             <div class="project" id="proj2">
                 <div class="left-content">
                     <div class="header">
-                         <el-input placeholder="Please write something about yourself" v-model="projectForm.projects[1].projectName"></el-input>
-                        <el-input placeholder="Please write something about yourself" v-model="projectForm.projects[1].position"></el-input>
+                         <el-input maxlength="30" placeholder="your project name" v-model="projectForm.projects[1].projectName"></el-input>
+                        <el-input maxlength="30" placeholder="your position in project" v-model="projectForm.projects[1].position"></el-input>
                     </div>
                     <p class="content">
 
                          <el-input
                         type="textarea"
+                        maxlength="300"
                         :autosize="{ minRows: 6, maxRows: 8}"
-                        placeholder="Please write something about yourself"
-                        v-model="projectForm.projects[1].description">
+                        placeholder="Please write description about your project"
+                        v-model="projectForm.projects[1].description"
+                        show-word-limit>
                         </el-input>
                     </p>
                 </div>
@@ -79,16 +85,18 @@
             <div class="project" id="proj3">
                 <div class="left-content">
                     <div class="header">
-                        <el-input placeholder="Please write something about yourself" v-model="projectForm.projects[2].projectName"></el-input>
-                        <el-input placeholder="Please write something about yourself" v-model="projectForm.projects[2].position"></el-input>
+                        <el-input maxlength="30" placeholder="your project name" v-model="projectForm.projects[2].projectName"></el-input>
+                        <el-input maxlength="30" placeholder="your position in project" v-model="projectForm.projects[2].position"></el-input>
                     </div>
                     <p class="content">
 
                          <el-input
                         type="textarea"
+                        maxlength="300"
                         :autosize="{ minRows: 6, maxRows: 8}"
-                        placeholder="Please write something about yourself"
-                        v-model="projectForm.projects[2].description">
+                        placeholder="Please write description about your project"
+                        v-model="projectForm.projects[2].description"
+                        show-word-limit>
                         </el-input>
                     </p>
                 </div>
@@ -117,31 +125,32 @@
 export default {
     data(){
         return {
-            projectForm: {
-                seriesName: 'ver2',
-                summary:'1',
+           projectForm: {
+                seriesName: '',
+                summary:'',
                 projects:[
                     {
                         projectName: '',
-                        description: 'go all2',
-                        position: 'assasin2',
+                        description: '',
+                        position: '',
                         image: null
                     },
                     {
                         projectName: '',
-                        description: 'now all2',
-                        position: 'assasin32',
+                        description: '',
+                        position: '',
                         image: null
                     },
                     {
-                        projectName: 'kkk',
-                        description: 'now all3',
-                        position: '333333333',
+                        projectName: '',
+                        description: '',
+                        position: '',
                         image: null
                     }
+                    
                 ],
                 siteId:''
-            },
+            }
         }
     },
     created() {

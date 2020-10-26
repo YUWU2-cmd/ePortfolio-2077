@@ -10,7 +10,7 @@
                         </div>
                         <div class="title">{{username}}</div>
                         <div class="deco-line"></div>
-                        <div class="subtitle"><el-input placeholder="Please write something about yourself" v-model="aboutMeForm.bio"></el-input></div> 
+                        <div class="subtitle"><el-input maxlength="20" placeholder="Please write something about yourself" v-model="aboutMeForm.bio"></el-input></div> 
                     </div>
                     <div class="footer">
                         <div class="content">
@@ -26,9 +26,11 @@
                     <div class="subtitle">Here's who I am & what I do</div>
                     <el-input
                     type="textarea"
+                    maxlength="500"
                     :autosize="{ minRows: 4, maxRows: 7}"
                     placeholder="Please write something about yourself"
-                    v-model="aboutMeForm.aboutme">
+                    v-model="aboutMeForm.aboutme"
+                    show-word-limit>
                     </el-input>
                      <el-button type="primary" style="margin-left: 70%; margin-top: 50%" plain @click="handleClick">upload</el-button>
                 </div> 

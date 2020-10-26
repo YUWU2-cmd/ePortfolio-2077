@@ -7,7 +7,7 @@
                 <div class="blue-dot"></div>
                 <div class="title">Projects</div>
             </div>
-            <div class="intro">{{projectForm.summary}}</div>
+            <p class="intro">{{projectForm.summary}}</p>
         </div>
         <div class="project-wrapper">
             <div class="project" id="proj1">
@@ -56,25 +56,25 @@ export default {
      data(){
         return {
             projectForm: {
-                seriesName: 'ver2',
-                summary:'1',
+                seriesName: '',
+                summary:'',
                 projects:[
                     {
                         projectName: '',
-                        description: 'go all2',
-                        position: 'assasin2',
+                        description: '',
+                        position: '',
                         image: null
                     },
                     {
                         projectName: '',
-                        description: 'now all2',
-                        position: 'assasin32',
+                        description: '',
+                        position: '',
                         image: null
                     },
                     {
-                        projectName: 'kkk',
-                        description: 'now all3',
-                        position: '333333333',
+                        projectName: '',
+                        description: '',
+                        position: '',
                         image: null
                     }
                     

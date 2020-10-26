@@ -175,36 +175,36 @@ export default {
             aboutMe: '',
             views: 10,
             aboutedForm: {
-                education:{schoolName: "111mel",
+                education:{schoolName: "",
                             business: "True",
-                            degree: "111International Buisiness & Marketing Student",
-                            schoolLocation: "Boston, Massachusetts",
-                            description: "1111"
+                            degree: "",
+                            schoolLocation: "",
+                            description: ""
                 },
 	            siteId: ''
             },
             experienceForm: {
                 experiences:[
                     {
-                        duration:'1999-2000',
-                        position:'1',
-                        companyName:'3',
-                        companyLocation:'4',
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
                         description:''
                     },
                     {
-                        duration:'1999-2000',
-                        position:'2',
-                        companyName:'www',
-                        companyLocation:'g',
-                        description:'wdw'
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
+                        description:''
                     },
                     {
-                        duration:'1999-2000',
-                        position:'2',
-                        companyName:'www',
-                        companyLocation:'g',
-                        description:'wdw'
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
+                        description:''
                     }
                 ],
                 siteId:''
@@ -213,36 +213,36 @@ export default {
            educationForm: {
                educations:[
                     {
-                        duration:'1999-2000',
-                        schoolName:'ds',
-                        degree:'3',
-                        schoolLocation:'4',
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
                         description:''
                     },
                     {
-                        duration:'1999-2010',
-                        schoolName:'ddd',
-                        degree:'35',
-                        schoolLocation:'ffff',
-                        description:'qqq'
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
+                        description:''
                     },
                     {
-                        duration:'1993-2000',
-                        schoolName:'uni',
-                        degree:'35',
-                        schoolLocation:'ffff',
-                        description:'qqq'
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
+                        description:''
                     }
                ],
                siteId:''
            },
            skillForm : {
-               skillList:["eat", "sleep","a","b","c","d","e"],
-                skillScore:[1, 2, 3,1,2,3,3],
-                languageList:["chinese", "English", "Japanese"],
-                languageScore:[3, 4, 5],
-                awardList:["nobel price","xxx price","ccc price"],
-                interestList:["gaming", "reading", "sleeping"],
+               skillList:[],
+                skillScore:[0,0,0,0,0,0,0],
+                languageList:[],
+                languageScore:[0,0,0],
+                awardList:[],
+                interestList:[],
                 siteId: '',
            },
            isViewerMode : false,
@@ -820,28 +820,33 @@ export default {
     background-color: rgba(202, 212, 232, 1);
 
 }
+#skills-page .content .sublevel0{
+    width: 0%;
+    height: 3px;
+    background-color:rgba(85, 105, 220, 1);
+}
 #skills-page .content .sublevel1{
-    width: 100%;
+    width: 20%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel2{
-    width: 90%;
+    width: 40%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel3{
-    width: 75%;
+    width: 60%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel4{
-    width: 65%;
+    width: 80%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel5{
-    width: 50%;
+    width: 100%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }

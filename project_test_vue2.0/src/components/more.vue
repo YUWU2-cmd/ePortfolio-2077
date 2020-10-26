@@ -98,18 +98,18 @@ export default {
             experienceForm: {
                 experiences:[
                     {
-                        duration:'1999-2000',
-                        position:'1',
-                        companyName:'3',
-                        companyLocation:'4',
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
                         description:''
                     },
                     {
-                        duration:'1999-2000',
-                        position:'2',
-                        companyName:'www',
-                        companyLocation:'g',
-                        description:'wdw'
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
+                        description:''
                     }
                 ],
                 siteId:''
@@ -118,25 +118,25 @@ export default {
            educationForm: {
                educations:[
                     {
-                        duration:'1999-2000',
-                        schoolName:'ds',
-                        degree:'3',
-                        schoolLocation:'4',
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
                         description:''
                     },
                     {
-                        duration:'1999-2000',
-                        schoolName:'ddd',
-                        degree:'35',
-                        schoolLocation:'ffff',
-                        description:'qqq'
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
+                        description:''
                     }
                ],
                siteId:''
            },
             skillForm:{
-                proList:["a","b","c","d"],
-                addList:['1','2','3','4'],
+                proList:["","","",""],
+                addList:['','','',''],
                 siteId:''
             },
             isViewerMode : false

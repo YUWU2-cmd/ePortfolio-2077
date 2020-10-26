@@ -39,14 +39,14 @@
             <div class="title-wrapper">
                 <div class="hello">HELLO, I'M</div>
                 <h1 class="name"><input v-model="username" placeholder="Your name here" class="title-name-input"></h1>
-                <div class="subtitle"><input v-model="aboutedForm.education.degree" placeholder="Occupation here" class="occupation-input"></div>
+                <div class="subtitle"><input maxlength="40" v-model="aboutedForm.education.degree" placeholder="Occupation here" class="occupation-input" show-word-limit></div>
             </div>
         </div>
         <div class="right-content">
             <div class="profile-img"><img :src="profilePic"></div>
             <div class="name"><input v-model="username" placeholder="Your name here" class="name-input"></div>
-            <div class="subtitle"><el-input type="textarea" placeholder="Your degree here" v-model="aboutedForm.education.degree" autosize="" class="degree-input"></el-input></div>
-            <div class="subtitle"><el-input type="textarea" placeholder="Your degree here" v-model="aboutedForm.education.schoolName" autosize="" class="degree-input"></el-input></div>
+            <div class="subtitle"><el-input maxlength="40" type="textarea" placeholder="Your degree here" v-model="aboutedForm.education.degree" autosize="" class="degree-input" show-word-limit></el-input></div>
+            <div class="subtitle"><el-input maxlength="40" type="textarea" placeholder="Your school name here" v-model="aboutedForm.education.schoolName" autosize="" class="degree-input" show-word-limit></el-input></div>
             <div class="email"><input v-model="email" placeholder="Your email here" class="contact-input"></div>
             <div class="phone"><input v-model="phone" placeholder="Your phone here" class="contact-input"></div>
             <div class="socialmedia">
@@ -61,7 +61,7 @@
         <div class="content-wrapper">
             <div class="title">About</div>
             <div class="subtitle">MY BACKGROUND</div>
-            <p class="content"><el-input type="textarea" placeholder="Your bio here" v-model="aboutedForm.education.description" autosize="" class="bio-input"></el-input></p>
+            <p class="content"><el-input maxlength="300" type="textarea" placeholder="Your bio here" v-model="aboutedForm.education.description" autosize="" class="bio-input" show-word-limit></el-input></p>
         </div>
     </div>
     <div id="experience-page">
@@ -70,19 +70,19 @@
                 <div class="title">Education</div>
                 <div class="subtitle">WHAT I'VE LEARNED</div>
                 <div class="exp">
-                    <div class="duration"><el-input v-model="educationForm.educations[0].duration" placeholder="duration"></el-input></div>
-                    <p class="school"><el-input v-model="educationForm.educations[0].schoolName" placeholder="school" autosize=""></el-input></p>
-                    <p class="degree"><el-input v-model="educationForm.educations[0].degree" placeholder="degree" autosize=""></el-input></p>
+                    <div class="duration"><el-input maxlength="20" v-model="educationForm.educations[0].duration" placeholder="duration ex:1999-2010"></el-input></div>
+                    <p class="school"><el-input maxlength="40" v-model="educationForm.educations[0].schoolName" placeholder="school" autosize=""></el-input></p>
+                    <p class="degree"><el-input maxlength="40" v-model="educationForm.educations[0].degree" placeholder="degree" autosize=""></el-input></p>
                 </div>
                 <div class="exp">
-                    <div class="duration"><el-input v-model="educationForm.educations[1].duration" placeholder="duration"></el-input></div>
-                    <p class="school"><el-input v-model="educationForm.educations[1].schoolName" placeholder="school" autosize=""></el-input></p>
-                    <p class="degree"><el-input v-model="educationForm.educations[1].degree" placeholder="degree" autosize=""></el-input></p>
+                    <div class="duration"><el-input maxlength="20" v-model="educationForm.educations[1].duration" placeholder="duration ex:1999-2010"></el-input></div>
+                    <p class="school"><el-input maxlength="40" v-model="educationForm.educations[1].schoolName" placeholder="school" autosize=""></el-input></p>
+                    <p class="degree"><el-input maxlength="40" v-model="educationForm.educations[1].degree" placeholder="degree" autosize=""></el-input></p>
                 </div>
                 <div class="exp">
-                    <div class="duration"><el-input v-model="educationForm.educations[2].duration" placeholder="duration"></el-input></div>
-                    <p class="school"><el-input v-model="educationForm.educations[2].schoolName" placeholder="school" autosize=""></el-input></p>
-                    <p class="degree"><el-input v-model="educationForm.educations[2].degree" placeholder="degree" autosize=""></el-input></p>
+                    <div class="duration"><el-input maxlength="20" v-model="educationForm.educations[2].duration" placeholder="duration ex:1999-2010"></el-input></div>
+                    <p class="school"><el-input maxlength="40" v-model="educationForm.educations[2].schoolName" placeholder="school" autosize=""></el-input></p>
+                    <p class="degree"><el-input maxlength="40" v-model="educationForm.educations[2].degree" placeholder="degree" autosize=""></el-input></p>
                 </div>
             </div>
             
@@ -92,16 +92,16 @@
                 <div class="title">Experience</div>
                 <div class="subtitle">WHERE I'VE WORKED</div>
                 <div class="exp">
-                    <div class="duration"><el-input v-model="experienceForm.experiences[0].duration" placeholder="duration"></el-input></div>
-                    <p class="company"><el-input v-model="experienceForm.experiences[0].companyName" placeholder="company"></el-input></p>
+                    <div class="duration"><el-input maxlength="20" v-model="experienceForm.experiences[0].duration" placeholder="duration ex:1999-2010"></el-input></div>
+                    <p class="company"><el-input maxlength="40" v-model="experienceForm.experiences[0].companyName" placeholder="company"></el-input></p>
                 </div>
                 <div class="exp">
-                    <div class="duration"><el-input v-model="experienceForm.experiences[1].duration" placeholder="duration"></el-input></div>
-                    <p class="company"><el-input v-model="experienceForm.experiences[1].companyName" placeholder="company"></el-input></p>
+                    <div class="duration"><el-input  maxlength="20" v-model="experienceForm.experiences[1].duration" placeholder="duration ex:1999-2010"></el-input></div>
+                    <p class="company"><el-input maxlength="40" v-model="experienceForm.experiences[1].companyName" placeholder="company"></el-input></p>
                 </div>
                 <div class="exp">
-                    <div class="duration"><el-input v-model="experienceForm.experiences[2].duration" placeholder="duration"></el-input></div>
-                    <p class="company"><el-input v-model="experienceForm.experiences[2].companyName" placeholder="company"></el-input></p>
+                    <div class="duration"><el-input maxlength="20" v-model="experienceForm.experiences[2].duration" placeholder="duration ex:1999-2010"></el-input></div>
+                    <p class="company"><el-input maxlength="40" v-model="experienceForm.experiences[2].companyName" placeholder="company"></el-input></p>
                 </div> 
             </div>
             
@@ -112,64 +112,64 @@
             <div class="title">Skills & Languages</div>
             <div class="subtitle">WHAT I BRING TO THE TABLE</div>
             <div class="content">
-                <div class="text"><el-input v-model="skillForm.skillList[0]" placeholder="skill"></el-input></div>
+                <div class="text"><el-input maxlength="30" v-model="skillForm.skillList[0]" placeholder="skill"></el-input></div>
                 <div class="level">
-                <div :class='"sublevel"+skillForm.skillScore[0]'></div><el-input v-model="skillForm.skillScore[0]" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
+                <div :class='"sublevel"+skillForm.skillScore[0]'></div><el-input-number v-model="skillForm.skillScore[0]" :min="0" :max="5"></el-input-number>
             </div>
             </div>
             <div class="content">
-                <div class="text"><el-input v-model="skillForm.skillList[1]" placeholder="skill"></el-input></div>
+                <div class="text"><el-input maxlength="30" v-model="skillForm.skillList[1]" placeholder="skill"></el-input></div>
                 <div class="level">
-                    <div :class='"sublevel"+skillForm.skillScore[1]'></div><el-input v-model="skillForm.skillScore[1]" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
+                    <div :class='"sublevel"+skillForm.skillScore[1]'></div><el-input-number v-model="skillForm.skillScore[1]" :min="0" :max="5"></el-input-number>
                 </div>
             </div>
             <div class="content">
-                <div class="text"><el-input v-model="skillForm.skillList[2]" placeholder="skill"></el-input></div>
+                <div class="text"><el-input maxlength="30" v-model="skillForm.skillList[2]" placeholder="skill"></el-input></div>
                 <div class="level">
-                    <div :class='"sublevel"+skillForm.skillScore[2]'></div><el-input v-model="skillForm.skillScore[2]" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
+                    <div :class='"sublevel"+skillForm.skillScore[2]'></div><el-input-number v-model="skillForm.skillScore[2]" :min="0" :max="5"></el-input-number>
                 </div>
             </div>
             <div class="content">
-                <div class="text"><el-input v-model="skillForm.skillList[3]" placeholder="skill"></el-input></div>
+                <div class="text"><el-input maxlength="30" v-model="skillForm.skillList[3]" placeholder="skill"></el-input></div>
                 <div class="level">
-                    <div :class='"sublevel"+skillForm.skillScore[3]'></div><el-input v-model="skillForm.skillScore[3]" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
+                    <div :class='"sublevel"+skillForm.skillScore[3]'></div><el-input-number v-model="skillForm.skillScore[3]" :min="0" :max="5"></el-input-number>
                 </div>
             </div>
             <div class="content">
-                <div class="text"><el-input v-model="skillForm.skillList[4]" placeholder="skill"></el-input></div>
+                <div class="text"><el-input maxlength="30" v-model="skillForm.skillList[4]" placeholder="skill"></el-input></div>
                 <div class="level">
-                    <div :class='"sublevel"+skillForm.skillScore[4]'></div><el-input v-model="skillForm.skillScore[4]" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
+                    <div :class='"sublevel"+skillForm.skillScore[4]'></div><el-input-number v-model="skillForm.skillScore[4]" :min="0" :max="5"></el-input-number>
                 </div>
             </div>
             <div class="content">
-                <div class="text"><el-input v-model="skillForm.skillList[5]" placeholder="skill"></el-input></div>
+                <div class="text"><el-input maxlength="30" v-model="skillForm.skillList[5]" placeholder="skill"></el-input></div>
                 <div class="level">
-                    <div :class='"sublevel"+skillForm.skillScore[5]'></div><el-input v-model="skillForm.skillScore[5]" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
+                    <div :class='"sublevel"+skillForm.skillScore[5]'></div><el-input-number v-model="skillForm.skillScore[5]" :min="0" :max="5"></el-input-number>
                 </div>
             </div>
             <div class="content">
-                <div class="text"><el-input v-model="skillForm.skillList[6]" placeholder="skill"></el-input></div>
+                <div class="text"><el-input maxlength="30" v-model="skillForm.skillList[6]" placeholder="skill"></el-input></div>
                 <div class="level">
-                    <div :class='"sublevel"+skillForm.skillScore[6]'></div><el-input v-model="skillForm.skillScore[6]" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
+                    <div :class='"sublevel"+skillForm.skillScore[6]'></div><el-input-number v-model="skillForm.skillScore[6]" :min="0" :max="5"></el-input-number>
                 </div>
             </div>
             <div class="dividing-line"></div>
             <div class="content">
-                <div class="text"><el-input v-model="skillForm.languageList[0]" placeholder="language"></el-input></div>
+                <div class="text"><el-input maxlength="30" v-model="skillForm.languageList[0]" placeholder="language"></el-input></div>
                 <div class="level">
-                    <div :class='"sublevel"+skillForm.languageScore[0]'></div><el-input v-model="skillForm.languageScore[0]" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
+                    <div :class='"sublevel"+skillForm.languageScore[0]'></div><el-input-number v-model="skillForm.languageScore[0]" :min="0" :max="5"></el-input-number>
                 </div>
             </div>
             <div class="content">
-                <div class="text"><el-input v-model="skillForm.languageList[1]" placeholder="language"></el-input></div>
+                <div class="text"><el-input maxlength="30" v-model="skillForm.languageList[1]" placeholder="language"></el-input></div>
                 <div class="level">
-                    <div :class='"sublevel"+skillForm.languageScore[1]'></div><el-input v-model="skillForm.languageScore[1]" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
+                    <div :class='"sublevel"+skillForm.languageScore[1]'></div><el-input-number v-model="skillForm.languageScore[1]" :min="0" :max="5"></el-input-number>
                 </div>
             </div>
             <div class="content">
-                <div class="text"><el-input v-model="skillForm.languageList[2]" placeholder="language"></el-input></div>
+                <div class="text"><el-input maxlength="30" v-model="skillForm.languageList[2]" placeholder="language"></el-input></div>
                 <div class="level">
-                    <div :class='"sublevel"+skillForm.languageScore[2]'></div><el-input v-model="skillForm.languageScore[2]" placeholder="Skill level: Choose from (1-5)" maxlength="1"></el-input>
+                    <div :class='"sublevel"+skillForm.languageScore[2]'></div><el-input-number v-model="skillForm.languageScore[2]" :min="0" :max="5"></el-input-number>
                 </div>
             </div>
         </div>
@@ -179,9 +179,9 @@
             <div class="content-wrapper">
                <div class="title">Awards</div>
                 <div class="subtitle">WHERE I SHINE</div>
-                <p class="content"><el-input v-model="skillForm.awardList[0]" placeholder="award"></el-input></p>
-                <p class="content"><el-input v-model="skillForm.awardList[1]" placeholder="award"></el-input></p>
-                <p class="content"><el-input v-model="skillForm.awardList[2]" placeholder="award"></el-input></p> 
+                <p class="content"><el-input maxlength="30" v-model="skillForm.awardList[0]" placeholder="award"></el-input></p>
+                <p class="content"><el-input maxlength="30" v-model="skillForm.awardList[1]" placeholder="award"></el-input></p>
+                <p class="content"><el-input maxlength="30" v-model="skillForm.awardList[2]" placeholder="award"></el-input></p> 
             </div>
             
         </div>
@@ -189,9 +189,9 @@
             <div class="content-wrapper">
                 <div class="title">Interests</div>
                 <div class="subtitle">OUT OF OFFICE</div>
-                <p class="content"><el-input v-model="skillForm.interestList[0]" placeholder="interest"></el-input></p>
-                <p class="content"><el-input v-model="skillForm.interestList[1]" placeholder="interest"></el-input></p>
-                <p class="content"><el-input v-model="skillForm.interestList[2]" placeholder="interest"></el-input></p> 
+                <p class="content"><el-input maxlength="30" v-model="skillForm.interestList[0]" placeholder="interest"></el-input></p>
+                <p class="content"><el-input maxlength="30" v-model="skillForm.interestList[1]" placeholder="interest"></el-input></p>
+                <p class="content"><el-input maxlength="30" v-model="skillForm.interestList[2]" placeholder="interest"></el-input></p> 
             </div>
         </div>
     </div>
@@ -226,36 +226,36 @@ export default {
             bio: '',
             aboutMe: '',
             aboutedForm: {
-                education:{schoolName: "111mel",
+                education:{schoolName: "",
                             business: "True",
-                            degree: "111International Buisiness & Marketing Student",
-                            schoolLocation: "Boston, Massachusetts",
-                            description: "1111"
+                            degree: "",
+                            schoolLocation: "",
+                            description: ""
                 },
 	            siteId: ''
             },
             experienceForm: {
                 experiences:[
                     {
-                        duration:'1999-2000',
-                        position:'1',
-                        companyName:'3',
-                        companyLocation:'4',
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
                         description:''
                     },
                     {
-                        duration:'1999-2000',
-                        position:'2',
-                        companyName:'www',
-                        companyLocation:'g',
-                        description:'wdw'
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
+                        description:''
                     },
                     {
-                        duration:'1999-2000',
-                        position:'2',
-                        companyName:'www',
-                        companyLocation:'g',
-                        description:'wdw'
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
+                        description:''
                     }
                 ],
                 siteId:''
@@ -264,76 +264,38 @@ export default {
            educationForm: {
                educations:[
                     {
-                        duration:'1999-2000',
-                        schoolName:'ds',
-                        degree:'3',
-                        schoolLocation:'4',
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
                         description:''
                     },
                     {
-                        duration:'1999-2010',
-                        schoolName:'ddd',
-                        degree:'35',
-                        schoolLocation:'ffff',
-                        description:'qqq'
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
+                        description:''
                     },
                     {
-                        duration:'1993-2000',
-                        schoolName:'uni',
-                        degree:'35',
-                        schoolLocation:'ffff',
-                        description:'qqq'
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
+                        description:''
                     }
                ],
                siteId:''
            },
            skillForm : {
-               skillList:["eat", "sleep","a","b","c","d","e"],
-                skillScore:[1, 2, 3,1,2,3,3],
-                languageList:["chinese", "English", "Japanese"],
-                languageScore:[3, 4, 5],
-                awardList:["nobel price","xxx price","ccc price"],
-                interestList:["gaming", "reading", "sleeping"],
+               skillList:[],
+                skillScore:[0,0,0,0,0,0,0],
+                languageList:[],
+                languageScore:[0,0,0],
+                awardList:[],
+                interestList:[],
                 siteId: '',
-           },
-           
-            
-            occupation: 'International Buisiness & Marketing Student',
-            degree: 'BS in International Business & Marketing. Boston, Massachusetts',
-            email: 'John@studen.unimelb.edu.au',
-            phone: '0123-456-789',
-            education1:{
-                duration: '2017 - 2019',
-                school: 'University of Melbourne',
-                degree: 'Master of Commerce'
-            },
-            education2:{
-                duration: '2014 - 2017',
-                school: 'University of Melbourne',
-                degree: 'Bachelor of Commerce'
-            },
-            education3:{
-                duration: '2010 - 2014',
-                school: 'Camberwell High School',
-                degree: ''
-            },
-            exp1:{
-                duration: 'Sep. 2017 – Present',
-                company: 'Json Inc., Campus Brand Ambassador'
-            },
-            exp2:{
-                duration: 'May 2016 – August 2016',
-                company: 'Sterling Productions, Marketing Intern'
-            },
-            exp3:{
-                duration: 'Sep. 2015 – May 2016',
-                company: 'Riverview University Foundation, Sales Consultant'
-            },
-            skills:[{skill:'Data Analysis', level: '3'}, {skill:'Content Writing & Editing', level: '2'}, {skill:'HTML & CSS', level: '4'}, 
-            {skill:'CMS & CRM', level: '5'}, {skill:'Email Marketing', level: '1'}, {skill:'Social Media Management', level: '4'}, {skill:'Image & Design Tools', level: '2'}],
-            languages: [{language:'English', level: '1'}, {language:'Japanese', level:'3'}, {language:'Chinese', level: '2'}],
-            awards:['Student Honors Society', 'Omega Professional Fraternity', 'Riverside Campus Impact Award'],
-            interests:['Photography', 'Travel', 'Work out'],
+           }
             
 
         }
@@ -941,30 +903,34 @@ export default {
     width: 50%;
     height: 3px;
     background-color: rgba(202, 212, 232, 1);
-
+}
+#skills-page .content .sublevel0{
+    width: 0%;
+    height: 3px;
+    background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel1{
-    width: 100%;
+    width: 20%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel2{
-    width: 90%;
+    width: 40%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel3{
-    width: 75%;
+    width: 60%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel4{
-    width: 65%;
+    width: 80%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel5{
-    width: 50%;
+    width: 100%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
