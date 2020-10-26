@@ -312,7 +312,7 @@ export default {
     line-height: 1.5em;
     font-size: 17px;
     box-sizing: border-box;
-    padding: 40px 20px 0;
+    padding: 60px 20px 0;
     overflow: hidden;
     color: #000000ca;
 }

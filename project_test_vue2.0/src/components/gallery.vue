@@ -36,11 +36,15 @@
                         <router-link :to='"/gallery/galleryHome/"+siteId' class="nava"><div id="contact">Home</div></router-link>
                         <router-link :to='"/gallery/galleryAbout/"+siteId' class="nava"><div id="projects">About</div></router-link>
                         <router-link :to='"/gallery/galleryContact/"+siteId' class="nava"><div id="more">Contact</div></router-link>
+
                     </div>
                 </div>
             </div>
+            
          <router-view />
+         
     </div>
+    
 </template>
 
 <script>

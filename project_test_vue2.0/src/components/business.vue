@@ -31,7 +31,19 @@
             <a @click="jumpTo('#experience-page')"><div id="experience">Education&Experience</div></a>
             <a @click="jumpTo('#skills-page')"><div id="skills">Skills&Languages</div></a>
             <a @click="jumpTo('#awards-page')"><div id="awards">Awards&Interests</div></a>
+            <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true" class="share-link">Share Link</el-button>
         </div>
+
+                <el-dialog
+                title="Share Link"
+                :visible.sync="dialogVisible"
+                width="30%"
+                >
+                <span>localhost:8081/?#/business/{{experienceForm.siteId}}</span>
+                <span slot="footer" class="dialog-footer">
+                    <el-button type="primary" @click="dialogVisible = false">Close</el-button>
+                </span>
+                </el-dialog>
         
     </div>
     <div id="aboutme-page">
@@ -143,18 +155,6 @@
         <div class="right-content">
             <div class="email">John@studen.unimelb.edu.au</div>
             <div class="phone">0123-456-789</div>
-            <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true">Share Link</el-button>
-
-                <el-dialog
-                title="Share Link"
-                :visible.sync="dialogVisible"
-                width="30%"
-                >
-                <span>localhost:8081/?#/business/{{experienceForm.siteId}}</span>
-                <span slot="footer" class="dialog-footer">
-                    <el-button type="primary" @click="dialogVisible = false">Close</el-button>
-                </span>
-                </el-dialog>
             <a @click="backtop()" class="btn">
                 <div>Back to Top</div>
             </a>
@@ -520,6 +520,7 @@ export default {
     width: 980px;
     height: 20px;
     margin: 25px auto;
+    position: relative;
 }
 .nav a{
     float: left;
@@ -534,7 +535,17 @@ export default {
 .nav a:hover{
     opacity: 0.5;
 }
-
+.nav .share-link{
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    color: #fff;
+    line-height: 20px;
+    transition: opacity 0.4s ease 0s;
+}
+.share-link:hover{
+    opacity: 0.5;
+}
 #aboutme-page{
     width: 100%;
     height: 650px;

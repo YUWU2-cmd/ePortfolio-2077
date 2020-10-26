@@ -12,6 +12,7 @@
                         <div class="deco-line"></div>
                         <div class="subtitle">{{aboutMeForm.bio}}</div> 
                     </div>
+                    <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true" class="share-link">Share Link</el-button>
                     <div class="footer">
                         <div class="content">
                             <a href="https://www.facebook.com/" target="_blank"><i class="iconfont icon-facebook1"></i></a>
@@ -28,7 +29,6 @@
                         {{aboutMeForm.aboutme}}
                     </p>
                 </div> 
-                <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true">Share Link</el-button>
 
                 <el-dialog
                 title="Share Link"
@@ -169,6 +169,15 @@ export default {
     font-size: 17px;
     line-height: 1.5em;
     color: #000000a6;
+}
+.share-link{
+    color: #588dff;
+    line-height: 20px;
+    transition: opacity 0.4s ease 0s;
+    margin-left: 155px;
+}
+.share-link:hover{
+    opacity: 0.5;
 }
 .banner .main{
     height: 467px;
