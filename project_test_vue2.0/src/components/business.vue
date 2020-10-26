@@ -39,7 +39,7 @@
                 :visible.sync="dialogVisible"
                 width="30%"
                 >
-                <span>localhost:8081/?#/business/{{experienceForm.siteId}}</span>
+                <span>https://eportfolio2077.herokuapp.com/#/business/{{experienceForm.siteId}}</span>
                 <span slot="footer" class="dialog-footer">
                     <el-button type="primary" @click="dialogVisible = false">Close</el-button>
                 </span>
