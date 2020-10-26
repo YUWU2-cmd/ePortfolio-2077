@@ -11,10 +11,11 @@
 
             
 
-                <el-dropdown placement="bottom-start" class="topbar-side">
+                <el-dropdown v-show="!isViewerMode" placement="bottom-start" class="topbar-side">
                     <span class="el-dropdown-link">
                       <div class="user-avatar">
                         <img :src="profilePic" alt=""/>
+                        <!-- display user avatar which can be uploaded -->
                       </div>
                     </span>
                     <el-dropdown-menu  slot="dropdown" class="dropdown-menu">
@@ -32,9 +33,9 @@
                 <div class="user-name">{{username}}</div>
                 <div class="nav-wrapper">
                     <div class="nav">
-                        <router-link to="/gallery/galleryHome" class="nava"><div id="contact">Home</div></router-link>
-                        <router-link to="/gallery/galleryAbout" class="nava"><div id="projects">About</div></router-link>
-                        <router-link to="/gallery/galleryContact" class="nava"><div id="more">Contact</div></router-link>
+                        <router-link :to='"/gallery/galleryHome/"+siteId' class="nava"><div id="contact">Home</div></router-link>
+                        <router-link :to='"/gallery/galleryAbout/"+siteId' class="nava"><div id="projects">About</div></router-link>
+                        <router-link :to='"/gallery/galleryContact/"+siteId' class="nava"><div id="more">Contact</div></router-link>
                     </div>
                 </div>
             </div>
@@ -48,19 +49,38 @@ export default {
         return{
             username: '',
             profilePic: '',
+            isViewerMode : false,
+            siteId: ''
 
         }
         
     },
     created() {
+        this.verifyViewerMode()
         this.getUserData()
     },
      methods:{
+         verifyViewerMode(){
+            if(typeof(this.$route.params.id) != "undefined"){ 
+                console.log(3)
+                this.isViewerMode = true
+                this.siteId = this.$route.params.id 
+            }
+        },
         async getUserData() {
-            const { data: res } = await this.$http.get('/api/user/logged')
-            if (res.message != "Success!") return this.$message.error('get logged fail！')
-            this.profilePic = res.obj.profilePic
-            this.username = res.obj.username
+            if(this.isViewerMode){
+                var temp = {siteId: this.$route.params.id}
+                var data2 = this.$qs.stringify(temp)
+                const { data: re } = await this.$http.post('/api/dashboard/fetch',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+                if (re.message != "Success!") return this.$message.error('get logged fail！')
+                this.profilePic = re.obj.user.profilePicture
+                this.username = re.obj.user.username
+            }else{
+                const { data: re } = await this.$http.get('/api/user/logged')
+                if (re.message != "Success!") return this.$message.error('get logged fail！')
+                this.profilePic = re.obj.profilePic
+                this.username = re.obj.username
+            }
         },
         goDashboard() {
             this.$router.push('/dashboard')

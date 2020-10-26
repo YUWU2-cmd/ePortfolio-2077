@@ -2,7 +2,7 @@
     <div id="projects-body">
     <div class="body-wrapper">
         <div class="title-wrapper">
-            <i class="iconfont icon-setting" style="margin-left:98%; margin-top:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
+            <i v-show="!isViewerMode" class="iconfont icon-setting" style="margin-left:98%; margin-top:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="content-wrapper">
                 <div class="blue-dot"></div>
                 <div class="title">Projects</div>
@@ -81,17 +81,26 @@ export default {
                 ],
                 siteId:''
             },
+            isViewerMode : false
         }
     },
     created() {
+            this.verifyViewerMode()
             this.getProjectData()
     },
      methods:{
          goSetting(){
             this.$router.push('/classic/projectSetting')
         },
+        verifyViewerMode(){
+            if(typeof(this.$route.params.id) != "undefined"){ 
+                this.isViewerMode = true 
+            }
+        },
         async getProjectData() {
-            this.projectForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.projectForm.siteId = this.$route.params.id
+            }else{this.projectForm.siteId = window.localStorage.getItem("nowSiteId")}
             var extem = {siteId: this.projectForm.siteId}
             var data1 = this.$qs.stringify(extem)
             

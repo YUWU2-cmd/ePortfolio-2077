@@ -9,7 +9,7 @@
                     </div>
                 </div>
 
-                <el-dropdown placement="bottom-start" class="topbar-side">
+                <el-dropdown v-show="!isViewerMode" placement="bottom-start" class="topbar-side">
                     <span class="el-dropdown-link">
                       <div class="user-avatar">
                         <img :src="profilePic" alt=""/>
@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="right-content">
-            <i class="iconfont icon-setting" style="margin-left:90%; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
+            <i v-show="!isViewerMode" class="iconfont icon-setting" style="margin-left:90%; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="profile-img"><img :src="profilePic"></div>
             <div class="name">{{username}}.</div>
             <div class="subtitle">{{aboutedForm.education.degree}}. {{aboutedForm.education.schoolName}}</div>
@@ -143,6 +143,18 @@
         <div class="right-content">
             <div class="email">John@studen.unimelb.edu.au</div>
             <div class="phone">0123-456-789</div>
+            <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true">Share Link</el-button>
+
+                <el-dialog
+                title="Share Link"
+                :visible.sync="dialogVisible"
+                width="30%"
+                >
+                <span>localhost:8081/?#/business/{{experienceForm.siteId}}</span>
+                <span slot="footer" class="dialog-footer">
+                    <el-button type="primary" @click="dialogVisible = false">Close</el-button>
+                </span>
+                </el-dialog>
             <a @click="backtop()" class="btn">
                 <div>Back to Top</div>
             </a>
@@ -231,11 +243,13 @@ export default {
                 interestList:["gaming", "reading", "sleeping"],
                 siteId: '',
            },
-           
+           isViewerMode : false,
+           dialogVisible : false,
         }
         
     },
     created() {
+        this.verifyViewerMode()
         this.getUserData()
         this.getAboutData()
         this.getExperienceData()
@@ -243,6 +257,11 @@ export default {
         this.getSkillData()
     },
     methods: {
+        verifyViewerMode(){
+            if(typeof(this.$route.params.id) != "undefined"){ 
+                this.isViewerMode = true 
+            }
+        },
         goSetting(){
             this.$router.push('/businessSetting')
         },
@@ -283,14 +302,11 @@ export default {
             }
           },30)
       },
-      async getUserData() {
-            const { data: res } = await this.$http.get('/api/user/logged')
-            if (res.message != "Success!") return this.$message.error('get logged fail！')
-            this.profilePic = res.obj.profilePic
-            this.username = res.obj.username
-        },
+
          async getExperienceData() {
-            this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.experienceForm.siteId = this.$route.params.id
+            }else{this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")}
             var extem = {siteId: this.experienceForm.siteId}
             var data1 = this.$qs.stringify(extem)
             
@@ -301,7 +317,9 @@ export default {
             }
         },
         async getEducationData() {
-            this.educationForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.educationForm.siteId = this.$route.params.id
+            }else{this.educationForm.siteId = window.localStorage.getItem("nowSiteId")}
             var edtem = {siteId: this.educationForm.siteId}
             var data2 = this.$qs.stringify(edtem)
             
@@ -312,7 +330,9 @@ export default {
             }
         },
       async getAboutData() {
-            this.aboutedForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.aboutedForm.siteId = this.$route.params.id
+            }else{this.aboutedForm.siteId = window.localStorage.getItem("nowSiteId")}
             var tem = {siteId: this.aboutedForm.siteId}
             var data3 = this.$qs.stringify(tem)
             const { data: r } = await this.$http.post('/api/home/get/business/aboutedu',data3, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
@@ -325,7 +345,9 @@ export default {
             
         },
         async getSkillData() {
-            this.skillForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.skillForm.siteId = this.$route.params.id
+            }else{this.skillForm.siteId = window.localStorage.getItem("nowSiteId")}
             var skilltem = {siteId: this.skillForm.siteId}
             var data4 = this.$qs.stringify(skilltem)
             const { data: cc } = await this.$http.post('/api/home/get/business/skill',data4, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
@@ -367,17 +389,20 @@ export default {
             }
             tempArray1 = []
         },
-
-        async setSkillData() {
-            const { data: c } = await this.$http.post('/api/home/update/business/skill',this.skillForm)
-            if (c.message != "Success!") return this.$message.error('update about fail！')
-            this.$message.success('upload skill success！')
-        },
       async getUserData() {
-            const { data: res } = await this.$http.get('/api/user/logged')
-            if (res.message != "Success!") return this.$message.error('get logged fail！')
-            this.profilePic = res.obj.profilePic
-            this.username = res.obj.username
+            if(this.isViewerMode){
+                var temp = {siteId: this.$route.params.id}
+                var data = this.$qs.stringify(temp)
+                const { data: re } = await this.$http.post('/api/dashboard/fetch',data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+                if (re.message != "Success!") return this.$message.error('get logged fail！')
+                this.profilePic = re.obj.user.profilePicture
+                this.username = re.obj.user.username
+            }else{
+                const { data: re } = await this.$http.get('/api/user/logged')
+                if (re.message != "Success!") return this.$message.error('get logged fail！')
+                this.profilePic = re.obj.profilePic
+                this.username = re.obj.username
+            }
         },
         goDashboard() {
             this.$router.push('/dashboard')
