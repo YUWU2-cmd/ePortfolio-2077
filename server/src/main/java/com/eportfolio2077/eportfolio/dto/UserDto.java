@@ -14,6 +14,7 @@ public class UserDto {
     private String facebookLink;
     private String twitterLink;
     private String instagramLink;
+    private Long userId;
 
     public UserDto(User user){
         this.username=user.getUsername();
@@ -25,5 +26,6 @@ public class UserDto {
         this.facebookLink=user.getFacebookLink();
         this.twitterLink=user.getTwitterLink();
         this.instagramLink=user.getInstagramLink();
+        this.userId=user.getUserId();
     }
 }
