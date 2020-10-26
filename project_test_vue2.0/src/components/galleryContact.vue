@@ -26,6 +26,7 @@
                 </div>
             </div>
         </div>
+        <div class="views">Views: {{views}}</div>
     </div>
 </template>
 
@@ -38,7 +39,8 @@ export default {
                 email: '',
                 phone: '',
                 message: ''
-            }
+            },
+            views:8
         }
     }
 }
@@ -130,5 +132,11 @@ export default {
     border-color: rgba(65, 65, 65, 1);
     color: #414141;
     transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+}
+#contact-body .views{
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 50px;
 }
 </style>

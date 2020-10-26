@@ -159,6 +159,7 @@
                 <div>Back to Top</div>
             </a>
         </div>
+        <div class="views">Views: {{views}}</div>
     </div>
 
     </div>
@@ -172,6 +173,7 @@ export default {
             profilePic: '',
             bio: '',
             aboutMe: '',
+            views: 10,
             aboutedForm: {
                 education:{schoolName: "111mel",
                             business: "True",
@@ -987,6 +989,16 @@ export default {
 }
 #contact-page .right-content .btn:hover{
     background-color: rgba(85, 105, 220, 0.5);
+}
+#contact-page .views{
+    display: inline-block;
+    width: 10%;
+    height: 100%;
+    // font-size: 18px;
+    font-weight: bold;
+    box-sizing: border-box;
+    font: normal normal bold 120%/18px FuturaLTW01-LightOblique,sans-serif;
+
 }
 
 @font-face {font-family: "FuturaLTW01-LightOblique"; src: url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.eot"); src: url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.woff") format("woff"), url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.svg#FuturaLTW01-LightOblique") format("svg"); } 
