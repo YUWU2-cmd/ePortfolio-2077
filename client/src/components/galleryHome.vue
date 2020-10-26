@@ -2,7 +2,19 @@
     <div id="home-body">
        <div class="body-wrapper">
         <div class="content-wrapper">
-            <i class="iconfont icon-setting" style="margin-left:98%; margin-bottom:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
+            <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true">Share Link</el-button>
+
+                <el-dialog
+                title="Share Link"
+                :visible.sync="dialogVisible"
+                width="30%"
+                >
+                <span>https://eportfolio2077.herokuapp.com/#/gallery/{{id.siteId}}</span>
+                <span slot="footer" class="dialog-footer">
+                    <el-button type="primary" @click="dialogVisible = false">Close</el-button>
+                </span>
+                </el-dialog>
+            <i v-show="!isViewerMode" class="iconfont icon-setting" style="margin-left:98%; margin-bottom:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="left-content">
                 
                 <a v-for="item in imageList1"  href="javascript:;" class="description">
@@ -44,18 +56,28 @@ export default {
         return {
             imageList1 : [],
             imageList2 : [],
-            id: {siteId : ''}
+            id: {siteId : ''},
+            isViewerMode : false,
+            dialogVisible : false
         }
     },
     created() {
+            this.verifyViewerMode()
             this.loadImage()
     },
       methods:{
          goSetting(){
             this.$router.push('/gallery/galleryHomeSetting')
         },
+        verifyViewerMode(){
+            if(typeof(this.$route.params.id) != "undefined"){ 
+                this.isViewerMode = true 
+            }
+        },
         async loadImage(){
-            this.id.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.id.siteId = this.$route.params.id
+            }else{this.id.siteId = window.localStorage.getItem("nowSiteId")}
             var sendData = this.$qs.stringify(this.id)
             const { data: res } = await this.$http.post('/api/home/get/img', sendData, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (res.message != "Success!") return this.$message.error('get load fail！')
@@ -72,18 +94,21 @@ export default {
 </script>
 
 <style lang="less" scoped>
-body{
+body,html{
     min-width: 1050px;
 }
 #home-body .body-wrapper{
-   width: 100%;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: table;
 }
 
 #home-body .content-wrapper{
     width: 1050px;
     padding-top: 20px;
     margin: 0 auto;
-    height: 3130px;
+    height: 100%;
 }
 #home-body .content-wrapper .left-content{
     float: left;
@@ -158,20 +183,18 @@ body{
     width: 400px;
 }
 #home-body .footer{
+    display: table-row;
     width: 70%;
     height: 150px;
-    top: 120%;
     text-align: center;
 }
 #home-body .footer .text{
-    margin-right: 20%;
     height: 16px;
     line-height: 16px;
     margin-top: 40px;
     font-size: 12px;
 }
 #home-body .footer .icons{
-        margin-right: 20%;
     margin-top: 15px;
     height: 18px;
     line-height: 18px;

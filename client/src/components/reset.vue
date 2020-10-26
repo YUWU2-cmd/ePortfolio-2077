@@ -14,33 +14,33 @@
             <div class="inner-body">
             <!-- 标题区域 -->
             <div class="title">
-                verify your email
+                Change your password
             </div>
             <div class="subtitle">
-                Last step of signup!
+                Last step of resetting the password
             </div>
             <div class="description">
-                Fill out your email address and verify code from sended email. You'll complete signup. 
+                Fill out your email address and new password. You'll reset your password. 
             </div>
             <!-- 登录表单区域, 这里使用了vbind的：号，绑定了elform的model属性 -->
             <!-- rules和prop属性都是校验相关的。
              ref是引用属性，下面js部分使用这个的会得到该属性的标签的对象 -->
-             <el-form ref="verifyFormRef" :model="verifyForm" :rules="verifyFormRules" label-width="0px" class="verify_form">
+             <el-form ref="resetFormRef" :model="resetForm" :rules="resetFormRules" label-width="0px" class="verify_form">
                 <!-- 用户名 -->
                 <span>Email Address</span> 
                 <el-form-item prop="email">
-                <el-input class="input" v-model="verifyForm.email" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email-fill"></el-input>
+                <el-input class="input" v-model="resetForm.email" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email-fill"></el-input>
                 </el-form-item>
                  
-                <span>Verify Code</span> 
-                <el-form-item prop="code">
-                <el-input class="input" v-model="verifyForm.code" placeholder="Fill in your verifyCode"></el-input>
+                <span>New Password</span> 
+                <el-form-item prop="password">
+                <el-input class="input" v-model="resetForm.password" placeholder="Fill in your Password"></el-input>
                 </el-form-item>
                 <!-- 按钮区域 -->
                 
             </el-form>
-            <div class="btn">
-                    <button @click="verify" type="submit">Verify</button>
+                <div class="btn">
+                    <button @click="verify" type="submit">Reset</button>
                 </div>
         </div>
         </div>
@@ -53,19 +53,19 @@
 export default {
   data () {
     return {
-      verifyForm: {
+      resetForm: {
         email: '',
-        code: ''
+        password: ''
       },
       // 这是表单的验证规则对象
-      verifyFormRules: {
+      resetFormRules: {
         email: [
           { required: true, message: 'Please enter email address', trigger: 'blur' },
           { min: 6, max: 40, message: 'Please enter vaild email address', trigger: 'blur' }
         ],
-        code: [
-          { required: true, message: 'Please enter verifyCode', trigger: 'blur' },
-          { min: 1, max: 15, message: 'Please enter vaild verifyCode', trigger: 'blur' }
+        password: [
+          { required: true, message: 'Please enter password', trigger: 'blur' },
+          { min: 6, max: 15, message: 'Password need 6 ~ 15 characters', trigger: 'blur' }
         ]
       }
     }
@@ -74,12 +74,12 @@ export default {
   methods: {
     // 这个是予验证，检查当前内容格式是否符合验证规则
     verify () {
-      this.$refs.verifyFormRef.validate(async valid => {
+      this.$refs.resetFormRef.validate(async valid => {
         if (!valid) return
-        var data = this.$qs.stringify(this.verifyForm)
-        const { status: res } = await this.$http.post('/api/user/verify', data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
-        if (res != 200) return this.$message.error('fail verify！')
-        this.$message.success('verify success')
+        var data = this.$qs.stringify(this.resetForm)
+        const { status: res } = await this.$http.post('/api/user/change/password', data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+        if (res != 200) return this.$message.error('reset fail！')
+        this.$message.success('reset success')
         // 1. 将登录成功之后的 token，保存到客户端的 sessionStorage 中
         //   1.1 项目中出了登录之外的其他API接口，必须在登录之后才能访问
         //   1.2 token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中

@@ -2,7 +2,7 @@
     <div id="more-body">
    <div class="body-wrapper">
         <div class="title-wrapper">
-            <i class="iconfont icon-setting" style="margin-left:98%; margin-top:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
+            <i v-show="!isViewerMode" class="iconfont icon-setting" style="margin-left:98%; margin-top:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="content-wrapper">
                 <div class="blue-dot"></div>
                 <div class="title">More About Me</div>
@@ -98,18 +98,18 @@ export default {
             experienceForm: {
                 experiences:[
                     {
-                        duration:'1999-2000',
-                        position:'1',
-                        companyName:'3',
-                        companyLocation:'4',
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
                         description:''
                     },
                     {
-                        duration:'1999-2000',
-                        position:'2',
-                        companyName:'www',
-                        companyLocation:'g',
-                        description:'wdw'
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
+                        description:''
                     }
                 ],
                 siteId:''
@@ -118,33 +118,35 @@ export default {
            educationForm: {
                educations:[
                     {
-                        duration:'1999-2000',
-                        schoolName:'ds',
-                        degree:'3',
-                        schoolLocation:'4',
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
                         description:''
                     },
                     {
-                        duration:'1999-2000',
-                        schoolName:'ddd',
-                        degree:'35',
-                        schoolLocation:'ffff',
-                        description:'qqq'
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
+                        description:''
                     }
                ],
                siteId:''
            },
             skillForm:{
-                proList:["a","b","c","d"],
-                addList:['1','2','3','4'],
+                proList:["","","",""],
+                addList:['','','',''],
                 siteId:''
-            }
+            },
+            isViewerMode : false
             
             
 
         }
     },
     created() {
+            this.verifyViewerMode()
             this.getExperienceData()
             this.getEducationData()
             this.getSkillData()
@@ -153,8 +155,15 @@ export default {
          goSetting(){
             this.$router.push('/classic/moreSetting')
         },
+        verifyViewerMode(){
+            if(typeof(this.$route.params.id) != "undefined"){ 
+                this.isViewerMode = true 
+            }
+        },
         async getExperienceData() {
-            this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.experienceForm.siteId = this.$route.params.id
+            }else{this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")}
             var extem = {siteId: this.experienceForm.siteId}
             var data1 = this.$qs.stringify(extem)
             
@@ -166,7 +175,9 @@ export default {
             
         },
         async getEducationData() {
-            this.educationForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.educationForm.siteId = this.$route.params.id
+            }else{this.educationForm.siteId = window.localStorage.getItem("nowSiteId")}
             var edtem = {siteId: this.educationForm.siteId}
             var data2 = this.$qs.stringify(edtem)
             
@@ -178,7 +189,9 @@ export default {
             }
         },
         async getSkillData() {
-            this.skillForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.skillForm.siteId = this.$route.params.id
+            }else{this.skillForm.siteId = window.localStorage.getItem("nowSiteId")}
             var sktem = {siteId: this.skillForm.siteId}
             var data3 = this.$qs.stringify(sktem)
            
@@ -299,9 +312,10 @@ export default {
     line-height: 1.5em;
     font-size: 17px;
     box-sizing: border-box;
-    padding: 40px 20px 0;
+    padding: 60px 20px 0;
     overflow: hidden;
     color: #000000ca;
+    word-wrap: break-word;
 }
 .expertise-wrapper .expertises1,
 .expertise-wrapper .expertises2{

@@ -41,6 +41,7 @@
                 <div class="title">Call <i class="iconfont icon-dianhua"></i></div>
                 <div class="content">0123-456-789</div>
             </div>
+            <div class="views">Views: {{views}}</div>
         </div>
     </div>
     </div>
@@ -55,7 +56,8 @@ export default {
                 email: '',
                 subject: '',
                 message: ''
-            }
+            },
+            views:3
         }
     }
 }
@@ -118,6 +120,18 @@ export default {
     margin-right: 40px;
     text-align: center;
     font-size: 14px;
+    box-sizing: border-box;
+    padding: 20px 10px;
+    overflow: visible;
+}
+#contact-body .footer .views{
+    float: left;
+    width: 250px;
+    height: 100%;
+    margin-right: 80px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
     box-sizing: border-box;
     padding: 20px 10px;
     overflow: visible;

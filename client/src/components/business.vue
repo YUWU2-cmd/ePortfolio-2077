@@ -9,7 +9,7 @@
                     </div>
                 </div>
 
-                <el-dropdown placement="bottom-start" class="topbar-side">
+                <el-dropdown v-show="!isViewerMode" placement="bottom-start" class="topbar-side">
                     <span class="el-dropdown-link">
                       <div class="user-avatar">
                         <img :src="profilePic" alt=""/>
@@ -31,7 +31,19 @@
             <a @click="jumpTo('#experience-page')"><div id="experience">Education&Experience</div></a>
             <a @click="jumpTo('#skills-page')"><div id="skills">Skills&Languages</div></a>
             <a @click="jumpTo('#awards-page')"><div id="awards">Awards&Interests</div></a>
+            <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true" class="share-link">Share Link</el-button>
         </div>
+
+                <el-dialog
+                title="Share Link"
+                :visible.sync="dialogVisible"
+                width="30%"
+                >
+                <span>https://eportfolio2077.herokuapp.com/#/business/{{experienceForm.siteId}}</span>
+                <span slot="footer" class="dialog-footer">
+                    <el-button type="primary" @click="dialogVisible = false">Close</el-button>
+                </span>
+                </el-dialog>
         
     </div>
     <div id="aboutme-page">
@@ -43,7 +55,7 @@
             </div>
         </div>
         <div class="right-content">
-            <i class="iconfont icon-setting" style="margin-left:90%; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
+            <i v-show="!isViewerMode" class="iconfont icon-setting" style="margin-left:90%; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="profile-img"><img :src="profilePic"></div>
             <div class="name">{{username}}.</div>
             <div class="subtitle">{{aboutedForm.education.degree}}. {{aboutedForm.education.schoolName}}</div>
@@ -147,6 +159,7 @@
                 <div>Back to Top</div>
             </a>
         </div>
+        <div class="views">Views: {{views}}</div>
     </div>
 
     </div>
@@ -160,37 +173,38 @@ export default {
             profilePic: '',
             bio: '',
             aboutMe: '',
+            views: 10,
             aboutedForm: {
-                education:{schoolName: "111mel",
+                education:{schoolName: "",
                             business: "True",
-                            degree: "111International Buisiness & Marketing Student",
-                            schoolLocation: "Boston, Massachusetts",
-                            description: "1111"
+                            degree: "",
+                            schoolLocation: "",
+                            description: ""
                 },
 	            siteId: ''
             },
             experienceForm: {
                 experiences:[
                     {
-                        duration:'1999-2000',
-                        position:'1',
-                        companyName:'3',
-                        companyLocation:'4',
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
                         description:''
                     },
                     {
-                        duration:'1999-2000',
-                        position:'2',
-                        companyName:'www',
-                        companyLocation:'g',
-                        description:'wdw'
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
+                        description:''
                     },
                     {
-                        duration:'1999-2000',
-                        position:'2',
-                        companyName:'www',
-                        companyLocation:'g',
-                        description:'wdw'
+                        duration:'',
+                        position:'',
+                        companyName:'',
+                        companyLocation:'',
+                        description:''
                     }
                 ],
                 siteId:''
@@ -199,43 +213,45 @@ export default {
            educationForm: {
                educations:[
                     {
-                        duration:'1999-2000',
-                        schoolName:'ds',
-                        degree:'3',
-                        schoolLocation:'4',
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
                         description:''
                     },
                     {
-                        duration:'1999-2010',
-                        schoolName:'ddd',
-                        degree:'35',
-                        schoolLocation:'ffff',
-                        description:'qqq'
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
+                        description:''
                     },
                     {
-                        duration:'1993-2000',
-                        schoolName:'uni',
-                        degree:'35',
-                        schoolLocation:'ffff',
-                        description:'qqq'
+                        duration:'',
+                        schoolName:'',
+                        degree:'',
+                        schoolLocation:'',
+                        description:''
                     }
                ],
                siteId:''
            },
            skillForm : {
-               skillList:["eat", "sleep","a","b","c","d","e"],
-                skillScore:[1, 2, 3,1,2,3,3],
-                languageList:["chinese", "English", "Japanese"],
-                languageScore:[3, 4, 5],
-                awardList:["nobel price","xxx price","ccc price"],
-                interestList:["gaming", "reading", "sleeping"],
+               skillList:[],
+                skillScore:[0,0,0,0,0,0,0],
+                languageList:[],
+                languageScore:[0,0,0],
+                awardList:[],
+                interestList:[],
                 siteId: '',
            },
-           
+           isViewerMode : false,
+           dialogVisible : false,
         }
         
     },
     created() {
+        this.verifyViewerMode()
         this.getUserData()
         this.getAboutData()
         this.getExperienceData()
@@ -243,6 +259,11 @@ export default {
         this.getSkillData()
     },
     methods: {
+        verifyViewerMode(){
+            if(typeof(this.$route.params.id) != "undefined"){ 
+                this.isViewerMode = true 
+            }
+        },
         goSetting(){
             this.$router.push('/businessSetting')
         },
@@ -283,14 +304,11 @@ export default {
             }
           },30)
       },
-      async getUserData() {
-            const { data: res } = await this.$http.get('/api/user/logged')
-            if (res.message != "Success!") return this.$message.error('get logged fail！')
-            this.profilePic = res.obj.profilePic
-            this.username = res.obj.username
-        },
+
          async getExperienceData() {
-            this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.experienceForm.siteId = this.$route.params.id
+            }else{this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")}
             var extem = {siteId: this.experienceForm.siteId}
             var data1 = this.$qs.stringify(extem)
             
@@ -301,7 +319,9 @@ export default {
             }
         },
         async getEducationData() {
-            this.educationForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.educationForm.siteId = this.$route.params.id
+            }else{this.educationForm.siteId = window.localStorage.getItem("nowSiteId")}
             var edtem = {siteId: this.educationForm.siteId}
             var data2 = this.$qs.stringify(edtem)
             
@@ -312,7 +332,9 @@ export default {
             }
         },
       async getAboutData() {
-            this.aboutedForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.aboutedForm.siteId = this.$route.params.id
+            }else{this.aboutedForm.siteId = window.localStorage.getItem("nowSiteId")}
             var tem = {siteId: this.aboutedForm.siteId}
             var data3 = this.$qs.stringify(tem)
             const { data: r } = await this.$http.post('/api/home/get/business/aboutedu',data3, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
@@ -325,7 +347,9 @@ export default {
             
         },
         async getSkillData() {
-            this.skillForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.skillForm.siteId = this.$route.params.id
+            }else{this.skillForm.siteId = window.localStorage.getItem("nowSiteId")}
             var skilltem = {siteId: this.skillForm.siteId}
             var data4 = this.$qs.stringify(skilltem)
             const { data: cc } = await this.$http.post('/api/home/get/business/skill',data4, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
@@ -367,17 +391,20 @@ export default {
             }
             tempArray1 = []
         },
-
-        async setSkillData() {
-            const { data: c } = await this.$http.post('/api/home/update/business/skill',this.skillForm)
-            if (c.message != "Success!") return this.$message.error('update about fail！')
-            this.$message.success('upload skill success！')
-        },
       async getUserData() {
-            const { data: res } = await this.$http.get('/api/user/logged')
-            if (res.message != "Success!") return this.$message.error('get logged fail！')
-            this.profilePic = res.obj.profilePic
-            this.username = res.obj.username
+            if(this.isViewerMode){
+                var temp = {siteId: this.$route.params.id}
+                var data = this.$qs.stringify(temp)
+                const { data: re } = await this.$http.post('/api/dashboard/fetch',data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+                if (re.message != "Success!") return this.$message.error('get logged fail！')
+                this.profilePic = re.obj.user.profilePicture
+                this.username = re.obj.user.username
+            }else{
+                const { data: re } = await this.$http.get('/api/user/logged')
+                if (re.message != "Success!") return this.$message.error('get logged fail！')
+                this.profilePic = re.obj.profilePic
+                this.username = re.obj.username
+            }
         },
         goDashboard() {
             this.$router.push('/dashboard')
@@ -394,7 +421,7 @@ export default {
     line-height: 1.5;
     background-color: #f9fafa;
     color: #414141;
-
+    word-wrap: break-word;
 }
 .selected{
     color: #0051ffad!important;
@@ -495,6 +522,7 @@ export default {
     width: 980px;
     height: 20px;
     margin: 25px auto;
+    position: relative;
 }
 .nav a{
     float: left;
@@ -509,7 +537,17 @@ export default {
 .nav a:hover{
     opacity: 0.5;
 }
-
+.nav .share-link{
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    color: #fff;
+    line-height: 20px;
+    transition: opacity 0.4s ease 0s;
+}
+.share-link:hover{
+    opacity: 0.5;
+}
 #aboutme-page{
     width: 100%;
     height: 650px;
@@ -782,28 +820,33 @@ export default {
     background-color: rgba(202, 212, 232, 1);
 
 }
+#skills-page .content .sublevel0{
+    width: 0%;
+    height: 3px;
+    background-color:rgba(85, 105, 220, 1);
+}
 #skills-page .content .sublevel1{
-    width: 100%;
+    width: 20%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel2{
-    width: 90%;
+    width: 40%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel3{
-    width: 75%;
+    width: 60%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel4{
-    width: 65%;
+    width: 80%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
 #skills-page .content .sublevel5{
-    width: 50%;
+    width: 100%;
     height: 3px;
     background-color:rgba(85, 105, 220, 1);
 }
@@ -951,6 +994,16 @@ export default {
 }
 #contact-page .right-content .btn:hover{
     background-color: rgba(85, 105, 220, 0.5);
+}
+#contact-page .views{
+    display: inline-block;
+    width: 10%;
+    height: 100%;
+    // font-size: 18px;
+    font-weight: bold;
+    box-sizing: border-box;
+    font: normal normal bold 120%/18px FuturaLTW01-LightOblique,sans-serif;
+
 }
 
 @font-face {font-family: "FuturaLTW01-LightOblique"; src: url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.eot"); src: url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.woff") format("woff"), url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/9a7e574c3eda05d71d03345d3f9e268e.svg#FuturaLTW01-LightOblique") format("svg"); } 

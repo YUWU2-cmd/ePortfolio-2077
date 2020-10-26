@@ -2,7 +2,7 @@
     <div id="projects-body">
     <div class="body-wrapper">
         <div class="title-wrapper">
-            <i class="iconfont icon-setting" style="margin-left:98%; margin-top:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
+            <i v-show="!isViewerMode" class="iconfont icon-setting" style="margin-left:98%; margin-top:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="content-wrapper">
                 <div class="blue-dot"></div>
                 <div class="title">Projects</div>
@@ -56,42 +56,51 @@ export default {
      data(){
         return {
             projectForm: {
-                seriesName: 'ver2',
-                summary:'1',
+                seriesName: '',
+                summary:'',
                 projects:[
                     {
                         projectName: '',
-                        description: 'go all2',
-                        position: 'assasin2',
+                        description: '',
+                        position: '',
                         image: null
                     },
                     {
                         projectName: '',
-                        description: 'now all2',
-                        position: 'assasin32',
+                        description: '',
+                        position: '',
                         image: null
                     },
                     {
-                        projectName: 'kkk',
-                        description: 'now all3',
-                        position: '333333333',
+                        projectName: '',
+                        description: '',
+                        position: '',
                         image: null
                     }
                     
                 ],
                 siteId:''
             },
+            isViewerMode : false
         }
     },
     created() {
+            this.verifyViewerMode()
             this.getProjectData()
     },
      methods:{
          goSetting(){
             this.$router.push('/classic/projectSetting')
         },
+        verifyViewerMode(){
+            if(typeof(this.$route.params.id) != "undefined"){ 
+                this.isViewerMode = true 
+            }
+        },
         async getProjectData() {
-            this.projectForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.projectForm.siteId = this.$route.params.id
+            }else{this.projectForm.siteId = window.localStorage.getItem("nowSiteId")}
             var extem = {siteId: this.projectForm.siteId}
             var data1 = this.$qs.stringify(extem)
             
@@ -136,12 +145,16 @@ export default {
     margin-left: 8px;
 }
 #projects-body .title-wrapper .intro{
+    display: block;
     font-size: 17px;
     line-height: 1.5em;
+    height: 7.5em;
     text-align: center;
     width: 668px;
     margin: 0 auto;
     color: #000000bd;
+    word-wrap:break-word;
+    overflow: hidden;
 }
 #projects-body .project-wrapper{
     width: 750px;
@@ -199,6 +212,7 @@ export default {
     line-height: 1.5em;
     color: #000000b9;
     margin: 30px auto 0;
+    word-wrap:break-word;
 }
 
 </style>

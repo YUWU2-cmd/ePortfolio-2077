@@ -14,9 +14,11 @@
             <p class="content">
                     <el-input
                     type="textarea"
+                    maxlength="500"
                     :autosize="{ minRows: 4, maxRows: 7}"
                     placeholder="Please write something about yourself"
-                    v-model="aboutMeForm.aboutme">
+                    v-model="aboutMeForm.aboutme"
+                    show-word-limit>
                     </el-input>
             </p>
              <el-button type="primary"  plain @click="handleUpload">upload</el-button>
