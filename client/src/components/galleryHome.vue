@@ -88,8 +88,14 @@ export default {}
 </script>
 
 <style lang="less" scoped>
+body,html{
+    min-width: 1050px;
+}
 #home-body .body-wrapper{
-    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: table;
 }
 
 
@@ -98,7 +104,7 @@ export default {}
     width: 70%;
     padding-top: 20px;
     margin-left: 15%;
-    height: 3100px;
+    height: 100%;
 }
 #home-body .content-wrapper .left-content{
     float: left;
@@ -173,10 +179,9 @@ export default {}
     width: 400px;
 }
 #home-body .footer{
-    position: absolute;
+    display: table-row;
     width: 100%;
     height: 150px;
-    top: 100%;
     text-align: center;
 }
 #home-body .footer .text{
