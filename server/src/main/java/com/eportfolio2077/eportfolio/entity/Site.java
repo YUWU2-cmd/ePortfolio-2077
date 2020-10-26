@@ -15,6 +15,7 @@ public class Site {
     private String aboutMePic;
     private String bio;
     private String siteName;
+    private Integer visit;
 
     @ManyToOne
     @JoinColumn(name = "UserId")

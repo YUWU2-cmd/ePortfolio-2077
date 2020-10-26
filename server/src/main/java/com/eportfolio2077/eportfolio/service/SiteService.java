@@ -232,4 +232,13 @@ public class SiteService {
         }
         projectSeriesDao.deleteAllBySiteId(siteId);
     }
+
+    public void visitOnce(Long siteId){
+        Site site = siteDao.getSiteBySiteId(siteId);
+        if(site.getVisit()==null){
+            site.setVisit(0);
+        }
+        site.setVisit(site.getVisit()+1);
+        siteDao.save(site);
+    }
 }

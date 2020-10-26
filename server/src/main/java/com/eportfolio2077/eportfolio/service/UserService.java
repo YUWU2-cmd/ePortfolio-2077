@@ -3,6 +3,7 @@ package com.eportfolio2077.eportfolio.service;
 import com.eportfolio2077.eportfolio.dao.UserDao;
 import com.eportfolio2077.eportfolio.dto.LoginDto;
 import com.eportfolio2077.eportfolio.dto.RegisterDto;
+import com.eportfolio2077.eportfolio.dto.UserDetailsDto;
 import com.eportfolio2077.eportfolio.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,6 +62,18 @@ public class UserService {
     public void changeProfile(Long userId, String profilePath){
         User user = userDao.getUserByUserId(userId);
         user.setProfilePicture(profilePath);
+        userDao.save(user);
+    }
+
+    public void updateDetails(UserDetailsDto userDetailsDto){
+        User user = userDao.getUserByUserId(userDetailsDto.getUserId());
+        user.setFirstName(userDetailsDto.getFirstName());
+        user.setLastName(userDetailsDto.getLastName());
+        user.setPhoneNumber(userDetailsDto.getPhoneNumber());
+        user.setLinkedinLink(userDetailsDto.getLinkedinLink());
+        user.setFacebookLink(userDetailsDto.getFacebookLink());
+        user.setTwitterLink(userDetailsDto.getTwitterLink());
+        user.setInstagramLink(userDetailsDto.getInstagramLink());
         userDao.save(user);
     }
 

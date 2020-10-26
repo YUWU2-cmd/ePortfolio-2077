@@ -27,6 +27,7 @@ public class DashBoardService {
         Site site = new Site();
         site.setUser(userDao.getUserByUserId(userId));
         site.setTemplate(template);
+        site.setVisit(0);
         siteDao.save(site);
         return site;
     }

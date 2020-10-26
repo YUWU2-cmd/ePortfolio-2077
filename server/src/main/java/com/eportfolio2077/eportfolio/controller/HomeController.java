@@ -208,4 +208,14 @@ public class HomeController {
         }
     }
 
+    @RequestMapping("/view/visited")
+    public ResponseEntity<ResponseBody> visited(@RequestParam Long siteId){
+        try{
+            siteService.visitOnce(siteId);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
+        }
+    }
+
 }

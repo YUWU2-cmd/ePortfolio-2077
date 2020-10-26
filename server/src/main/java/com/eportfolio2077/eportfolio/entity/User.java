@@ -16,7 +16,14 @@ public class User {
     private String password;
     private String profilePicture;
     private boolean enable;
+    private Integer phoneNumber;
+    private String linkedinLink;
+    private String facebookLink;
+    private String twitterLink;
+    private String instagramLink;
     private String verifycode;
+    private String firstName;
+    private String lastName;
 
     public User() {}
 

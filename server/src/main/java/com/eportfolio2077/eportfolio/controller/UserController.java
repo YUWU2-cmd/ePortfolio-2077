@@ -5,6 +5,7 @@ package com.eportfolio2077.eportfolio.controller;
 import com.eportfolio2077.eportfolio.common.ResponseBody;
 import com.eportfolio2077.eportfolio.dto.LoginDto;
 import com.eportfolio2077.eportfolio.dto.RegisterDto;
+import com.eportfolio2077.eportfolio.dto.UserDetailsDto;
 import com.eportfolio2077.eportfolio.dto.UserDto;
 import com.eportfolio2077.eportfolio.entity.User;
 import com.eportfolio2077.eportfolio.service.*;
@@ -91,6 +92,7 @@ public class UserController {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.serverError());
         }
     }
@@ -132,6 +134,16 @@ public class UserController {
             imagePath = awss3Service.uploadFile(image);
             userService.changeProfile(userId, imagePath);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(imagePath));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
+        }
+    }
+
+    @RequestMapping("/update/details")
+    public ResponseEntity<ResponseBody> updateDetails(@RequestBody UserDetailsDto userDetailsDto){
+        try{
+            userService.updateDetails(userDetailsDto);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.uploadFail());
         }
