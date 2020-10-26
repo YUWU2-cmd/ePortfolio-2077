@@ -216,3 +216,18 @@ add column TwitterLink varchar(1000);
 
 alter table User
 add column InstagramLink varchar(1000);
+
+alter table User
+drop column LinkdeinLink;
+
+alter table User
+add column LinkedinLink varchar(1000);
+
+alter table User
+add column FirstName varchar(200);
+
+alter table User
+add column LastName varchar(200);
+
+alter table Site 
+add column Visit int;
