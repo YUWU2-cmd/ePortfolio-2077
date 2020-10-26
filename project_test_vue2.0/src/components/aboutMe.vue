@@ -1,6 +1,6 @@
 <template>
         <div class="body-wrapper" id="aboutme-body">
-            <div class="left-body"><i class="iconfont icon-setting" style="margin-left:240%; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i></div>
+            <div class="left-body"><i v-show="!isViewerMode" class="iconfont icon-setting" style="margin-left:240%; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i></div>
             
             <div class="content-wrapper">
                 <div class="banner">
@@ -28,6 +28,18 @@
                         {{aboutMeForm.aboutme}}
                     </p>
                 </div> 
+                <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true">Share Link</el-button>
+
+                <el-dialog
+                title="Share Link"
+                :visible.sync="dialogVisible"
+                width="30%"
+                >
+                <span>localhost:8081/?#/classic/{{aboutMeForm.siteId}}</span>
+                <span slot="footer" class="dialog-footer">
+                    <el-button type="primary" @click="dialogVisible = false">Close</el-button>
+                </span>
+                </el-dialog>
             </div>
         </div>
 </template>
@@ -42,10 +54,13 @@ export default {
                 siteId:''
             },
             profilePic: '',
-            username: ''
+            username: '',
+            dialogVisible : false,
+            isViewerMode : false
         }
     },
     created() {
+            this.verifyViewerMode()
             this.getAboutData()
             this.getUserData()
     },
@@ -59,14 +74,32 @@ export default {
          goSetting(){
             this.$router.push('/classic/aboutMeSetting')
         },
+        verifyViewerMode(){
+            if(typeof(this.$route.params.id) != "undefined"){ 
+                this.isViewerMode = true 
+            }
+        },
         async getUserData() {
-            const { data: re } = await this.$http.get('/api/user/logged')
-            if (re.message != "Success!") return this.$message.error('get logged fail！')
-            this.profilePic = re.obj.profilePic
-            this.username = re.obj.username
+            if(this.isViewerMode){
+                 var temp = {siteId: this.aboutMeForm.siteId}
+                var data2 = this.$qs.stringify(temp)
+                const { data: re } = await this.$http.post('/api/dashboard/fetch',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+                if (re.message != "Success!") return this.$message.error('get logged fail！')
+                this.profilePic = re.obj.user.profilePicture
+                this.username = re.obj.user.username
+            }else{
+                const { data: re } = await this.$http.get('/api/user/logged')
+                if (re.message != "Success!") return this.$message.error('get logged fail！')
+                this.profilePic = re.obj.profilePic
+                this.username = re.obj.username
+            }
+            
         },
         async getAboutData() {
-            this.aboutMeForm.siteId = window.localStorage.getItem("nowSiteId")
+            if(this.isViewerMode == true){
+                this.aboutMeForm.siteId = this.$route.params.id
+            }else{this.aboutMeForm.siteId = window.localStorage.getItem("nowSiteId")}
+            
             var tem = {siteId: this.aboutMeForm.siteId}
             var data1 = this.$qs.stringify(tem)
             console.log(data1)

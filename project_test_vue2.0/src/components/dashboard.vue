@@ -149,6 +149,7 @@ export default {
             
         },
         async loadIform(){
+            console.log(this.$route.params.id)
             const { data: re } = await this.$http.get('/api/dashboard/load')
             if (re.message != "Success!") return this.$message.error('get load fail！')
             this.portfolioList = re.obj
