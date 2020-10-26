@@ -7,7 +7,7 @@
                 <div class="blue-dot"></div>
                 <div class="title">Projects</div>
             </div>
-            <p class="intro">{{projectForm.summary}}</p>
+            <div class="intro">{{projectForm.summary}}</div>
         </div>
         <div class="project-wrapper">
             <div class="project" id="proj1">
@@ -145,12 +145,16 @@ export default {
     margin-left: 8px;
 }
 #projects-body .title-wrapper .intro{
+    display: block;
     font-size: 17px;
     line-height: 1.5em;
+    height: 7.5em;
     text-align: center;
     width: 668px;
     margin: 0 auto;
     color: #000000bd;
+    word-wrap:break-word;
+    overflow: hidden;
 }
 #projects-body .project-wrapper{
     width: 750px;
@@ -208,6 +212,7 @@ export default {
     line-height: 1.5em;
     color: #000000b9;
     margin: 30px auto 0;
+    word-wrap:break-word;
 }
 
 </style>

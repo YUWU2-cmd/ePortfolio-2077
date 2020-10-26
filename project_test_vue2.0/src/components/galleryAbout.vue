@@ -67,6 +67,7 @@ export default {
     width: 100%;
     height: 800px;
     text-align: center;
+    word-wrap: break-word;
 }
 #about-body .profile-img{
     display: block;

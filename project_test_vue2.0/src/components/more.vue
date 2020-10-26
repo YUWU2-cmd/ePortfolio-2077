@@ -315,6 +315,7 @@ export default {
     padding: 60px 20px 0;
     overflow: hidden;
     color: #000000ca;
+    word-wrap: break-word;
 }
 .expertise-wrapper .expertises1,
 .expertise-wrapper .expertises2{

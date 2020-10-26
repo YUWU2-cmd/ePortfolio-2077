@@ -421,7 +421,7 @@ export default {
     line-height: 1.5;
     background-color: #f9fafa;
     color: #414141;
-
+    word-wrap: break-word;
 }
 .selected{
     color: #0051ffad!important;

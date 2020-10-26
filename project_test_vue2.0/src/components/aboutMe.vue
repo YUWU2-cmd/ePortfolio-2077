@@ -121,6 +121,7 @@ export default {
     height: 800px;
     background-color: #fff;
     display: block;
+    word-wrap:break-word;
 }
 #aboutme-body .left-body{
     height: 100%;
