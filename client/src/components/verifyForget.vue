@@ -17,10 +17,10 @@
                 verify your email
             </div>
             <div class="subtitle">
-                Last step of signup!
+                Before go to reset the password
             </div>
             <div class="description">
-                Fill out your email address and verify code from sended email. You'll complete signup. 
+                Fill out your email address and verify code from sended email. You'll access to reset your password. 
             </div>
             <!-- 登录表单区域, 这里使用了vbind的：号，绑定了elform的model属性 -->
             <!-- rules和prop属性都是校验相关的。
@@ -84,7 +84,7 @@ export default {
         //   1.1 项目中出了登录之外的其他API接口，必须在登录之后才能访问
         //   1.2 token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中
         // 2. 通过编程式导航跳转到后台主页，路由地址是 /home
-        this.$router.push('/Login')
+        this.$router.push('/reset')
       })
     }
   }
