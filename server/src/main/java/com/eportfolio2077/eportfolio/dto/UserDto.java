@@ -10,6 +10,7 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private int phoneNumber;
+    private String email;
     private String linkedinLink;
     private String facebookLink;
     private String twitterLink;
@@ -27,5 +28,6 @@ public class UserDto {
         this.twitterLink=user.getTwitterLink();
         this.instagramLink=user.getInstagramLink();
         this.userId=user.getUserId();
+        this.email=user.getEmail();
     }
 }
