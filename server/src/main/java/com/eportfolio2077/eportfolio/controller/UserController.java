@@ -91,7 +91,18 @@ public class UserController {
             }else{
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
             }
-        } catch (Exception e) {
+        }catch (NullPointerException nullPointerException){
+
+            User user = userService.loginCheck(loginDto);
+
+            if(user!=null){
+                //set cookies
+                cookieUtil.setCookie(user.getUserId(),response);
+                return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success(new UserDto(user)));
+            }else{
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseBody.loginFail());
+            }
+        }catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.serverError());
         }
