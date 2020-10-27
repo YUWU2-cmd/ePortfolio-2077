@@ -22,7 +22,7 @@ public class UserDto {
         this.profilePic=user.getProfilePicture();
         this.firstName=user.getFirstName();
         this.lastName=user.getLastName();
-        this.phoneNumber=user.getPhoneNumber();
+        this.phoneNumber=user.getPhoneNumber()==null?12345678:user.getPhoneNumber();
         this.linkedinLink=user.getLinkedinLink();
         this.facebookLink=user.getFacebookLink();
         this.twitterLink=user.getTwitterLink();
