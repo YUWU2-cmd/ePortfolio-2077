@@ -29,7 +29,7 @@
                 <!-- 用户名 -->
                 <span>Email Address</span> 
                 <el-form-item prop="email">
-                <el-input class="input" v-model="verifyForm.email" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email-fill"></el-input>
+                <el-input class="input" v-model="verifyForm.email" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email1"></el-input>
                 </el-form-item>
                  
                 <span>Verify Code</span> 

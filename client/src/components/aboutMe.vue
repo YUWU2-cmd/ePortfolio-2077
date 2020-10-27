@@ -15,10 +15,10 @@
                     <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true" class="share-link">Share Link</el-button>
                     <div class="footer">
                         <div class="content">
-                            <a href="https://www.facebook.com/" target="_blank"><i class="iconfont icon-facebook1"></i></a>
-                            <a href="https://twitter.com/" target="_blank"><i class="iconfont icon-twitter"></i></a>
-                            <a href="https://www.instagram.com" target="_blank"><i class="iconfont icon-instagram"></i></a>
-                            <a href="https://www.linkedin.com/" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
+                            <a :href="'https://'+facebookLink" target="_blank"><i class="iconfont icon-facebook1"></i></a>
+                            <a :href="'https://'+twitterLink" target="_blank"><i class="iconfont icon-twitter"></i></a>
+                            <a :href="'https://'+instagramLink" target="_blank"><i class="iconfont icon-instagram"></i></a>
+                            <a :href="'https://'+linkedinLink" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
                         </div>
                     </div>
                 </div>
@@ -55,6 +55,10 @@ export default {
             },
             profilePic: '',
             username: '',
+            linkedinLink: "",
+            facebookLink: "",
+            twitterLink: "",
+            instagramLink: "",
             dialogVisible : false,
             isViewerMode : false
         }
@@ -107,6 +111,10 @@ export default {
             if (r.message != "Success!") return this.$message.error('get about fail！')
             this.aboutMeForm.aboutme = r.obj.aboutMe
             this.aboutMeForm.bio = r.obj.bio
+            this.linkedinLink = r.obj.user.linkedinLink
+            this.facebookLink = r.obj.user.facebookLink
+            this.twitterLink = r.obj.user.twitterLink
+            this.instagramLink = r.obj.user.instagramLink
         }
     }
 }

@@ -146,20 +146,20 @@
         <div class="left-content">
             <div class="title">I'd love to hear from you.</div>
             <div class="socialmedia">
-                <a href="https://www.facebook.com/" target="_blank"><i class="iconfont icon-facebook1"></i></a>
-                <a href="https://twitter.com/" target="_blank"><i class="iconfont icon-twitter"></i></a>
-                <a href="https://www.instagram.com" target="_blank"><i class="iconfont icon-instagram"></i></a>
-                <a href="https://www.linkedin.com/" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
+                <a :href="'https://'+facebookLink" target="_blank"><i class="iconfont icon-facebook1"></i></a>
+                <a :href="'https://'+twitterLink" target="_blank"><i class="iconfont icon-twitter"></i></a>
+                <a :href="'https://'+instagramLink" target="_blank"><i class="iconfont icon-instagram"></i></a>
+                <a :href="'https://'+linkedinLink" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
             </div>
         </div>
         <div class="right-content">
-            <div class="email">John@studen.unimelb.edu.au</div>
-            <div class="phone">0123-456-789</div>
+            <div class="email">{{email}}</div>
+            <div class="phone">{{phoneNumber}}</div>
             <a @click="backtop()" class="btn">
                 <div>Back to Top</div>
             </a>
         </div>
-        <div class="views">Views: {{views}}</div>
+        <div v-show="!isViewerMode" class="views">Views: {{views}}</div>
     </div>
 
     </div>
@@ -173,7 +173,7 @@ export default {
             profilePic: '',
             bio: '',
             aboutMe: '',
-            views: 10,
+            views: '',
             aboutedForm: {
                 education:{schoolName: "",
                             business: "True",
@@ -247,6 +247,13 @@ export default {
            },
            isViewerMode : false,
            dialogVisible : false,
+           phoneNumber: '',
+           email: '',
+           linkedinLink: "",
+           facebookLink: "",
+            twitterLink: "",
+            instagramLink: "",
+           siteId: ''
         }
         
     },
@@ -262,6 +269,7 @@ export default {
         verifyViewerMode(){
             if(typeof(this.$route.params.id) != "undefined"){ 
                 this.isViewerMode = true 
+                this.countVisited()
             }
         },
         goSetting(){
@@ -399,12 +407,36 @@ export default {
                 if (re.message != "Success!") return this.$message.error('get logged fail！')
                 this.profilePic = re.obj.user.profilePicture
                 this.username = re.obj.user.username
+                this.phoneNumber = re.obj.user.phoneNumber
+                this.email = re.obj.user.email
+                this.linkedinLink = re.obj.user.linkedinLink
+                this.facebookLink = re.obj.user.facebookLink
+                this.twitterLink = re.obj.user.twitterLink
+                this.instagramLink = re.obj.user.instagramLink
             }else{
                 const { data: re } = await this.$http.get('/api/user/logged')
                 if (re.message != "Success!") return this.$message.error('get logged fail！')
                 this.profilePic = re.obj.profilePic
                 this.username = re.obj.username
+
+                var tempid = {siteId: window.localStorage.getItem("nowSiteId")}
+                var data5 = this.$qs.stringify(tempid)
+                const { data: rere } = await this.$http.post('/api/dashboard/fetch',data5, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+                if (rere.message != "Success!") return this.$message.error('get logged fail！')
+                this.views = rere.obj.visit
+                this.phoneNumber = rere.obj.user.phoneNumber
+                this.email = rere.obj.user.email
+                this.linkedinLink = rere.obj.user.linkedinLink
+                this.facebookLink = rere.obj.user.facebookLink
+                this.twitterLink = rere.obj.user.twitterLink
+                this.instagramLink = rere.obj.user.instagramLink
             }
+        },
+        async countVisited() {
+                var temvis = {siteId: this.$route.params.id}
+                var data4 = this.$qs.stringify(temvis)
+                const { data: vis } = await this.$http.post('/api/home/view/visited',data4, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+                if (vis.message != "Success!") return this.$message.error('count visited fail！')
         },
         goDashboard() {
             this.$router.push('/dashboard')

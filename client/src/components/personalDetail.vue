@@ -33,15 +33,15 @@
                 <div class="info">
                     <div class="acc">
                         <span class="text">First Name</span>
-                        <span class="acc-input"><el-input v-model="firstname" placeholder="Enter your first name" suffix-icon="el-icon-user-solid"></el-input></span>
+                        <span class="acc-input"><el-input v-model="detailForm.firstName" placeholder="Enter your first name" suffix-icon="el-icon-user-solid"></el-input></span>
                     </div>
                     <div class="acc">
                         <span class="text">Last Name</span>
-                        <span class="acc-input"><el-input v-model="lastname" placeholder="Enter your last name" suffix-icon="el-icon-user"></el-input></span>
+                        <span class="acc-input"><el-input v-model="detailForm.lastName" placeholder="Enter your last name" suffix-icon="el-icon-user"></el-input></span>
                     </div>
                     <div class="acc">
                         <span class="text">Email</span>
-                        <span class="acc-input"><el-input v-model="email" placeholder="Enter your email" suffix-icon="el-icon-message"></el-input></span>
+                        <span class="acc-input">{{resetForm.email}}</span>
                     </div>
                 </div>
                 <div class="profile-img">
@@ -64,12 +64,12 @@
             <div class="content">
                     <div class="acc">
                         <span class="text">Phone Number</span>
-                        <span class="acc-input"><el-input v-model="phone" placeholder="Enter your phone number" suffix-icon="el-icon-phone"></el-input></span>
+                        <span class="acc-input"><el-input v-model="detailForm.phoneNumber" placeholder="Enter your phone number" suffix-icon="el-icon-phone"></el-input></span>
                     </div>
                     <div class="acc">
                         <span class="text">Password</span>
-                        <span class="acc-input"><el-input v-model="password" placeholder="Enter your Password" show-password suffix-icon="el-icon-lock"></el-input></span>
-                        <span class="btn"><el-button type="primary" plain round>Edit Password</el-button></span>
+                        <span class="acc-input"><el-input v-model="resetForm.password" placeholder="Enter your new Password" show-password suffix-icon="el-icon-lock"></el-input></span>
+                        <span class="btn"><el-button type="primary" plain round @click="resetPassword">Edit Password</el-button></span>
                     </div>
             </div>
         </div>
@@ -79,25 +79,26 @@
                     <div class="acc">
                         <span class="iconfont icon-linkedin"></span>
                         <span class="text">Linkedin</span>
-                        <span class="acc-input"><el-input v-model="linkedin" placeholder="Enter your Linkedin address" suffix-icon="el-icon-location-outline"></el-input></span>
+                        <span class="acc-input"><el-input v-model="detailForm.linkedinLink" placeholder="Enter your Linkedin address" suffix-icon="el-icon-location-outline"></el-input></span>
                     </div>
                     <div class="acc">
                         <span class="iconfont icon-facebook1"></span>
                         <span class="text">Facebook</span>
-                        <span class="acc-input"><el-input v-model="facebook" placeholder="Enter your Facebook address" suffix-icon="el-icon-location-outline"></el-input></span>
+                        <span class="acc-input"><el-input v-model="detailForm.facebookLink" placeholder="Enter your Facebook address" suffix-icon="el-icon-location-outline"></el-input></span>
                     </div>
                     <div class="acc">
                         <span class="iconfont icon-twitter"></span>
                         <span class="text">Twitter</span>
-                        <span class="acc-input"><el-input v-model="twitter" placeholder="Enter your Twitter address" suffix-icon="el-icon-location-outline"></el-input></span>
+                        <span class="acc-input"><el-input v-model="detailForm.twitterLink" placeholder="Enter your Twitter address" suffix-icon="el-icon-location-outline"></el-input></span>
                     </div>
                     <div class="acc">
                         <span class="iconfont icon-instagram"></span>
                         <span class="text">Instagram</span>
-                        <span class="acc-input"><el-input v-model="ins" placeholder="Enter your Instagram address" suffix-icon="el-icon-location-outline"></el-input></span>
+                        <span class="acc-input"><el-input v-model="detailForm.instagramLink" placeholder="Enter your Instagram address" suffix-icon="el-icon-location-outline"></el-input></span>
                     </div>
             </div>
         </div>
+        <el-button type="primary" style="margin-left: 40%; margin-top: 80px" plain @click="uploadDetail">upload</el-button>
     </div>
         
 
@@ -111,15 +112,30 @@ export default {
         return {
             firstname: 'John',
             lastname: 'Wick',
-            email: 'john@student.unimelb.edu.au',
+            resetForm: {
+                email: '',
+                password: ''
+            },
+            
             phone: '0123-456-789',
-            password: 'dummypassword',
+            
             linkedin: 'https://www.linkedin.com/',
             facebook: 'https://www.facebook.com/',
             twitter: 'https://twitter.com/',
             ins: 'https://www.instagram.com',
             username: '',
             profilePic: '',
+            detailForm: {
+                firstName: "xie",
+                lastName: "yu",
+                phoneNumber: 2345577,
+                linkedinLink: "www.dsfs.com",
+                facebookLink: "www.facebook.com",
+                twitterLink: "www.twitter.com",
+                instagramLink: "www.ins.com",
+                userId: 3
+            }
+            
 
         }
     },
@@ -136,11 +152,31 @@ export default {
       handleSuccess(response, file, fileList) {
             this.$message.success('upload profile image success！')
         },
+        async uploadDetail(){
+            const { data: re } = await this.$http.post('/api/user/update/details',this.detailForm)
+            if (re.message != "Success!") return this.$message.error('upload detail fail！')
+            this.$message.success('upload detail success！')
+        },
       async getUserData() {
             const { data: res } = await this.$http.get('/api/user/logged')
             if (res.message != "Success!") return this.$message.error('get logged fail！')
             this.profilePic = res.obj.profilePic
             this.username = res.obj.username
+            this.detailForm.firstName = res.obj.firstName
+            this.detailForm.lastName = res.obj.lastName
+            this.detailForm.phoneNumber = res.obj.phoneNumber
+            this.detailForm.linkedinLink = res.obj.linkedinLink
+            this.detailForm.facebookLink = res.obj.facebookLink
+            this.detailForm.twitterLink = res.obj.twitterLink
+            this.detailForm.instagramLink = res.obj.instagramLink
+            this.detailForm.userId = res.obj.userId
+            this.resetForm.email = res.obj.email
+        },
+        async resetPassword(){
+            var data = this.$qs.stringify(this.resetForm)
+            const { status: r } = await this.$http.post('/api/user/change/password', data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (r != 200) return this.$message.error('reset fail！')
+            this.$message.success('reset success')
         }
     }
     

@@ -39,10 +39,10 @@
         <div class="footer">
             <div class="text">© All illustrations credit to Jean Jullien</div>
             <div class="icons">
-                <a href="https://www.facebook.com/" target="_blank"><i class="iconfont icon-facebook1"></i></a>
-                <a href="https://www.instagram.com" target="_blank"><i class="iconfont icon-instagram"></i></a>
-                <a href="https://www.pinterest.com/" target="_blank"><i class="iconfont icon-pinterest"></i></a>
-                <a href="https://twitter.com" target="_blank"><i class="iconfont icon-twitter"></i></a>
+                <a :href="'https://'+facebookLink" target="_blank"><i class="iconfont icon-facebook1"></i></a>
+                <a :href="'https://'+instagramLink" target="_blank"><i class="iconfont icon-instagram"></i></a>
+                <a :href="'https://'+linkedinLink" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
+                <a :href="'https://'+twitterLink" target="_blank"><i class="iconfont icon-twitter"></i></a>
             </div>
             
         </div>
@@ -57,6 +57,10 @@ export default {
             imageList1 : [],
             imageList2 : [],
             id: {siteId : ''},
+            linkedinLink: "",
+            facebookLink: "",
+            twitterLink: "",
+            instagramLink: "",
             isViewerMode : false,
             dialogVisible : false
         }
@@ -64,6 +68,7 @@ export default {
     created() {
             this.verifyViewerMode()
             this.loadImage()
+            this.getUserData()
     },
       methods:{
          goSetting(){
@@ -89,6 +94,19 @@ export default {
             }
             console.log(this.imageList1)
         },
+        async getUserData() {
+            if(this.isViewerMode == true){
+                this.siteId = this.$route.params.id
+            }else{this.siteId = window.localStorage.getItem("nowSiteId")}
+            var temp = {siteId: this.siteId}
+            var data2 = this.$qs.stringify(temp)
+            const { data: re } = await this.$http.post('/api/dashboard/fetch',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (re.message != "Success!") return this.$message.error('get logged fail！')
+            this.linkedinLink = re.obj.user.linkedinLink
+            this.facebookLink = re.obj.user.facebookLink
+            this.twitterLink = re.obj.user.twitterLink
+            this.instagramLink = re.obj.user.instagramLink
+        }
       }
 }
 </script>
