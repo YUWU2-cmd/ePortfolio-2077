@@ -66,9 +66,9 @@ export default {
      methods:{
          verifyViewerMode(){
             if(typeof(this.$route.params.id) != "undefined"){ 
-                console.log(3)
                 this.isViewerMode = true
                 this.siteId = this.$route.params.id 
+                this.countVisited()
             }
         },
         async getUserData() {
@@ -85,6 +85,12 @@ export default {
                 this.profilePic = re.obj.profilePic
                 this.username = re.obj.username
             }
+        },
+        async countVisited() {
+                var tem = {siteId: this.$route.params.id}
+                var data3 = this.$qs.stringify(tem)
+                const { data: res } = await this.$http.post('/api/home/view/visited',data3, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+                if (res.message != "Success!") return this.$message.error('count visited fail！')
         },
         goDashboard() {
             this.$router.push('/dashboard')

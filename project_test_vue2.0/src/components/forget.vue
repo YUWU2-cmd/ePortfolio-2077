@@ -29,7 +29,7 @@
                 <!-- 用户名 -->
                 <span>Email Address</span> 
                 <el-form-item prop="emailAdd">
-                <el-input class="input" v-model="forgetForm.emailAdd" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email-fill"></el-input>
+                <el-input class="input" v-model="forgetForm.emailAdd" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email1"></el-input>
                 </el-form-item>
               </el-form>
                 <!-- 按钮区域 -->

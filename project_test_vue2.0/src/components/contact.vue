@@ -35,13 +35,13 @@
         <div class="footer">
             <div class="email">
                 <div class="title">Email <i class="iconfont icon-22"></i></div>
-                <div class="content">john@student.unimelb.edu.au</div>
+                <div class="content">{{email}}</div>
             </div>
             <div class="call">
                 <div class="title">Call <i class="iconfont icon-dianhua"></i></div>
-                <div class="content">0123-456-789</div>
+                <div class="content">{{phoneNumber}}</div>
             </div>
-            <div class="views">Views: {{views}}</div>
+            <div v-show="!isViewerMode" class="views">Views: {{views}}</div>
         </div>
     </div>
     </div>
@@ -57,9 +57,37 @@ export default {
                 subject: '',
                 message: ''
             },
-            views:3
+            phoneNumber: '',
+            email: '',
+            isViewerMode : false,
+            views: '',
+            siteId: ''
         }
-    }
+        
+    },
+     created() {
+        this.verifyViewerMode()
+        this.getUserData()
+    },
+     methods:{
+         verifyViewerMode(){
+            if(typeof(this.$route.params.id) != "undefined"){ 
+                this.isViewerMode = true
+            }
+        },
+        async getUserData() {
+            if(this.isViewerMode == true){
+                this.siteId = this.$route.params.id
+            }else{this.siteId = window.localStorage.getItem("nowSiteId")}
+            var temp = {siteId: this.siteId}
+            var data2 = this.$qs.stringify(temp)
+            const { data: re } = await this.$http.post('/api/dashboard/fetch',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (re.message != "Success!") return this.$message.error('get logged fail！')
+            this.views = re.obj.visit
+            this.phoneNumber = re.obj.user.phoneNumber
+            this.email = re.obj.user.email
+        }
+     }
 }
 </script>
 

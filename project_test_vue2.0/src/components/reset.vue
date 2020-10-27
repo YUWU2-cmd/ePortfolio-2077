@@ -29,12 +29,12 @@
                 <!-- 用户名 -->
                 <span>Email Address</span> 
                 <el-form-item prop="email">
-                <el-input class="input" v-model="resetForm.email" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email-fill"></el-input>
+                <el-input class="input" v-model="resetForm.email" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email1"></el-input>
                 </el-form-item>
                  
                 <span>New Password</span> 
                 <el-form-item prop="password">
-                <el-input class="input" v-model="resetForm.password" placeholder="Fill in your Password"></el-input>
+                <el-input class="input" v-model="resetForm.password" placeholder="Fill in your Password" prefix-icon="iconfont icon-password"></el-input>
                 </el-form-item>
                 <!-- 按钮区域 -->
                 

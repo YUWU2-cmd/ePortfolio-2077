@@ -3,7 +3,7 @@
         <div class="body-wrapper" >
             <div class="icon-title"><i class="iconfont icon-zhifeiji1"></i></div>
             <div class="title">Contact</div>
-            <div class="info">jean@student.unimelb.edu.au | Tel: 123-456-7890</div>
+            <div class="info">{{email}} | Tel: {{phoneNumber}}</div>
             <div class="content-wrapper">
                 <div class="label">Enter Your Name *</div>
                 <div class="text-input">
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="views">Views: {{views}}</div>
+        <div v-show="!isViewerMode" class="views">Views: {{views}}</div>
     </div>
 </template>
 
@@ -37,12 +37,41 @@ export default {
             contactForm: {
                 name: '',
                 email: '',
-                phone: '',
+                subject: '',
                 message: ''
             },
-            views:8
+            phoneNumber: '',
+            email: '',
+            isViewerMode : false,
+            views: '',
+            siteId: ''
         }
+        
+    },
+     created() {
+        this.verifyViewerMode()
+        this.getUserData()
+    },
+     methods:{
+         verifyViewerMode(){
+            if(typeof(this.$route.params.id) != "undefined"){ 
+                this.isViewerMode = true
+            }
+        },
+        async getUserData() {
+                if(this.isViewerMode == true){
+                    this.siteId = this.$route.params.id
+                }else{this.siteId = window.localStorage.getItem("nowSiteId")}
+                var temp = {siteId: this.siteId}
+                var data2 = this.$qs.stringify(temp)
+                const { data: re } = await this.$http.post('/api/dashboard/fetch',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+                if (re.message != "Success!") return this.$message.error('get logged fail！')
+                this.views = re.obj.visit
+                this.phoneNumber = re.obj.user.phoneNumber
+                this.email = re.obj.user.email
+            }
     }
+     
 }
 </script>
 

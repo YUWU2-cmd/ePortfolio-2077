@@ -61,7 +61,7 @@ export default {
         // 验证用户名是否合法，trigger是触发方法，blur是表示键入标离开就触发
         username: [
           { required: true, message: 'Please enter username', trigger: 'blur' },
-          { min: 3, max: 20, message: 'Please enter vaild username', trigger: 'blur' }
+          { min: 3, max: 20, message: 'Username need 3 ~ 20 characters', trigger: 'blur' }
         ],
         // 验证密码是否合法
         password: [
