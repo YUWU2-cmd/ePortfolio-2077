@@ -21,7 +21,7 @@ public class User {
     private String facebookLink;
     private String twitterLink;
     private String instagramLink;
-    private String verifycode;
+    private String verifyCode;
     private String firstName;
     private String lastName;
 
@@ -33,7 +33,14 @@ public class User {
         this.password = password;
         this.profilePicture = null;
         this.enable = false;
-        this.verifycode = null;
+        this.verifyCode = null;
+        this.phoneNumber = null;
+        this.linkedinLink = null;
+        this.facebookLink = null;
+        this.twitterLink = null;
+        this.instagramLink = null;
+        this.firstName = null;
+        this.lastName = null;
     }
 
 

@@ -31,13 +31,13 @@ public class UserService {
     @Transactional
     public void updateVerifyCode(String email, String code){
         User user = userDao.getUserByEmail(email);
-        user.setVerifycode(code);
+        user.setVerifyCode(code);
         userDao.save(user);
     }
 
     @Transactional
     public boolean checkVerifyCode(String email, String code)throws Exception{
-        return code.equals(userDao.getUserByEmail(email).getVerifycode());
+        return code.equals(userDao.getUserByEmail(email).getVerifyCode());
     }
 
     @Transactional
