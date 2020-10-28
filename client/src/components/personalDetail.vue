@@ -110,29 +110,20 @@
 export default {
     data(){
         return {
-            firstname: 'John',
-            lastname: 'Wick',
             resetForm: {
                 email: '',
                 password: ''
-            },
-            
-            phone: '0123-456-789',
-            
-            linkedin: 'https://www.linkedin.com/',
-            facebook: 'https://www.facebook.com/',
-            twitter: 'https://twitter.com/',
-            ins: 'https://www.instagram.com',
+            },                        
             username: '',
             profilePic: '',
             detailForm: {
-                firstName: "xie",
-                lastName: "yu",
-                phoneNumber: 2345577,
-                linkedinLink: "www.dsfs.com",
-                facebookLink: "www.facebook.com",
-                twitterLink: "www.twitter.com",
-                instagramLink: "www.ins.com",
+                firstName: "",
+                lastName: "",
+                phoneNumber: '',
+                linkedinLink: "",
+                facebookLink: "",
+                twitterLink: "",
+                instagramLink: "",
                 userId: 3
             }
             

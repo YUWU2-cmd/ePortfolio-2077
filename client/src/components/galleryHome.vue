@@ -39,10 +39,10 @@
         <div class="footer">
             <div class="text">© All illustrations credit to Jean Jullien</div>
             <div class="icons">
-                <a :href="'https://'+facebookLink" target="_blank"><i class="iconfont icon-facebook1"></i></a>
-                <a :href="'https://'+instagramLink" target="_blank"><i class="iconfont icon-instagram"></i></a>
-                <a :href="'https://'+linkedinLink" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
-                <a :href="'https://'+twitterLink" target="_blank"><i class="iconfont icon-twitter"></i></a>
+                <a :href="facebookLink" target="_blank"><i class="iconfont icon-facebook1"></i></a>
+                <a :href="instagramLink" target="_blank"><i class="iconfont icon-instagram"></i></a>
+                <a :href="linkedinLink" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
+                <a :href="twitterLink" target="_blank"><i class="iconfont icon-twitter"></i></a>
             </div>
             
         </div>
