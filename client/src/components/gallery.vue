@@ -30,7 +30,7 @@
             </div>
         </div>
             <div class="user-tab" id="user-tab">
-                <div class="user-name">{{username}}</div>
+                <div class="user-name">{{firstName}} {{lastName}}</div>
                 <div class="nav-wrapper">
                     <div class="nav">
                         <router-link :to='"/gallery/galleryHome/"+siteId' class="nava"><div id="contact">Home</div></router-link>
@@ -51,7 +51,8 @@
 export default {
      data() {
         return{
-            username: '',
+            firstName: '',
+            lastName: '',
             profilePic: '',
             isViewerMode : false,
             siteId: ''
@@ -78,12 +79,14 @@ export default {
                 const { data: re } = await this.$http.post('/api/dashboard/fetch',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
                 if (re.message != "Success!") return this.$message.error('get logged fail！')
                 this.profilePic = re.obj.user.profilePicture
-                this.username = re.obj.user.username
+                this.firstName = re.obj.user.firstName
+                this.lastName = re.obj.user.lastName
             }else{
                 const { data: re } = await this.$http.get('/api/user/logged')
                 if (re.message != "Success!") return this.$message.error('get logged fail！')
                 this.profilePic = re.obj.profilePic
-                this.username = re.obj.username
+                this.firstName = re.obj.firstName
+                this.lastName = re.obj.lastName
             }
         },
         async countVisited() {
