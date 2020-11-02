@@ -143,6 +143,17 @@ public class HomeController {
         }
     }
 
+    @RequestMapping("/delete/img")
+    public ResponseEntity<ResponseBody> deleteImg(@RequestParam("siteId") Long siteId, @RequestParam("imageId") Long imageId){
+        try{
+            siteService.deleteImg(siteId, imageId);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
+        }catch(Exception e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseBody.serverError());
+        }
+    }
+
     @RequestMapping("/get/gallery/aboutpic")
     public ResponseEntity<ResponseBody> getAboutMePic(@RequestParam("siteId") Long siteId){
         try{

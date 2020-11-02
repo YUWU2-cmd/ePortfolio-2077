@@ -10,4 +10,5 @@ import java.util.List;
 public interface ImageDao extends JpaRepository<Image, Long> {
     List<Image> getAllBySiteId(Long siteId);
     void deleteAllBySiteId(Long siteId);
+    void deleteBySiteIdAndImageId(Long siteId, Long imageId);
 }

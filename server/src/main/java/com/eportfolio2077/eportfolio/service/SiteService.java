@@ -241,4 +241,9 @@ public class SiteService {
         site.setVisit(site.getVisit()+1);
         siteDao.save(site);
     }
+
+    @Transactional
+    public void deleteImg(Long siteId, Long imageId){
+        imageDao.deleteBySiteIdAndImageId(siteId,imageId);
+    }
 }
