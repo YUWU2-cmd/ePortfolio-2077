@@ -50,14 +50,14 @@
         <div class="left-content">
             <div class="title-wrapper">
                 <div class="hello">HELLO, I'M</div>
-                <h1 class="name">{{username}}.</h1>
+                <h1 class="name">{{firstName}} {{lastName}}.</h1>
                 <div class="subtitle">{{aboutedForm.education.degree}} Student</div>
             </div>
         </div>
         <div class="right-content">
             <i v-show="!isViewerMode" class="iconfont icon-setting" style="margin-left:90%; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="profile-img"><img :src="profilePic"></div>
-            <div class="name">{{username}}.</div>
+            <div class="name">{{firstName}} {{lastName}}.</div>
             <div class="subtitle">{{aboutedForm.education.degree}}. {{aboutedForm.education.schoolName}}</div>
             <div class="email">john@student.unimelb.edu.au</div>
             <div class="phone">0123-456-789</div>
@@ -146,10 +146,10 @@
         <div class="left-content">
             <div class="title">I'd love to hear from you.</div>
             <div class="socialmedia">
-                <a :href="'https://'+facebookLink" target="_blank"><i class="iconfont icon-facebook1"></i></a>
-                <a :href="'https://'+twitterLink" target="_blank"><i class="iconfont icon-twitter"></i></a>
-                <a :href="'https://'+instagramLink" target="_blank"><i class="iconfont icon-instagram"></i></a>
-                <a :href="'https://'+linkedinLink" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
+                <a :href="facebookLink" target="_blank"><i class="iconfont icon-facebook1"></i></a>
+                <a :href="twitterLink" target="_blank"><i class="iconfont icon-twitter"></i></a>
+                <a :href="instagramLink" target="_blank"><i class="iconfont icon-instagram"></i></a>
+                <a :href="linkedinLink" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
             </div>
         </div>
         <div class="right-content">
@@ -169,7 +169,8 @@
 export default {
      data() {
         return{
-            username: '',
+            firstName: '',
+            lastName: '',
             profilePic: '',
             bio: '',
             aboutMe: '',
@@ -406,7 +407,8 @@ export default {
                 const { data: re } = await this.$http.post('/api/dashboard/fetch',data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
                 if (re.message != "Success!") return this.$message.error('get logged fail！')
                 this.profilePic = re.obj.user.profilePicture
-                this.username = re.obj.user.username
+                this.firstName = re.obj.user.firstName
+                this.lastName = re.obj.user.lastName
                 this.phoneNumber = re.obj.user.phoneNumber
                 this.email = re.obj.user.email
                 this.linkedinLink = re.obj.user.linkedinLink
@@ -417,7 +419,8 @@ export default {
                 const { data: re } = await this.$http.get('/api/user/logged')
                 if (re.message != "Success!") return this.$message.error('get logged fail！')
                 this.profilePic = re.obj.profilePic
-                this.username = re.obj.username
+                this.firstName = re.obj.firstName
+                this.lastName = re.obj.lastName
 
                 var tempid = {siteId: window.localStorage.getItem("nowSiteId")}
                 var data5 = this.$qs.stringify(tempid)
