@@ -65,6 +65,16 @@ public class UserController {
         }
     }
 
+    @RequestMapping("/contact")
+    public ResponseEntity<ResponseBody> contact(@RequestParam("email") String email, @RequestParam("content") String content, @CookieValue(value = "userId") Long userId) {
+        try {
+            mailService.sendContactMail(userService.getUser(userId).getEmail(), content, email);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.wrongEmail());
+        }
+    }
+
     @RequestMapping("/signup")
     public ResponseEntity<ResponseBody> signup(@RequestBody RegisterDto registerDto) {
         try {
