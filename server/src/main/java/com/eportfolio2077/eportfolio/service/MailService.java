@@ -42,8 +42,8 @@ public class MailService {
     }
 
     public void sendContactMail(ContactDto contactDto) throws UnsupportedEncodingException, MessagingException {
-        String mailTo = contactDto.getViewerEmail();
-        String email = contactDto.getOwnerEmail();
+        String mailTo = contactDto.getOwnerEmail();
+        String email = contactDto.getViewerEmail();
         String name = contactDto.getName();
         String phoneNumber = Integer.toString(contactDto.getPhone());
         String content = contactDto.getContent();
