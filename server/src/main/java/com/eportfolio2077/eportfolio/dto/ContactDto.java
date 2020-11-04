@@ -7,6 +7,6 @@ public class ContactDto {
     private String viewerEmail;
     private String ownerEmail;
     private String name;
-    private String phone;
+    private int phone;
     private String content;
 }
