@@ -3,10 +3,7 @@ package com.eportfolio2077.eportfolio.controller;
 
 
 import com.eportfolio2077.eportfolio.common.ResponseBody;
-import com.eportfolio2077.eportfolio.dto.LoginDto;
-import com.eportfolio2077.eportfolio.dto.RegisterDto;
-import com.eportfolio2077.eportfolio.dto.UserDetailsDto;
-import com.eportfolio2077.eportfolio.dto.UserDto;
+import com.eportfolio2077.eportfolio.dto.*;
 import com.eportfolio2077.eportfolio.entity.User;
 import com.eportfolio2077.eportfolio.service.*;
 import com.eportfolio2077.eportfolio.utils.CookieUtil;
@@ -66,9 +63,9 @@ public class UserController {
     }
 
     @RequestMapping("/contact")
-    public ResponseEntity<ResponseBody> contact(@RequestParam("email") String email, @RequestParam("content") String content, @CookieValue(value = "userId") Long userId) {
+    public ResponseEntity<ResponseBody> contact(@RequestBody ContactDto contactDto) {
         try {
-            mailService.sendContactMail(userService.getUser(userId).getEmail(), content, email);
+            mailService.sendContactMail(contactDto);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseBody.success());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseBody.wrongEmail());

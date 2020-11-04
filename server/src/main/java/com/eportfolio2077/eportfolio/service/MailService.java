@@ -1,5 +1,6 @@
 package com.eportfolio2077.eportfolio.service;
 
+import com.eportfolio2077.eportfolio.dto.ContactDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -40,18 +41,26 @@ public class MailService {
 
     }
 
-    public void sendContactMail(String mailTo, String content, String email) throws UnsupportedEncodingException, MessagingException {
+    public void sendContactMail(ContactDto contactDto) throws UnsupportedEncodingException, MessagingException {
+        String mailTo = contactDto.getViewerEmail();
+        String email = contactDto.getOwnerEmail();
+        String name = contactDto.getName();
+        String phoneNumber = Integer.toString(contactDto.getPhone());
+        String content = contactDto.getContent();
         String subject = "Contact request from viewer";
-        String name = "The ePortfolio2077 Team";
+        String senderName = "The ePortfolio2077 Team";
 
-        String body = "<p>A viewer is interested in your portfolio(s) and use our service to inform you:<br>";
+        String body = "<p>Viewer " + name + "is interested in your portfolio(s) and use our service to inform you:<br>";
         body += content + "<br><br>";
-        body += "For more information, please contact the viewer's email" + email + ".</p>";
+        body += "For more information, please contact the following email or phone of the viewer<br>";
+        body += "Viewer: " + name + "<br>";
+        body += "Email: " + email + "<br>";
+        body += "Phone number: " + phoneNumber +"</p>";
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper ms = new MimeMessageHelper(message);
 
-        ms.setFrom(mailFrom,name);
+        ms.setFrom(mailFrom,senderName);
         ms.setTo(mailTo);
         ms.setSubject(subject);
         ms.setText(body, true);
