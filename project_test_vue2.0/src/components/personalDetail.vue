@@ -1,3 +1,4 @@
+<!-- user personal detail page -->
 <template>
     <div class="personal-detail-container">
         <div class="topbar-wrapper">
@@ -30,6 +31,7 @@
         <div class="basic-info">
             <div class="title">Basic Info</div>
             <div class="content">
+                <!-- basic info -->
                 <div class="info">
                     <div class="acc">
                         <span class="text">First Name</span>
@@ -57,6 +59,7 @@
                 </div>
             </div>
         </div>
+        <!-- additional info -->
         <div class="more-info">
             <div class="title">More Info</div>
             <div class="content">
@@ -71,6 +74,7 @@
                     </div>
             </div>
         </div>
+        <!-- social media links -->
         <div class="socialmedia-info">
             <div class="title">Social Media</div>
             <div class="content">

@@ -1,5 +1,6 @@
 <template>
     <div class="business-container">
+        <!-- topbar for eportfolio2077 website -->
         <div class="topbar-wrapper" id="topbar">
             <div class="topbar">
             
@@ -26,6 +27,7 @@
             </div>
         </div>
         <div class="user-tab">
+        <!-- navigation links to each section of the template -->
         <div class="nav">
             <a @click="jumpTo('#intro-page')"><div id="about">About</div></a>
             <a @click="jumpTo('#experience-page')"><div id="experience">Education&Experience</div></a>
@@ -33,7 +35,7 @@
             <a @click="jumpTo('#awards-page')"><div id="awards">Awards&Interests</div></a>
             <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true" class="share-link">Share Link</el-button>
         </div>
-
+                <!-- share link -->
                 <el-dialog
                 title="Share Link"
                 :visible.sync="dialogVisible"

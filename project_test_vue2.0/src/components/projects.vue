@@ -1,3 +1,4 @@
+<!-- projects page for classic template -->
 <template>
     <div id="projects-body">
     <div class="body-wrapper">

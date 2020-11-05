@@ -1,3 +1,4 @@
+<!-- contact page for classic template -->
 <template>
     <div id="contact-body">
         <div class="body-wrapper" >
@@ -7,6 +8,7 @@
                 <div class="title">Let's Talk!</div>
             </div>
         </div>
+        <!-- email content -->
         <div class="contact-form">
             <div class="form">
                 <div class="sender">
@@ -29,6 +31,7 @@
                 </div>
             </div>
         </div>
+        <!-- contact info -->
         <div class="footer">
             <div class="email">
                 <div class="title">Email <i class="iconfont icon-22"></i></div>

@@ -2,6 +2,7 @@
     <div id="home-body">
        <div class="body-wrapper">
         <div class="content-wrapper">
+            <!-- upload panel -->
             <el-upload
                     style="text-align: center"
                     action="/api/home/upload/img"
@@ -11,10 +12,11 @@
                     list-type="picture">
                     <el-button size="small" type="primary">Upload</el-button>
                     <div slot="tip" class="el-upload__tip">jpg/png only，500kb limit</div>
-                  </el-upload>
+            </el-upload>
         </div>
         <div class="footer">
             <div class="text">© All illustrations credit to Jean Jullien</div>
+            <!-- social media -->
             <div class="icons">
                 <a href="https://www.facebook.com/" target="_blank"><i class="iconfont icon-facebook1"></i></a>
                 <a href="https://www.instagram.com" target="_blank"><i class="iconfont icon-instagram"></i></a>

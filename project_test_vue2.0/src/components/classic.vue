@@ -1,13 +1,14 @@
 <template>
     <div class="classic-container">
-         <div class="topbar-wrapper">
-        <div class="topbar">
-            
-            <div class="topbar-main">
-                <div v-show="!isViewerMode" class="title" style="cursor: pointer" @click="goDashboard">
-                    ePortfolio 2077
+        <!-- topbar for eportfolio2077 website -->
+        <div class="topbar-wrapper">
+            <div class="topbar">
+                
+                <div class="topbar-main">
+                    <div v-show="!isViewerMode" class="title" style="cursor: pointer" @click="goDashboard">
+                        ePortfolio 2077
+                    </div>
                 </div>
-            </div>
 
             
 
@@ -38,6 +39,7 @@
                 </div>
             </div>
             <div class="nav-wrapper">
+                <!-- navigation tabs for each section of this template -->
                 <div class="nav">
                     <router-link :to='"/classic/contact/"+siteId' class="nava"><div id="contact">CONTACT</div></router-link>
                     <router-link :to='"/classic/projects/"+siteId' class="nava"><div id="projects">PROJECTS</div></router-link>

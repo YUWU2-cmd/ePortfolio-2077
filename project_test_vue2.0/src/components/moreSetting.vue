@@ -1,3 +1,4 @@
+<!-- moreaboutme setting page for classic template -->
 <template>
     <div id="more-body">
    <div class="body-wrapper">

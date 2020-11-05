@@ -1,5 +1,7 @@
+<!-- home page for gallery template -->
 <template>
     <div class="gallery-container">
+        <!-- topbar for eportfolio2077 website -->
         <div class="topbar-wrapper">
             <div class="topbar">
             

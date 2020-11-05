@@ -1,9 +1,11 @@
+<!-- aboutme setting page for classic template -->
 <template>
         <div class="body-wrapper" id="aboutme-body">
 
             <div class="left-body"></div>
             <div class="content-wrapper">
                 <div class="banner">
+                    <!-- basic info -->
                     <div class="main">
                         <div class="profile">
                             <img :src="profilePic" alt=""/>
@@ -13,6 +15,7 @@
                         <div class="subtitle"><el-input maxlength="20" placeholder="Please write something about yourself" v-model="aboutMeForm.bio"></el-input></div> 
                     </div>
                     <div class="footer">
+                        <!-- social media -->
                         <div class="content">
                             <a href="https://www.facebook.com/" target="_blank"><i class="iconfont icon-facebook1"></i></a>
                             <a href="https://twitter.com/" target="_blank"><i class="iconfont icon-twitter"></i></a>
@@ -32,7 +35,7 @@
                     v-model="aboutMeForm.aboutme"
                     show-word-limit>
                     </el-input>
-                     <el-button type="primary" style="margin-left: 70%; margin-top: 50%" plain @click="handleClick">upload</el-button>
+                    <el-button type="primary" style="margin-left: 70%; margin-top: 50%" plain @click="handleClick">upload</el-button>
                 </div> 
                 
             </div>

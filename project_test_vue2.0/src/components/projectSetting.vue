@@ -1,3 +1,4 @@
+<!-- project setting page for classic template -->
 <template>
     <div id="projects-body">
     <div class="body-wrapper">
@@ -24,6 +25,7 @@
                         <el-input maxlength="30" placeholder="your project name" v-model="projectForm.projects[0].projectName"></el-input>
                         <el-input maxlength="30" placeholder="your position in project" v-model="projectForm.projects[0].position"></el-input>
                     </div>
+                    <!-- project text description -->
                     <p class="content">
 
                         <el-input
@@ -37,6 +39,7 @@
                     </p>
                 </div>
                 <div class="right-content"> 
+                    <!-- project image -->
                     <el-upload
                         style="margin-top: 35px; padding-right: 10%"
                         action="/api/home/upload/img"
@@ -56,6 +59,7 @@
                          <el-input maxlength="30" placeholder="your project name" v-model="projectForm.projects[1].projectName"></el-input>
                         <el-input maxlength="30" placeholder="your position in project" v-model="projectForm.projects[1].position"></el-input>
                     </div>
+                    <!-- project text description -->
                     <p class="content">
 
                          <el-input
@@ -69,6 +73,7 @@
                     </p>
                 </div>
                 <div class="right-content">  
+                    <!-- project image -->
                         <el-upload
                             style="margin-top: 35px; padding-right: 10%"
                             action="/api/home/upload/img"
@@ -88,6 +93,7 @@
                         <el-input maxlength="30" placeholder="your project name" v-model="projectForm.projects[2].projectName"></el-input>
                         <el-input maxlength="30" placeholder="your position in project" v-model="projectForm.projects[2].position"></el-input>
                     </div>
+                    <!-- project text description -->
                     <p class="content">
 
                          <el-input
@@ -101,6 +107,7 @@
                     </p>
                 </div>
                 <div class="right-content">  
+                    <!-- project image -->
                     <el-upload
                         style="margin-top: 35px; padding-right: 10%"
                         action="/api/home/upload/img"
