@@ -56,7 +56,7 @@
                     
                        <i class="iconfont icon-21file" style=" margin: 5px 0px; cursor: pointer;bottom: 55px; left: 20%" @click.stop="handleRenameButton(index)"></i>
                        <span @click.stop="">
-                            <el-input v-if="inputFlagList[index]" v-model="name" class="site-name"  @blur.stop="handle_blur(index,item.siteId)"></el-input>
+                            <el-input v-if="inputFlagList[index]" v-model="name" class="site-name"  maxlength="16" @blur.stop="handle_blur(index,item.siteId)"></el-input>
                         </span>
                         <span v-if="!inputFlagList[index] && item.siteName!=null">{{item.siteName}}</span>
                         <span v-if="!inputFlagList[index] && item.siteName==null">{{item.template}} {{item.siteId}}</span>

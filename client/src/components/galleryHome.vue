@@ -17,20 +17,22 @@
             <i v-show="!isViewerMode" class="iconfont icon-setting" style="margin-left:98%; margin-bottom:30px; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i>
             <div class="left-content">
                 
-                <a v-for="item in imageList1"  href="javascript:;" class="description">
+                <a v-for="item in imageList1" class="description">
                     <div class="img-wrapper">
+                        <i v-show="!isViewerMode" class="el-icon-close" style="color: gray; font-size: 20px; transform: translate(2350%, 150%); cursor: pointer; " @click="handleDelete(item.imageId)"></i>
                         <img :src="item.imagePath" id="img3">
-                        <div class="img-title">I'm an image title.</div>
+                        
+                        
                     </div>
                 </a>
                 
             </div>
 
             <div class="right-content">
-                <a v-for="item in imageList2" href="javascript:;" class="description">
+                <a v-for="item in imageList2" class="description">
                     <div class="img-wrapper">
+                        <i v-show="!isViewerMode" class="el-icon-close" style="color: gray; font-size: 20px; transform: translate(2350%, 150%); cursor: pointer; " @click="handleDelete(item.imageId)"></i>
                         <img :src="item.imagePath" id="img2">
-                        <div class="img-title">I'm an image title.</div>
                     </div>
                 </a>
                 
@@ -86,13 +88,24 @@ export default {
             var sendData = this.$qs.stringify(this.id)
             const { data: res } = await this.$http.post('/api/home/get/img', sendData, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (res.message != "Success!") return this.$message.error('get load fail！')
+            var tempList1 = []
+            var tempList2 = []
             for(var i=0;i<res.obj.length;i= i+2){
-                this.imageList1.push(res.obj[i])
+                tempList1.push(res.obj[i])
             }
             for(var j=1;j<res.obj.length;j= j+2){
-                this.imageList2.push(res.obj[j])
+                tempList2.push(res.obj[j])
             }
-            console.log(this.imageList1)
+            this.imageList1 = tempList1
+            this.imageList2 = tempList2
+        },
+        async handleDelete(id){
+            var temp1 = {siteId: this.id.siteId, imageId: id}
+            var data1 = this.$qs.stringify(temp1)
+            const { data: r } = await this.$http.post('/api/home/delete/img',data1, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+            if (r.message != "Success!") return this.$message.error('delete fail！')
+            this.$message.success('delete success！')
+            this.loadImage()
         },
         async getUserData() {
             if(this.isViewerMode == true){
@@ -156,10 +169,9 @@ body,html{
     transform: translate(-50%, -50%);
     display: none;
 }
-#home-body .content-wrapper .img-wrapper img:hover{
-    opacity: 0.2;
-    transition: opacity .4s ease;
+#home-body .content-wrapper .img-wrapper img{
 }
+
 #home-body .content-wrapper .img-wrapper:hover .img-title{
     display: block;
     color: #414141;

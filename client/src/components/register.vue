@@ -41,7 +41,8 @@
                 </div>
         </div>
         <div class="footer">
-            <el-button type="text" @click="goLogin">go back login Page</el-button>
+            <el-button type="text" @click="goLogin" style="transform: translate(-5%, 0);">go back login Page</el-button>
+            <el-button type="text" @click="goVerify" style="transform: translate(-5%, 0);">Registered but not verified? Click here go to verify Page</el-button>
         </div>
         </div>
       </div>
@@ -78,6 +79,9 @@ export default {
   methods: {
     goLogin () {
       this.$router.replace('/login')
+    },
+    goVerify () {
+      this.$router.replace('/verify')
     },
     // 这个是予验证，检查当前内容格式是否符合验证规则
     register () {
@@ -164,7 +168,7 @@ export default {
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background-color: #eee;
+      background-color: rgb(255, 255, 255);
     }
   }
 }

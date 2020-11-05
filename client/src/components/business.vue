@@ -4,7 +4,7 @@
             <div class="topbar">
             
                 <div class="topbar-main">
-                    <div class="title" style="cursor: pointer" @click="goDashboard">
+                    <div v-show="!isViewerMode" class="title" style="cursor: pointer" @click="goDashboard">
                         ePortfolio 2077
                     </div>
                 </div>

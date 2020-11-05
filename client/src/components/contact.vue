@@ -12,23 +12,20 @@
                 <div class="sender">
                     <div class="name">
                         <div class="label">Name</div>
-                        <input v-model="contactForm.name" type="text">
+                        <input v-model="contactForm.name" type="text" maxlength="30">
                     </div>
                     <div class="email">
                         <div class="label">Email</div>
-                        <input v-model="contactForm.email" type="text">
+                        <input v-model="contactForm.viewerEmail" type="text" maxlength="40">
                     </div>
                 </div>
-                <div class="subject">
-                    <div class="label">Subject</div>
-                    <input v-model="contactForm.subject" type="text">
-                </div>
+                
                 <div class="message">
                     <div class="label">Message</div>
-                    <textarea v-model="contactForm.message" id="message-input"></textarea>
+                    <textarea v-model="contactForm.content" id="message-input" maxlength="400"></textarea>
                 </div>
                 <div class="send-btn">
-                    <button id="send" style="cursor: pointer;">SEND</button>
+                    <button id="send" style="cursor: pointer;" @click="send">SEND</button>
                 </div>
             </div>
         </div>
@@ -52,10 +49,11 @@ export default {
     data () {
         return {
             contactForm: {
+                viewerEmail: '',
+                ownerEmail: '',
                 name: '',
-                email: '',
-                subject: '',
-                message: ''
+                phone: '',
+                content: ''
             },
             phoneNumber: '',
             email: '',
@@ -86,7 +84,13 @@ export default {
             this.views = re.obj.visit
             this.phoneNumber = re.obj.user.phoneNumber
             this.email = re.obj.user.email
-        }
+        },
+        async send(){
+            this.contactForm.ownerEmail = this.email
+            const { data: res } = await this.$http.post('/api/user/contact',this.contactForm)
+            if (res.message != "Success!") return this.$message.error('upload fail！')
+            this.$message.success('upload success！')
+        },
      }
 }
 </script>

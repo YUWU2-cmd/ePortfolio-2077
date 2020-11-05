@@ -4,7 +4,7 @@
             <div class="topbar">
             
             <div class="topbar-main">
-                <div class="title">
+                <div class="title" style="cursor: pointer" @click="goDashboard">
                     ePortfolio 2077
                 </div>
             </div>
@@ -33,11 +33,11 @@
                 <div class="info">
                     <div class="acc">
                         <span class="text">First Name</span>
-                        <span class="acc-input"><el-input v-model="detailForm.firstName" placeholder="Enter your first name" suffix-icon="el-icon-user-solid"></el-input></span>
+                        <span class="acc-input"><el-input v-model="detailForm.firstName" placeholder="Enter your first name" maxlength="30" suffix-icon="el-icon-user-solid"></el-input></span>
                     </div>
                     <div class="acc">
                         <span class="text">Last Name</span>
-                        <span class="acc-input"><el-input v-model="detailForm.lastName" placeholder="Enter your last name" suffix-icon="el-icon-user"></el-input></span>
+                        <span class="acc-input"><el-input v-model="detailForm.lastName" placeholder="Enter your last name" maxlength="30" suffix-icon="el-icon-user"></el-input></span>
                     </div>
                     <div class="acc">
                         <span class="text">Email</span>
@@ -50,9 +50,7 @@
                         action="/api/user/change/profile"
                         list-type="picture-card"
                         :on-success="handleSuccess"
-                        :show-file-list="false"
-                        :on-preview="handlePictureCardPreview"
-                        :on-remove="handleRemove">
+                        :show-file-list="false">
                         <i class="el-icon-plus"></i>
                     </el-upload>
                     <div>Profile Image</div>
@@ -64,11 +62,11 @@
             <div class="content">
                     <div class="acc">
                         <span class="text">Phone Number</span>
-                        <span class="acc-input"><el-input v-model="detailForm.phoneNumber" placeholder="Enter your phone number" suffix-icon="el-icon-phone"></el-input></span>
+                        <span class="acc-input"><el-input v-model="detailForm.phoneNumber" placeholder="Enter your phone number" maxlength="20" suffix-icon="el-icon-phone"></el-input></span>
                     </div>
                     <div class="acc">
                         <span class="text">Password</span>
-                        <span class="acc-input"><el-input v-model="resetForm.password" placeholder="Enter your new Password" show-password suffix-icon="el-icon-lock"></el-input></span>
+                        <span class="acc-input"><el-input v-model="resetForm.password" placeholder="Enter your new Password" minlength="6" maxlength="15" show-password suffix-icon="el-icon-lock"></el-input></span>
                         <span class="btn"><el-button type="primary" plain round @click="resetPassword">Edit Password</el-button></span>
                     </div>
             </div>
@@ -134,14 +132,12 @@ export default {
         this.getUserData()
     },
      methods: {
-        handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
+
       handleSuccess(response, file, fileList) {
             this.$message.success('upload profile image success！')
+        },
+        goDashboard() {
+            this.$router.push('/dashboard')
         },
         async uploadDetail(){
             const { data: re } = await this.$http.post('/api/user/update/details',this.detailForm)
