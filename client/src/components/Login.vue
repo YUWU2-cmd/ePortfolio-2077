@@ -9,23 +9,20 @@
             </div>
         </div>
         <div class="login_box">
-            <!-- 头像区域 -->
+            <!-- logo -->
             <div class="avatar_box">
                 <img src="../assets/logo1.png" alt="">
             </div>
             <div class="title">
                 Login
             </div>
-            <!-- 登录表单区域, 这里使用了vbind的：号，绑定了elform的model属性 -->
-            <!-- rules和prop属性都是校验相关的。
-             ref是引用属性，下面js部分使用这个的会得到该属性的标签的对象 -->
              <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
-                <!-- 用户名 -->
+                <!-- email address -->
                 <span>Email Address</span> 
                 <el-form-item prop="email">
                 <el-input v-model="loginForm.email" placeholder="Fill in your email" prefix-icon="iconfont icon-email1"></el-input>
                 </el-form-item>
-                <!-- 密码 -->
+                <!-- password -->
                 <span>Password</span> 
                 <el-form-item prop="password">
                 <el-input v-model="loginForm.password" placeholder="Fill in your password" prefix-icon="iconfont icon-password" type="password"></el-input>
@@ -35,7 +32,7 @@
             <div class="forget">
                         <el-button type="text" @click="goFind">Forget your password?</el-button>
                 </div>
-                <!-- 按钮区域 -->
+                <!-- button -->
                 <div class="btn">
                     <button @click="login" type="submit">Login</button>
                 </div>
@@ -55,14 +52,13 @@ export default {
         email: '',
         password: ''
       },
-      // 这是表单的验证规则对象
+      // prevalidate rules
       loginFormRules: {
-        // 验证用户名是否合法，trigger是触发方法，blur是表示键入标离开就触发
+        // validate the input is legal or not
         email: [
           { required: true, message: 'Please enter email', trigger: 'blur' },
           { min: 3, max: 40, message: 'email need 3 ~ 40 characters', trigger: 'blur' }
         ],
-        // 验证密码是否合法
         password: [
           { required: true, message: 'Please enter password', trigger: 'blur' },
           { min: 6, max: 15, message: 'Password need 6 ~ 15 characters', trigger: 'blur' }
@@ -78,15 +74,14 @@ export default {
       this.$router.push('/forget')
     },
     
-    // 这个是予验证，检查当前内容格式是否符合验证规则
+    // prevalidate first. If the input follow the prevalidate rules, the method will send request
     login () {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
         const { status: res } = await this.$http.post('/api/user/login', this.loginForm)
         if (res != 200) return this.$message.error('login fail！')
         this.$message.success('login success!')
-         const { status: re } = await this.$http.get('/api/user/logged')
-        
+        //route to dashboard        
         this.$router.push('/dashboard')
       })
     }

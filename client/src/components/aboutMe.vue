@@ -1,9 +1,10 @@
+<!-- aboutme page for classic template -->
 <template>
         <div class="body-wrapper" id="aboutme-body">
             <div class="left-body"><i v-show="!isViewerMode" class="iconfont icon-setting" style="margin-left:240%; font-size: 25px; color: rgba(0,0,0,0.3); cursor: pointer" @click="goSetting"></i></div>
-            
             <div class="content-wrapper">
                 <div class="banner">
+                    <!-- basic info -->
                     <div class="main">
                         <div class="profile">
                             <img :src="profilePic" alt=""/>
@@ -13,6 +14,7 @@
                         <div class="subtitle">{{aboutMeForm.bio}}</div> 
                     </div>
                     <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true" class="share-link">Share Link</el-button>
+                    <!-- social media -->
                     <div class="footer">
                         <div class="content">
                             <a :href="facebookLink" target="_blank"><i class="iconfont icon-facebook1"></i></a>
@@ -29,7 +31,7 @@
                         {{aboutMeForm.aboutme}}
                     </p>
                 </div> 
-
+                <!-- enable share link -->
                 <el-dialog
                 title="Share Link"
                 :visible.sync="dialogVisible"
@@ -70,20 +72,17 @@ export default {
             this.getUserData()
     },
     methods:{
-        handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
+        //route to setting page
          goSetting(){
             this.$router.push('/classic/aboutMeSetting')
         },
+        //verify the page is in viewer mode or not
         verifyViewerMode(){
             if(typeof(this.$route.params.id) != "undefined"){ 
                 this.isViewerMode = true 
             }
         },
+        //get profile picture and name of the site owner
         async getUserData() {
             if(this.isViewerMode){
                  var temp = {siteId: this.aboutMeForm.siteId}
@@ -102,6 +101,7 @@ export default {
             }
             
         },
+        //get aboutme page's main content and user's social media links
         async getAboutData() {
             if(this.isViewerMode == true){
                 this.aboutMeForm.siteId = this.$route.params.id
@@ -109,7 +109,6 @@ export default {
             
             var tem = {siteId: this.aboutMeForm.siteId}
             var data1 = this.$qs.stringify(tem)
-            console.log(data1)
             const { data: r } = await this.$http.post('/api/dashboard/fetch',data1, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (r.message != "Success!") return this.$message.error('get about fail！')
             this.aboutMeForm.aboutme = r.obj.aboutMe

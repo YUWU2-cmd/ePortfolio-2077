@@ -1,5 +1,6 @@
 <template>
     <div class="business-container">
+        <!-- topbar for eportfolio2077 website -->
         <div class="topbar-wrapper" id="topbar">
             <div class="topbar">
             
@@ -26,6 +27,7 @@
             </div>
         </div>
         <div class="user-tab">
+        <!-- navigation links to each section of the template -->
         <div class="nav">
             <a @click="jumpTo('#intro-page')"><div id="about">About</div></a>
             <a @click="jumpTo('#experience-page')"><div id="experience">Education&Experience</div></a>
@@ -33,7 +35,7 @@
             <a @click="jumpTo('#awards-page')"><div id="awards">Awards&Interests</div></a>
             <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true" class="share-link">Share Link</el-button>
         </div>
-
+                <!-- share link -->
                 <el-dialog
                 title="Share Link"
                 :visible.sync="dialogVisible"
@@ -276,27 +278,28 @@ export default {
         goSetting(){
             this.$router.push('/businessSetting')
         },
+        //The implementation of scroll effect
         jumpTo(selector){
             // this.$el.querySelector(selector).scrollIntoView(true)
              let anchor = this.$el.querySelector(selector);
              //document.documentElement.scrollTop = anchor.offsetTop;
              let total = anchor.offsetTop;
 
-             // 平滑滚动，时长500ms，每10ms一跳，共50跳
-             // 获取当前滚动条与窗体顶部的距离
+             // scroll evenly, cost 500ms，every 10ms jump once，50 jumps in total
+             // get the distance between the scroll bar and the page top
              let distance = document.documentElement.scrollTop || document.body.scrollTop
-             // 计算每一小段的距离
+             // count every jumps' distance
              let step = total/50;
              (function smoothDown () {
                  if (distance < total) {
                      distance += step
-                 　　// 移动一小段
+                 　　// move a litte bit
                      document.body.scrollTop = distance
                      document.documentElement.scrollTop = distance
-                 　　// 设定每一次跳动的时间间隔为10ms
+                 　　// every 10ms jump once
                      setTimeout(smoothDown, 10)
                  } else {
-                 　　// 限制滚动停止时的距离
+                 　　// restrict stop distance
                      document.body.scrollTop = total
                      document.documentElement.scrollTop = total
                  }
@@ -313,7 +316,7 @@ export default {
             }
           },30)
       },
-
+        //get experience part's data
          async getExperienceData() {
             if(this.isViewerMode == true){
                 this.experienceForm.siteId = this.$route.params.id
@@ -327,6 +330,7 @@ export default {
                 this.experienceForm = aa.obj
             }
         },
+        //get education part's data
         async getEducationData() {
             if(this.isViewerMode == true){
                 this.educationForm.siteId = this.$route.params.id
@@ -340,6 +344,7 @@ export default {
                 this.educationForm = bb.obj
             }
         },
+        //get about part's data
       async getAboutData() {
             if(this.isViewerMode == true){
                 this.aboutedForm.siteId = this.$route.params.id
@@ -355,6 +360,7 @@ export default {
             }
             
         },
+        //get skill part's data
         async getSkillData() {
             if(this.isViewerMode == true){
                 this.skillForm.siteId = this.$route.params.id
@@ -363,6 +369,8 @@ export default {
             var data4 = this.$qs.stringify(skilltem)
             const { data: cc } = await this.$http.post('/api/home/get/business/skill',data4, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (cc.message != "Success!") return this.$message.error('get skill fail！')
+
+            //store returned data and prevent unexpect data be stored
             var tempArray1 = []
             var tempArray2 = []
             if(cc.obj.skillList.length != 0){
@@ -400,6 +408,7 @@ export default {
             }
             tempArray1 = []
         },
+        //get some basic information of the site owner
       async getUserData() {
             if(this.isViewerMode){
                 var temp = {siteId: this.$route.params.id}
@@ -435,6 +444,7 @@ export default {
                 this.instagramLink = rere.obj.user.instagramLink
             }
         },
+        //when the site is visted once, this method will be called and let server add the visit times number
         async countVisited() {
                 var temvis = {siteId: this.$route.params.id}
                 var data4 = this.$qs.stringify(temvis)

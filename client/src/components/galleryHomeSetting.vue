@@ -2,11 +2,10 @@
     <div id="home-body">
        <div class="body-wrapper">
         <div class="content-wrapper">
+            <!-- upload panel -->
             <el-upload
                     style="text-align: center"
                     action="/api/home/upload/img"
-                    :on-preview="handlePreview"
-                    :on-remove="handleRemove"
                     :data="{siteId: nowSiteId}"
                     list-type="picture">
                     <el-button size="small" type="primary">Upload</el-button>
@@ -15,6 +14,7 @@
         </div>
         <div class="footer">
             <div class="text">© All illustrations credit to Jean Jullien</div>
+            <!-- social media -->
             <div class="icons">
                 <a href="https://www.facebook.com/" target="_blank"><i class="iconfont icon-facebook1"></i></a>
                 <a href="https://www.instagram.com" target="_blank"><i class="iconfont icon-instagram"></i></a>
@@ -38,12 +38,7 @@ export default {
             this.getSiteId()
     },
     methods: {
-        handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
+        //get siteId
       getSiteId(){
           this.nowSiteId = window.localStorage.getItem("nowSiteId")
       }

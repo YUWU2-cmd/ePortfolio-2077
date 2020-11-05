@@ -1,9 +1,11 @@
+<!-- aboutme setting page for classic template -->
 <template>
         <div class="body-wrapper" id="aboutme-body">
 
             <div class="left-body"></div>
             <div class="content-wrapper">
                 <div class="banner">
+                    <!-- basic info -->
                     <div class="main">
                         <div class="profile">
                             <img :src="profilePic" alt=""/>
@@ -13,6 +15,7 @@
                         <div class="subtitle"><el-input maxlength="20" placeholder="Please write something about yourself" v-model="aboutMeForm.bio"></el-input></div> 
                     </div>
                     <div class="footer">
+                        <!-- social media -->
                         <div class="content">
                             <a href="https://www.facebook.com/" target="_blank"><i class="iconfont icon-facebook1"></i></a>
                             <a href="https://twitter.com/" target="_blank"><i class="iconfont icon-twitter"></i></a>
@@ -32,13 +35,14 @@
                     v-model="aboutMeForm.aboutme"
                     show-word-limit>
                     </el-input>
-                     <el-button type="primary" style="margin-left: 70%; margin-top: 50%" plain @click="handleClick">upload</el-button>
+                    <el-button type="primary" style="margin-left: 70%; margin-top: 50%" plain @click="handleClick">upload</el-button>
                 </div> 
                 
             </div>
            
         </div>
 </template>
+
 
 <script>
 export default {
@@ -61,24 +65,26 @@ export default {
         handleClick(){
             this.upload()
         },
+        //upload aboutMeForm
         async upload(){
+            //convert aboutMeForm to form type
             var data0 = this.$qs.stringify(this.aboutMeForm)
-            console.log(data0)
             const { data: res } = await this.$http.post('/api/home/update/classic/aboutme',data0, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (res.message != "Success!") return this.$message.error('upload fail！')
             this.$message.success('upload success！')
         },
+        //get profile picture and name of the site owner
         async getUserData() {
             const { data: re } = await this.$http.get('/api/user/logged')
             if (re.message != "Success!") return this.$message.error('get logged fail！')
             this.profilePic = re.obj.profilePic
             this.username = re.obj.username
         },
+        //get aboutme page's main content
         async getAboutData() {
             this.aboutMeForm.siteId = window.localStorage.getItem("nowSiteId")
             var tem = {siteId: this.aboutMeForm.siteId}
             var data1 = this.$qs.stringify(tem)
-            console.log(data1)
             const { data: r } = await this.$http.post('/api/dashboard/fetch',data1, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (r.message != "Success!") return this.$message.error('get about fail！')
             this.aboutMeForm.aboutme = r.obj.aboutMe

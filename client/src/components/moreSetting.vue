@@ -1,3 +1,4 @@
+<!-- moreaboutme setting page for classic template -->
 <template>
     <div id="more-body">
    <div class="body-wrapper">
@@ -182,6 +183,7 @@ export default {
             this.getSkillData()
     },
      methods:{
+         //different button need call different upload function
          upload(sth){
              if(sth =='ex'){
                  this.uploadex()
@@ -191,24 +193,28 @@ export default {
                  this.uploadsk()
              }
          },
+          //upload experience part's data
         async uploadex(){
             this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")
             const { data: a } = await this.$http.post('/api/home/update/classic/experience',this.experienceForm)
             if (a.message != "Success!") return this.$message.error('upload fail！')
             this.$message.success('upload success！')
         },
+         //upload education part's data
         async uploaded(){
             this.educationForm.siteId = window.localStorage.getItem("nowSiteId")
             const { data: b } = await this.$http.post('/api/home/update/classic/education',this.educationForm)
             if (b.message != "Success!") return this.$message.error('upload fail！')
             this.$message.success('upload success！')
         },
+         //upload skill part's data
         async uploadsk(){
             this.skillForm.siteId = window.localStorage.getItem("nowSiteId")
             const { data: c } = await this.$http.post('/api/home/update/classic/skill',this.skillForm)
             if (c.message != "Success!") return this.$message.error('upload fail！')
             this.$message.success('upload success！')
         },
+         //get experience part's data
         async getExperienceData() {
             this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")
             var extem = {siteId: this.experienceForm.siteId}
@@ -220,6 +226,7 @@ export default {
                 this.experienceForm = aa.obj
             }
         },
+         //get education part's data
         async getEducationData() {
             this.educationForm.siteId = window.localStorage.getItem("nowSiteId")
             var edtem = {siteId: this.educationForm.siteId}
@@ -231,6 +238,7 @@ export default {
                 this.educationForm = bb.obj
             }
         },
+         //get skill part's data
         async getSkillData() {
             this.skillForm.siteId = window.localStorage.getItem("nowSiteId")
             var sktem = {siteId: this.skillForm.siteId}
@@ -238,6 +246,8 @@ export default {
            
             const { data: cc } = await this.$http.post('/api/home/get/classic/skill',data3, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (cc.message != "Success!") return this.$message.error('get about fail！')
+
+            //store returned data and prevent unexpect data be stored
             if(cc.obj.proList.length != 0 && cc.obj.addList.length != 0){
                 var tempArray1 = []
                 var tempArray2 = []

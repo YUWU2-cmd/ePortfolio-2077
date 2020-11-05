@@ -1,3 +1,4 @@
+<!-- project setting page for classic template -->
 <template>
     <div id="projects-body">
     <div class="body-wrapper">
@@ -24,6 +25,7 @@
                         <el-input maxlength="30" placeholder="your project name" v-model="projectForm.projects[0].projectName"></el-input>
                         <el-input maxlength="30" placeholder="your position in project" v-model="projectForm.projects[0].position"></el-input>
                     </div>
+                    <!-- project text description -->
                     <p class="content">
 
                         <el-input
@@ -37,12 +39,11 @@
                     </p>
                 </div>
                 <div class="right-content"> 
+                    <!-- project image -->
                     <el-upload
                         style="margin-top: 35px; padding-right: 10%"
                         action="/api/home/upload/img"
                         :on-success="handleSuccess1"
-                        :on-preview="handlePreview"
-                        :on-remove="handleRemove"
                         :data="{siteId: projectForm.siteId}"
                         list-type="picture">
                         <el-button style="margin-left: 50px" size="small" type="primary">Upload</el-button>
@@ -56,6 +57,7 @@
                          <el-input maxlength="30" placeholder="your project name" v-model="projectForm.projects[1].projectName"></el-input>
                         <el-input maxlength="30" placeholder="your position in project" v-model="projectForm.projects[1].position"></el-input>
                     </div>
+                    <!-- project text description -->
                     <p class="content">
 
                          <el-input
@@ -69,12 +71,11 @@
                     </p>
                 </div>
                 <div class="right-content">  
+                    <!-- project image -->
                         <el-upload
                             style="margin-top: 35px; padding-right: 10%"
                             action="/api/home/upload/img"
                             :on-success="handleSuccess2"
-                            :on-preview="handlePreview"
-                            :on-remove="handleRemove"
                             :data="{siteId: projectForm.siteId}"
                             list-type="picture">
                             <el-button style="margin-left: 50px" size="small" type="primary">Upload</el-button>
@@ -88,6 +89,7 @@
                         <el-input maxlength="30" placeholder="your project name" v-model="projectForm.projects[2].projectName"></el-input>
                         <el-input maxlength="30" placeholder="your position in project" v-model="projectForm.projects[2].position"></el-input>
                     </div>
+                    <!-- project text description -->
                     <p class="content">
 
                          <el-input
@@ -101,12 +103,11 @@
                     </p>
                 </div>
                 <div class="right-content">  
+                    <!-- project image -->
                     <el-upload
                         style="margin-top: 35px; padding-right: 10%"
                         action="/api/home/upload/img"
                         :on-success="handleSuccess3"
-                        :on-preview="handlePreview"
-                        :on-remove="handleRemove"
                         :data="{siteId: projectForm.siteId}"
                         list-type="picture">
                         <el-button style="margin-left: 50px" size="small" type="primary">Upload</el-button>
@@ -157,12 +158,8 @@ export default {
             this.getProjectData()
     },
      methods:{
-          handleRemove(file, fileList) {
-        console.log(file, fileList);
-        },
-        handlePreview(file) {
-            console.log(file);
-        },
+
+        //show upload success when image uploaded
         handleSuccess1(response, file, fileList) {
             this.projectForm.projects[0].image = response.obj;
         },
@@ -172,12 +169,14 @@ export default {
         handleSuccess3(response, file, fileList) {
             this.projectForm.projects[2].image = response.obj;
         },
+        //upload all project information except images
         async upload(){
             this.projectForm.siteId = window.localStorage.getItem("nowSiteId")
             const { data: res } = await this.$http.post('/api/home/update/classic/project',this.projectForm)
             if (res.message != "Success!") return this.$message.error('upload fail！')
             this.$message.success('upload success！')
         },
+        //get all project data
         async getProjectData() {
             this.projectForm.siteId = window.localStorage.getItem("nowSiteId")
             var extem = {siteId: this.projectForm.siteId}

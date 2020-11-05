@@ -73,6 +73,7 @@ export default {
             this.getUserData()
     },
       methods:{
+          //route to setting page
          goSetting(){
             this.$router.push('/gallery/galleryHomeSetting')
         },
@@ -81,6 +82,7 @@ export default {
                 this.isViewerMode = true 
             }
         },
+        //get images
         async loadImage(){
             if(this.isViewerMode == true){
                 this.id.siteId = this.$route.params.id
@@ -88,6 +90,7 @@ export default {
             var sendData = this.$qs.stringify(this.id)
             const { data: res } = await this.$http.post('/api/home/get/img', sendData, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (res.message != "Success!") return this.$message.error('get load fail！')
+            //store img url to imageList
             var tempList1 = []
             var tempList2 = []
             for(var i=0;i<res.obj.length;i= i+2){
@@ -99,6 +102,7 @@ export default {
             this.imageList1 = tempList1
             this.imageList2 = tempList2
         },
+        //delete image by image id
         async handleDelete(id){
             var temp1 = {siteId: this.id.siteId, imageId: id}
             var data1 = this.$qs.stringify(temp1)
@@ -107,6 +111,7 @@ export default {
             this.$message.success('delete success！')
             this.loadImage()
         },
+        //get user's social media links
         async getUserData() {
             if(this.isViewerMode == true){
                 this.siteId = this.$route.params.id

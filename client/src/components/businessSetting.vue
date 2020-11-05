@@ -1,5 +1,6 @@
 <template>
     <div class="business-container">
+        <!-- topbar for eportfolio2077 website -->
         <div class="topbar-wrapper" id="topbar">
             <div class="topbar">
                 <el-button type="primary" class="edit-btn" @click='uploadTotal'>Edit</el-button>
@@ -313,21 +314,21 @@ export default {
              //document.documentElement.scrollTop = anchor.offsetTop;
              let total = anchor.offsetTop;
 
-             // 平滑滚动，时长500ms，每10ms一跳，共50跳
-             // 获取当前滚动条与窗体顶部的距离
+             // scroll evenly, cost 500ms，every 10ms jump once，50 jumps in total
+             // get the distance between the scroll bar and the page top
              let distance = document.documentElement.scrollTop || document.body.scrollTop
-             // 计算每一小段的距离
+             // count every jumps' distance
              let step = total/50;
              (function smoothDown () {
                  if (distance < total) {
                      distance += step
-                 　　// 移动一小段
+                 　　// move a litte bit
                      document.body.scrollTop = distance
                      document.documentElement.scrollTop = distance
-                 　　// 设定每一次跳动的时间间隔为10ms
+                 　　// every 10ms jump once
                      setTimeout(smoothDown, 10)
                  } else {
-                 　　// 限制滚动停止时的距离
+                 　　// restrict stop distance
                      document.body.scrollTop = total
                      document.documentElement.scrollTop = total
                  }
@@ -351,18 +352,21 @@ export default {
           this.setSkillData()
           
       },
+      //upload experience part's data
       async uploadex(){
             this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")
             const { data: a } = await this.$http.post('/api/home/update/classic/experience',this.experienceForm)
             if (a.message != "Success!") return this.$message.error('upload experience fail！')
             this.$message.success('upload experience success！')
         },
+        //upload education part's data
         async uploaded(){
             this.educationForm.siteId = window.localStorage.getItem("nowSiteId")
             const { data: b } = await this.$http.post('/api/home/update/classic/education',this.educationForm)
             if (b.message != "Success!") return this.$message.error('upload education fail！')
             this.$message.success('upload education success！')
         },
+        //get experience part's data
         async getExperienceData() {
             this.experienceForm.siteId = window.localStorage.getItem("nowSiteId")
             var extem = {siteId: this.experienceForm.siteId}
@@ -374,6 +378,7 @@ export default {
                 this.experienceForm = aa.obj
             }
         },
+        //get education part's data
         async getEducationData() {
             this.educationForm.siteId = window.localStorage.getItem("nowSiteId")
             var edtem = {siteId: this.educationForm.siteId}
@@ -385,6 +390,7 @@ export default {
                 this.educationForm = bb.obj
             }
         },
+        //get about part's data
       async getAboutData() {
             this.aboutedForm.siteId = window.localStorage.getItem("nowSiteId")
             var tem = {siteId: this.aboutedForm.siteId}
@@ -397,12 +403,15 @@ export default {
                 this.aboutedForm.education.description = r.obj.education.description
             }
         },
+        //get skill part's data
         async getSkillData() {
             this.skillForm.siteId = window.localStorage.getItem("nowSiteId")
             var skilltem = {siteId: this.skillForm.siteId}
             var data4 = this.$qs.stringify(skilltem)
             const { data: cc } = await this.$http.post('/api/home/get/business/skill',data4, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (cc.message != "Success!") return this.$message.error('get skill fail！')
+
+            //store returned data and prevent unexpect data be stored
             var tempArray1 = []
             var tempArray2 = []
             if(cc.obj.skillList.length != 0){
@@ -440,17 +449,20 @@ export default {
             }
             tempArray1 = []
         },
+        //upload about part's data
          async setAboutData() {
             const { data: re } = await this.$http.post('/api/home/update/business/aboutedu',this.aboutedForm)
             if (re.message != "Success!") return this.$message.error('update about fail！')
             this.$message.success('upload about success！')
         },
+        //upload skill part's data
         async setSkillData() {
             const { data: c } = await this.$http.post('/api/home/update/business/skill',this.skillForm)
             if (c.message != "Success!") return this.$message.error('update about fail！')
             this.$message.success('upload skill success！')
         },
-      async getUserData() {
+       //get some basic information of the site owner
+        async getUserData() {
             const { data: res } = await this.$http.get('/api/user/logged')
             if (res.message != "Success!") return this.$message.error('get logged fail！')
             this.profilePic = res.obj.profilePic

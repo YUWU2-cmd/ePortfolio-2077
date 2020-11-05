@@ -1,3 +1,4 @@
+<!-- contact page for classic template -->
 <template>
     <div id="contact-body">
         <div class="body-wrapper" >
@@ -7,6 +8,7 @@
                 <div class="title">Let's Talk!</div>
             </div>
         </div>
+        <!-- email content -->
         <div class="contact-form">
             <div class="form">
                 <div class="sender">
@@ -29,6 +31,7 @@
                 </div>
             </div>
         </div>
+        <!-- contact info -->
         <div class="footer">
             <div class="email">
                 <div class="title">Email <i class="iconfont icon-22"></i></div>
@@ -43,7 +46,6 @@
     </div>
     </div>
 </template>
-
 <script>
 export default {
     data () {
@@ -73,11 +75,13 @@ export default {
                 this.isViewerMode = true
             }
         },
+        //get some basic information of the site owner
         async getUserData() {
             if(this.isViewerMode == true){
                 this.siteId = this.$route.params.id
             }else{this.siteId = window.localStorage.getItem("nowSiteId")}
             var temp = {siteId: this.siteId}
+            //convert aboutMeForm to form type
             var data2 = this.$qs.stringify(temp)
             const { data: re } = await this.$http.post('/api/dashboard/fetch',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (re.message != "Success!") return this.$message.error('get logged fail！')
@@ -85,6 +89,7 @@ export default {
             this.phoneNumber = re.obj.user.phoneNumber
             this.email = re.obj.user.email
         },
+        //send contactForm to owner's email address
         async send(){
             this.contactForm.ownerEmail = this.email
             const { data: res } = await this.$http.post('/api/user/contact',this.contactForm)

@@ -93,17 +93,20 @@ const router = new VueRouter({
   ]
 })
 
-/*router.beforeEach((to, from, next) => {
-  // to 将要访问的路径
-  // from 代表从哪个路径跳转而来
-  // next 是一个函数，表示放行
-  //     next()  放行    next('/login')  强制跳转
+//router guard
+router.beforeEach((to, from, next) => {
 
-  if (to.path === '/login'||to.path === '/register'||to.path === '/forget') return next()
-  // 获取token
-  const tokenStr = window.sessionStorage.getItem('token')
-  if (!tokenStr) return next('/login')
-  next()
-})*/
+  //make sure nobody can access reset password page without the verify
+  if (to.path !== '/reset'){
+    if(window.localStorage.getItem("isVerified") != null){
+      window.localStorage.removeItem("isVerified")
+    }
+    return next()
+  } 
+  if (to.path === '/reset' && window.localStorage.getItem("isVerified")) {
+    return next()
+  }
+ else{return next('/login')}
+})
 
 export default router

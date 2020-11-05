@@ -12,7 +12,7 @@
         </div>
         <div class="verify_box">
             <div class="inner-body">
-            <!-- 标题区域 -->
+            <!-- title -->
             <div class="title">
                 Change your password
             </div>
@@ -22,21 +22,16 @@
             <div class="description">
                 Fill out your email address and new password. You'll reset your password. 
             </div>
-            <!-- 登录表单区域, 这里使用了vbind的：号，绑定了elform的model属性 -->
-            <!-- rules和prop属性都是校验相关的。
-             ref是引用属性，下面js部分使用这个的会得到该属性的标签的对象 -->
              <el-form ref="resetFormRef" :model="resetForm" :rules="resetFormRules" label-width="0px" class="verify_form">
-                <!-- 用户名 -->
-                <span>Email Address</span> 
-                <el-form-item prop="email">
-                <el-input class="input" v-model="resetForm.email" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email1"></el-input>
-                </el-form-item>
-                 
+                <!-- email address -->
+                <span>Email Address</span> <br/>
+                <div style="margin: 30px 0px 10px 0px">{{resetForm.email}}</div><br/>
+                <!-- new password -->
                 <span>New Password</span> 
                 <el-form-item prop="password">
                 <el-input class="input" v-model="resetForm.password" placeholder="Fill in your Password" prefix-icon="iconfont icon-password"></el-input>
                 </el-form-item>
-                <!-- 按钮区域 -->
+                <!-- button -->
                 
             </el-form>
                 <div class="btn">
@@ -57,12 +52,9 @@ export default {
         email: '',
         password: ''
       },
-      // 这是表单的验证规则对象
+       // prevalidate rules
       resetFormRules: {
-        email: [
-          { required: true, message: 'Please enter email address', trigger: 'blur' },
-          { min: 6, max: 40, message: 'Please enter vaild email address', trigger: 'blur' }
-        ],
+        // validate the input is legal or not
         password: [
           { required: true, message: 'Please enter password', trigger: 'blur' },
           { min: 6, max: 15, message: 'Password need 6 ~ 15 characters', trigger: 'blur' }
@@ -70,9 +62,15 @@ export default {
       }
     }
   },
-  
+  created() {
+        this.getEmail()
+  },
   methods: {
-    // 这个是予验证，检查当前内容格式是否符合验证规则
+    //get email which was entered in the previous page
+    getEmail(){
+      this.resetForm.email = window.localStorage.getItem("email")
+    },
+    // prevalidate first. If the input follow the prevalidate rules, the method will send request
     verify () {
       this.$refs.resetFormRef.validate(async valid => {
         if (!valid) return
@@ -80,10 +78,8 @@ export default {
         const { status: res } = await this.$http.post('/api/user/change/password', data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
         if (res != 200) return this.$message.error('reset fail！')
         this.$message.success('reset success')
-        // 1. 将登录成功之后的 token，保存到客户端的 sessionStorage 中
-        //   1.1 项目中出了登录之外的其他API接口，必须在登录之后才能访问
-        //   1.2 token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中
-        // 2. 通过编程式导航跳转到后台主页，路由地址是 /home
+
+        //after reset, go to the login in page
         this.$router.push('/Login')
       })
     }

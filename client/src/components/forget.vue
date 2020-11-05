@@ -12,7 +12,6 @@
         </div>
         <div class="forget_box">
             <div class="inner-body">
-            <!-- 标题区域 -->
             <div class="title">
                 Forget your password?
             </div>
@@ -22,17 +21,14 @@
             <div class="description">
                 Fill out your email address, and we’ll send you instructions to reset your password. 
             </div>
-            <!-- 登录表单区域, 这里使用了vbind的：号，绑定了elform的model属性 -->
-            <!-- rules和prop属性都是校验相关的。
-             ref是引用属性，下面js部分使用这个的会得到该属性的标签的对象 -->
              <el-form ref="forgetFormRef" :model="forgetForm" :rules="forgetFormRules" label-width="0px" class="forget_form">
-                <!-- 用户名 -->
+                <!-- email address -->
                 <span>Email Address</span> 
                 <el-form-item prop="emailAdd">
                 <el-input class="input" v-model="forgetForm.emailAdd" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email1"></el-input>
                 </el-form-item>
               </el-form>
-                <!-- 按钮区域 -->
+                <!-- button -->
                 <div class="btn">
                     <button @click="sendEmail" type="submit">Email me some help</button>
                 </div>
@@ -54,7 +50,7 @@ export default {
       forgetForm: {
         emailAdd: ''
       },
-      // 这是表单的验证规则对象
+      // prevalidate rules
       forgetFormRules: {
         emailAdd: [
           { required: true, message: 'Please enter email address', trigger: 'blur' },
@@ -64,7 +60,7 @@ export default {
     }
   },
   methods: {
-    // 这个是予验证，检查当前内容格式是否符合验证规则
+    // prevalidate first. If the input follow the prevalidate rules, the method will send request
     sendEmail () {
       this.$refs.forgetFormRef.validate(async valid => {
         if (!valid) return

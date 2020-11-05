@@ -33,6 +33,7 @@ export default {
                 this.isViewerMode = true 
             }
         },
+        //get some basic information of the site owner
         async getAboutData() {
             if(this.isViewerMode == true){
                 this.aboutMeForm.siteId = this.$route.params.id
@@ -44,6 +45,7 @@ export default {
             this.aboutMeForm.aboutme = r.obj.aboutMe
             this.aboutMeForm.bio = r.obj.bio
         },
+        //get image
         async getAboutImg() {
             if(this.isViewerMode == true){
                 this.aboutMeForm.siteId = this.$route.params.id

@@ -1,15 +1,15 @@
+<!-- dashboard page for user to manage his sites -->
 <template>
     <div class="dashboard-container">
-         <div class="topbar-wrapper">
-        <div class="topbar">
+        <!-- topbar for eportfolio2077 website -->
+        <div class="topbar-wrapper">
+            <div class="topbar">
             
-            <div class="topbar-main">
-                <div class="title" style="cursor: pointer">
-                    ePortfolio 2077
+                <div class="topbar-main">
+                    <div class="title" style="cursor: pointer">
+                        ePortfolio 2077
+                    </div>
                 </div>
-            </div>
-
-            
 
                 <el-dropdown placement="bottom-start" class="topbar-side">
                     <span class="el-dropdown-link">
@@ -24,8 +24,6 @@
                     </el-dropdown-menu>
                 </el-dropdown>
                 
-           
-            
         </div>
     </div>
     <div class="user-tab">
@@ -33,6 +31,7 @@
             <div class="title">{{username}}'s ePortfolios</div>
             <div class="subtitle">Select a site to edit, view and open its dashboard.</div>
         </div>
+        <!-- button to create sites -->
         <el-dropdown class="create-wrapper" placement="bottom" @command="handleCommand">
             <span >
                 <div id="create-new" class="button">+ Create new</div>
@@ -43,15 +42,14 @@
                 <el-dropdown-item command="c">business</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
-        
     </div>
     <div class="body-wrapper">
         <div class="header">
             <div>All ePortfolios</div>
         </div>
         <div class="sites" id="site-list">
-            
-            <a v-for="(item,index) in portfolioList" >
+            <!-- area where all the sites are displayed -->
+            <a v-bind:key=index v-for="(item,index) in portfolioList" >
                 <div class="site" @click="goTemp(item.template,item.siteId)">
                     
                        <i class="iconfont icon-21file" style=" margin: 5px 0px; cursor: pointer;bottom: 55px; left: 20%" @click.stop="handleRenameButton(index)"></i>
@@ -87,7 +85,9 @@ export default {
             this.getUserData()
     },
     methods: {
+        //use input variables to decide to goto which site
         goTemp(template,id){
+            //store the selected site's id 
             window.localStorage["nowSiteId"]=id
             if (template=="classic"){
                 this.$router.push('/classic')
@@ -99,6 +99,7 @@ export default {
                 this.$router.push('/business')
             }
         },
+        //decide to create which type of site
         handleCommand(command) {
             if (command=="a"){
             this.create("classic")
@@ -110,19 +111,19 @@ export default {
                 this.create("business")
             }
         },
+        //open the name input box for particular site
         handleRenameButton(i){
             var statu = !this.inputFlagList[i]
-            //vue的vshow vif无法实时监听list的变化，所以有以下代码手动让它们监听到list
+            //vue's vshow if can't monitor list's change，so we use this let vue to know the change of list 
             this.$set(this.inputFlagList,i,statu);
-            console.log(this.inputFlagList)
-
-
             
         },
+        //when user click on the input box's outside, it will update the site name
         handle_blur(index,id){
             this.handleRenameButton(index)
             this.rename(id)
         },
+        //update site name
         async rename(id){
             var temp2 = {siteId: id, name: this.name}
             var data2 = this.$qs.stringify(temp2)
@@ -131,6 +132,7 @@ export default {
             this.$message.success('rename success！')
             this.loadIform()
         },
+        //delete site
         async handleDelete(id){
             var temp1 = {siteId: id}
             var data1 = this.$qs.stringify(temp1)
@@ -139,6 +141,7 @@ export default {
             this.$message.success('delete success！')
             this.loadIform()
         },
+        //create new site
         async create(temType){
             var temp = {template: temType}
             var data = this.$qs.stringify(temp)
@@ -148,8 +151,8 @@ export default {
             this.loadIform()
             
         },
+        //get all sites the user have
         async loadIform(){
-            console.log(this.$route.params.id)
             const { data: re } = await this.$http.get('/api/dashboard/load')
             if (re.message != "Success!") return this.$message.error('get load fail！')
             this.portfolioList = re.obj
@@ -161,6 +164,7 @@ export default {
             }
             
         },
+        //get some basic information of the site owner
          async getUserData() {
             const { data: r } = await this.$http.get('/api/user/logged')
             if (r.message != "Success!") return this.$message.error('get logged fail！')

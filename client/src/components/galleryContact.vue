@@ -59,6 +59,7 @@ export default {
                 this.isViewerMode = true
             }
         },
+        //get some basic information of the site owner
         async getUserData() {
                 if(this.isViewerMode == true){
                     this.siteId = this.$route.params.id
@@ -71,6 +72,7 @@ export default {
                 this.phoneNumber = re.obj.user.phoneNumber
                 this.email = re.obj.user.email
         },
+        //send contactForm to owner's email address
         async send(){
             this.contactForm.ownerEmail = this.email
             const { data: res } = await this.$http.post('/api/user/contact',this.contactForm)

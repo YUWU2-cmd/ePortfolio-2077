@@ -1,3 +1,4 @@
+<!-- user personal detail page -->
 <template>
     <div class="personal-detail-container">
         <div class="topbar-wrapper">
@@ -30,6 +31,7 @@
         <div class="basic-info">
             <div class="title">Basic Info</div>
             <div class="content">
+                 <!-- basic info -->
                 <div class="info">
                     <div class="acc">
                         <span class="text">First Name</span>
@@ -57,6 +59,7 @@
                 </div>
             </div>
         </div>
+        <!-- additional info -->
         <div class="more-info">
             <div class="title">More Info</div>
             <div class="content">
@@ -71,6 +74,7 @@
                     </div>
             </div>
         </div>
+        <!-- social media links -->
         <div class="socialmedia-info">
             <div class="title">Social Media</div>
             <div class="content">
@@ -132,18 +136,20 @@ export default {
         this.getUserData()
     },
      methods: {
-
-      handleSuccess(response, file, fileList) {
+         //show upload success when image uploaded
+        handleSuccess(response, file, fileList) {
             this.$message.success('upload profile image success！')
         },
         goDashboard() {
             this.$router.push('/dashboard')
         },
+        //upload all content in this page except profile picture and password
         async uploadDetail(){
             const { data: re } = await this.$http.post('/api/user/update/details',this.detailForm)
             if (re.message != "Success!") return this.$message.error('upload detail fail！')
             this.$message.success('upload detail success！')
         },
+        //get user's personal infromation
       async getUserData() {
             const { data: res } = await this.$http.get('/api/user/logged')
             if (res.message != "Success!") return this.$message.error('get logged fail！')
@@ -159,6 +165,7 @@ export default {
             this.detailForm.userId = res.obj.userId
             this.resetForm.email = res.obj.email
         },
+        //reset a new password
         async resetPassword(){
             var data = this.$qs.stringify(this.resetForm)
             const { status: r } = await this.$http.post('/api/user/change/password', data, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})

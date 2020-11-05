@@ -9,33 +9,31 @@
             </div>
         </div>
         <div class="register_box">
-            <!-- 头像区域 -->
+            <!-- logo -->
             <div class="avatar_box">
                 <img src="../assets/logo1.png" alt="">
             </div>
             <div class="title">
                 Register
             </div>
-            <!-- 登录表单区域, 这里使用了vbind的：号，绑定了elform的model属性 -->
-            <!-- rules和prop属性都是校验相关的。
-             ref是引用属性，下面js部分使用这个的会得到该属性的标签的对象 -->
              <el-form ref="registerFormRef" :model="registerForm" :rules="registerFormRules" label-width="0px" class="register_form">
-                <!-- 用户名 -->
+                <!-- email address -->
                 <span>Email Address</span> 
                 <el-form-item prop="email">
                 <el-input v-model="registerForm.email" placeholder="Fill in your Unimelb email" prefix-icon="iconfont icon-email1"></el-input>
                 </el-form-item>
+                 <!-- username -->
                 <span>Username</span> 
                 <el-form-item prop="username">
                 <el-input v-model="registerForm.username" placeholder="Fill in your username" prefix-icon="iconfont icon-bussiness-man-fill"></el-input>
                 </el-form-item>
-                <!-- 密码 -->
+                <!-- password -->
                 <span>Password</span> 
                 <el-form-item prop="password">
                 <el-input v-model="registerForm.password" placeholder="Fill in your password" prefix-icon="iconfont icon-password" type="password"></el-input>
                 </el-form-item>
             </el-form>
-            <!-- 按钮区域 -->
+            <!-- button -->
                 <div class="btn">
                     <button @click="register" type="submit">Register</button>
                 </div>
@@ -57,14 +55,13 @@ export default {
         password: '',
         email : ''
       },
-      // 这是表单的验证规则对象
+      // prevalidate rules
       registerFormRules: {
-        // 验证用户名是否合法，trigger是触发方法，blur是表示键入标离开就触发
+        // validate the input is legal or not
         username: [
           { required: true, message: 'Please enter username', trigger: 'blur' },
           { min: 3, max: 20, message: 'Username need 3 ~ 20 characters', trigger: 'blur' }
         ],
-        // 验证密码是否合法
         password: [
           { required: true, message: 'Please enter password', trigger: 'blur' },
           { min: 6, max: 15, message: 'Password need 6 ~ 15 characters', trigger: 'blur' }
@@ -83,22 +80,22 @@ export default {
     goVerify () {
       this.$router.replace('/verify')
     },
-    // 这个是予验证，检查当前内容格式是否符合验证规则
+    // prevalidate first. If the input follow the prevalidate rules, the method will send request
     register () {
       this.$refs.registerFormRef.validate(async valid => {
         if (!valid) return
         const { status: res } = await this.$http.post('/api/user/signup', this.registerForm)
         if (res != 200) return this.$message.error('sign up fail！')
         this.$message.success('sign up success')
+
+        //send verify email
         var temp = {email: this.registerForm.email}
         var data = this.$qs.stringify(temp)
         const { status: re } = await this.$http.post('/api/user/send', data, {headers:{'Content-Type':'application/x-www-form-urlencoded' }})
         if (re != 200) return this.$message.error('send code fail！')
+
+        //go to the verify page
         this.$router.push('/verify')
-        // 1. 将登录成功之后的 token，保存到客户端的 sessionStorage 中
-        //   1.1 项目中出了登录之外的其他API接口，必须在登录之后才能访问
-        //   1.2 token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中
-        // 2. 通过编程式导航跳转到后台主页，路由地址是 /home
         
       })
     }

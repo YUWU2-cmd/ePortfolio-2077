@@ -1,3 +1,4 @@
+<!-- projects page for classic template -->
 <template>
     <div id="projects-body">
     <div class="body-wrapper">
@@ -97,6 +98,7 @@ export default {
                 this.isViewerMode = true 
             }
         },
+        //get all project data
         async getProjectData() {
             if(this.isViewerMode == true){
                 this.projectForm.siteId = this.$route.params.id

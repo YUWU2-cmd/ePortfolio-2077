@@ -1,3 +1,4 @@
+<!-- moreaboutme page for classic template -->
 <template>
     <div id="more-body">
    <div class="body-wrapper">
@@ -160,6 +161,7 @@ export default {
                 this.isViewerMode = true 
             }
         },
+        //get experience part's data
         async getExperienceData() {
             if(this.isViewerMode == true){
                 this.experienceForm.siteId = this.$route.params.id
@@ -174,6 +176,7 @@ export default {
             }
             
         },
+        //get education part's data
         async getEducationData() {
             if(this.isViewerMode == true){
                 this.educationForm.siteId = this.$route.params.id
@@ -188,6 +191,7 @@ export default {
                 this.educationForm = bb.obj
             }
         },
+        //get skill part's data
         async getSkillData() {
             if(this.isViewerMode == true){
                 this.skillForm.siteId = this.$route.params.id
@@ -197,6 +201,8 @@ export default {
            
             const { data: cc } = await this.$http.post('/api/home/get/classic/skill',data3, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
             if (cc.message != "Success!") return this.$message.error('get about fail！')
+
+             //store returned data and prevent unexpect data be stored
             if(cc.obj.proList.length != 0 && cc.obj.addList.length != 0){
                 var tempArray1 = []
                 var tempArray2 = []

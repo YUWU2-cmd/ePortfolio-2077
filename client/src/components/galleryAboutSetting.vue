@@ -4,8 +4,6 @@
             <el-upload
                 class="avatar-uploader"
                 action="/api/home/update/gallery/aboutpic"
-                :on-success="handleAvatarSuccess"
-                :before-upload="beforeAvatarUpload"
                 :data="{siteId: aboutMeForm.siteId}">
                 <img v-if="imageUrl" :src="imageUrl" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -41,16 +39,10 @@ export default {
             this.getAboutData()
     },
     methods: {
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = false;
-      },
       handleUpload(){
           this.upload()
       },
+      //get some basic information of the site owner
       async getAboutData() {
             this.aboutMeForm.siteId = window.localStorage.getItem("nowSiteId")
             var tem = {siteId: this.aboutMeForm.siteId}

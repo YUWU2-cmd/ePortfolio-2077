@@ -1,5 +1,7 @@
+<!-- home page for gallery template -->
 <template>
     <div class="gallery-container">
+        <!-- topbar for eportfolio2077 website -->
         <div class="topbar-wrapper">
             <div class="topbar">
             
@@ -72,9 +74,11 @@ export default {
                 this.countVisited()
             }
         },
+        //get some basic information of the site owner
         async getUserData() {
             if(this.isViewerMode){
                 var temp = {siteId: this.$route.params.id}
+                 //convert aboutMeForm to form type
                 var data2 = this.$qs.stringify(temp)
                 const { data: re } = await this.$http.post('/api/dashboard/fetch',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
                 if (re.message != "Success!") return this.$message.error('get logged fail！')
@@ -89,6 +93,7 @@ export default {
                 this.lastName = re.obj.lastName
             }
         },
+        //when the site is visted once, this method will be called and let server add the visit times number
         async countVisited() {
                 var tem = {siteId: this.$route.params.id}
                 var data3 = this.$qs.stringify(tem)
