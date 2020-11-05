@@ -38,17 +38,15 @@
         <div class="left-content">
             <div class="title-wrapper">
                 <div class="hello">HELLO, I'M</div>
-                <h1 class="name"><input v-model="username" placeholder="Your name here" class="title-name-input"></h1>
+                <h1 class="name">{{username}}</h1>
                 <div class="subtitle"><input maxlength="40" v-model="aboutedForm.education.degree" placeholder="Occupation here" class="occupation-input" show-word-limit></div>
             </div>
         </div>
         <div class="right-content">
             <div class="profile-img"><img :src="profilePic"></div>
-            <div class="name"><input v-model="username" placeholder="Your name here" class="name-input"></div>
+            <div class="name">{{username}}</div>
             <div class="subtitle"><el-input maxlength="40" type="textarea" placeholder="Your degree here" v-model="aboutedForm.education.degree" autosize="" class="degree-input" show-word-limit></el-input></div>
             <div class="subtitle"><el-input maxlength="40" type="textarea" placeholder="Your school name here" v-model="aboutedForm.education.schoolName" autosize="" class="degree-input" show-word-limit></el-input></div>
-            <div class="email"><input v-model="email" placeholder="Your email here" class="contact-input"></div>
-            <div class="phone"><input v-model="phone" placeholder="Your phone here" class="contact-input"></div>
             <div class="socialmedia">
                 <a href="https://www.facebook.com/" target="_blank"><i class="iconfont icon-facebook1"></i></a>
                 <a href="https://twitter.com/" target="_blank"><i class="iconfont icon-twitter"></i></a>
@@ -206,8 +204,6 @@
             </div>
         </div>
         <div class="right-content">
-            <div class="email"><input v-model="email" placeholder="Your email here" class="footer-contact-input"></div>
-            <div class="phone"><input v-model="phone" placeholder="Your phone here" class="footer-contact-input"></div>
             <a @click="backtop()" class="btn">
                 <div>Back to Top</div>
             </a>

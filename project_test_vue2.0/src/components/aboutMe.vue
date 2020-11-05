@@ -8,17 +8,17 @@
                         <div class="profile">
                             <img :src="profilePic" alt=""/>
                         </div>
-                        <div class="title">{{username}}</div>
+                        <div class="title">{{firstName}} {{lastName}}</div>
                         <div class="deco-line"></div>
                         <div class="subtitle">{{aboutMeForm.bio}}</div> 
                     </div>
                     <el-button v-show="!isViewerMode" type="text" @click="dialogVisible = true" class="share-link">Share Link</el-button>
                     <div class="footer">
                         <div class="content">
-                            <a :href="'https://'+facebookLink" target="_blank"><i class="iconfont icon-facebook1"></i></a>
-                            <a :href="'https://'+twitterLink" target="_blank"><i class="iconfont icon-twitter"></i></a>
-                            <a :href="'https://'+instagramLink" target="_blank"><i class="iconfont icon-instagram"></i></a>
-                            <a :href="'https://'+linkedinLink" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
+                            <a :href="facebookLink" target="_blank"><i class="iconfont icon-facebook1"></i></a>
+                            <a :href="twitterLink" target="_blank"><i class="iconfont icon-twitter"></i></a>
+                            <a :href="instagramLink" target="_blank"><i class="iconfont icon-instagram"></i></a>
+                            <a :href="linkedinLink" target="_blank"><i class="iconfont icon-linkedin last-icon"></i></a>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,8 @@ export default {
                 siteId:''
             },
             profilePic: '',
-            username: '',
+            firstName: '',
+            lastName: '',
             linkedinLink: "",
             facebookLink: "",
             twitterLink: "",
@@ -90,12 +91,14 @@ export default {
                 const { data: re } = await this.$http.post('/api/dashboard/fetch',data2, {headers:{'Content-Type':'application/x-www-form-urlencoded'}})
                 if (re.message != "Success!") return this.$message.error('get logged fail！')
                 this.profilePic = re.obj.user.profilePicture
-                this.username = re.obj.user.username
+                this.firstName = re.obj.user.firstName
+                this.lastName = re.obj.user.lastName
             }else{
                 const { data: re } = await this.$http.get('/api/user/logged')
                 if (re.message != "Success!") return this.$message.error('get logged fail！')
                 this.profilePic = re.obj.profilePic
-                this.username = re.obj.username
+                this.firstName = re.obj.firstName
+                this.lastName = re.obj.lastName
             }
             
         },

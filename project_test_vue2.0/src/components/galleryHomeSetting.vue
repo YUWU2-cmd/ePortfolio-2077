@@ -3,13 +3,13 @@
        <div class="body-wrapper">
         <div class="content-wrapper">
             <el-upload
-                    style="margin-left: 30%; padding-right: 30%"
+                    style="text-align: center"
                     action="/api/home/upload/img"
                     :on-preview="handlePreview"
                     :on-remove="handleRemove"
                     :data="{siteId: nowSiteId}"
                     list-type="picture">
-                    <el-button style="margin-left: 50px" size="small" type="primary">Upload</el-button>
+                    <el-button size="small" type="primary">Upload</el-button>
                     <div slot="tip" class="el-upload__tip">jpg/png only，500kb limit</div>
                   </el-upload>
         </div>
@@ -58,11 +58,12 @@ export default {
 }
 
 #home-body .content-wrapper{
-    width: 70%;
+    width: 20%;
     padding-top: 20px;
-    margin-left: 15%;
+    margin-left: 40%;
     height: 3130px;
 }
+
 #home-body .footer{
 
     width: 100%;
