@@ -50,7 +50,7 @@ public class MailService {
         String subject = "Contact request from viewer";
         String senderName = "The ePortfolio2077 Team";
 
-        String body = "<p>Viewer " + name + "is interested in your portfolio(s) and use our service to inform you:<br>";
+        String body = "<p>Viewer " + name + " is interested in your portfolio(s) and use our service to inform you:<br>";
         body += content + "<br><br>";
         body += "For more information, please contact the following email or phone of the viewer<br>";
         body += "Viewer: " + name + "<br>";
