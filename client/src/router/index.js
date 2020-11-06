@@ -1,16 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
-import home from '../components/home.vue'
 import register from '../components/register.vue'
 import forget from '../components/forget.vue'
 import verify from '../components/verify.vue'
 import verifyForget from '../components/verifyForget.vue'
 import reset from '../components/reset.vue'
-import homeSetting from '../components/homeSetting.vue'
 import personalDetail from '../components/personalDetail.vue'
-import moreAboutMe from '../components/moreAboutMe.vue'
-import homeDetail from '../components/homeDetail.vue'
 import dashboard from '../components/dashboard.vue'
 import classic from '../components/classic.vue'
 import aboutMe from '../components/aboutMe.vue'
@@ -77,14 +73,7 @@ const router = new VueRouter({
       { path: '/gallery/galleryAboutSetting/:id',  component: galleryAboutSetting},
       { path: '/gallery/galleryContact/:id',  component: galleryContact}
     ]},
-    { path: '/home', component: home, children: [
-      { path: '/home', redirect: '/home/homeDetail' },
-      { path: '/home/homeDetail',  component: homeDetail},
-      { path: '/home/moreAboutMe', component: moreAboutMe},
-      { path: '/home/homeSetting',  component: homeSetting}
-    ]},
     { path: '/register', component: register },
-    { path: '/homeSetting', component: homeSetting },
     { path: '/forget', component: forget },
     { path: '/verify', component: verify },
     { path: '/verifyForget', component: verifyForget },

@@ -1,26 +1,23 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index.js'
-// 导入字体图标
+// import icon
 import './assets/fonts/iconfont.css'
-// 导入全局样式表
+// import global css
 import './assets/css/global.css'
 
 
-// 手动配置 element-ui
+// config element-ui
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './plugins/element.js'
 
 import axios from 'axios'
 import Qs from 'qs'
-// 配置请求的跟路径
+// request root path
 axios.defaults.baseURL = '/'
-// 设置请求拦截器，给请求加上token
 axios.interceptors.request.use(config => {
-  // console.log(config)
   config.headers.Authorization = window.sessionStorage.getItem('token')
-  // 在最后必须 return config
   return config
 })
 
