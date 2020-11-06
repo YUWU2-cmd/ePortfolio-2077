@@ -25,7 +25,7 @@
                 <!-- password -->
                 <span>Password</span> 
                 <el-form-item prop="password">
-                <el-input v-model="loginForm.password" placeholder="Fill in your password" prefix-icon="iconfont icon-password" type="password"></el-input>
+                <el-input v-model="loginForm.password" @keydown.enter.native="login" placeholder="Fill in your password"  prefix-icon="iconfont icon-password" type="password"></el-input>
                 </el-form-item>
                 
             </el-form>
